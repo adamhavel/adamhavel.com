@@ -1,0 +1,1 @@
+I [design and build](/projekty/) things for&nbsp;the&nbsp;web, [write](/) about&nbsp; technology and other topics, and&nbsp;[teach](/skoleni/) courses on&nbsp;programming in&nbsp;JavaScript.

@@ -1,0 +1,6 @@
+.DS_Store
+*.sublime-project
+node_modules
+package-lock.json
+public
+static/lib

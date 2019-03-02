@@ -1,0 +1,2813 @@
+<!-- .slide: class="title" data-background="#F5D76E" -->
+# <span>Moderní</span> <span>JavaScript</span>
+
+---
+
+<p style="text-align: center">[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)</p>
+
+---
+
+- [https://www.adamhavel.com/moderni-javascript](https://www.adamhavel.com/moderni-javascript)
+- [https://repl.it](https://repl.it)
+
+---
+
+## Co je cílem?
+- získat **obecnou představu**
+- zbavit se **předsudků**
+- pochopit **základní koncepty**
+- zkusit je **použít**
+
+---
+
+## Co naopak cílem není?
+- podat **objektivní** výčet všech možností
+- vysvětlit **všechny** detaily
+- zapamatovat si **syntax**
+- zabývat se **frameworky**
+
+---
+
+## Ideální představa programu
+1. úvod do JavaScriptu
+2. gramatika (+ příklad)
+3. kontext a uzávěry (+ příklad)
+4. oběd
+5. prototypální delegace (+ příklad)
+6. asynchronní operace (+ příklad)
+7. diskuze o JavaScriptu v praxi
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# *Java*Script?!
+
+---
+
+### Počátky
+
+- vzniknul v roce 1995 pod názvem *LiveScript*
+- Brendan Eich napsal prototyp během 10 dní
+- implementován jako součást prohlížeče *Netscape*
+- z marketingových důvodů přejmenován na *JavaScript*
+- Microsoft okopíroval jako *JScript*
+
+---
+
+### JavaScript a Java
+
+- podobnost jen na úrovni syntaxe
+- skutečná inspirace:
+    - *Self* — prototypy
+    - *Scheme* — funkcionální přístup
+
+---
+
+### JavaScript nebo EcmaScript?
+
+- v roce 1997 standardizován pod názvem *EcmaScript*
+- *JavaScript* jako jedna z implementací *EcmaScriptu*
+- historické příklady dalších: *JScript*, *ActionScript*
+- nyní pod správou *Mozilla Foundation*
+
+---
+
+### Verze (?!)
+
+- 1997 — *ECMA-262*
+- 1998 — *ECMAScript 2*
+- 1999 — *ECMAScript 3*
+- 2004 — ~~*ECMAScript 4*~~
+- 2007 — *ECMAScript 3.1*
+- 2009 — ~~*ECMAScript 3.1*~~ → *ECMAScript 5*
+- 2015 — ~~*ECMAScript 6*~~ → *ECMAScript 2015*
+- 2016 — *ECMAScript 2016*
+- 2017 — *ECMAScript 2017*
+
+---
+
+### Hostitelské prostředí
+
+- *EcmaScript* neobsahuje I/O operace, síťové požadavky, ap.
+- rozšíření dodává hostitelské prostředí (prohlížeč, …)
+- operace nad *DOM*, *Ajax* nebo třeba *WebGL*
+- standardizovány odděleně od *EcmaScriptu*
+- implementovány různě v různých prostředích
+
+---
+
+### JavaScript na serveru
+
+- již v roce 1995 implementován pro *Netscape Enterprise Server*
+- v roce 2009 vznikl *Node.js*
+- deterministické prostředí
+
+---
+
+## Jaký je?
+
+<ul>
+  <li class="fragment">interpretovaný <span class="fragment">(jak se to vezme)</span></li>
+  <li class="fragment">typově dynamický</li>
+  <li class="fragment">založený na událostech</li>
+  <li class="fragment">multiparadigmatický</li>
+</ul>
+
+---
+
+### Multiparadigmatický?
+
+<ul>
+  <li class="fragment">imperativní / deklarativní</li>
+  <li class="fragment">objektově orientovaný <span class="fragment">(≠ třídně orientovaný)</span></li>
+  <li class="fragment">prototypální</li>
+  <li class="fragment">funkcionální</li>
+</ul>
+
+---
+
+#### Jazyky kompilované do JavaScriptu
+
+<ul>
+  <li class="fragment">CoffeeScript</li>
+  <li class="fragment">TypeScript</li>
+  <li class="fragment">Elm</li>
+  <li class="fragment">Scala</li>
+</ul>
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Gramatika
+
+---
+
+## Primitivní typy
+
+- neměnné (*immutable*)
+- předávají se hodnotou
+- `null`, `undefined`, `boolean`, `number`, `string`, `symbol`
+
+---
+
+## Složené typy
+
+- předávají se referencí
+- `object`
+
+---
+
+Dle očekávání:
+
+```js
+typeof undefined;      // "undefined"
+typeof true;           // "boolean"
+typeof 13;             // "number"
+typeof "13";           // "string"
+typeof { foo: "bar" }; // "object"
+typeof Symbol();       // "symbol"
+```
+
+---
+
+...ale překvapivě:
+
+```js
+typeof function() {}; // "function"
+typeof [ 1, 2, 3 ];   // "object"
+typeof /fo{2}/i;      // "object"
+typeof null;          // "object"
+```
+
+---
+
+## Nativní typy
+
+- pro každý typ (a podtyp) existuje funkce stejného jména (`String()`, `Number()`, `Array()`, ...)
+- plní tři funkce:
+    - zapouzdření (*boxing*)
+    - „konstruktor“
+    - explicitní přetypování
+
+---
+
+### Zapouzdření
+
+- poskytuje funkce literálním hodnotám
+- volání se deleguje např. na `String.prototype`
+
+```js
+var a = "foo";
+
+a.length; // 3
+a.toUpperCase(); // "ABC"
+```
+
+---
+
+### „Konstruktor“ (I.)
+
+- není důvod používat
+- lepší volit literální formu typů (`false`, `"foo"`, ...)
+
+```js
+var a = new Boolean(false);
+
+typeof a; // "object"
+a.valueOf(); // false
+
+if (!a) {
+    console.log("Not going to happen.");
+}
+```
+
+---
+
+### „Konstruktor“ (II.)
+
+Vyjímkou jsou:
+- „podtypy“ bez literální hodnoty jako `Date`, `Error` nebo `Map`
+- v některých případech regulární výrazy
+
+```js
+var a = /fo{2}/i;
+var b = "foo";
+var c = new RegExp(b + "(?!bar)", "i");
+```
+
+---
+
+### Explicitní přetypování (I.)
+
+Příliš se nepoužívá:
+
+```js
+var a = 1;
+var b = "13";
+
+Boolean(a); // true
+Number(b); // 13
+```
+
+---
+
+### Explicitní přetypování (II.)
+
+Běžnější je implicitní přetypování:
+
+```js
+var a = 1;
+var b = "13";
+
+if (a) {
+    console.log("It's going to happen.");
+}
+
+if (b > 12) {
+    console.log("It's going to happen as well.");
+}
+```
+
+---
+
+### Explicitní přetypování (III.)
+
+...nebo „méně explicitní přetypování“:
+
+```js
+var a = 1;
+var b = "13";
+
+!!a; // true
+a+""; // "1"
++b; // 13
+```
+
+---
+
+## `Number` (I.)
+
+```js
+var a = 13;
+var b = 13.1;
+var c = .13;
+var d = 0.13;
+var e = NaN;
+```
+
+---
+
+## `Number` (II.)
+
+```js
+var a = 13.132;
+var b = "16.5 rad";
+
+a.toFixed(1); // "13.1"
+Math.round(a); // 13
+Number(b); // NaN
+parseInt(b); // 16
+parseFloat(b); // 16.5
+```
+
+---
+
+## `Undefined`
+
+- definice ≠ deklarace
+- pomocí `typeof` lze bezpečně ověřit existenci proměnné
+
+```js
+var a;
+
+a; // undefined
+b; // ReferenceError: b is not defined.
+typeof a; // "undefined"
+typeof b; // "undefined"
+
+if (typeof b !== "undefined") { // false
+    console.log("Never runs.");
+}
+```
+
+---
+
+## `Null`
+
+```js
+var a = null;
+
+typeof null === "object"; // true
+(!a && typeof a === "object"); // true
+```
+
+---
+
+## `Function` (I.)
+
+- `object` s možností volání
+- běžná hodnota (*first-class functions*)
+
+```js
+function add(x, y) {
+    return x + y;
+}
+
+var subtract = function(x, y) {
+    return x - y;
+}
+
+var foo = add;
+
+add.length; // 2
+add(5, 8); // 13
+subtract(5, 8); // -3
+foo(1, 1); // 2
+```
+
+---
+
+## `Function` (II.)
+
+Anonymní (*lambda*) a pojmenované funkce:
+
+```js
+document.addEventListener("click", function() {
+    console.log("Every time.");
+});
+
+document.addEventListener("click", function clickHandler() {
+    console.log("Only once.");
+    document.removeEventListener("click", clickHandler);
+});
+
+function foo(i) {
+    if (i < 10) return foo(i * 2);
+
+    return i;
+}
+```
+
+---
+
+## `Function` (III.)
+
+*Arrow* funkce:
+
+```js
+var add = (x, y) => x + y;
+
+var pow = x => x * x;
+
+var divide = (x, y) => {
+    if (y === 0) throw new Error("Division by zero!");
+
+    return x / y;
+};
+
+var foo = () => {
+    return { foo: "bar" };
+};
+```
+
+---
+
+## `Function` (IV.)
+
+- lze volat s jakýmkoliv množstvím parametrů
+- lze definovat základní hodnotu parametrů
+- není-li definováno jinak, implicitně vrací `undefined`
+
+```js
+var foo = function(a, b=2, c) {
+    console.log(a, b, c); // 1 2 undefined
+}
+
+foo(1); // undefined
+```
+
+---
+
+## `Function` (V.)
+
+- parametry lze sdružit pomocí *rest* operátoru `...`
+- použití jen v poslední pozici
+
+```js
+var foo = function(x, y, ...args) {
+    console.log(x, y); // 1 2
+    console.log(args); // [ 3, 4, 5 ]
+}
+
+foo(1, 2, 3, 4, 5);
+```
+
+---
+
+## `Object` (I.)
+
+```js
+var frag = "key";
+var key = "b"
+var obj = {
+    a: "foo",
+    b: 42,
+    ["my " + frag]: null,
+    add: (x, y) => x + y,
+    foo: { bar: "So deep!" }
+};
+
+obj.a; // "foo"
+obj[key]; // 42
+obj["my key"]; // null
+obj.add(3, obj.b); // 45
+```
+
+---
+
+## `Object` (II.)
+
+Zkrácený zápis přiřazení do objektu za použití proměnné:
+
+```js
+var foo = "bar";
+var x = 1
+var objA = { foo, x };
+var objB = {
+    foo: foo,
+    x: x
+}
+
+JSON.stringify(objA); // { foo: "bar", x: 1 }
+JSON.stringify(objB); // { foo: "bar", x: 1 }
+```
+
+---
+
+## `Object` (III.)
+
+- různé způsoby definice funkcí na objektu
+- zkrácený zápis je ekvivalentní anonymní funkci
+
+```js
+var obj = {
+    add: function(x, y) { // anonymous
+        return x + y;
+    },
+    subtract: function sub(x, y) { // named
+        return x - y;
+    },
+    divide(x, y) { // anonymous
+        return x / y;
+    }
+};
+```
+
+---
+
+## `Object` (IV.)
+
+- objekty lze kopírovat pomocí `Object.assign`
+- jde o „mělkou“ (*shallow*) kopii, kopírují se reference
+- **pozor:** úpravy se aplikují přímo na první objekt
+
+```js
+var objA = { foo: "bar" };
+var objB = { x: { y: "z" } };
+var objC = Object.assign({}, objA, objB);
+
+objC.x.y = 1;
+JSON.stringify(objC); // { foo: "bar", x: { y: 1 } }
+JSON.stringify(objB); // { x: { y: 1 } }
+```
+
+---
+
+## `Object` (V.)
+
+- **pozor:** `object` není slovník (*dictionary*)
+- vlivem delegace „obsahuje“ prvky z jiných objektů (alespoň z `Object.prototype`)
+- skutečný slovník lze vytvořit pomocí `Object.create(null)`:
+
+```js
+var obj = {};
+var dict = Object.create(null);
+
+obj.toString(); // "[object Object]"
+dict.toString(); // TypeError: dict.toString is not a function
+```
+
+---
+
+## `Object` (VI.)
+
+Při iteraci pomocí `for...in` je třeba počítat s delegací:
+
+```js
+var obj = {
+    foo: "bar",
+    x: 5
+};
+
+for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
+        console.log(obj[key]);
+    }
+}
+```
+
+---
+
+## `Object` (VII.)
+
+V případě slovníku je `for...in` bezpečné:
+
+```js
+var obj = Object.assign(
+    Object.create(null),
+    {
+        foo: "bar",
+        x: 5
+    }
+);
+
+for (var key in obj) {
+    console.log(obj[key]);
+}
+```
+
+---
+
+## `Object` (VIII.)
+
+Vhodnější pro iteraci je převedení na pole:
+
+```js
+var obj = {
+    foo: "bar",
+    x: 5
+};
+
+Object.keys(obj); // [ "foo", "x" ]
+Object.values(obj); // [ "bar", 5 ]
+Object.entries(obj); // [ [ "foo", "bar" ], [ "bar", 5 ] ]
+```
+
+---
+
+## `Object` (IX.)
+
+Místo slovníku lze použít nativní kolekce `Map` a `Set`:
+
+```js
+var myMap = new Map();
+var keyObj = { i: "am special." };
+
+myMap.set("foo", "bar");
+myMap.set(true, 1);
+myMap.set(keyObj, x => x * x);
+
+myMap.get("foo"); // "bar"
+myMap.get(keyObj); // [Function]
+
+for (var [key, value] of myMap) {
+    console.log(key, value);
+}
+```
+
+---
+
+## `Object` (X.)
+
+```js
+var myMap = new Map([ [ "a", 1 ], [ true: "foo"] ]);
+var mySet = new Set([ 1, 1, 2, 3, 1, "foo" ]);
+
+myMap.keys(); // [ "a", true ]
+myMap.values(); // [ 1, "foo" ]
+myMap.entries(); // [ [ "a", 1 ], [ true: "foo"] ]
+
+mySet.values(); // [ 1, 2, 3, "foo" ]
+mySet.add(2); // [ 1, 2, 3, "foo" ]
+mySet.add(true); // [ 1, 2, 3, "foo", true ]
+```
+
+---
+
+## `Array` (I.)
+
+- `object` s numerickou indexací prvků
+- není neměnné (*immutable*)
+
+```js
+var a = [ 1, "2", [3, 4] ];
+
+a.length; // 3
+a[0] === 1; // true
+a[2][0] === 3; // true
+
+a.join(""); // "123,4"
+```
+
+---
+
+## `Array` (II.)
+
+**Pozor:** některé funkce z `Array.prototype` upravují přímo pole, jiné vrací nové:
+
+```js
+var a = [ 1, 2, 3 ];
+var b = [ 6, 7 ];
+
+a.push(4, 5); // 5
+a.shift(); // 1
+a; // [ 2, 3, 4, 5 ]
+
+a.concat(b); // [ 2, 3, 4, 5, 6, 7 ]
+a.slice(2, 4); // [ 4, 5 ]
+a; // [ 2, 3, 4, 5 ]
+```
+
+---
+
+## `Array` (III.)
+
+Preferují se deklarativní operace nad imperativními:
+
+```js
+var a = [ 1, 2, 3 ];
+
+for (var i = 0; i < a.length; i++) {
+    console.log(i, a[i]);
+}
+
+a.forEach(function(item, index) {
+    console.log(index, item);
+});
+```
+
+---
+
+## `Array` (IV.)
+
+Základní funkce pro práci s poli:
+
+- `Array.prototype.map`
+- `Array.prototype.filter`
+- `Array.prototype.some`
+- `Array.prototype.every`
+- `Array.prototype.reduce`
+
+---
+
+## `Array` (V.)
+
+`Array.prototype.map` vrací **nové pole**:
+
+- o **stejném** počtu prvků
+
+```js
+var a = [ 1, 2, 3 ];
+
+var b = a.map(item => item * 2);
+
+b; // [ 2, 4, 6 ]
+```
+
+---
+
+## `Array` (VI.)
+
+`Array.prototype.filter` vrací **nové pole**:
+
+- o **stejném nebo menším** počtu prvků
+- vrátí-li funkce `true`, prvek je zařazen do pole
+- v opačném případě je vyřazen
+
+```js
+var a = [ -2, -1, 0, 1, 2 ];
+
+var b = a.filter(item => Math.abs(item) > 1);
+
+b; // [ -2, 2 ]
+```
+
+---
+
+## `Array` (VII.)
+
+`Array.prototype.some` vrací **`true` nebo `false`**:
+
+- vrátí-li funkce `true`, je cyklus **předčasně** ukončen a vrátí `true`
+- v opačném případě cyklus proběhne celý a vrátí `false`
+
+```js
+var a = [ 1, 5, "foo", 2, 3 ];
+
+var b = a.some(item => typeof item === "string");
+
+b; // true
+```
+
+---
+
+## `Array` (VIII.)
+
+`Array.prototype.every` vrací **`true` nebo `false`**:
+
+- vrátí-li funkce `false`, je cyklus **předčasně** ukončen a vrátí `false`
+- v opačném případě cyklus proběhne celý a vrátí `true`
+
+```js
+var a = [ 1, 5, 3, 2, NaN ];
+
+var b = a.every(item => !Number.isNaN(item));
+
+b; // false
+```
+
+---
+
+## `Array` (IX.)
+
+`Array.prototype.reduce` vrací **jakoukoliv hodnotu**:
+
+- první parametr funkce je tzv. **akumulátor**
+- jeho prvotní hodnotu nastavíme v `reduce`
+- výsledkem cyklu je nová hodnota akumulátoru
+
+```js
+var a = [ 1, 2, 3, 4, 5 ];
+
+var b = a.reduce((acc, item) => acc + item, "foo: ");
+
+b; // "foo: 12345"
+```
+
+---
+
+## `Array` (X.)
+
+`Array.prototype.reduce`:
+
+- je univerzální operací nad poli
+- lze pomocí něj implementovat všechny ostatní
+- běžnou chybou je opomenout na `return`
+
+```js
+var a = [ "foo", "bar" ];
+var b = a.reduce(function(acc, item) {
+    acc[item] = Math.random();
+}, {});
+
+b; // undefined
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## `Array` (XI.)
+
+Operace lze řetězit:
+
+```js
+var a = [ { foo: 4 }, { foo: -1 }, { foo: "abc" } ];
+
+var b = a
+    .map(item => item.foo) // [ 4, -1, "abc" ]
+    .filter(item => typeof item === "number") // [ 4, -1 ]
+    .some(item => item > 2); // true
+
+b; // true
+```
+
+---
+
+## `String` (I.)
+
+- není pole znaků
+- neměnné (*immutable*) jako ostatní primitivní typy
+
+```js
+var a = "foo";
+var b = a.toUpperCase();
+
+a === b; // false
+a; // "foo"
+b; // "FOO"
+```
+
+---
+
+## `String` (II.)
+
+Jak použít vhodné funkce z `Array.prototype`?
+
+```js
+var a = "foo";
+var b = a.split("").reverse().join("");
+
+b; // "oof"
+```
+<!-- .element: class="fragment" -->
+
+```js
+var a = "foo";
+var b = Array.prototype.join.call(a, "-");
+
+b; // "f-o-o"
+```
+<!-- .element: class="fragment" -->
+
+```js
+var a = "foo";
+var b = [].join.call(a, "_");
+
+b; // "f_o_o"
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## `String` (III.)
+
+Stejný trik lze použít na jakýkoliv *array-like* objekt, např `NodeList`:
+
+```js
+var nodes = document.querySelectorAll("span");
+
+[].forEach.call(nodes, function(node) {
+    console.log(node.innerText);
+});
+```
+<!-- .element: class="fragment" -->
+
+```js
+var nodes = document.querySelectorAll("span");
+var nodesArr = [].slice.call(nodes);
+
+nodesArr
+    .reverse()
+    .slice(1, 3)
+    .join(", ");
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## `String` (IV.)
+
+- alternativní zápis se nazývá *template literal*
+- odlišuje se použitím ``` `...` ``` místo `"..."` a `'...'`
+- pomocí `${...}` lze *interpolovat* výrazy
+
+```js
+var foo = "Bar";
+var str = `Hello, I'm ${foo.toUpperCase()}.`
+// "Hello, I'm BAR."
+```
+
+---
+
+## Porovnání
+
+- při porovnání pomocí `===` nedochází k přetypování
+- porovnání přes `==` dovoluje implicitní přetypování
+- **pozor:** nedoporučuje se používat `==` s `true` nebo `false`
+
+```js
+// yay
+1 === "1"; // false
+1 == "1"; // true
+null == undefined; // true
+
+// ?!!
+"0" == false; // true
+"true" == true; // false
+[] == false; // true
+```
+
+---
+
+## Logické operátory (I.)
+
+- **pozor**: výsledkem operátorů `&&` a `||` není `boolean`, ale jeden z operandů
+- splní-li první z operandů podmínku, druhý operand se **nevyhodnocuje**
+- `&&` lze použít pro kontrolu existence a zkrácenou podmínku
+- `||` lze použít pro přiřazení základní hodnoty
+
+---
+
+## Logické operátory (II.)
+
+```js
+if (obj && obj.key) { // undefined
+    console.log("Look, no ReferenceError!");
+}
+
+var condition = true;
+function foo() {
+    return "bar";
+};
+
+condition && foo(); // "bar"
+
+var param = x || "default"; // "default"
+```
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (I.) — [odkaz](https://repl.it/@jackdaw/exercise-i)
+
+<ul style="font-size: .75em;">
+    <li>v proměnné `nodes` je `NodeList` o několika *DOM* elementech</li>
+    <li>elementy mají atributy `data-height` a `data-is-visible`</li>
+    <li>deklarativním přístupem vytvořte z `nodes` pole objektů ve tvaru např. `{ height: "6px", isVisible: true }`</li>
+    <li>ve výsledném poli zůstanou jen ty elementy s atributem `data-height` větším než `5px` a atributem `data-is-visible` rovnajícím se `"true"`</li>
+    <li>**tip:** pro získání atributů použijte funkci `getAttribute(attName)` volanou na daném elementu, např. `el.getAttribute("data-height")`</li>
+    <li>**bonus:** použijte pouze funkci `Array.prototype.reduce`</li>
+</ul>
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Kontext a uzávěry
+
+---
+
+Kontext (*scope*) je sada pravidel, které určují jakým způsobem přistupujeme k proměnným a jejich hodnotám.
+
+Lze rozdělit na dva typy:
+- lexikální
+- dynamický
+
+---
+
+## *Hoisting* (I.)
+
+```js
+a = 2;
+var a;
+console.log(a);
+```
+
+Co je v proměnné `a`?
+
+```js
+a = 2;
+var a;
+console.log(a); // 2
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## *Hoisting* (II.)
+
+```js
+console.log(a);
+var a = 2;
+```
+
+A teď?
+
+```js
+console.log(a); // undefined
+var a = 2;
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## *Hoisting* (III.)
+
+První příklad:
+
+```js
+a = 2;
+var a;
+console.log(a);
+```
+
+...z pohledu kompileru vypadá následovně:
+
+```js
+var a;
+a = 2;
+console.log(a); // 2
+```
+
+---
+
+## *Hoisting* (IV.)
+
+A ten druhý:
+
+```js
+console.log(a);
+var a = 2;
+```
+
+...takhle:
+
+```js
+var a;
+console.log(a); // undefined
+a = 2;
+```
+
+---
+
+## *Hoisting* (IV.)
+
+- **deklarace** proměnných pomocí `var` jsou „vytaženy“ na začátek kontextu
+- **přirazení** do proměnných zůstává na svém místě
+- to samé platí pro **deklarace** funkcí pomocí `function`
+
+```js
+foo();
+
+function foo() {
+    console.log("No problem!");
+}
+```
+
+---
+
+## Kontext (I.)
+
+Jak vzniká kontext?
+
+```js
+var x = 2;
+
+function foo(a) {
+    var bar = function(c) {
+        return c * x;
+    }
+    var x = 3;
+
+    return bar(a);
+}
+
+foo(5);
+bar(3);
+```
+
+```js
+foo(5); // 15
+bar(3); // ReferenceError: bar is not defined
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## Kontext (II.)
+
+- **globální** kontext vzniká automaticky
+- **vnořený** kontext vzniká na úrovni každé **funkce**
+- lze operovat s prvky deklarovanými na vyšší úrovni
+- kontexty nižších úrovní (uvnitř funkcí) jsou „uzavřeny“
+
+---
+
+## Kontext (III.)
+
+```js
+var x = 2;                  // global
+                            // global
+function foo(a) {           // global
+    var bar = function(c) { // global+foo
+        return c * x;       // global+foo+bar
+    };                      // global+foo
+    var x = 3;              // global+foo
+                            // global+foo
+    return bar(a);          // global+foo
+}                           // global
+```
+
+- **globální** kontext obsahuje: `x`, `foo`
+- kontext **`foo`** obsahuje: `foo`, `a`, `x`, `bar`
+- kontext **`bar`** obsahuje: `foo`, `a`, `x`, `bar`, `c`
+
+---
+
+## Kontext (IV.)
+
+- funkce lze použít pro „skrytí“ uvnitř deklarovaných proměnných a funkcí
+- důvodem je předejít kolizím v názvech na úrovni globálního kontextu
+- návrhový „princip nejnižších privilegií“ velí odhalit jen to nejnutnější,
+skrýt zbytek
+
+---
+
+## Kontext (V.)
+
+Funkce `bar` je z pohledu globálního kontextu skrytý implementační detail:
+
+```js
+var x = 2;
+
+function foo(a) {
+    var bar = function(c) {
+        return c * x;
+    }
+
+    return bar(a);
+}
+```
+
+---
+
+## Kontext (VI.)
+
+Trik pro jednoduché zapouzdření je *IIFE* (*immediately invoked function expression*):
+
+```js
+var a = 2;
+
+(function() {
+    var a = 3;
+    console.log(a); // 3
+})();
+
+console.log(a); // 2
+```
+
+---
+
+## Kontext (VII.)
+
+Kontext lze použít pro tvorbu „modulů“:
+
+```js
+function MyModule(arg) {
+    var internal = "foo";
+
+    function doSomething() {
+        console.log((internal + arg).toUpperCase());
+    }
+
+    return { doSomething };
+}
+
+var module = MyModule("bar");
+
+module.doSomething(); // "FOOBAR"
+```
+
+---
+
+## Kontext (VIII.)
+
+V kombinaci s *IIFE* pro tvorbu „*singletonu*“:
+
+```js
+var singleton = (function MySingleton(arg) {
+    var internal = "foo";
+
+    function doSomething() {
+        console.log((internal + arg).toUpperCase());
+    }
+
+    return { doSomething };
+})("eey");
+
+singleton.doSomething(); // "FOOEEY"
+```
+
+---
+
+## Kontext (IX.)
+
+Nativní moduly řeší problém zapouzdření:
+
+```js
+// do-something-module.js
+
+var internal = "foo";
+
+export function doSomething(arg) {
+    console.log((internal + arg).toUpperCase());
+}
+```
+
+```js
+// main.js
+
+import { doSomething as foo } from 'do-something-module';
+
+foo("bar"); // "FOOBAR"
+internal; // undefined
+```
+
+---
+
+## Kontext (X.)
+
+```js
+function foo() {
+    console.log(a);
+}
+
+function bar() {
+    var a = 3;
+    foo();
+}
+
+var a = 2;
+
+bar();
+```
+
+---
+
+## Kontext (XI.)
+
+Lexikální kontext je určen **místem deklarace**, nikoliv místem volání funkce:
+
+```js
+function foo() {
+    console.log(a); // 2
+}
+
+function bar() {
+    var a = 3;
+    foo();
+}
+
+var a = 2;
+
+bar();
+```
+
+---
+
+## Kontext (XII.)
+
+```js
+function foo() {
+    var a = 2;
+
+    function bar() {
+        console.log(a);
+    }
+
+    return bar;
+}
+
+var baz = foo();
+
+baz(); // 2
+```
+
+---
+
+## Uzávěra (I.)
+
+- nad lexikálním kontextem funkce `bar` vznikne tzv. uzávěra (*closure*)
+- nebýt `bar`, proměnná `a` by po zavolání `foo()` zmizela z paměti
+- uzávěra v tomto případě blokuje *garbage collecting* proměnných v lexikálním kontextu
+
+---
+
+## Uzávěra (II.)
+
+Uzávěra se vyskytuje všude, i tam kde bychom ji nečekali:
+
+```js
+for (var i = 1; i <= 5; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, i * 1000);
+}
+```
+
+```js
+6 6 6 6 6 // o_O
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## Blokový kontext (I.)
+
+- proměnné lze definovat i pomocí `let`
+- lexikálním kontextem proměnných deklarovaných tímto způsobem je okolní **blok**
+- blok automaticky vzniká uvnitř všech `{ ... }`
+
+```js
+var foo = true;
+
+if (foo) {
+    let bar = foo * 2;
+
+    console.log(bar); // 2
+}
+
+console.log(bar); // ReferenceError
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## Blokový kontext (II.)
+
+**Pozor:** proměnné deklarované přes `let` nejsou „vytaženy“ (*hoisted*) na začátek bloku:
+
+```js
+{
+   console.log(bar); // ReferenceError
+   let bar = 2;
+}
+```
+
+---
+
+## Blokový kontext (III.)
+
+Jak se zachová `let` v cyklu?
+
+```js
+for (let i = 1; i <= 5; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, i * 1000);
+}
+```
+```js
+console.log(i); // ReferenceError
+```
+<!-- .element: class="fragment" -->
+
+```js
+1 2 3 4 5 // ^_^
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## Blokový kontext (IV.)
+
+- `const` vytvoří proměnnou podobně jako `let`
+- konstantu lze ovšem definovat jen jednou
+
+```js
+if (true) {
+    const b = 3;
+
+    b = 4; // SyntaxError: Assignment to constant variable
+}
+
+console.log(b); // ReferenceError
+```
+
+---
+
+## `this` (I.)
+
+Kam ukazuje `this`?
+
+```js
+function foo() { this.count++; }
+function bar() { bar.count++; }
+
+foo.count = 0;
+bar.count = 0;
+
+bar();
+foo();
+foo();
+```
+
+```js
+console.log(bar.count); // 1
+console.log(foo.count); // 0
+```
+<!-- .element: class="fragment" -->
+
+<div class="fragment">
+**Pozor:** `this` není referencí na volanou funkci.
+</div>
+
+---
+
+## `this` (II.)
+
+**Pozor:** `this` není referencí na lexikální kontext místa volání:
+
+```js
+function foo() {
+    var a = 2;
+
+    bar();
+}
+
+function bar() {
+    console.log(this.a);
+}
+
+foo(); // undefined
+```
+
+---
+
+## `this` (III.)
+
+- `this` v základu ukazuje na globální kontext
+- globální kontext určuje hostitelské prostředí
+- `window` v prohlížeči, `global` v Node.js
+
+```js
+var a = 5;
+
+function foo() {
+    console.log(this.a); // 5
+    console.log(window.a); // 5
+    console.log(this === window); // true
+}
+```
+
+---
+
+## `this` (IV.)
+
+Použití přepínače `"use strict"` ovlivňuje chování `this` a globálního kontextu:
+
+```js
+"use strict";
+
+var a = 5;
+window.b = "bar";
+
+function foo() {
+    console.log(window.a); // undefined
+    console.log(window.b); // "bar"
+    console.log(this.a); // TypeError: this is undefined
+}
+```
+
+---
+
+## `this` (V.)
+
+Při běžném volání je hodnota `this` nastavena na `undefined`:
+
+```js
+function foo() {
+    console.log(this);
+}
+
+foo(); // undefined
+```
+
+---
+
+## `this` (VI.)
+
+- `this` záleží na **místě a způsobu volání** funkce
+- **místo deklarace** nemá na `this` vliv
+- jeho hodnotu lze definovat implicitně a explicitně
+
+---
+
+## `this` (VII.)
+
+V případě, že funkci voláme jako prvek objektu, `this` implicitně obsahuje referenci na daný objekt:
+
+```js
+let obj = {
+    a: 2,
+    foo() {
+        console.log(this.a);
+    }
+};
+
+obj.foo(); // 2
+```
+
+---
+
+## `this` (VIII.)
+
+- **pozor:** `foo` **není** „metoda“ objektu `obj`
+- `this` záleží na **způsobu volání**, ne **místě deklarace**
+
+```js
+let obj = {
+    a: 2,
+    foo() {
+        console.log(this.a);
+    }
+};
+
+let bar = obj.foo;
+
+bar(); // TypeError: this is undefined
+```
+
+---
+
+## `this` (IX.)
+
+K explicitnímu přiřazení `this` slouží funkce `call`, `apply` a `bind` z `Function.prototype`:
+
+```js
+function foo() {
+    console.log(this.a);
+}
+
+var obj = {
+    a: 2
+};
+
+foo.call(obj); // 2
+```
+
+---
+
+## `this` (X.)
+
+- první parameter `call` a `apply` je hodnota `this`
+- další případné parametry jsou předány funkci
+- `call` a `apply` se liší způsobem předání parametrů
+
+```js
+function foo(x, y) {
+    console.log(this.a + x + y);
+}
+
+var obj = {
+    a: 2
+};
+
+foo.call(obj, 4, 6); // 12
+foo.apply(obj, [ 4, 6 ]); // 12
+```
+
+---
+
+## `this` (XI.)
+
+**Pozor:** předáváme-li funkci jako parametr, jde o implicitní přiřazení, a původní `this` je předefinováno:
+
+```js
+let obj = {
+    a: 2,
+    foo() {
+        console.log(this.a);
+    }
+};
+
+setTimeout(obj.foo, 1000); // undefined
+```
+
+---
+
+## `this` (XII.)
+
+Řešením je „pojistit si“ místo volání funkce:
+
+```js
+let obj = {
+    a: 2,
+    foo() {
+        console.log(this.a);
+    }
+};
+
+setTimeout(function() {
+    obj.foo(); // 2
+}, 1000);
+```
+
+---
+
+## `this` (XIII.)
+
+- lepší řešení využívá funkce `bind`
+- `bind` má stejné parametry jako `call`
+- `bind` nevolá funkci, ale vrací **novou** funkci
+
+```js
+let obj = {
+    a: 2,
+    foo() {
+        console.log(this.a);
+    }
+};
+
+setTimeout(obj.foo.bind(obj), 1000);
+```
+
+---
+
+## `this` (XIV.)
+
+Explicitní přiřazení přebíjí implicitní:
+
+```js
+function foo() {
+    console.log(this.a);
+}
+
+var objA = { a: 2, foo };
+var objB = { a: 3, foo };
+
+objA.foo(); // 2
+objB.foo(); // 3
+
+objA.foo.call(objB); // 3
+objB.foo.call(objA); // 2
+```
+
+---
+
+## `this` (XV.)
+
+Voláme-li `call`, `apply` nebo `bind` s prvním parametrem `null` nebo `undefined`, použije se implicitní přiřazení:
+
+```js
+let obj = {
+    a: 2,
+    foo() {
+        console.log(this.a);
+    }
+};
+
+obj.foo.call(null); // 2
+```
+
+---
+
+## `this` (XVI.)
+
+- `bind` v kombinaci s `null` nebo `undefined` lze použít pro „*currying*“ funkcí (*partial application*)
+- funkci předáme jen část parametrů
+- výsledek získáme po dodání zbývajících parametrů
+
+```js
+function add(x, y) {
+    return x + y;
+}
+
+let add5 = add.bind(null, 5);
+
+add5(3); // 8
+add5(); // NaN
+```
+
+---
+
+## `this` (XV.)
+
+- *arrow* funkce nemají vlastní `this`
+- přebírají `this` z lexikálního kontextu
+
+```js
+function foo() {
+    setTimeout(() => {
+        console.log(this.a);
+    }, 100);
+}
+
+var obj = {
+    a: 2
+};
+
+foo.call(obj); // 2
+```
+
+---
+
+## `this` (XVI.)
+
+Jiné řešení stejného problému:
+
+```js
+function foo() {
+    var self = this;
+    setTimeout(function() {
+        console.log(self.a);
+    }, 100);
+}
+
+var obj = {
+    a: 2
+};
+
+foo.call(obj); // 2
+```
+
+---
+
+## `this` (XVII.)
+
+`this` slouží pro dynamické předávání kontextu:
+
+```js
+function greet() {
+    console.log(`Hello, I'm ${this.name}.`);
+}
+
+let seneca = {
+    name: "Lucius Annaeus Seneca"
+}
+
+let montaigne = {
+    name: "Michel de Montaigne"
+}
+
+greet.call(seneca); // "Hello, I'm Lucius Annaeus Seneca."
+greet.call(montaigne); // "Hello, I'm Michel de Montaigne."
+```
+
+---
+
+## `this` (XVIII.)
+
+`this` má často užitečnou implicitní hodnotu, např. při použití funkce `addEventListener`:
+
+```js
+let buttonEl = document.querySelector("button");
+
+buttonEl.addEventListener("click", function() {
+    console.log(this === el); // true
+});
+
+buttonEl.addEventListener("click", () => {
+    console.log(this === el); // false
+});
+```
+
+---
+
+## `this` (XVIV.)
+
+Funkce z `Array.prototype` umožnují nastavit `this` pomocí volitelného parametru:
+
+```js
+let a = [ 1, 2, 3 ];
+let obj = { foo: "bar" };
+
+let b = a.map(function(item) {
+    return item + this.foo;
+}, obj);
+
+b; // [ "1bar", "2bar", "3bar" ]
+```
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (II.) — [odkaz](https://repl.it/@jackdaw/exercise-ii)
+
+- vyřešte problém uzávěry v klasickém `for` cyklu bez použití `let` a *arrow* funkcí
+- výstupem musí být — `1 2 3 4 5`
+- **bonus:** najděte všechna možná řešení
+
+```js
+for (var i = 1; i <= 5; i++) {
+    setTimeout(function() {
+        console.log(i);
+    });
+}
+```
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Prototypální delegace
+
+---
+
+## Prototyp (I.)
+
+- každý objekt má speciální vnitřní referenci na jiný objekt, tzv. prototyp (*prototype*)
+- projitím všech referencí v řadě získáme tzv. prototypální řetězec (*prototype chain*)
+- konec řetězce ukazuje na `Object.prototype`
+- vyjímkou je objekt vytvořený pomocí `Object.create(null)`
+
+---
+
+## Prototyp (II.)
+
+- prototyp objektu lze získat pomocí funkce `Object.getPrototypeOf`
+- **pozor:** `Object.prototype` **není** prototyp objektu `Object`
+
+```js
+let obj = {};
+
+Object.getPrototypeOf(obj) === Object.prototype; // true
+Object.getPrototypeOf(Object) === Function.prototype; // true
+```
+
+---
+
+## Prototyp (III.)
+
+- prototyp nastavíme pomocí `Object.create` při vytváření nového objektu
+- lze ho změnit pomocí `Object.setPrototypeOf`
+
+```js
+let foo = { a: 2 };
+let bar = { b: 3 };
+let baz = Object.create(foo);
+
+Object.getPrototypeOf(baz) === foo; // true
+
+Object.setPrototypeOf(bar, baz);
+Object.getPrototypeOf(bar) === baz; // true
+```
+
+---
+
+## Prototyp (IV.)
+
+- pokud přistupujeme k prvku, který není na daném objektu, dotaz se **deleguje** na jeho prototyp
+- prvek je tímto způsobem postupně hledán v celém prototypálním řetězci
+- pokud není nalezen, je výsledkem `undefined`
+
+```js
+let foo = { a: 2 };
+let bar = { b: 3 };
+
+Object.setPrototypeOf(bar, foo);
+
+bar.b; // 3
+bar.a; // 2
+bar.c; // undefined
+```
+
+---
+
+## Prototyp (V.)
+
+**Pozor:** objekty **nemají kopie** prvků svých prototypů, **pouze reference** na prototyp:
+
+```js
+let foo = { a: 2 };
+let bar = { b: 3 };
+
+Object.setPrototypeOf(bar, foo);
+
+foo.a = true;
+bar.a; // true
+```
+
+---
+
+## Prototyp (VI.)
+
+Prvky lze „překrývat“ (*shadowing*):
+
+```js
+let foo = { a: 2 };
+let bar = { b: 3 };
+
+Object.setPrototypeOf(bar, foo);
+
+bar.a = x => x * x;
+bar.a; // [Function]
+foo.a; // 2
+```
+
+---
+
+## Prototyp (VII.)
+
+**Pozor:** překrytí může být nepředvídatelné:
+
+```js
+let foo = {};
+let bar = {};
+
+Object.defineProperty(foo, 'a', {
+    value: 2,
+    writable: false
+});
+
+Object.setPrototypeOf(bar, foo);
+
+bar.a; // 2
+bar.a = 3; // TypeError: "a" is read-only
+```
+
+---
+
+## Prototyp (VIII.)
+
+Prototypální delegace umožňuje vytvářet užitečné **vazby** mezi **objekty**:
+
+```js
+let Foo = {
+    init(who) { this.me = who },
+    identify() { return `I am ${this.me}` }
+};
+
+let Bar = {
+    speak() { console.log(`Hello, ${this.identify()}.`) }
+};
+
+Object.setPrototypeOf(Bar, Foo);
+
+let seneca = Object.create(Bar);
+seneca.init("Lucius Annaeus Seneca");
+seneca.speak(); // "Hello, I am Lucius Annaeus Seneca"
+```
+
+---
+
+## Prototyp (IX.)
+
+<ol style="font-size: .75em;">
+    <li>objekt `seneca` nemá funkci `init`, ani `speak`, deleguje tedy na svůj prototyp `Bar`</li>
+    <li>objekt `Bar` obsahuje `speak`, ale ne `init` a `identify`, deleguje proto na `Foo`</li>
+    <li>objekt `Foo` volá funkci `init` a `identify`</li>
+    <li>hodnota `this` díky volání funkcí `seneca.init()` a `seneca.speak()` implicitně odkazuje na `seneca`</li>
+    <li>`this.me` ve funkci `init` a `identify` tedy neodkazuje na `Foo.me`, ale na `seneca.me`</li>
+    <li>výsledkem je `"Hello, I am Lucius Annaeus Seneca."`</li>
+</ol>
+
+---
+
+## Prototyp (X.)
+
+<ul style="font-size: .875em;">
+    <li>vazby vznikají mezi **rovnocennými objekty**</li>
+    <li>neexistují **třídy**, pouze **objekty**</li>
+    <li>vlastnosti (funkce a prvky) jsou díky delegaci „vypůjčeny“, nejde o **kopie**</li>
+    <li>vlastnosti se nesnažíme „překrývat“ (polymorfismus), ale **specifikovat** a **delegovat** (viz `speak` a `identify` v předchozím příkladu)</li>
+    <li>neexistují konstruktory, vytvoření (`Object.create`) a inicializace (`seneca.init`) jsou dva separátní kroky</li>
+</ul>
+
+---
+
+## „Třídy“ (I.)
+
+Ale co `new`? Může `Foo` sloužit jako „třída“, jejíž instanci vytvoříme pomocí `new Foo()`?
+
+```js
+function Foo(who) {
+    this.me = who;
+}
+
+let seneca = new Foo("Lucius Annaeus Seneca");
+
+seneca.me; // "Lucius Annaeus Seneca"
+Object.getPrototypeOf(seneca) === Foo.prototype; // true
+```
+
+---
+
+## „Třídy“ (II.)
+
+- `new` je způsob volání funkce (podobně jako `call`)
+- při zavolání funkce pomocí `new`:
+    1. vznikne nový prázdný objekt
+    2. jeho prototyp je nastaven na prvek volané funkce **nazvaný** `prototype`
+    3. objekt je nastaven jako `this` volané funkce
+    4. objekt je **implicitně** výsledkem volání, pokud volaná funkce nevrátí jiný objekt
+
+---
+
+## „Třídy“ (III.)
+
+Vytvoření vazby mezi objekty je jen jedním z **vedlejších efektů** volání `new`:
+
+```js
+function myNew(constructor, ...args) {
+    let isObject = value => value === Object(value);
+    let obj = {}; // 1.
+
+    Object.setPrototypeOf(obj, constructor.prototype); // 2.
+
+    let result = constructor.apply(obj, args); // 3.
+
+    return isObject(result) ? result : obj; // 4.
+}
+```
+
+---
+
+## „Třídy“ (IV.)
+
+```js
+function Foo(who) {
+    this.me = who;
+}
+
+let seneca = myNew(Foo, "Lucius Annaeus Seneca");
+
+seneca.me; // "Lucius Annaeus Seneca"
+Object.getPrototypeOf(seneca) === Foo.prototype; // true
+```
+
+---
+
+## „Třídy“ (V.)
+
+Narozdíl od `Object.create` se na `new` nedá spolehnout:
+
+```js
+function Foo(who) {
+    console.log(`But ${who}, I'm not a constructor!`);
+
+    return { x: 1 };
+}
+
+let seneca = new Foo("Lucius Annaeus Seneca");
+
+seneca.me; // undefined
+Object.getPrototypeOf(seneca) === Foo.prototype; // false
+```
+
+---
+
+## „Třídy“ (VI.)
+
+```js
+function Foo(who) { this.me = who }
+Foo.prototype.identify = function() {
+    return `I am ${this.me}`;
+};
+
+function Bar(who) { Foo.call(this, who) }
+Bar.prototype = Object.create(Foo.prototype);
+Bar.prototype.identify = function() {
+    let id = Foo.prototype.identify.call(this);
+    console.log(`Hello, ${id}.`);
+};
+
+let seneca = new Bar("Lucius Annaeus Seneca");
+seneca.identify(); // "Hello, I am Lucius Annaeus Seneca"
+```
+
+---
+
+## „Třídy“ (VII.)
+
+```js
+class Foo {
+    constructor(who) { this.me = who }
+    identify() { return `I am ${this.me}` }
+}
+
+class Bar extends Foo {
+    constructor(who) { super(who) }
+    identify() { console.log(`Hello, ${super.identify()}.`) }
+}
+
+let seneca = new Bar("Lucius Annaeus Seneca");
+seneca.identify(); // "Hello, I am Lucius Annaeus Seneca"
+```
+
+---
+
+## „Třídy“ (VIII.)
+
+- `class` nevytváří třídu, jde jen o „syntaktický cukr“ (*syntax sugar*) nad **prototypální delegací**
+- `class` je stále **objekt**, ne statická třída
+- narozdíl od klasických tříd nedochází ke **kopii** vlastností z předka na potomka
+- nelze vytvořit „atributy“, pouze „metody“
+
+```js
+class Foo {
+    constructor() { ... }
+}
+
+Foo.prototype.myProperty = "bar";
+```
+<!-- .element: class="fragment" -->
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (III.) — [odkaz](https://repl.it/@jackdaw/exercise-iii)
+
+<ul style="font-size: .875em;">
+    <li>vytvořte objekty `Vehicle`, `Car` a `Plane`</li>
+    <li>objektu `Vehicle` lze nastavit rychlost a disponuje funkcí `moveFor`, jejímž vstupem je počet hodin a výstupem uražená vzdálenost</li>
+    <li>objekty `Car` a `Plane` mají funkce pro vypsání ujetých, respektive uletěných kilometrů</li>
+    <li>použijte prototypální delegaci pro vytvoření příhodných vazeb</li>
+    <li>vytvořte další objekty, které výše zmíněné objekty využívají</li>
+</ul>
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Asynchronní operace
+
+---
+
+Model souběžnosti (*concurrency model*) v JavaScriptu operuje na principu *event loop*:
+
+```js
+while (queue.waitForMessage()) {
+    queue.processNextMessage();
+}
+```
+<!-- .element: class="fragment" -->
+
+<ul>
+    <li class="fragment">tento model je **neblokující** <span class="fragment">(až na vyjímky)</span></li>
+    <li class="fragment">
+        „zprávy“ (*message*):
+        <ul style="font-size: .875em;">
+            <li>jsou do fronty přidány na základě **událostí**</li>
+            <li class="fragment">jsou odbaveny **postupně**</li>
+            <li class="fragment">představují nějakou **funkci**</li>
+            <li class="fragment">jsou zpracovány **celé** (*run-to-completion*)</li>
+        </ul>
+    </li>
+</ul>
+
+---
+
+## *Event loop* (I.)
+
+```js
+(function() {
+    console.log("Message #1 start");
+
+    setTimeout(function() { console.log("Message #2") });
+
+    console.log("Under pressure!");
+
+    setTimeout(function() { console.log("Message #3") });
+
+    console.log("Message #1 end");
+})();
+```
+
+```js
+// "Message #1 start"
+// "Under pressure!"
+// "Message #1 end"
+// "Message #2"
+// "Message #3"
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## *Event loop* (II.)
+
+**Pozor:** prodleva v `setTimeout` určuje za jak dlouho **nejdříve** bude předaná funkce zavolána:
+```js
+(function() {
+    console.time("delay");
+
+    setTimeout(function callback() {
+        console.timeEnd("delay"); // delay: 1005ms
+    }, 1000);
+
+    doSomething();
+})();
+```
+
+---
+
+## *Callback* (I.)
+
+*Callback* je funkce, kterou *event loop* zavolá při odbavování „zprávy“:
+
+```js
+ajax("https://example.com", function callback(err, response) {
+    if (err) {
+        // handle error
+    } else {
+        // handle response
+    }
+});
+```
+
+---
+
+## *Callback* (II.)
+
+*Callbacky* můžou výrazně zhoršit čitelnost kódu:
+
+```js
+doA(function cb1() {
+    doB();
+    doC(function cb2() {
+        doD();
+    })
+    doE();
+});
+
+doF();
+```
+
+V jakém pořadí proběhnou jednotlivé funkce?
+<p style="font-size: .75em; text-align: center">`doA()` → `doF()` → `doB()` → `doC()` → `doE()` → `doD()`</p>
+<!-- .element: class="fragment" -->
+
+---
+
+## *Callback* (III.)
+
+Vzniká tzv. *callback hell*:
+
+```js
+el.addEventListener("click", function() {
+    setTimeout(function request() {
+        ajax("https://example.com", function(err, response) {
+            if (err) {
+                // handle error
+            } else {
+                parseJson(response, function(obj) {
+                    // handle response
+                });
+            }
+        });
+    }, 500) ;
+});
+```
+
+---
+
+## *Callback* (IV.)
+
+*Callback hell* není jen o odsazení:
+
+```js
+function handler() {
+    setTimeout(request, 500);
+}
+
+function request() {
+    ajax("https://example.com", response);
+}
+
+function response(err, response) {
+    // handle error or response
+}
+
+el.addEventListener("click", handler);
+```
+
+---
+
+## *Callback* (V.)
+
+*Callbacky* jsou založeny na „předání kontroly“ (*inversion of control*):
+
+```js
+// A
+ajax("https://example.com", function cb(err, response) {
+    // C
+});
+// B
+```
+
+<ul class="fragment">
+    <li>`A` a `B` jsou pod přímou kontrolou našeho kódu</li>
+    <li>běh `C` je závislý na implementaci funkce `ajax`</li>
+</ul>
+
+
+---
+
+## *Callback* (VI.)
+
+<ol style="font-size: .75em;">
+    <li>*callback* je zavolán nečekaným způsobem</li>
+    <li>*callback* není zavolán vůbec</li>
+    <li>*callback* je zavolán vícekrát</li>
+</ol>
+
+```js
+function ajax(url, cb) {
+    let req = new XMLHttpRequest();
+    let obj = { foo: "bar" };
+
+    req.addEventListener("load", cb.bind(obj, null)); // 1.
+    req.addEventListener("error", function() { // 2.
+        throw new Error();
+    });
+    req.addEventListener("loadend", cb); // 3.
+    req.open("GET", url);
+    req.send();
+}
+```
+
+---
+
+## *Promise* (I.)
+
+<ul>
+    <li class="fragment">*promise* je kontejner nad **budoucí** hodnotou</li>
+    <li class="fragment">lze s ním operovat jako s jakoukoliv jinou hodnotou</li>
+    <li class="fragment">*promise* může být buď **naplněn** (*fulfilled*) nebo **odmítnut** (*rejected*)</li>
+    <li class="fragment">nabytí hodnoty (*resolved*) se může stát jen **jednou**</li>
+    <li class="fragment">nabyde-li *promise* hodnoty, je tato hodnota **neměnná** (*immutable*)</li>
+    <li class="fragment">hodnotu získáme voláním `then` nebo `catch` nad daným *promise*</li>
+</ul>
+
+---
+
+## *Promise* (II.)
+
+```js
+var burgersLeft = 10;
+
+function orderBurgers(count) {
+    return new Promise(function(resolve, reject) {
+        if (count <= burgersLeft) {
+            setTimeout(function() {
+                burgersLeft = burgersLeft - count;
+                resolve(`${count} burgers`);
+            }, 5000);
+        } else {
+            reject("We dont't have that many burgers!");
+        }
+    });
+}
+```
+
+<p class="fragment">`Promise` je vždy **asynchronní**, nezávisle na tom, zdali nabyde hodnoty **okamžitě** nebo **později**.</p>
+
+---
+
+## *Promise* (III.)
+
+- **hodnotu** *promise* získáme skrze *callback*, který předáme `then` nebo `catch`
+- hodnota je *callbacku* předána jako **jediný** parametr
+
+```js
+orderBurgers(4)
+    .then(burgers => {
+        console.log(`I just ate ${burgers}!`));
+        // "I just ate 4 burgers!"
+    })
+    .catch(err => {
+        console.log("They don't have that many burgers!")
+    )};
+```
+
+---
+
+## *Promise* (IV.)
+
+Hodnota získaná pomocí `then` je po nabytí *promise* vždy stejná, tzn. **neměnná**:
+
+```js
+let myOrder = orderBurgers(4);
+
+myOrder
+    .then(burgers => {
+        console.log(`I just ate ${burgers}!`);
+        // "I just ate 4 burgers!"
+    })
+    .catch(err => {
+        console.log("They have no burgers!");
+    });
+
+myOrder.then(console.log); // "4 burgers"
+```
+
+---
+
+## *Promise* (V.)
+
+- `then` a `catch` můžeme řetězit, protože oboje vždy vrací **nový** `Promise`
+- toho lze využít pro zápis **sekvenčně** vypadajícího, v pozadí však **asynchronního** kódu
+
+```js
+let myResponse = fetch("https://example.com")
+    .then(response => response.text())
+    .then(body => "hello world! " + body)
+    .then(console.log) // "hello world! <!doctype html>...
+    .catch(console.error);
+
+myResponse; // Promise {}
+myResponse.then(console.log); // undefined
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## *Promise* (VI.)
+
+Objekt `Promise` poskytuje užitečné funkce:
+
+- `Promise.resolve`
+- `Promise.reject`
+- `Promise.all`
+- `Promise.race`
+
+---
+
+## *Promise* (VII.)
+
+`Promise.resolve` a `Promise.reject` obalí předanou hodnotu do `Promise` rozhraní:
+
+```js
+let foo = Promise.resolve("bar");
+let deepFoo = Promise.resolve(foo);
+let sadFoo = Promise.reject("Sorry!");
+
+foo.then(console.log); // "bar"
+deepFoo.then(console.log); // "bar"
+sadFoo.catch(err => console.log("Ouch!")); // "Ouch!"
+```
+
+---
+
+## *Promise* (VIII.)
+
+`Promise.all` lze použít, zajímá-li nás společný výsledek několika na sobě **nezávislých** *promise*:
+
+```js
+let foo = fetch("https://example.com/foo");
+let bar = fetch("https://example.com/bar");
+
+Promise.all([ foo, bar ])
+    .then(results => {
+        let [ fooResult, barResult ] = results;
+        let query = `foo=${fooResult}&bar=${barResult}`;
+
+        return fetch(`https://example.com/baz?${query}`);
+    }
+    .then(console.log)
+    .catch(err => {
+        console.log("Some (or all) of the requests failed.");
+    });
+```
+
+---
+
+## *Promise* (IX.)
+
+`Promise.race` použijeme tam, kde nás zajímá výsledek *promise*, který jako **první** nabyde hodnoty:
+
+```js
+function timeoutPromise(delay) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(reject.bind(null, "Timeout!", delay);
+    });
+}
+
+let foo = fetch("https://example.com/foo");
+
+Promise.race([ foo, timeoutPromise(3000) ])
+    .then(console.log)
+    .catch(err => {
+        console.log("Failed or didn't finish in time.");
+    });
+```
+
+---
+
+## *Promise* (X.)
+
+#### Výhody:
+<ul>
+    <li class="fragment">řeší problém „předání kontroly“ — *callback* nesvěřujeme „cizí“ funkci, ale `then`</li>
+    <li class="fragment">má **konzistentní** rozhraní — je vždy **asynchronní** a vrací **jednu hodnotu**</li>
+    <li class="fragment">hodnoty může nabýt jen **jednou**; ta je pak **neměnná**</li>
+    <li class="fragment">lze řešit situaci, kdy volaná funkce *promise* **nenaplní**</li>
+</ul>
+
+---
+
+## *Promise* (XI.)
+
+#### Nevýhody:
+<ul>
+    <li class="fragment">zapomeneme-li přidat `catch`, jsou chyby vzniklé uvnitř `then` „spolknuty“</li>
+    <li class="fragment">*callbacku* v `then` a `catch` můžeme předat jen jednu hodnotu</li>
+    <li class="fragment">hodnota je „uzavřena“ v kontextu `then`, respektive `catch`</li>
+</ul>
+
+---
+
+## `async/await` (I.)
+
+```js
+async function main() {
+    try {
+        var msg = await step1();
+        msg = await step2(msg);
+        msg = await Promise.all([
+            step3a(msg), step3b(msg), step3c(msg)
+        ]);
+        return await step4(msg);
+    } catch (err) {
+        return await failed(err);
+    }
+}
+```
+
+---
+
+## `async/await` (II.)
+
+`async` funkce vrací `Promise`:
+
+```js
+async function main() {
+    try {
+        var msg = await step1();
+
+        return await step2(msg);
+    } catch (err) {
+        return await failed(err);
+    }
+}
+
+main()
+    .then(console.log("Success!"))
+    .catch(console.error("Failure."));
+```
+
+---
+
+## `async/await` (III.)
+
+- `await` lze používat jen v `async` funkcích
+- s pomocí *IIFE* lze asynchronní kontext vytvořit automaticky
+
+```
+(async function() {
+
+    var msg = await step1();
+
+})();
+```
+
+---
+
+## Generátor (I.)
+
+<ul>
+    <li class="fragment">je speciální typ **funkce**, která se neřídí principem *run-to-completion*</li>
+    <li class="fragment">definujeme pomocí `function*`</li>
+    <li class="fragment">lze zastavit příkazem `yield` použitým **uvnitř** *generátoru*</li>
+    <li class="fragment">lze ovládat **zvenčí** pomocí jeho *iterátoru*</li>
+</ul>
+
+---
+
+## Generátor (II.)
+
+*Iterátor* je **funkce**, která splňuje následující požadavky:
+
+<ul style="font-size: .85em">
+    <li>většinou ji získáme pomocí klíče `Symbol.iterator`</li>
+    <li>po **zavolání** vrátí objekt</li>
+    <li>tento objekt má funkci `next`</li>
+    <li>funkce `next` při každém zavolání vrací objekt ve formátu:<br>`{ value: 1, done: false }`</li>
+    <li>`next` **může** v určitý moment vrátit objekt:<br>`{ value: undefined, done: true }`<br></li>
+    <li>v takovém případě při dalších voláních `next` vrací stejný výsledek</li>
+</ul>
+
+---
+
+## Generátor (III.)
+
+```js
+var arr = [ 1, 2, 3 ];
+var it = arr[Symbol.iterator]();
+
+it.next(); // { value: 1, done: false }
+it.next(); // { value: 2, done: false }
+it.next(); // { value: 3, done: false }
+it.next(); // { value: undefined, done: true }
+it.next(); // { value: undefined, done: true }
+```
+
+<div>
+`for..of` cyklus operuje nad *iterátorem*:
+```js
+for (let value of arr) {
+    console.log(value);
+}
+```
+</div>
+<!-- .element: class="fragment" -->
+
+---
+
+## Generátor (IV.)
+
+```js
+var x = 1;
+
+function *foo() {
+    x++;
+    yield;
+    x++;
+}
+```
+
+```js
+var it = foo();
+it.next(); // { value: undefined, done: false }
+x; // 2
+it.next(); // { value: undefined, done: true }
+x; // 3
+```
+<!-- .element: class="fragment" -->
+
+---
+
+## Generátor (V.)
+
+```js
+var it = foo(); // 1.
+it.next(); // 2.
+x; // 3.
+it.next(); // 4.
+x; // 5.
+```
+<ol style="font-size: .875em">
+    <li class="fragment">voláním *generátoru* `foo` **získáme** jeho *iterátor*</li>
+    <li class="fragment">prvním voláním `next` **spustíme** běh `foo`</li>
+    <li class="fragment">*generátor* se v momentě zavolání `yield` zastaví a **vrací** kontrolu nad svým během</li>
+    <li class="fragment">*generátor* znovu spustíme pomocí *iterátoru*</li>
+    <li class="fragment">*generátor* je **ukončen**</li>
+</ol>
+
+---
+
+## Generátor (VI.)
+
+Pomocí `yield` lze posílat data **vně** *generátoru*:
+
+```js
+function *foo(a) {
+    a++;
+    yield("bar");
+
+    return a * 2;
+}
+
+var it = foo(6);
+
+it.next(); // { value: "bar", done: false }
+it.next(); // { value: 14, done: true }
+```
+
+---
+
+## Generátor (VII.)
+
+Pomocí `next` lze posílat data **dovnitř** *generátoru*:
+
+```js
+function *foo(a) {
+    a++;
+    let b = yield;
+
+    return a * b;
+}
+
+var it = foo(6);
+
+it.next(); // { value: undefined, done: false }
+it.next(3); // { value: 21, done: true }
+```
+
+---
+
+## Generátor (VIII.)
+
+Data lze posílat i **obousměrně**:
+
+```js
+function *foo(a) {
+    let b = yield("bar");
+
+    return a * b;
+}
+
+var it = foo(6);
+
+it.next(); // { value: "bar", done: false }
+it.next(3); // { value: 18, done: true }
+```
+
+---
+
+## Generátor (IX.)
+
+Lze *generátor* kombinovat s *promise*?
+
+```js
+step1()
+    .then(step2)
+    .then(step3(msg) => {
+        return Promise.all([
+            step3a(msg), step3b(msg), step3c(msg)
+        ])
+    })
+    .then(step4)
+    .catch(failed);
+```
+
+---
+
+## Generátor (X.)
+
+```js
+function *main() {
+    try {
+        var msg = yield step1();
+        msg = yield step2(msg);
+        msg = yield Promise.all([
+            step3a(msg), step3b(msg), step3c(msg)
+        ]);
+        yield step4(msg);
+    } catch (err) {
+        yield failed(err);
+    }
+}
+```
+
+Ale jak to celé rozběhat?
+<!-- .element: class="fragment" -->
+
+---
+
+## Generátor (XI.)
+
+```js
+async function main() {
+    try {
+        var msg = await step1();
+        msg = await step2(msg);
+        msg = await Promise.all([
+            step3a(msg), step3b(msg), step3c(msg)
+        ]);
+        return await step4(msg);
+    } catch (err) {
+        return await failed(err);
+    }
+}
+```
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (IV.) — [odkaz](https://repl.it/@jackdaw/exercise-iv)
+
+<ul style="font-size: .725em;">
+    <li>stávající funkce `ajax(url, callback)` vrací odpověď při dotazu na `https://example.com` a chybu při jakékoliv jiné adrese</li>
+    <li>`ajax` očekává *callback* ve tvaru `function(err, response)`</li>
+    <li>při úspěšném dotazu `ajax` volá *callback* s objektem `response`</li>
+    <li>funkce `text` na objektu `response` vrací `Promise`, jež obsahuje text odpovědi</li>
+    <li>vytvořte funkci `ajaxPromise`, která funkci `ajax` „obaluje“ a upravuje její rozhraní na `Promise`</li>
+    <li>napište příklad volání funkce `ajaxPromise`, včetně získání textu odpovědi a zachycení případných vyjímek</li>
+    <li>**bonus:** použijte `ajaxPromise` v kontextu `async` funkce</li>
+</ul>
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# JavaScript v praxi
+
+---
+
+Jak si poradit s:
+<ul>
+    <li class="fragment">transpilací kódu (*Babel*)</li>
+    <li class="fragment">optimalizací aplikace</li>
+    <li class="fragment">starými prohlížeči</li>
+    <li class="fragment">progresivním vylepšením</li>
+    <li class="fragment">organizací kódu</li>
+    <li class="fragment">frameworky</li>
+</il>

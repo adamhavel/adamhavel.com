@@ -1,0 +1,38 @@
+<html lang="{{ .Language }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0">
+    <title>Adam Havel</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css">
+    {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify }}
+        <style>{{ .Content | safeCSS }}</style>
+    {{ end }}
+</head>
+<body class="body">
+
+    <header class="site-header">
+
+        <a href="/" class="site-logo"><span><strong>Havel</strong></span></a>
+
+        <nav class="site-nav">
+            <ul>
+                {{ range .Site.Menus.main }}
+                    {{ $isActive := (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .)) }}
+                    <li><a href="{{ .URL }}" class="{{ if $isActive }}is-active{{ end }}">{{ .Name }}</a></li>
+                {{ end }}
+                {{ if .IsTranslated }}
+                    {{ with (index .Translations 0) }}
+                        <li><a lang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+                    {{ end}}
+                {{ end }}
+            </ul>
+        </nav>
+
+    </header>
+
+    <main class="site-content">
+        {{ block "main" . }}{{ end }}
+    </main>
+
+</body>
+</html>

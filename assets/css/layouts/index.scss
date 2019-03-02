@@ -1,0 +1,35 @@
+.index {}
+
+    .index__layout {
+        display: flex;
+        margin: 0em 0 8em;
+        align-items: center;
+    }
+
+        .index__headline {
+            font-size: 2em;
+            font-weight: 400;
+            font-family: $fontDisplay;
+            width: 60%;
+        }
+
+        .index__image {
+            width: 40%;
+            margin: 0 auto;
+        }
+
+    .index__cards {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        > * {
+            margin-top: 0;
+            flex-grow: 1;
+            flex-basis: 30%;
+        }
+
+        > :not(:last-child) {
+            margin-right: 4em;
+        }
+    }

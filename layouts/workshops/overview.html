@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+    <h1>{{ .Title }}</h1>
+
+    {{ if .Params.dates }}
+        <section>
+            <h2>Dates:</h2>
+            <ul>
+                {{ range .Params.dates }}
+                    <li>
+                        <h3>{{ dateFormat (i18n "dateFormat") .date }}, {{ .hours }}</h3>
+                        <p>{{ .location }}</p>
+                    </li>
+                {{ end }}
+            </ul>
+        </section>
+    {{ end }}
+
+    {{ .Content }}
+
+{{ end }}

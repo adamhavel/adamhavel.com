@@ -1,0 +1,56 @@
+defaultContentLanguage: en
+disableKinds: ["taxonomy", "taxonomyTerm", "sitemap", "RSS"]
+
+pygmentsCodefences: true
+pygmentsUseClasses: true
+pygmentsStyle: github
+
+languages:
+  en:
+    contentDir: content/en
+    title: adamhavel.com
+    languageName: English
+    baseURL: https://adamhavel.com
+    weight: 1
+    menu:
+      main:
+      - identifier: about
+        name: About
+        url: /about/
+        weight: 1
+      - identifier: projects
+        name: Projects
+        url: /projects/
+        weight: 2
+      - identifier: blog
+        name: Articles
+        url: /blog/
+        weight: 3
+      - identifier: workshops
+        name: Workshops
+        url: /workshops/
+        weight: 4
+  cs:
+    contentDir: content/cs
+    title: adamhavel.cz
+    languageName: Česky
+    baseURL: https://adamhavel.cz
+    weight: 2
+    menu:
+      main:
+      - identifier: about
+        name: Info
+        url: /info/
+        weight: 1
+      - identifier: projects
+        name: Projekty
+        url: /projekty/
+        weight: 2
+      - identifier: blog
+        name: Články
+        url: /blog/
+        weight: 3
+      - identifier: workshops
+        name: Školení
+        url: /skoleni/
+        weight: 4

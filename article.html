@@ -1,0 +1,426 @@
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0">
+    <title>Adam Havel</title>
+    <link href="https://fonts.googleapis.com/css?family=Krub:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        *:after,
+        *:before {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: 'Krub', sans-serif;
+            line-height: 1.5;
+        }
+
+        body {
+            padding: 4em;
+            background: rgb(242, 242, 245);
+            color: rgba(0, 0, 0, .85);
+        }
+
+        body * + * {
+            margin-top: 1em;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            font-family: 'Encode Sans Semi Condensed';
+            letter-spacing: .02em;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+            p > a {
+                position: relative;
+                text-decoration: none;
+                color: inherit;
+            }
+
+            p > a:before {
+                content: '';
+                position: absolute;
+                z-index: -1;
+                background: rgb(0, 181, 118);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: .125em;
+                opacity: .3;
+                will-change: opacity, transform;
+                transition: opacity .3s, transform .2s;
+                transform-origin: bottom;
+                transform: scaleY(3) scaleX(1.025);
+            }
+
+            p > a:hover:before {
+                opacity: 1;
+                transform: none;
+            }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+        }
+
+            .site-header * + * {
+                margin-top: 0;
+            }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            font-size: 1.25em;
+            font-weight: 400;
+            letter-spacing: .025em;
+        }
+
+            .site-logo span {
+                transition: opacity .2s, transform .2s;
+                will-change: transform, opacity;
+            }
+
+                .site-logo:hover span {
+                    transform: translateX(-2em);
+                    opacity: 0;
+                }
+
+            .site-logo strong {
+                font-weight: 600;
+                margin-left: -.125em;
+            }
+
+            .site-logo:before {
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                width: 2em;
+                height: 2em;
+                margin-right: .125em;
+                background: url('img/kavka.svg') center no-repeat;
+                background-size: contain;
+                opacity: .75;
+                position: relative;
+                z-index: 1;
+                transition: transform .3s, opacity .3s;
+                will-change: transform;
+            }
+
+                .site-logo:hover:before {
+                    transform: translateX(.5em) scale(1.5);
+                    opacity: 1;
+                }
+
+        .site-nav {
+            margin-left: auto;
+            font-size: .875em;
+        }
+
+            .site-nav ul {
+                display: flex;
+            }
+
+            .site-nav li {
+                margin-top: 0;
+                margin-left: 1em;
+            }
+
+                .site-nav a {
+                    display: block;
+                    text-decoration: none;
+                    color: inherit;
+                    text-transform: uppercase;
+                    font-weight: 800;
+                    letter-spacing: .1em;
+                    font-family: 'Encode Sans Semi Condensed';
+                    position: relative;
+                    transition: color .1s;
+                    padding: 0 .5em;
+                    line-height: 1.75;
+                }
+
+                    .site-nav a:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        background: rgb(0, 181, 118);
+                        z-index: -1;
+                        transition: transform .3s, opacity .2s;
+                        transform: scaleY(0);
+                    }
+
+                .site-nav a.is-active {
+                    color: white;
+                }
+
+                    .site-nav a:hover:before {
+                        opacity: .2;
+                        transform: none;
+                    }
+
+                    .site-nav a.is-active:before {
+                        opacity: 1;
+                        transform: none;
+                    }
+
+        .headline {
+            font-size: 1.75em;
+            font-weight: 600;
+            font-family: 'Encode Sans Semi Condensed';
+            margin-bottom: 5em;
+            letter-spacing: .01em;
+            max-width: 35em;
+        }
+
+        main {
+            margin-top: 5em;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .cards > * {
+                margin-top: 0;
+                flex-grow: 1;
+                flex-basis: 30%;
+            }
+
+            .cards .card:not(:last-child) {
+                margin-right: 1.75em;
+            }
+
+        .card {
+            background: white;
+            padding: 1.5em 1.75em;
+            position: relative;
+            transition: transform .3s;
+            transform-origin: bottom right;
+        }
+
+            .card .subheading {
+                text-align: center;
+                position: absolute;
+                bottom: 100%;
+                left: 0;
+                right: 0;
+                text-align: center;
+                opacity: .875;
+                line-height: 2;
+            }
+
+            .card .subheading + * {
+                margin-top: 0;
+            }
+
+            .card h3 {
+                font-size: 1.375em;
+                font-weight: 800;
+                padding-bottom: .25em;
+                border-bottom: .5em solid rgba(255, 171, 47, .25);
+            }
+
+
+                /*.card h3:after {
+                    content: '';
+                    display: inline-block;
+                    flex-grow: 1;
+                    background: rgba(255, 171, 47, .25);
+                    height: .575em;
+                    margin-left: .375em;
+                }*/
+
+            .card > * + * {
+                margin-top: .5em;
+            }
+
+            .card:before {
+                margin-top: 0;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: .2em solid rgb(0, 181, 118);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity .2s;
+            }
+
+            .card:hover:before {
+                opacity: .875;
+            }
+
+        .subheading {
+            text-decoration: none;
+            color: inherit;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: .1em;
+            font-size: .875em;
+            font-family: 'Encode Sans Semi Condensed';
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            mix-blend-mode: multiply;
+        }
+
+        .article {
+            font-size: 1.125em;
+            max-width: 38em;
+            margin-left: 8rem;
+        }
+
+            .article > * + * {
+                margin-top: 1.5em;
+            }
+
+            .article__header {
+                background: white;
+                padding: 2em;
+                padding-left: 4rem;
+                margin-left: -12rem;
+                margin-right: -2em;
+                //padding-top: 12em;
+            }
+
+                .article__header > * + * {
+                    margin-top: 1em;
+                }
+
+            .article__heading {
+                font-weight: 800;
+                font-size: 2.5em;
+                padding-bottom: .125em;
+                margin-top: 1rem;
+                border-bottom: .3em solid rgba(255, 171, 47, .375);
+            }
+
+
+            .article__image {
+
+            }
+
+            .article__meta {
+                display: flex;
+                justify-content: space-between;
+                text-transform: uppercase;
+                letter-spacing: .1em;
+                font-size: .75em;
+                font-weight: 600;
+                font-family: 'Encode Sans Semi Condensed';
+            }
+
+            .article__date {
+                margin-top: 0;
+            }
+
+            .article__tags {
+                margin-top: 0;
+                display: flex;
+            }
+
+                .article__tags * + * {
+                    margin-top: 0;
+                    margin-left: 1em;
+                }
+
+            .article__lede {
+                font-style: italic;
+                margin-top: 3em;
+            }
+
+            .article__content {
+
+            }
+
+                .article__content > * + * {
+                    margin-top: 1.5em;
+                }
+
+                .article__content p {
+                }
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+
+        <a href="/" class="site-logo"><span>Adam <strong>Havel</strong></span></a>
+
+        <nav class="site-nav">
+            <ul>
+                <li><a href="">About</a></li>
+                <li><a href="">Work</a></li>
+                <li><a class="is-active" href="">Articles</a></li>
+                <li><a href="">Workshops</a></li>
+                <li><a href="">Česky</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main class="article">
+
+        <header class="article__header">
+            <img class="article__image" src="img/article.png" alt="">
+            <h1 class="article__heading">Of Icons and Men</h1>
+            <section class="article__meta">
+                <p class="article__date"><time>15. 9. 2018</time></p>
+                <ul class="article__tags">
+                    <li>Web</li>
+                    <li>Performance</li>
+                </ul>
+            </section>
+        </header>
+
+        <p class="article__lede">
+            Even though small in size, icons seem to occupy a lot of space in the collective mind of the web development community. One way of handling icons replaces next — each method a little better than the previous, each bringing its own set of problems.
+        </p>
+
+        <div class="article__content">
+
+            <p>
+                The last one to emerge is the SVG sprite, which is created by putting the icon shapes inside `symbol` elements in a SVG file. Symbols are used because unlike other SVG objects, they aren't rendered until you use them. Unless you want to create the sprite manually, you can use one of the many solutions available to automate the process, such as grunt-svgstore or gulp-svgsprite.
+            </p>
+
+            <p>
+                To display an icon — assuming we have the sprite ready and loaded (we’ll get to that) — write an inline SVG containing a single `use` element which references the icon’s `id` using the `xlink:href` attribute. That’s the easy part.
+            </p>
+
+            <p>
+                Loading the sprite is a bit more involved. First, linking an external SVG sprite (via `xlink:href="sprite.svg#id"`) won't work in Internet Explorer (it will in Edge, though). That leaves you with two options: either put the sprite directly into all templates, or use AJAX and inject it on load. You can choose a third option and do it dynamically on the server side, but that doesn't solve the problem of caching two independent resources as one. That's where the second option comes to rescue. It consists of a small script directly inlined into a document's `head`. Apart from icons, the script can be used to load other non-critical assets such as fonts.
+            </p>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

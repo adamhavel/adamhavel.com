@@ -1,0 +1,39 @@
+{{ $libDir := "/lib/reveal.js" }}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+        <meta name="robots" content="noindex">
+        <title>{{ .Title }}</title>
+        <link rel="stylesheet" href="{{ $libDir }}/css/reveal.css">
+        <link rel="stylesheet" href="{{ $libDir }}/css/theme/white.css">
+        <link rel="stylesheet" href="{{ $libDir }}/lib/css/zenburn.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section
+                    data-markdown="{{ ( .Resources.GetMatch "slides.txt" ).RelPermalink }}"
+                    data-separator="^==="
+                    data-separator-vertical="^---"
+                    data-charset="utf-8"
+                ></section>
+            </div>
+        </div>
+        <script src="{{ $libDir }}/lib/js/head.min.js"></script>
+        <script src="{{ $libDir }}/js/reveal.js"></script>
+        <script>
+            Reveal.initialize({
+                controls: false,
+                history: true,
+                transitionSpeed: 'fast',
+                dependencies: [
+                    { src: '{{ $libDir }}/plugin/markdown/marked.js' },
+                    { src: '{{ $libDir }}/plugin/markdown/markdown.js' },
+                    { src: '{{ $libDir }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>

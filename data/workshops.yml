@@ -1,0 +1,16 @@
+- date: 2019-05-06
+  id: skoleni/moderni-javascript
+  hours: 9:30-17:00
+  location: Milady Horákové 116/109, Praha 6
+  url: https://www.root.cz/skoleni/termin/moderni-js-6/
+  lang: cs
+  tags:
+    - JavaScript
+- date: 2019-06-05
+  id: skoleni/prakticky-javascript
+  hours: 9:30-17:00
+  location: Milady Horákové 116/109, Praha 6
+  url: https://www.root.cz/skoleni/termin/prakticky-js-2/
+  lang: cs
+  tags:
+    - JavaScript

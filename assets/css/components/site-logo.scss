@@ -1,0 +1,53 @@
+.site-logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: .1em;
+    font-family: $fontDisplay;
+    text-transform: uppercase;
+    line-height: 1;
+
+    span {
+        transition: opacity .2s, transform .2s;
+        will-change: transform, opacity;
+    }
+
+    strong {
+        font-weight: 800;
+    }
+
+    &:before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 2em;
+        height: 2em;
+        margin-right: .25em;
+        background: center/contain no-repeat;
+        background-image: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.573 51.924"><polygon fill="#{darken($colorPrimary, 25%)}" points="27.823,27.496 35.323,49.881 34.078,49.881 24.674,30.26"/><polygon fill="#{darken($colorPrimary, 15%)}" points="29.291,0.248 21.101,7.429 18.707,0.283"/><polygon fill="#{$colorPrimary}" points="21.101,7.429 27.823,27.496 24.674,30.26 0.249,51.676 17.467,0.288 18.707,0.283"/></svg>');
+        opacity: .75;
+        position: relative;
+        z-index: 1;
+        transition: transform .3s, opacity .3s;
+        will-change: transform, opacity;
+        transform-origin: bottom;
+    }
+
+    &:hover,
+    &:focus {
+
+        span {
+            transform: translateX(-2em);
+            opacity: 0;
+        }
+
+        &:before {
+            transform: translateX(.5em) scale(1.5);
+            opacity: 1;
+        }
+    }
+}

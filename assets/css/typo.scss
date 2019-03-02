@@ -1,0 +1,59 @@
+html {
+    font-family: $fontBody;
+    background: $colorBackground;
+    color: $colorText;
+    line-height: $lineHeight;
+    font-size: 1em;
+}
+
+body {
+
+}
+
+p {
+
+    a {
+        position: relative;
+        text-decoration: none;
+        color: inherit;
+
+        &:before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background: $colorPrimary;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: .125em;
+            opacity: .3;
+            will-change: opacity, transform;
+            transition: opacity .3s, transform .2s;
+            transform-origin: bottom;
+            transform: scaleY(3) scaleX(1.025);
+        }
+
+        &:hover:before {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+code {
+    font-family: 'Hack', monospace;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.editable {
+
+    h2, h3, h4, h5, h6 {
+        font-weight: 800;
+        font-family: $fontDisplay;
+        letter-spacing: .02em;
+    }
+}
