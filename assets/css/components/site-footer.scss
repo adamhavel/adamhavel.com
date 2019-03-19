@@ -1,0 +1,7 @@
+.site-footer {
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .2), rgba(0, 0, 0, .5));
+    height: 5rem;
+    filter: url(#site-footer__filter) url(#salt);
+    transform: translateZ(0);
+    display: none;
+}

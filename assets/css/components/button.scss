@@ -1,0 +1,47 @@
+.button {
+    $borderWidth: .2em;
+
+    position: relative;
+    display: inline-block;
+    padding: .875em 1.5em;
+    text-decoration: none;
+    font-weight: 600;
+    color: $colorText;
+    letter-spacing: .075em;
+    border: $borderWidth solid currentColor;
+    opacity: .875;
+    text-transform: uppercase;
+    background: rgba(white, .5);
+    text-align: center;
+    transition: background-color .3s;
+
+    &:after {
+        position: absolute;
+        content: '';
+        top: -$borderWidth;
+        left: -$borderWidth;
+        right: -$borderWidth;
+        bottom: -$borderWidth;
+        border: $borderWidth solid currentColor;
+        opacity: .2;
+        transform: translate($borderWidth, $borderWidth);
+        transition: opacity .3s, transform .3s;
+    }
+
+    &:hover,
+    &:focus {
+        background: rgba(white, 0);
+
+        &:after {
+            opacity: 0;
+        }
+    }
+
+    &:active {
+
+        &:after {
+            opacity: .2;
+            transform: translate(-$borderWidth, -$borderWidth);
+        }
+    }
+}

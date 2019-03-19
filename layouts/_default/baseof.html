@@ -11,28 +11,56 @@
 <body class="body">
 
     <header class="site-header">
+        <div class="site-header__wrapper wrapper">
 
-        <a href="/" class="site-logo"><span><strong>Havel</strong></span></a>
+            <a href="/" class="site-logo"><span><em>A</em> <strong>Havel</strong></span></a>
 
-        <nav class="site-nav">
-            <ul>
-                {{ range .Site.Menus.main }}
-                    {{ $isActive := (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .)) }}
-                    <li><a href="{{ .URL }}" class="{{ if $isActive }}is-active{{ end }}">{{ .Name }}</a></li>
-                {{ end }}
-                {{ if .IsTranslated }}
-                    {{ with (index .Translations 0) }}
-                        <li><a lang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
-                    {{ end}}
-                {{ end }}
-            </ul>
-        </nav>
+            <nav class="site-nav">
+                <ul>
+                    {{ range .Site.Menus.main }}
+                        {{ $isActive := (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .)) }}
+                        <li><a href="{{ .URL }}" class="{{ if $isActive }}is-active{{ end }}">{{ .Name }}</a></li>
+                    {{ end }}
+                    {{ if .IsTranslated }}
+                        {{ with (index .Translations 0) }}
+                            <li><a lang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+                        {{ end}}
+                    {{ end }}
+                </ul>
+            </nav>
 
+        </div>
     </header>
 
     <main class="site-content">
-        {{ block "main" . }}{{ end }}
+        <div class="wrapper">
+            {{ block "main" . }}{{ end }}
+        </div>
     </main>
 
+    <footer class="site-footer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+            <filter id="site-footer__filter" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+                <feTurbulence baseFrequency="0.01 0.01" result="f1" numOctaves="3" />
+                <feDisplacementMap in="SourceGraphic" in2="f1" scale="70"></feDisplacementMap>
+            </filter>
+        </svg>
+    </footer>
+
+    <script type="module">
+        window.addEventListener('hashchange', function(ev) {
+            let el = document.querySelector(`[id='${window.location.hash.substr(1)}']`);
+
+            if (el) {
+                console.log(el);
+                ev.preventDefault();
+                el.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'center'
+                });
+            }
+        });
+    </script>
 </body>
 </html>

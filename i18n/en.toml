@@ -1,2 +1,8 @@
 [dateFormat]
 other = "January 2, 2006"
+
+[latestArticle]
+other = "Latest article"
+
+[upcomingWorkshop]
+other = "Upcoming workshop"

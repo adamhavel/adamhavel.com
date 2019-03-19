@@ -1,0 +1,59 @@
+.workshop-info {
+    display: flex;
+    flex-direction: column;
+    background: fade_out($colorSecondary, .4);
+    padding: 2em;
+    padding-bottom: 1.75em;
+    border: .1rem solid rgba(black, .075);
+
+    &:not(:last-child) {
+        margin-bottom: $lineHeight * 3rem;
+    }
+}
+
+    .workshop-info__list {
+
+        &:not(:last-child) {
+            margin-bottom: $lineHeight * 1.5rem;
+        }
+    }
+
+        .workshop-info__item {
+            font-weight: 300;
+            font-size: 1.2em;
+            letter-spacing: .05em;
+            line-height: 1.25;
+
+            &:not(:last-child) {
+                margin-bottom: $lineHeight * 1rem;
+            }
+
+            em {
+                font-style: normal;
+                font-size: .675em;
+            }
+        }
+
+            .workshop-info__heading {
+                display: block;
+                font-weight: 800;
+                font-size: .75rem;
+                letter-spacing: .1em;
+                text-transform: uppercase;
+                margin-bottom: $lineHeight * .25rem;
+            }
+
+    .workshop-info__register {
+        margin-left: auto;
+
+        &:not(:last-child) {
+            margin-bottom: $lineHeight * 1rem;
+        }
+    }
+
+    .workshop-info__desc {
+        text-align: right;
+        font-style: italic;
+        opacity: .75;
+        font-size: .875rem;
+    }

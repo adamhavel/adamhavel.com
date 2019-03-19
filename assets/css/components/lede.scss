@@ -1,0 +1,56 @@
+.lede {
+    margin-bottom: $lineHeight * 3rem;
+}
+
+    .lede__header {}
+
+        .lede__heading {
+            font-size: 3.75rem;
+            font-weight: 600;
+            line-height: 1;
+            padding-bottom: ($lineHeight * 1rem);
+            border-bottom: 1rem solid rgba(0, 0, 0, .05);
+            margin-bottom: ($lineHeight * 1.25rem);
+            font-family: $fontDisplay;
+        }
+
+        .lede__meta {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            letter-spacing: .15em;
+            opacity: .75;
+            font-weight: 300;
+            margin-bottom: ($lineHeight * 1.75rem);
+
+            > *:not(:first-child):before {
+                content: ' — ';
+                margin: 0 .8em;
+                opacity: .75;
+                font-weight: 300;
+            }
+        }
+
+            .lede__date {}
+
+            .lede__tags {
+                display: flex;
+                align-items: center;
+
+                li {
+                    display: inline;
+
+                    &:not(:last-child):after {
+                        content: ',';
+                        display: inline-block;
+                        padding-right: .25em;
+                    }
+                }
+            }
+
+        .lede__summary {
+            font-size: 1.2em;
+            font-weight: 300;
+            font-style: italic;
+            opacity: .875;
+        }

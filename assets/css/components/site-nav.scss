@@ -1,65 +1,66 @@
 .site-nav {
-    font-size: 1em;
+    font-size: .875em;
     position: relative;
     z-index: 1;
+    opacity: .825;
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+    }
 
     ul {
         display: flex;
     }
 
     li:not(:first-child) {
-        margin-left: 1em;
+        margin-left: 2em;
     }
 
     a {
         display: block;
         text-decoration: none;
         color: inherit;
-        font-weight: 500;
-        letter-spacing: .075em;
+        font-weight: 800;
+        letter-spacing: .0125em;
         font-family: $fontBody;
         position: relative;
         transition: color .1s;
-        padding: 0 .5em;
         line-height: 1.75;
+        text-transform: uppercase;
 
         &:before {
             content: '';
             position: absolute;
-            top: 0;
+            top: calc(100% + #{$lineHeight * .375rem});
             left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
+            right: 0;
+            height: $lineHeight * .125rem;
             background: $colorPrimary;
-            z-index: -1;
-            transition: transform .3s, opacity .2s;
+            transform-origin: bottom;
             transform: scaleY(0);
-            will-change: transform, opacity;
+            transition: transform .2s;
+            opacity: .75;
         }
 
         &:hover,
         &:focus {
 
             &:before {
-                opacity: .2;
-                transform: none;
+                transform: scaleY(2) !important;
             }
         }
 
         &.is-active {
-            color: white;
 
             &:before {
-                opacity: 1;
+                background: $colorTertiary;
                 transform: none;
             }
         }
 
         &[lang]:before {
             background: $colorSecondary;
-            opacity: .2;
-            transform: none;
         }
     }
 }

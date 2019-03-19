@@ -1,7 +1,15 @@
 .site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background: white;
-    padding: 4em 15vw 1em;
+    margin-top: ($lineHeight * 3rem);
+    padding: ($lineHeight * .5rem) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
+
+    .site-header__wrapper {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }

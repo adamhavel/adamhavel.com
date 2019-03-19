@@ -1,73 +1,71 @@
 .highlight {
-    margin: 2em 0;
-
-    /* Error */ .err { color: #a61717; background-color: #e3d2d2 }
+    /* Error */ .err { color: #a61717; }
     /* LineTableTD */ .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
     /* LineTable */ .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
     /* LineHighlight */ .hl { display: block; width: 100%; background-color: #ffffcc }
     /* LineNumbersTable */ .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
     /* LineNumbers */ .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-    /* Keyword */ .k { color: #000000; font-weight: bold }
-    /* KeywordConstant */ .kc { color: #000000; font-weight: bold }
-    /* KeywordDeclaration */ .kd { color: #000000; font-weight: bold }
-    /* KeywordNamespace */ .kn { color: #000000; font-weight: bold }
-    /* KeywordPseudo */ .kp { color: #000000; font-weight: bold }
-    /* KeywordReserved */ .kr { color: #000000; font-weight: bold }
-    /* KeywordType */ .kt { color: #445588; font-weight: bold }
-    /* NameAttribute */ .na { color: #008080 }
-    /* NameBuiltin */ .nb { color: #0086b3 }
+    /* Keyword */ .k { color: $colorText; xfont-weight: bold }
+    /* KeywordConstant */ .kc { color: $colorText; xfont-weight: bold }
+    /* KeywordDeclaration */ .kd { color: $colorText; xfont-weight: bold }
+    /* KeywordNamespace */ .kn { color: $colorText; xfont-weight: bold }
+    /* KeywordPseudo */ .kp { color: $colorText; xfont-weight: bold }
+    /* KeywordReserved */ .kr { color: $colorText; xfont-weight: bold }
+    /* KeywordType */ .kt { color: $colorText; xfont-weight: bold }
+    /* NameAttribute */ .na { color: darken($colorPrimary, 15%) }
+    /* NameBuiltin */ .nb { color: darken($colorSecondary, 25%) }
     /* NameBuiltinPseudo */ .bp { color: #999999 }
-    /* NameClass */ .nc { color: #445588; font-weight: bold }
-    /* NameConstant */ .no { color: #008080 }
-    /* NameDecorator */ .nd { color: #3c5d5d; font-weight: bold }
+    /* NameClass */ .nc { color: $colorText; xfont-weight: bold }
+    /* NameConstant */ .no { color: darken($colorPrimary, 15%) }
+    /* NameDecorator */ .nd { color: #3c5d5d; xfont-weight: bold }
     /* NameEntity */ .ni { color: #800080 }
-    /* NameException */ .ne { color: #990000; font-weight: bold }
-    /* NameFunction */ .nf { color: #990000; font-weight: bold }
-    /* NameLabel */ .nl { color: #990000; font-weight: bold }
+    /* NameException */ .ne { color: #990000; xfont-weight: bold }
+    /* NameFunction */ .nf { color: #990000; xfont-weight: bold }
+    /* NameLabel */ .nl { color: #990000; xfont-weight: bold }
     /* NameNamespace */ .nn { color: #555555 }
-    /* NameTag */ .nt { color: #000080 }
-    /* NameVariable */ .nv { color: #008080 }
-    /* NameVariableClass */ .vc { color: #008080 }
-    /* NameVariableGlobal */ .vg { color: #008080 }
-    /* NameVariableInstance */ .vi { color: #008080 }
-    /* LiteralString */ .s { color: #dd1144 }
-    /* LiteralStringAffix */ .sa { color: #dd1144 }
-    /* LiteralStringBacktick */ .sb { color: #dd1144 }
-    /* LiteralStringChar */ .sc { color: #dd1144 }
-    /* LiteralStringDelimiter */ .dl { color: #dd1144 }
-    /* LiteralStringDoc */ .sd { color: #dd1144 }
-    /* LiteralStringDouble */ .s2 { color: #dd1144 }
-    /* LiteralStringEscape */ .se { color: #dd1144 }
-    /* LiteralStringHeredoc */ .sh { color: #dd1144 }
-    /* LiteralStringInterpol */ .si { color: #dd1144 }
-    /* LiteralStringOther */ .sx { color: #dd1144 }
-    /* LiteralStringRegex */ .sr { color: #009926 }
-    /* LiteralStringSingle */ .s1 { color: #dd1144 }
+    /* NameTag */ .nt { color: $colorText }
+    /* NameVariable */ .nv { color: darken($colorPrimary, 15%) }
+    /* NameVariableClass */ .vc { color: darken($colorPrimary, 15%) }
+    /* NameVariableGlobal */ .vg { color: darken($colorPrimary, 15%) }
+    /* NameVariableInstance */ .vi { color: darken($colorPrimary, 15%) }
+    /* LiteralString */ .s { color: darken($colorTertiary, 20%) }
+    /* LiteralStringAffix */ .sa { color: darken($colorTertiary, 20%) }
+    /* LiteralStringBacktick */ .sb { color: darken($colorTertiary, 20%) }
+    /* LiteralStringChar */ .sc { color: darken($colorTertiary, 20%) }
+    /* LiteralStringDelimiter */ .dl { color: darken($colorTertiary, 20%) }
+    /* LiteralStringDoc */ .sd { color: darken($colorTertiary, 20%) }
+    /* LiteralStringDouble */ .s2 { color: darken($colorTertiary, 20%) }
+    /* LiteralStringEscape */ .se { color: darken($colorTertiary, 20%) }
+    /* LiteralStringHeredoc */ .sh { color: darken($colorTertiary, 20%) }
+    /* LiteralStringInterpol */ .si { color: darken($colorTertiary, 20%) }
+    /* LiteralStringOther */ .sx { color: darken($colorTertiary, 20%) }
+    /* LiteralStringRegex */ .sr { color: darken($colorPrimary, 15%) }
+    /* LiteralStringSingle */ .s1 { color: darken($colorTertiary, 20%) }
     /* LiteralStringSymbol */ .ss { color: #990073 }
-    /* LiteralNumber */ .m { color: #009999 }
-    /* LiteralNumberBin */ .mb { color: #009999 }
-    /* LiteralNumberFloat */ .mf { color: #009999 }
-    /* LiteralNumberHex */ .mh { color: #009999 }
-    /* LiteralNumberInteger */ .mi { color: #009999 }
-    /* LiteralNumberIntegerLong */ .il { color: #009999 }
-    /* LiteralNumberOct */ .mo { color: #009999 }
-    /* Operator */ .o { color: #000000; font-weight: bold }
-    /* OperatorWord */ .ow { color: #000000; font-weight: bold }
+    /* LiteralNumber */ .m { color: darken($colorPrimary, 10%) }
+    /* LiteralNumberBin */ .mb { color: darken($colorPrimary, 10%) }
+    /* LiteralNumberFloat */ .mf { color: darken($colorPrimary, 10%) }
+    /* LiteralNumberHex */ .mh { color: darken($colorPrimary, 10%) }
+    /* LiteralNumberInteger */ .mi { color: darken($colorPrimary, 10%) }
+    /* LiteralNumberIntegerLong */ .il { color: darken($colorPrimary, 10%) }
+    /* LiteralNumberOct */ .mo { color: darken($colorPrimary, 10%) }
+    /* Operator */ .o { color: $colorText; xfont-weight: bold }
+    /* OperatorWord */ .ow { color: $colorText; xfont-weight: bold }
     /* Comment */ .c { color: #999988; font-style: italic }
     /* CommentHashbang */ .ch { color: #999988; font-style: italic }
     /* CommentMultiline */ .cm { color: #999988; font-style: italic }
     /* CommentSingle */ .c1 { color: #999988; font-style: italic }
-    /* CommentSpecial */ .cs { color: #999999; font-weight: bold; font-style: italic }
-    /* CommentPreproc */ .cp { color: #999999; font-weight: bold; font-style: italic }
-    /* CommentPreprocFile */ .cpf { color: #999999; font-weight: bold; font-style: italic }
-    /* GenericDeleted */ .gd { color: #000000; background-color: #ffdddd }
-    /* GenericEmph */ .ge { color: #000000; font-style: italic }
+    /* CommentSpecial */ .cs { color: #999999; xfont-weight: bold; font-style: italic }
+    /* CommentPreproc */ .cp { color: #999999; xfont-weight: bold; font-style: italic }
+    /* CommentPreprocFile */ .cpf { color: #999999; xfont-weight: bold; font-style: italic }
+    /* GenericDeleted */ .gd { color: $colorText; background-color: #ffdddd }
+    /* GenericEmph */ .ge { color: $colorText; font-style: italic }
     /* GenericError */ .gr { color: #aa0000 }
     /* GenericHeading */ .gh { color: #999999 }
-    /* GenericInserted */ .gi { color: #000000; background-color: #ddffdd }
+    /* GenericInserted */ .gi { color: $colorText; background-color: #ddffdd }
     /* GenericOutput */ .go { color: #888888 }
     /* GenericPrompt */ .gp { color: #555555 }
-    /* GenericStrong */ .gs { font-weight: bold }
+    /* GenericStrong */ .gs { xfont-weight: bold }
     /* GenericSubheading */ .gu { color: #aaaaaa }
     /* GenericTraceback */ .gt { color: #aa0000 }
     /* GenericUnderline */ .gl { text-decoration: underline }

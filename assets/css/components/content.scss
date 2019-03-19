@@ -1,0 +1,102 @@
+.content {
+    font-size: 1.125em;
+    position: relative;
+    z-index: 1;
+
+    > p {
+        font-weight: 300;
+        margin-bottom: $lineHeight * 1rem;
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            color: inherit;
+            white-space: nowrap;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 85%;
+                left: 0;
+                right: 0;
+                background: $colorPrimary;
+                opacity: .8;
+                height: 8%;
+                transition: transform .2s, opacity .5s;
+                z-index: -1;
+                will-change: transform;
+                transform-origin: bottom;
+                pointer-events: none;
+            }
+
+            &[href^="http"]:before {
+                background: $colorSecondary;
+            }
+
+            &:hover:before,
+            &:focus:before {
+                transform: scale(1.1, 14) translateY(10%);
+                opacity: .15;
+            }
+        }
+    }
+
+    > h2 {
+        font-size: 1.375rem;
+        font-weight: 600;
+        padding-bottom: ($lineHeight * .25rem);
+        border-bottom: .5rem solid rgba(0, 0, 0, .05);
+        margin-bottom: $lineHeight * .5rem;
+        line-height: $lineHeight * 1rem;
+
+        &:not(:first-child) {
+            margin-top: $lineHeight * 2rem;
+        }
+    }
+
+    > h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        line-height: $lineHeight * 1rem;
+        margin-bottom: $lineHeight * .25rem;
+
+        &:not(:first-child) {
+            margin-top: $lineHeight * 1.25rem;
+        }
+    }
+
+    > ul {
+        font-weight: 300;
+        margin-bottom: $lineHeight * 1rem;
+        font-size: .875em;
+
+        li {
+            position: relative;
+            padding-left: 1.25em;
+            line-height: 1.25;
+
+            &:not(:first-child) {
+                margin-top: $lineHeight * .25em;
+            }
+
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: '–';
+                font-weight: 300;
+                opacity: .5;
+            }
+        }
+    }
+
+    code {
+        font-size: .9em;
+    }
+
+    pre {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+}

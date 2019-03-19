@@ -1,0 +1,144 @@
+.article {
+    margin-top: ($lineHeight * 2rem);
+}
+
+    .article__lede {
+        display: flex;
+        align-items: flex-end;
+    }
+
+        .article__image {
+            width: $splitLayoutWidthLeft;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 0, 0, .75);
+        }
+
+        .article__header {
+            flex-grow: 1;
+            margin-left: $splitLayoutGutter;
+            margin-bottom: $lineHeight * -.35rem;
+        }
+
+    .article__content {
+        padding-left: $splitLayoutWidthLeft + $splitLayoutGutter;
+
+        > :first-child {
+            display: none;
+        }
+
+        .footnote-ref {
+            display: inline-block;
+            padding: 0 .125em;
+
+            a {
+                position: relative;
+                line-height: 1;
+                font-weight: 600;
+                color: darken($colorTertiary, 15%);
+                text-decoration: none;
+
+                &:before {
+                    display: none;
+                }
+
+                &:after {
+                    position: absolute;
+                    content: '';
+                    top: 50%;
+                    left: 50%;
+                    width: 2em;
+                    height: 2em;
+                    background: $colorTertiary;
+                    opacity: 0;
+                    border-radius: 50%;
+                    transform: translate3d(-50%, -53%, 0);
+                    transition: opacity 1s;
+                }
+            }
+
+            &:target a:after {
+                opacity: .1;
+            }
+        }
+
+        .footnotes {
+            counter-reset: footnote;
+            width: $splitLayoutWidthLeft;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            font-size: .875rem;
+            padding-top: $lineHeight * .5rem;
+
+            li {
+                counter-increment: footnote;
+                display: block;
+                opacity: 0;
+                transition: opacity .3s;
+                padding-top: $lineHeight * .75rem;
+                opacity: .125;
+                position: relative;
+
+                &:not(:last-child) {
+                    margin-bottom: $lineHeight * 3rem;
+                }
+
+                &:hover,
+                &:target {
+                    opacity: 1;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: .25rem;
+                    background: rgba(0, 0, 0, .2);
+                    transform: translateY(-50%);
+                }
+
+                &:hover,
+                &:target {
+
+                    &:after {
+                        background-color: $colorTertiary;
+                        opacity: .25;
+                    }
+
+                    .footnote-return {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .footnote-return {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity .3s;
+
+            &:before {
+                content: '↪ ' counter(footnote);
+                position: absolute;
+                top: 0;
+                right: 100%;
+                padding-right: 1em;
+                color: $colorTertiary;
+                font-weight: 600;
+                white-space: nowrap;
+                transform: translateY(-46%);
+            }
+        }
+    }
+
+        .article__info {
+            width: 40%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }

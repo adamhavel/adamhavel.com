@@ -1,7 +1,35 @@
 {{ define "main" }}
+<article class="article">
 
-    <h1>{{ .Title }}</h1>
+    <div class="lede article__lede">
 
-    {{ .Content }}
+        {{ with .Resources.GetMatch "thumb.jpg" }}
+            {{ $image := .Resize "1000x q75" }}
+            <img class="article__image" src="{{ $image.Permalink }}" role="presentation">
+        {{ end }}
 
+        <header class="lede__header article__header">
+            <div class="lede__meta">
+                <time class="lede__date">{{ .Date.Format (i18n "dateFormat") }}</time>
+                {{ with .Params.tags }}
+                    <ul class="lede__tags">
+                        {{ range . }}
+                            <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                {{ end }}
+            </div>
+            <h1 class="lede__heading">{{ .Title }}</h1>
+            <div class="lede__summary">
+                {{ .Summary }}
+            </div>
+        </header>
+
+    </div>
+
+    <div class="article__content content">
+        {{ .Content }}
+    </div>
+
+</article>
 {{ end }}

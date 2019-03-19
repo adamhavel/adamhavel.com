@@ -31,34 +31,17 @@
             letter-spacing: .1em;
         }
 
-        .card__tags {
-            display: flex;
-            display: none;
-            align-items: center;
-            font-style: italic;
-            letter-spacing: .1em;
-
-            li {
-                display: inline;
-
-                &:not(:last-child):after {
-                    content: ',';
-                    display: inline-block;
-                    padding-right: .25em;
-                }
-            }
-        }
-
     .card__heading {
-        font-size: 1.25em;
-        font-weight: 600;
+        font-size: 1.125em;
+        font-weight: 800;
+        letter-spacing: .0125em;
         margin-top: $lineHeight * .5rem;
-        font-family: $fontDisplay;
+        font-family: $fontBody;
     }
 
     .card__desc {
         font-weight: 300;
-        margin-top: $lineHeight * .075rem;
+        margin-top: $lineHeight * .125rem;
     }
 
     .card__link {

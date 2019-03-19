@@ -1,8 +1,11 @@
 ---
 title: Practical JavaScript
 type: workshops
-layout: overview
+layout: single
 translationKey: practical-javascript
+menu:
+    main:
+        parent: 'workshops'
 ---
 
 lorem ipsum 2

@@ -1,2 +1,8 @@
 [dateFormat]
 other = "2. 1. 2006"
+
+[latestArticle]
+other = "Poslední článek"
+
+[upcomingWorkshop]
+other = "Příští školení"

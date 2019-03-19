@@ -14,10 +14,6 @@
         <section class="card">
             <header class="card__header">
                 <h2 class="card__title">Latest project</h2>
-                <ul class="card__tags">
-                    <li>web</li>
-                    <li>branding</li>
-                </ul>
             </header>
             <h3 class="card__heading">Kaiser Franz</h3>
             <p class="card__desc">Quas amet porro beatae aut reprehenderit eum ratione sint aspernatur dignissimos non optio accusamus iste harum error odit aliquam modi, eaque, iusto enim a deserunt soluta saepe ad illum. Aspernatur explicabo placeat neque voluptate minus earum velit, consequuntur repellat aut.</p>
@@ -28,15 +24,8 @@
             {{ with .GetPage "blog" }}
                 {{ with (index .Pages.ByDate 0) }}
                     <header class="card__header">
-                        <h2 class="card__title">Latest article</h2>
+                        <h2 class="card__title">{{ i18n "latestArticle" }}</h2>
                         <time class="card__date">{{ .Date.Format (i18n "dateFormat") }}</time>
-                        {{ with .Params.tags }}
-                            <ul class="card__tags">
-                                {{ range . }}
-                                    <li>{{ . }}</li>
-                                {{ end }}
-                            </ul>
-                        {{ end }}
                     </header>
                     <h3 class="card__heading">{{ .Title }}</h3>
                     <p class="card__desc">{{ .Summary | plainify }}</p>
@@ -46,18 +35,12 @@
         </section>
 
         <section class="card">
-            {{ $upcoming_workshop := index (where .Site.Data.workshops "lang" (print .Language)) 0 }}
+            {{ $upcoming_workshops := where .Site.Data.workshops "date" "ge" (now.Format "2006-01-02") }}
+            {{ $upcoming_workshop := index (where ($upcoming_workshops) "lang" (print .Language)) 0 }}
             {{ with .GetPage (print $upcoming_workshop.id) }}
                 <header class="card__header">
-                    <h2 class="card__title">Upcoming workshop</h2>
+                    <h2 class="card__title">{{ i18n "upcomingWorkshop" }}</h2>
                     <time class="card__date">{{ (time $upcoming_workshop.date).Format (i18n "dateFormat") }}</time>
-                    {{ with $upcoming_workshop.tags }}
-                        <ul class="card__tags">
-                            {{ range . }}
-                                <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    {{ end }}
                 </header>
                 <h3 class="card__heading">{{ .Title }}</h3>
                 <p class="card__desc">{{ .Summary | plainify }}</p>

@@ -1,17 +1,19 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 250 186.2" xml:space="preserve">
+<svg xmlns="http://www.w3.org/2000/svg"
+	 viewBox="0 0 250 186.2">
 <style type="text/css">
 
 	.sun {
-        opacity: 0.3;
+        opacity: 0.4;
         fill: url(#sun-gradient);
         filter: url(#noise);
     }
 
 	.leaves {
-        opacity: .9;
+        opacity: .85;
         fill: url(#leaves-gradient);
         filter: url(#roughpaper);
+        stroke: #005b32;
+        stroke-width: 0.25;
     }
 
 </style>
@@ -31,14 +33,14 @@
 </filter>
 
 <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-    <feTurbulence baseFrequency="0.1 2" result="f1" numOctaves="3" />
+    <feTurbulence baseFrequency="0.09 0.2" result="f1" numOctaves="3" />
     <feDisplacementMap in="SourceGraphic" in2="f1" scale="10"></feDisplacementMap>
 </filter>
 
 <filter x="0%" y="0%" width="100%" height="100%" id="salt" filterUnits="objectBoundingBox">
 
     <!-- Step 1 - generation of noise texture (fullcolour) by using feTurbulence SVG filter -->
-    <feTurbulence type="fractalNoise" result="f1" stitchTiles="noStitch" baseFrequency="1" numOctaves="3" seed="1" />
+    <feTurbulence type="fractalNoise" result="f1" stitchTiles="noStitch" baseFrequency="0.5" numOctaves="5" seed="1" />
 
     <!-- Step 2 - conversion to grayscale mode together with tonal range limit to achieve desired amount/sizes of fragments -->
     <feColorMatrix type="matrix" values="-23 0 0 0 7      -23 0 0 0 7     -23 0 0 0 7      0 0 0 0 1" in="f1" result="f2" />
@@ -47,7 +49,7 @@
     <feColorMatrix type="luminanceToAlpha" in="f2" result="f3" />
 
     <feComponentTransfer in="f3" result="f4">
-        <feFuncA type="linear" slope="0.5"/>
+        <feFuncA type="linear" slope="0.9"/>
     </feComponentTransfer>
 
     <!-- Step 4 - intersection of texture with initial object (or vice-versa) -->
@@ -75,7 +77,7 @@
 	<radialGradient id="leaves-gradient" cx="110" data-x="98.4243" cy="80" data-y="94.964" r="72.8207" gradientUnits="userSpaceOnUse">
 		<stop offset="0" style="stop-color:#00B576"/>
 		<stop offset="0.85" style="stop-color:#00864E"/>
-		<stop offset="1" style="stop-color:#006E3D"/>
+		<stop offset="1" style="stop-color:#005b32"/>
 	</radialGradient>
 	<path d="M140.7,134c2.2-2.5,4.2-4.9,6.3-7.3c4.6-5.1,6.8-11.1,7-17.9c0.1-2.6-0.7-5.3,0.9-7.7c0.4-6.5,3.3-11.7,8-16.1
 		c1.9-1.7,3.5-3.7,5.4-5.3c1.7-1.4,2.2-3.6,3.3-5.3c0.2-0.4,0.1-1.1-0.1-1.6c-2.3-6.2-4.5-12.3-8-18c-3.6-5.9-7.8-11.3-12.8-16

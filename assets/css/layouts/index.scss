@@ -11,6 +11,35 @@
             font-weight: 400;
             font-family: $fontDisplay;
             width: 60%;
+            position: relative;
+            z-index: 1;
+
+            a {
+                position: relative;
+                text-decoration: none;
+                color: inherit;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    background: $colorPrimary;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    height: .125em;
+                    opacity: .3;
+                    will-change: opacity, transform;
+                    transition: opacity .3s, transform .2s;
+                    transform-origin: bottom;
+                    transform: scaleY(3) scaleX(1.025);
+                }
+
+                &:hover:before {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
         }
 
         .index__image {

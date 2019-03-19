@@ -4,6 +4,9 @@ translationKey: the-perils-of-icon-systems
 date: 2018-11-22
 tags:
     - web
+menu:
+    main:
+        parent: 'blog'
 ---
 
 Even though small in size, icons seem to occupy a lot of space in the collective mind of the web development community. One way of handling icons replaces next -- each method a little better than the previous, each bringing its own set of problems.

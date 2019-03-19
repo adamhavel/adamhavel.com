@@ -5,6 +5,8 @@ pygmentsCodefences: true
 pygmentsUseClasses: true
 pygmentsStyle: github
 
+footnoteReturnLinkContents: ' '
+
 languages:
   en:
     contentDir: content/en
