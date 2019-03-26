@@ -1,0 +1,19 @@
+.section {
+    padding-top: $lineHeight * 1rem;
+}
+
+    .section__content {
+        width: $splitLayoutWidthRight;
+        margin-right: $splitLayoutWidthLeft + $splitLayoutGutter;
+    }
+
+        .section__heading {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1;
+            margin-bottom: ($lineHeight * 1.5rem);
+            font-family: $fontDisplay;
+            text-align: center;
+        }
+
+    .section__aside {}

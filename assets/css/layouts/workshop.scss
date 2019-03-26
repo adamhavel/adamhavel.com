@@ -1,19 +1,19 @@
 .workshop {
-    margin-top: ($lineHeight * 2rem);
+    padding-top: $lineHeight * 2rem;
 }
 
     .workshop__aside {
         float: left;
-        width: 35%;//$splitLayoutWidthLeft;
+        width: $splitLayoutWidthLeft;
     }
 
-    .workshop__main {
-        margin-left: 40%;//$splitLayoutWidthLeft + $splitLayoutGutter;
-        width: 55%;
-    }
-
-        .workshop__content {
-            > :first-child {
-                display: none;
-            }
+        .workshop__main {
+            margin-left: $splitLayoutWidthLeft + $splitLayoutGutter;
         }
+
+            .workshop__content {
+
+                > :first-child {
+                    display: none;
+                }
+            }

@@ -22,7 +22,7 @@
         &:after {
             height: .69em;
             content: '\\\\\\';
-            opacity: .4;
+            opacity: .25;
             color: $colorText;
             transform: translateZ(0) skewX(4deg);
             transition: transform .2s, opacity .3s, color .3s;

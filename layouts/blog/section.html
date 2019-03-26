@@ -1,13 +1,35 @@
 {{ define "main" }}
+<div class="section">
 
-    <h1>{{ .Title }}</h1>
+    <section class="section__content">
 
-    {{ .Content }}
+        <h1 class="section__heading">{{ .Title }}</h1>
 
-    {{ range .Pages }}
-        <li>
-            <a href="{{ .Permalink | relLangURL }}">{{ .Date.Format (i18n "dateFormat") }} | {{ .Title }}</a>
-        </li>
-    {{ end }}
+        {{ range .Pages }}
+            <section class="spot">
+                {{ with .Resources.GetMatch "thumb.jpg" }}
+                    {{ $image := .Resize "300x q75" }}
+                    <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">
+                {{ end }}
+                <div class="spot__content">
+                    <header class="spot__header">
+                        <time class="spot__date">{{ .Date.Format (i18n "dateFormat") }}</time>
+                        {{ with .Params.tags }}
+                            <ul class="lede__tags">
+                                {{ range . }}
+                                    <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        {{ end }}
+                    </header>
+                    <h3 class="spot__heading">{{ .Title }}</h3>
+                    <p class="spot__desc">{{ .Summary | plainify }}</p>
+                    <a href="{{ .Permalink }}" class="spot__link"></a>
+                </div>
+            </section>
+        {{ end }}
 
+    </section>
+
+</div>
 {{ end }}

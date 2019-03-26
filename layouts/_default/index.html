@@ -22,7 +22,7 @@
 
         <section class="card">
             {{ with .GetPage "blog" }}
-                {{ with (index .Pages.ByDate 0) }}
+                {{ with (index .Pages.ByDate 1) }}
                     <header class="card__header">
                         <h2 class="card__title">{{ i18n "latestArticle" }}</h2>
                         <time class="card__date">{{ .Date.Format (i18n "dateFormat") }}</time>

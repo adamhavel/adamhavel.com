@@ -23,7 +23,7 @@
     <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
 
     <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
-        <feDistantLight azimuth="45" elevation="70" />
+        <feDistantLight azimuth="45" elevation="80" />
     </feDiffuseLighting>
 
     <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
