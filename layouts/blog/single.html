@@ -1,11 +1,18 @@
 {{ define "main" }}
 <article class="article">
 
-    <div class="lede article__lede">
+    <div class="lede">
 
-        {{ with .Resources.GetMatch "thumb.jpg" }}
-            {{ $image := .Resize "1000x q75" }}
-            <img class="article__image" src="{{ $image.Permalink }}" role="presentation">
+        {{ with .Resources.GetMatch "thumb.png" }}
+            {{ $image := .Fill "800x600 q75" }}
+            <figure class="lede__image-container">
+                <a href="{{ $.Page.Params.photoUrl }}" target="_blank">
+                    <img class="lede__image" src="{{ $image.Permalink }}" role="presentation">
+                    {{ with $.Page.Params.photoDesc }}
+                        <figcaption class="lede__caption">{{ . | safeHTML }}</figcaption>
+                    {{ end }}
+                </a>
+            </figure>
         {{ end }}
 
         <header class="lede__header article__header">

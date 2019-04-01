@@ -7,10 +7,23 @@
         align-items: flex-end;
     }
 
-        .article__image {
+        .article__image-container {
             width: $splitLayoutWidthLeft;
-            border: 1px solid rgba(0, 0, 0, .75);
+            position: relative;
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border: 5px solid black;
+                opacity: .1;
+            }
         }
+
+            .article__image {}
 
         .article__header {
             width: $splitLayoutWidthRight;

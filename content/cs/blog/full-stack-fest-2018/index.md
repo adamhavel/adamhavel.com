@@ -7,6 +7,8 @@ tags:
 menu:
     main:
         parent: 'blog'
+photoDesc: La Sagrada Familia — Erwan Hesry
+photoUrl: https://unsplash.com/photos/QYYg0KwTGYc
 ---
 
 Měli jste někdy chuť na pódium hodit tu tašku plnou zbytečností, co navzdory zdravému rozumu na konferencích stále rozdávají? Mně se to občas stává. Místo zajímavých zkušeností nebo myšlenek přednáška obsahuje výčet dokumentace, a osoba na pódiu se navrch tváří, že je to zajímavé.

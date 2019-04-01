@@ -1,6 +1,5 @@
 .spot {
     position: relative;
-    padding-top: $lineHeight * 1.25rem;
     display: flex;
     align-items: flex-start;
 
@@ -9,11 +8,27 @@
     }
 }
 
-    .spot__image {
+    .spot__image-container {
         flex-shrink: 0;
-        margin-right: $lineHeight * 1.25rem;
-        border: 1px solid rgba(0, 0, 0, .75);
+        margin-right: $lineHeight * 1.5rem;
+        margin-top: .275em;
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid black;
+            opacity: .1;
+        }
     }
+
+        .spot__image {
+            width: 300px;
+        }
 
     .spot__content {
         flex-grow: 1;
@@ -22,24 +37,46 @@
         .spot__header {
             display: flex;
             align-items: center;
-            font-size: .75rem;
-            opacity: .75;
+            font-size: .75em;
+            opacity: .875;
+            letter-spacing: .1em;
+            font-weight: 300;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                height: .5rem;
+                background: rgba(black, .05);
+                flex-grow: 1;
+                margin-right: 1.5em;
+                border-bottom: 1px solid rgba(black, .025);
+                transition: background-color .3s, opacity .3s;
+            }
+
+            .spot:hover &:before {
+                background: $colorPrimary;
+                opacity: .75;
+            }
 
             > *:not(:first-child):before {
-                content: ' — ';
-                margin: 0 .4em;
+                display: inline-block;
+                content: '•';
+                margin: 0 .5em;
+                opacity: .5;
             }
         }
 
-            .spot__date {
-                letter-spacing: .1em;
+            .spot__title {
+                text-transform: uppercase;
             }
+
+            .spot__date {}
 
         .spot__heading {
             font-size: 1.25em;
-            font-weight: 800;
+            font-weight: 600;
             letter-spacing: .0125em;
-            margin-top: $lineHeight * .5rem;
+            margin-top: $lineHeight * .75rem;
             font-family: $fontBody;
         }
 
@@ -54,15 +91,5 @@
             left: 0;
             right: 0;
             bottom: 0;
-            border-top: .5rem solid rgba(0, 0, 0, .05);
             font-size: 0;
-            transition: border-color .3s, transform .2s, opacity .3s;
-            transform-origin: top;
-            transform: translateZ(0);
-
-            &:hover {
-                border-color: $colorPrimary;
-                opacity: .75;
-                transform: translateZ(0) scaleY(1.25);
-            }
         }

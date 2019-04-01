@@ -2,18 +2,19 @@
     padding-top: $lineHeight * 2rem;
 }
 
-    .workshop__aside {
-        float: left;
-        width: $splitLayoutWidthLeft;
-    }
+    .workshop__layout {}
 
-        .workshop__main {
-            margin-left: $splitLayoutWidthLeft + $splitLayoutGutter;
+        .workshop__aside {
+            float: left;
+            width: $splitLayoutWidthLeft - $splitLayoutGutter;
+            margin-left: $splitLayoutGutter;
+            margin-top: .25em;
         }
 
-            .workshop__content {
+        .workshop__content {
+            margin-left: $splitLayoutWidthLeft + $splitLayoutGutter;
 
-                > :first-child {
-                    display: none;
-                }
+            > :first-child {
+                display: none;
             }
+        }

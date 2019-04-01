@@ -10,11 +10,12 @@
         align-items: center;
         font-size: .675rem;
         opacity: .75;
-        padding-right: .25em;
+        letter-spacing: .125em;
 
         > *:not(:first-child):before {
-            content: ' — ';
-            margin: 0 .4em;
+            content: '•';
+            margin: 0 .6em;
+            opacity: .75;
         }
     }
 
@@ -23,17 +24,14 @@
             text-transform: uppercase;
             font-weight: 400;
             font-family: $fontBody;
-            letter-spacing: .2em;
             font-size: 1em;
         }
 
-        .card__date {
-            letter-spacing: .1em;
-        }
+        .card__date {}
 
     .card__heading {
         font-size: 1.125em;
-        font-weight: 800;
+        font-weight: 600;
         letter-spacing: .0125em;
         margin-top: $lineHeight * .5rem;
         font-family: $fontBody;

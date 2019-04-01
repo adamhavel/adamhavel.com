@@ -1,48 +1,56 @@
 {{ define "main" }}
 <article class="workshop">
 
-    <aside class="workshop__aside">
-        {{ $now := now.Format "2006-01-02" }}
-        {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
-        {{ $relevant_workshops := where ($workshops_in_language) "id" .Dir }}
-        {{ $upcoming_workshops := where ($relevant_workshops) "date" "ge" $now }}
-        {{ $past_workshops := where ($relevant_workshops) "date" "lt" $now }}
+    <div class="lede">
 
-        <section class="workshop-info">
-            {{ with index $upcoming_workshops 0 }}
-                <ul class="workshop-info__list">
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
-                </ul>
-                <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
-                <p class="workshop-info__desc">Registraci a organizaci školení zajišťuje Root.cz.</p>
-            {{ end }}
-        </section>
+        {{ with .Resources.GetMatch "thumb.png" }}
+            {{ $image := .Fill "800x600 q75" }}
+            <figure class="lede__image-container">
+                <img class="lede__image" src="{{ .Permalink }}" role="presentation">
+            </figure>
+        {{ end }}
 
-        <section class="past-workshops">
-            <h2 class="past-workshops__heading">Proběhlá školení</h2>
-            <ul class="past-workshops__list">
-                {{ range $past_workshops }}
-                    <li class="past-workshops__item">{{ (time .date).Format (i18n "dateFormat") }}</li>
+        <header class="lede__header">
+            <h1 class="lede__heading">{{ .Title }}</h1>
+            <div class="lede__summary">
+                {{ .Summary }}
+            </div>
+        </header>
+
+    </div>
+
+    <div class="workshop__layout">
+
+        <aside class="workshop__aside">
+            {{ $id := path.Dir .RelPermalink }}
+            {{ $now := now.Format "2006-01-02" }}
+            {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
+            {{ $relevant_workshops := where ($workshops_in_language) "id" $id }}
+            {{ $upcoming_workshops := where ($relevant_workshops) "date" "ge" $now }}
+            {{ $past_workshops := where ($relevant_workshops) "date" "lt" $now }}
+
+            <section class="workshop-info">
+                {{ with index $upcoming_workshops 0 }}
+                    <ul class="workshop-info__list">
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
+                    </ul>
+                    <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
+                    <p class="workshop-info__desc">Registraci a organizaci školení zajišťuje Root.cz.</p>
                 {{ end }}
-            </ul>
-        </section>
+            </section>
 
-    </aside>
+            <section class="past-workshops">
+                <h2 class="past-workshops__heading">Proběhlá školení</h2>
+                <ul class="past-workshops__list">
+                    {{ range $past_workshops }}
+                        <li class="past-workshops__item">{{ (time .date).Format (i18n "dateFormat") }}</li>
+                    {{ end }}
+                </ul>
+            </section>
 
-    <div class="workshop__main">
-
-        <div class="workshop__lede lede">
-
-            <header class="lede__header">
-                <h1 class="lede__heading">{{ .Title }}</h1>
-                <div class="lede__summary">
-                    {{ .Summary }}
-                </div>
-            </header>
-
-        </div>
+        </aside>
 
         <div class="content workshop__content">
             {{ .Content }}

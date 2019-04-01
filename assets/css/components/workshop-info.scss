@@ -1,10 +1,13 @@
 .workshop-info {
     display: flex;
     flex-direction: column;
-    background: fade_out($colorSecondary, .4);
-    padding: 2em;
-    padding-bottom: 1.75em;
-    border: .1rem solid rgba(black, .075);
+    background: rgba(black, .025);
+    xbackground: fade_out($colorPrimary, .9);
+    padding: 3em;
+    padding-bottom: 2.75em;
+    border: 1px solid rgba(black, .1);
+    border-bottom-color: rgba(black, .15);
+    position: relative;
 
     &:not(:last-child) {
         margin-bottom: $lineHeight * 3rem;

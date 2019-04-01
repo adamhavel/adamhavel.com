@@ -3,17 +3,70 @@
 }
 
     .section__content {
-        width: $splitLayoutWidthRight;
-        margin-right: $splitLayoutWidthLeft + $splitLayoutGutter;
+        width: $sectionLayoutWidthMain;
+        margin-right: $sectionLayoutWidthAside + $sectionLayoutGutter;
     }
 
         .section__heading {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 600;
-            line-height: 1;
-            margin-bottom: ($lineHeight * 1.5rem);
+            line-height: 1.5;
+            margin-bottom: ($lineHeight * 4rem);
+            padding-bottom: 1.5em;
             font-family: $fontDisplay;
             text-align: center;
+            position: relative;
+
+            &:after {
+                content: '';
+                position: absolute;
+                width: .175em;
+                height: .175em;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -5%);
+                border-radius: 50%;
+                background: $colorSecondary;
+                opacity: .675;
+                z-index: 3;
+                border: 1px solid rgba(black, .05);
+            }
+
+            span {
+                display: block;
+                position: relative;
+
+                &:after {
+                    content: attr(data-content);
+                    position: absolute;
+                    top: 110%;
+                    left: -0.8%;
+                    right: 0;
+                    color: rgba(black, .125);
+                    transform: scaleY(-1);
+                    filter: url(#roughpaper) url(#noise);
+                    pointer-events: none;
+                    z-index: 2;
+                }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 100%;
+                    width: 80%;
+                    left: 10%;
+                    height: 1.5em;
+                    border-top: 1px solid rgba(black, .0375);
+                    background: radial-gradient(ellipse at top, white, transparent 65%);
+                    background-size: 100% 100%;
+                    filter: url(#waves);
+                    z-index: 1;
+                }
+            }
         }
 
-    .section__aside {}
+    .section__aside {
+        float: right;
+        width: $sectionLayoutWidthAside;
+        margin-top: $lineHeight * 4rem;
+    }
