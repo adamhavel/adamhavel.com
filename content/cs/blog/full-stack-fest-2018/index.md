@@ -15,9 +15,7 @@ Měli jste někdy chuť na pódium hodit tu tašku plnou zbytečností, co navzd
 
 <!--more-->
 
-Taková zhůvěřilost se na Full Stack Fest naštěstí děje jen výjimečně — jde o pětidenní konferenci, rozdělenou vpůli na dva bloky, zhruba označené jako back-end a front-end. A přestože mám blíž k tomu druhému, s radostí si rozšířím obzory i u prvního. Že se to celé koná v Barceloně, rozhodně neuškodí.
-
-Na letošním ročníku dominovaly dvě témata: na straně back-endu to byly peer-to-peer technologie a decentralizace obecně, zatímco ve světě front-endu stále vítězí výkon a jeho optimalizace.
+Taková zhůvěřilost se na Full Stack Fest naštěstí děje jen výjimečně. Jde o pětidenní konferenci, rozdělenou vpůli na dva bloky, zhruba označené jako back-end a front-end, a přestože mám blíž k tomu druhému, s radostí si rozšířím obzory i u prvního. Že se to celé koná v Barceloně, rozhodně neuškodí. Na letošním ročníku dominovaly dvě témata: na straně back-endu to byly peer-to-peer technologie a decentralizace obecně, zatímco ve světě front-endu stále vítězí výkon a jeho optimalizace.
 
 ## Decentralizace internetu
 

@@ -32,7 +32,7 @@
         &:before {
             content: '';
             position: absolute;
-            top: calc(100% + #{$lineHeight * .375rem});
+            bottom: $lineHeight * -.5rem;
             left: 0;
             right: 0;
             height: $lineHeight * .125rem;

@@ -9,7 +9,7 @@
 
         .section__heading {
             font-size: 4rem;
-            font-weight: 600;
+            font-weight: 400;
             line-height: 1.5;
             margin-bottom: ($lineHeight * 4rem);
             padding-bottom: 1.5em;
@@ -42,6 +42,7 @@
                     top: 110%;
                     left: -0.8%;
                     right: 0;
+                    xfont-weight: 600;
                     color: rgba(black, .125);
                     transform: scaleY(-1);
                     filter: url(#roughpaper) url(#noise);
@@ -68,5 +69,5 @@
     .section__aside {
         float: right;
         width: $sectionLayoutWidthAside;
-        margin-top: $lineHeight * 4rem;
+        margin-top: $lineHeight * 1rem;
     }
