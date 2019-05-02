@@ -3,6 +3,32 @@
     position: relative;
     z-index: 1;
 
+    &:before {
+        content: attr(data-drop-cap);
+        font-size: 7em;
+        float: left;
+        line-height: 0.5;
+        margin-right: .125em;
+        margin-left: -.125em;
+        margin-top: -.275em;
+        font-weight: 400;
+        color: rgba(black, .675);
+        text-shadow: 3px 3px 0 rgba(black, .075),
+                     -3px -3px 0 rgba(black, .075);
+        font-family: $fontDisplay;
+        padding: .375em .175em .2em .1em;
+        background: radial-gradient(farthest-side at bottom right, white, transparent);
+        border: solid rgba(black, .02);
+        border-width: 0 1px 1px 0;
+    }
+
+    > :nth-child(2) {
+
+        &:first-letter {
+            font-size: 0;
+        }
+    }
+
     > p {
         font-weight: 300;
         margin-bottom: $lineHeight * 1rem;

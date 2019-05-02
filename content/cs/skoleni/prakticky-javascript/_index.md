@@ -12,8 +12,6 @@ JavaScript je pověstný rozmanitostí možných řešení i rychlostí, jakou v
 
 <!--more-->
 
-## Co se na školení naučíte
-
 Hlavní náplní školení je předvést, jakým způsobem lze přistoupit k návrhu moderní aplikace a jaká rozhodnutí musíme před samotným začátkem vývoje učinit. Jde o základní otázky typu organizace kódu, rozdělení rolí mezi klientem a serverem, volby frameworku, ale i řešení kompatibility se staršími prohlížeči.
 
 Další oblastí je optimalizace aplikace. To v prvé řadě vyžaduje znát specifika prostředí, ve kterém aplikace běží — například mobilní webový prohlížeč — a mít v zásobě řešení pro dané problémy. Zadruhé je třeba vědět, jak aplikaci měřit a testovat a jak s výsledky takového měření naložit. Optimalizovat ovšem můžeme i samotný vývoj aplikace. Proto se podíváme na automatizaci úkonů jako je třeba transpilace nebo minifikace kódu pomocí task runnerů typu *Grunt* a podobných.

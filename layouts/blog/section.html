@@ -31,7 +31,7 @@
 
         {{ range .Pages }}
             <section class="spot">
-                {{ with .Resources.GetMatch "thumb.png" }}
+                {{ with .Resources.GetMatch "thumb.*" }}
                     {{ $image := .Fill "600x450 q75" }}
                     <div class="spot__image-container">
                         <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">

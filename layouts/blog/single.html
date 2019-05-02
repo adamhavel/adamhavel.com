@@ -4,14 +4,14 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
         <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
             <feTurbulence baseFrequency="0.1 0.2" result="f1" numOctaves="3" />
-            <feDisplacementMap in="SourceGraphic" in2="f1" scale="10"></feDisplacementMap>
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="5"></feDisplacementMap>
         </filter>
         <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
 
-            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" result="f1" numOctaves="5" />
 
-            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
-                <feDistantLight azimuth="45" elevation="80" />
+            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="20">
+                <feDistantLight azimuth="45" elevation="60" />
             </feDiffuseLighting>
 
             <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
@@ -23,7 +23,7 @@
 
     <div class="lede">
 
-        {{ with .Resources.GetMatch "thumb.png" }}
+        {{ with .Resources.GetMatch "thumb.*" }}
             {{ $image := .Fill "800x600 q75" }}
             <figure class="lede__image-container">
                 <a href="{{ $.Page.Params.photoUrl }}" target="_blank">
@@ -54,7 +54,8 @@
 
     </div>
 
-    <div class="article__content content">
+    {{ $dropcap := substr (index (split .Content "<p>") 2) 0 1 }}
+    <div class="article__content content" data-drop-cap="{{ $dropcap }}">
         {{ .Content }}
     </div>
 

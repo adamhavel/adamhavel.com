@@ -1,4 +1,7 @@
 .site-content {
-    background: $colorBackground;
-    padding: ($lineHeight * 2rem) 0 ($lineHeight * 4rem);
+    background: radial-gradient(farthest-side ellipse at bottom, white, transparent), $colorBackground;
+    background-size: 100% ($lineHeight * 5rem);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding: ($lineHeight * 2rem) 0 ($lineHeight * 5rem);
 }
