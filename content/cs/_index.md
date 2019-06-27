@@ -1,1 +1,1 @@
-I [design and build](/projekty/) things for&nbsp;the&nbsp;web, [write](/blog/) about&nbsp; technology and other topics, and&nbsp;[teach](/skoleni/) courses on&nbsp;programming in&nbsp;JavaScript.
+Tvořím [projekty](/projekty/) pro&nbsp;web, píšu [články](/blog/) o&nbsp;technologiích, pořádám [školení](/skoleni/) o&nbsp;JavaScriptu, a nabízím [konzultace](/info/) na&nbsp;téma front-end systémů.

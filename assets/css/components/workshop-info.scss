@@ -47,16 +47,13 @@
             }
 
     .workshop-info__register {
-        margin-left: auto;
-
-        &:not(:last-child) {
-            margin-bottom: $lineHeight * 1rem;
-        }
+        margin-right: auto;
+        margin-bottom: $lineHeight * .5rem;
     }
 
     .workshop-info__desc {
-        text-align: right;
         font-style: italic;
         opacity: .75;
         font-size: .875rem;
+        margin-bottom: $lineHeight * 2rem;
     }

@@ -4,10 +4,11 @@ translationKey: the-perils-of-icon-systems
 date: 2018-11-22
 tags:
     - web
+    - optimalizace
 menu:
     main:
         parent: 'blog'
-photoDesc: Starbucks — Khadeeja Yasser
+photoDesc: Khadeeja Yasser
 photoUrl: https://unsplash.com/photos/3U9L9Chc3is
 ---
 

@@ -18,6 +18,15 @@
                 <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
                 <p class="workshop-info__desc">Registraci a organizaci školení zajišťuje Root.cz.</p>
             {{ end }}
+            <section class="workshops-dates">
+                <h2 class="workshops-dates__heading">Termíny</h2>
+                <ul class="workshops-dates__list">
+                    {{ range $upcoming_workshops }}
+                        {{ $is_past := lt .date $now }}
+                        <li class="workshops-dates__item {{ if $is_past }}workshops-dates__item--past{{ end }}">{{ (time .date).Format (i18n "dateFormat") }} – {{ ($.GetPage (print .id)).Title }}</li>
+                    {{ end }}
+                </ul>
+            </section>
         </section>
 
     </aside>

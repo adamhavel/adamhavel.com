@@ -1,0 +1,41 @@
+.workshops-dates {
+    // position: relative;
+    // padding-left: 1.5em;
+
+    // &:after {
+    //     content: '';
+    //     position: absolute;
+    //     top: $lineHeight * .125rem;
+    //     bottom: $lineHeight * .125rem;
+    //     left: 0;
+    //     width: .3rem;
+    //     background: $colorText;
+    //     opacity: .125;
+    // }
+}
+
+    .workshops-dates__heading {
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        font-size: .75rem;
+        margin-bottom: $lineHeight * .25rem;
+        font-weight: 800;
+    }
+
+    .workshops-dates__list {
+
+    }
+
+        .workshops-dates__item {
+            font-size: .875rem;
+            letter-spacing: .025em;
+            font-weight: 300;
+
+            &:not(:last-child) {
+                margin-bottom: $lineHeight * .125rem;
+            }
+
+            &--past {
+                opacity: .375;
+            }
+        }

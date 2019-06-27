@@ -12,17 +12,28 @@
     <div class="index__cards">
 
         <section class="card">
-            <header class="card__header">
-                <h2 class="card__title">Latest project</h2>
-            </header>
-            <h3 class="card__heading">Kaiser Franz</h3>
-            <p class="card__desc">Quas amet porro beatae aut reprehenderit eum ratione sint aspernatur dignissimos non optio accusamus iste harum error odit aliquam modi, eaque, iusto enim a deserunt soluta saepe ad illum. Aspernatur explicabo placeat neque voluptate minus earum velit, consequuntur repellat aut.</p>
-            <a href="" class="card__link"></a>
+            {{ with .GetPage "projekty" }}
+                {{ with (index .Pages 0) }}
+                    <header class="card__header">
+                        <h2 class="card__title">{{ i18n "latestProject" }}</h2>
+                        {{ with .Params.tags }}
+                            <ul class="lede__tags">
+                                {{ range . }}
+                                    <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        {{ end }}
+                    </header>
+                    <h3 class="card__heading">{{ .Title }}</h3>
+                    <p class="card__desc">{{ .Summary | plainify }}</p>
+                    <a href="{{ .Permalink }}" class="card__link"></a>
+                {{ end }}
+            {{ end }}
         </section>
 
         <section class="card">
             {{ with .GetPage "blog" }}
-                {{ with (index .Pages.ByDate 1) }}
+                {{ with (index .Pages.ByDate.Reverse 0) }}
                     <header class="card__header">
                         <h2 class="card__title">{{ i18n "latestArticle" }}</h2>
                         <time class="card__date">{{ .Date.Format (i18n "dateFormat") }}</time>

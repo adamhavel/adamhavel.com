@@ -63,3 +63,69 @@
   price: 5 100 Kč <em>bez DPH</em>
   tags:
     - JavaScript
+
+- date: 2019-08-19
+  id: /skoleni/moderni-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  url: https://www.root.cz/skoleni/termin/moderni-javasc-1/registrace/
+  soldout: false
+  lang: cs
+  price: 5 700 Kč <em>bez DPH</em>
+  tags:
+    - JavaScript
+
+- date: 2019-08-20
+  id: /skoleni/prakticky-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  url: https://www.root.cz/skoleni/termin/prakticky-javascript-2/registrace/
+  soldout: false
+  lang: cs
+  price: 5 700 Kč <em>bez DPH</em>
+  tags:
+    - JavaScript
+
+- date: 2019-10-21
+  id: /skoleni/moderni-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  url: https://www.root.cz/skoleni/termin/moderni-javascript-2/registrace/
+  soldout: false
+  lang: cs
+  price: 5 700 Kč <em>bez DPH</em>
+  tags:
+    - JavaScript
+
+- date: 2019-10-22
+  id: /skoleni/prakticky-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  url: https://www.root.cz/skoleni/termin/prakticky-javascript-3/registrace/
+  soldout: false
+  lang: cs
+  price: 5 700 Kč <em>bez DPH</em>
+  tags:
+    - JavaScript
+
+- date: 2019-12-09
+  id: /skoleni/moderni-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  url: https://www.root.cz/skoleni/termin/moderni-javascript-3/registrace/
+  soldout: false
+  lang: cs
+  price: 5 700 Kč <em>bez DPH</em>
+  tags:
+    - JavaScript
+
+- date: 2019-12-10
+  id: /skoleni/prakticky-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  url: https://www.root.cz/skoleni/termin/prakticky-javascript-4/registrace/
+  soldout: false
+  lang: cs
+  price: 5 700 Kč <em>bez DPH</em>
+  tags:
+    - JavaScript

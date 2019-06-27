@@ -41,11 +41,12 @@
                 {{ end }}
             </section>
 
-            <section class="past-workshops">
-                <h2 class="past-workshops__heading">Proběhlá školení</h2>
-                <ul class="past-workshops__list">
-                    {{ range $past_workshops }}
-                        <li class="past-workshops__item">{{ (time .date).Format (i18n "dateFormat") }}</li>
+            <section class="workshops-dates">
+                <h2 class="workshops-dates__heading">Termíny</h2>
+                <ul class="workshops-dates__list">
+                    {{ range $relevant_workshops }}
+                        {{ $is_past := lt .date $now }}
+                        <li class="workshops-dates__item {{ if $is_past }}workshops-dates__item--past{{ end }}">{{ (time .date).Format (i18n "dateFormat") }}</li>
                     {{ end }}
                 </ul>
             </section>
@@ -53,7 +54,7 @@
         </aside>
 
         {{ $dropcap := substr (index (split .Content "<p>") 2) 0 1 }}
-        <div class="content workshop__content" data-drop-cap="{{ $dropcap }}">
+        <div class="content content--longform workshop__content" data-drop-cap="{{ $dropcap }}">
             {{ .Content }}
         </div>
 
