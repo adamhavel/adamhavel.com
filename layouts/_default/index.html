@@ -25,7 +25,7 @@
                         {{ end }}
                     </header>
                     <h3 class="card__heading">{{ .Title }}</h3>
-                    <p class="card__desc">{{ .Summary | plainify }}</p>
+                    <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
                     <a href="{{ .Permalink }}" class="card__link"></a>
                 {{ end }}
             {{ end }}
@@ -39,7 +39,7 @@
                         <time class="card__date">{{ .Date.Format (i18n "dateFormat") }}</time>
                     </header>
                     <h3 class="card__heading">{{ .Title }}</h3>
-                    <p class="card__desc">{{ .Summary | plainify }}</p>
+                    <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
                     <a href="{{ .Permalink }}" class="card__link"></a>
                 {{ end }}
             {{ end }}
@@ -54,7 +54,7 @@
                     <time class="card__date">{{ (time $upcoming_workshop.date).Format (i18n "dateFormat") }}</time>
                 </header>
                 <h3 class="card__heading">{{ .Title }}</h3>
-                <p class="card__desc">{{ .Summary | plainify }}</p>
+                <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
                 <a href="{{ .Permalink }}" class="card__link"></a>
             {{ end }}
         </section>

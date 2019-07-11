@@ -77,7 +77,7 @@
                         {{ end }}
                     </header>
                     <h2 class="spot__heading">{{ .Title }}</h2>
-                    <p class="spot__desc">{{ .Summary | plainify }}</p>
+                    <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
                     <a href="{{ .Permalink }}" class="spot__link"></a>
                 </div>
             </section>

@@ -12,11 +12,13 @@ photoDesc: Glenn Carstens-Peters
 photoUrl: https://unsplash.com/photos/6rkJD0Uxois
 ---
 
-[Princip postupného vylepšení](/princip-postupneho-vylepseni/) stojí na tvrzení, že základem webové služby je HTML a JavaScript je jen jedno z možných vylepšení. Jak ovšem zajistit, aby se JavaScript skutečně spustil jen tehdy, kdy máme jistotu, že to hostitelské prostředí — typicky prohlížeč — snese? A jak stanovit hranici, která uživatele jasně rozdělí na dva tábory: s JavaScriptem a bez?
+Princip postupného vylepšení stojí na tvrzení, že základem webové služby je HTML a JavaScript je jen jedno z možných vylepšení. Jak ovšem zajistit, aby se JavaScript skutečně spustil jen tehdy, kdy máme jistotu, že to hostitelské prostředí — typicky prohlížeč — snese? A jak stanovit hranici, která uživatele jasně rozdělí na dva tábory: s JavaScriptem a bez?
 
 <!--more-->
 
-Podstata obou otázek spočívá v problému detekce prostředí. Web není *binární* platforma jako iOS nebo Android, ale obrovská množina konfigurací. Z principu tedy není možné vytvořit jednotný zážitek a aplikace musí být **„responzivní“** i z pohledu *UX*. Jednou cestou, jak s problémem naložit, je tázat se prostředí na jeho **název** a **verzi**, a na základě odpovědi zvolit postup. Typicky se ptáme na HTTP hlavičku `User Agent`[^1]. Ta nám ovšem nedává žádnou záruku o své pravdivosti a snadno se může stát, že narazíme na prostředí, které se tváří býti něčím, čím není. Takový postup tedy stojí na velmi vratkých nohách. Lepší se neptat, s jakým prostředím máme tu čest, ale jaké jsou jeho **vlastnosti**[^2]. Splní-li tázaný naše požadavky, můžeme se na odpověď víceméně spolehnout.
+Podstata obou otázek spočívá v problému detekce prostředí. Web není *binární* platforma jako iOS nebo Android, ale obrovská množina konfigurací. Z principu tedy není možné vytvořit jednotný zážitek a aplikace musí být **„responzivní“** i z pohledu *UX*.
+
+Jednou cestou, jak s problémem naložit, je tázat se prostředí na jeho **název** a **verzi**, a na základě odpovědi zvolit postup. Typicky se ptáme na HTTP hlavičku `User Agent`[^1]. Ta nám ovšem nedává žádnou záruku o své pravdivosti a snadno se může stát, že narazíme na prostředí, které se tváří býti něčím, čím není. Takový postup tedy stojí na velmi vratkých nohách. Lepší se neptat, s jakým prostředím máme tu čest, ale jaké jsou jeho **vlastnosti**[^2]. Splní-li tázaný naše požadavky, můžeme se na odpověď víceméně spolehnout.
 
 ## Skuteční uživatelé
 

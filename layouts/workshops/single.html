@@ -32,7 +32,7 @@
             <section class="workshop-info">
                 {{ with index $upcoming_workshops 0 }}
                     <ul class="workshop-info__list">
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Nejbližší termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
                         <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
                         <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
                     </ul>
