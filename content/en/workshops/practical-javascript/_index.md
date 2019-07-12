@@ -14,7 +14,7 @@ JavaScript is famous for the variety of possibilities it offers and the speed wi
 
 The purpose of the workshop is to present a reasonable approach to application design and to lay out the decisions that have to be made before development even starts. These are questions like how to organize the code, how to split roles between the client and the server, which — if any — framework to chose, or how to handle support for old browsers and devices.
 
-Another area of interest is application *optimalization*. That means being familiar with the specifics of the environment in which the application is running — such as a mobile web browser — and to know which solution to use in each case. The development process itself, however, can be optimized, too. We'll therefore take a look at *automation* of tasks like code *transpilation* and *minification* using *Grunt* and similar *task runners*.
+Another area of interest is application *optimization*. That means being familiar with the specifics of the environment in which the application is running — such as a mobile web browser — and to know which solution to use in each case. The development process itself, however, can be optimized, too. We'll therefore take a look at *automation* of tasks like code *transpilation* and *minification* using *Grunt* and similar *task runners*.
 
 Finally, we will focus on the topic of *progressive web applications*, which is a method of developing mobile web applications that allows them — with little effort — to compete with so-called native applications. This is possible thanks to new technologies such as *Service Worker*, which we will take a look at.
 
@@ -36,7 +36,7 @@ At least basic experience and knowledge of development in JavaScript is required
 - *single-page* and *isomorphic* (universal) applications
 - *server-side rendering*
 
-### Optimalization and automatization
+### Optimization and automatization
 - types of application loading
 - code *transpilation*
 - *polyfilling*

@@ -4,16 +4,17 @@ translationKey: the-perils-of-icon-systems
 date: 2018-11-22
 tags:
     - web
+    - optimizations
 menu:
     main:
         parent: 'blog'
 ---
 
-Even though small in size, icons seem to occupy a lot of space in the collective mind of the web development community. One way of handling icons replaces next -- each method a little better than the previous, each bringing its own set of problems.
+Even though small in size, icons seem to occupy a lot of space in the collective mind of the web development community. One way of handling icons replaces next -- each method a little better than the previous, each bringing its own set of problems. The last one to emerge is the so-called SVG sprite.
 
 <!--more-->
 
-The last one to emerge is the SVG sprite, which is created by putting the icon shapes inside `symbol` elements in a SVG file. Symbols are used because unlike other SVG objects, they aren't rendered until you use them. Unless you want to create the sprite manually, you can use one of the many solutions available to automate the process, such as grunt-svgstore or gulp-svgsprite.
+A sprite is created by putting the icon shapes inside `symbol` elements in a SVG file. Symbols are used because unlike other SVG objects, they aren't rendered until you use them. Unless you want to create the sprite manually, you can use one of the many solutions available to automate the process, such as grunt-svgstore or gulp-svgsprite.
 
 ```xml
 <svg>

@@ -1,6 +1,6 @@
 ---
-title: JavaScript zodpovědně!
-translationKey: responsible-javascript
+title: How to handle browser support and stay sane
+translationKey: how-to-handle-browser-support
 date: 2019-06-26
 tags:
     - web
@@ -12,19 +12,17 @@ photoDesc: Glenn Carstens-Peters
 photoUrl: https://unsplash.com/photos/6rkJD0Uxois
 ---
 
-Princip postupného vylepšení stojí na tvrzení, že základem webové služby je HTML a JavaScript je jen jedno z možných vylepšení. Jak ovšem zajistit, aby se JavaScript skutečně spustil jen tehdy, kdy máme jistotu, že to hostitelské prostředí — typicky prohlížeč — snese? A jak stanovit hranici, která uživatele jasně rozdělí na dva tábory: s JavaScriptem a bez?
+Základem webové služby je HTML. To je závěr předchozího článku a předpoklad, na kterém stavíme, když službu s pomocí JavaScriptu zlepšujeme. Jak ovšem zajistit, aby se JavaScript spustil jen tehdy, kdy máme jistotu, že to hostitelské prostředí — typicky prohlížeč — snese? A jak stanovit hranici, která uživatele jasně rozdělí na dva tábory: s JavaScriptem a bez?
 
 <!--more-->
 
-Podstata obou otázek spočívá v problému detekce prostředí. Web není *binární* platforma jako iOS nebo Android, ale obrovská množina konfigurací. Z principu tedy není možné vytvořit jednotný zážitek a aplikace musí být **„responzivní“** i z pohledu *UX*.
-
-Jednou cestou, jak s problémem naložit, je tázat se prostředí na jeho **název** a **verzi**, a na základě odpovědi zvolit postup. Typicky se ptáme na HTTP hlavičku `User Agent`[^1]. Ta nám ovšem nedává žádnou záruku o své pravdivosti a snadno se může stát, že narazíme na prostředí, které se tváří býti něčím, čím není. Takový postup tedy stojí na velmi vratkých nohách. Lepší se neptat, s jakým prostředím máme tu čest, ale jaké jsou jeho **vlastnosti**[^2]. Splní-li tázaný naše požadavky, můžeme se na odpověď víceméně spolehnout.
+Podstata obou otázek spočívá v problému detekce prostředí. Web není *binární* platforma jako iOS nebo Android, ale obrovská množina konfigurací. Z principu tedy není možné vytvořit jednotný zážitek a aplikace musí být **„responzivní“** i z pohledu *UX*. Jednou cestou, jak s problémem naložit, je tázat se prostředí na jeho **název** a **verzi**, a na základě odpovědi zvolit postup. Typicky se ptáme na HTTP hlavičku `User Agent`[^1]. Ta nám ovšem nedává žádnou záruku o své pravdivosti a snadno se může stát, že narazíme na prostředí, které se tváří býti něčím, čím není. Takový postup tedy stojí na velmi vratkých nohách. Lepší se neptat, s jakým prostředím máme tu čest, ale jaké jsou jeho **vlastnosti**[^2]. Splní-li tázaný naše požadavky, můžeme se na odpověď víceméně spolehnout.
 
 ## Skuteční uživatelé
 
 Když už víme, jak správně ověřit prostředí, je třeba rozhodnout, kde udělat onu dělící čáru. Zvolíme sadu **vlastností**, přes které „nejede vlak“ — prohlížeče, které testem neprojdou, obdrží sice základní, ale stále užitečnou verzi bez JavaScriptu. V tuto chvíli je nutné použít nějakou formu **webové analytiky**, zhodnotit naše skutečné uživatele z pohledu prostředí (tedy prohlížeče, zařízení a operačního systému) a rozhodnout se na základě měřitelných dat. Pokud půlka našich uživatelů používá Internet Explorer 8, volíme přirozeně jiný postup, než pokud je takových uživatelů pár promile.
 
-Jaké vlastnosti zvolit? Nejlepší je vybrat ty, bez kterých se neobejdeme a jejichž absenci nechceme řešit pomocí jiných metod jako jsou *polyfilly* (k těm později).
+Jaké vlastnosti zvolit? Nejlepší je vybrat ty, bez kterých se neobejdeme a jejichž absenci nechceme řešit pomocí jiných metod, jako jsou *polyfilly* (k těm později).
 
 - `querySelector` (✝ *Internet Explorer 7*)
 - `addEventListener` (✝ *Internet Explorer 8*)
@@ -32,7 +30,7 @@ Jaké vlastnosti zvolit? Nejlepší je vybrat ty, bez kterých se neobejdeme a j
 - `Object.assign` (✝ *Internet Explorer 11*)
 - `localStorage` (✝ *Opera Mini*)
 
-Máme-li jasno v cílové skupině, v naší aplikaci (nazvěme ji `app.js`) navrch přidáme jednoduchou podmínku, která ověří potřebné vlasnosti. V případě selhání bez otálení ukončíme vykonávání skriptu[^3]. Pokud ovšem prohlížeč testem projde, aplikaci necháme dělat svou práci. Samotnému HTML dokumentu navíc přidáme třídu `.js`. Díky ní pak i mimo skript víme, že aplikace běží, a tuto informaci hned využijeme při návrhu komponent z pohledu stylů.
+Máme-li jasno v cílové skupině, v naší aplikaci (nazvěme ji `app.js`) navrch přidáme jednoduchou podmínku, která ověří potřebné vlastnosti. V případě selhání bez otálení ukončíme vykonávání skriptu[^3]. Pokud ovšem prohlížeč testem projde, aplikaci necháme dělat svou práci. Samotnému HTML dokumentu navíc přidáme třídu `.js`. Díky ní pak i mimo skript víme, že aplikace běží, a tuto informaci hned využijeme při návrhu komponent z pohledu stylů.
 
 Navrhneme komponentu s třídou `.accordion` a následující strukturou: nadpis, který je zároveň `button`, a pod ním obsah, jež je z počátku schován a který se zobrazí až po kliknutí na tlačítko[^4]. Běžný postup velí obsah skrýt, třeba pomocí `display: none`, a rozbalit jej až tehdy, kdy pomocí JavaScriptu přidáme komponentě třídu `.is-active`[^5]. Ovšem v případě, že se potřebný skript z jakéhokoliv důvodu nenačte, je obsah najednou zcela nedostupný. Proto využijeme zmíněnou třídu `.js` a styly přepíšeme tak, že se logika obrátí: obsah je v základu rozbalený a skryje se pouze tehdy, kdy víme, že ovládací skript běží[^6]. Jde o triviální změnu, ale se zásadním dopadem — tedy zcela v duchu [principu postupného vylepšení](/princip-postupneho-vylepseni/).
 

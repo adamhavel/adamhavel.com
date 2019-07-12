@@ -12,11 +12,11 @@ photoDesc: Khadeeja Yasser
 photoUrl: https://unsplash.com/photos/3U9L9Chc3is
 ---
 
-Ikony nepatří mezi nejpalčivější problémy, se kterými se při vývoji na webu musíme potýkat, ale přesto lze najít pár zajímavých problémů. Jak ikony spravovat a jakým způsobem je zobrazit uživateli? Jeden přístup střídá další — každý o trochu lepší než ten předchozí, každý svým způsobem nedokonalý.
+Ikony nepatří mezi nejpalčivější problémy, se kterými se při vývoji na webu musíme potýkat, ale přesto lze najít pár zajímavých problémů. Jak ikony spravovat a jakým způsobem je zobrazit uživateli? Jeden přístup střídá další — každý o trochu lepší než ten předchozí, každý svým způsobem nedokonalý. Vrcholem této snahy je takzvaný SVG *sprite*.
 
 <!--more-->
 
-Vrcholem této snahy je takzvaný SVG *sprite*. Ten vznikne tak, že jednotlivé ikony, respektive jejich SVG, vložíme do elementů typu `symbol` v rámci jednoho souboru[^1]. Důvodem pro použití symbolů je fakt, že se nevykreslí v místě definice, ale až tam, kde je skutečně použijeme. Pokud *sprite* nechceme vytvářet ručně, lze si pomoct nástrojem typu [*grunt-svgstore*](https://github.com/FWeinb/grunt-svgstore) nebo [*gulp-svgsprite*](https://github.com/jkphl/gulp-svg-sprite).
+*Sprite* vznikne tak, že jednotlivé ikony, respektive jejich SVG, vložíme do elementů typu `symbol` v rámci jednoho souboru[^1]. Důvodem pro použití symbolů je fakt, že se nevykreslí v místě definice, ale až tam, kde je skutečně použijeme. Pokud *sprite* nechceme vytvářet ručně, lze si pomoct nástrojem typu [*grunt-svgstore*](https://github.com/FWeinb/grunt-svgstore) nebo [*gulp-svgsprite*](https://github.com/jkphl/gulp-svg-sprite).
 
 Pro vykreslení konkrétní ikonky stačí přímo do HTML šablony napsat jeden řádek SVG kódu obsahující element `use`, jehož atributem `xlink:href` odkážeme na `id` dané ikony[^2]. Všimněte si, že narozdíl od předchozího příkladu, kdy šlo o samostatný SVG soubor, nemusíme v případě SVG uvnitř HTML nastavit atribut `xmlns`.
 
