@@ -52,7 +52,7 @@ In fact, competition is a good incentive for embracing the principle of progress
 
 The principle of progressive enhancement is a simple method that relies on changing the way we design applications, rather than on specific technological solutions. And even though it looks like more work, the opposite is true. It gives us almost universal support in browsers and the certainty that the service won’t fall apart under the smallest pressure. The principle can be summarised in one sentence: use JavaScript, but don’t **rely** on it, and take advantage of the declarative methods offered by HTML. In practice, this means writing a **structured** and **semantically correct** document, not a “soup” of `div` elements that are by design without meaning and function.
 
-In following articles, we will focus on how to handle JavaScript support in browsers, and how to maintain the principle of progressive enhancement when using tools like React.
+In following articles, we will focus on [how to handle JavaScript support in browsers](/blog/how-to-wrestle-with-browser-support/), and how to maintain the principle of progressive enhancement when using tools like React.
 
 
 [^1]:

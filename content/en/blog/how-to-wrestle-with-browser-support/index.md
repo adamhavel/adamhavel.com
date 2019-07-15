@@ -1,6 +1,6 @@
 ---
-title: How to handle browser support and stay sane
-translationKey: how-to-handle-browser-support
+title: How to wrestle with browser support
+translationKey: how-to-wrestle-with-browser-support
 date: 2019-06-26
 tags:
     - web
@@ -12,17 +12,17 @@ photoDesc: Glenn Carstens-Peters
 photoUrl: https://unsplash.com/photos/6rkJD0Uxois
 ---
 
-Základem webové služby je HTML. To je závěr předchozího článku a předpoklad, na kterém stavíme, když službu s pomocí JavaScriptu zlepšujeme. Jak ovšem zajistit, aby se JavaScript spustil jen tehdy, kdy máme jistotu, že to hostitelské prostředí — typicky prohlížeč — snese? A jak stanovit hranici, která uživatele jasně rozdělí na dva tábory: s JavaScriptem a bez?
+HTML is the foundation of web services. That is the conclusion of the previous article and the prerequisite that we build on when we enhance a service with JavaScript. But how to make JavaScript run only when we know the host environment — typically a browser — will handle it? And where to set the boundary that clearly divides users into two camps: with and without JavaScript?
 
 <!--more-->
 
-Podstata obou otázek spočívá v problému detekce prostředí. Web není *binární* platforma jako iOS nebo Android, ale obrovská množina konfigurací. Z principu tedy není možné vytvořit jednotný zážitek a aplikace musí být **„responzivní“** i z pohledu *UX*. Jednou cestou, jak s problémem naložit, je tázat se prostředí na jeho **název** a **verzi**, a na základě odpovědi zvolit postup. Typicky se ptáme na HTTP hlavičku `User Agent`[^1]. Ta nám ovšem nedává žádnou záruku o své pravdivosti a snadno se může stát, že narazíme na prostředí, které se tváří býti něčím, čím není. Takový postup tedy stojí na velmi vratkých nohách. Lepší se neptat, s jakým prostředím máme tu čest, ale jaké jsou jeho **vlastnosti**[^2]. Splní-li tázaný naše požadavky, můžeme se na odpověď víceméně spolehnout.
+The essence of both questions lies in environment detection. Web is not a *binary* platform like iOS or Android, but a huge set of configurations. In principle, it is not possible to create a unified experience — the application must be **"responsive"** even from the perspective of *UX*. One way to detect an environment is to ask for its **name** and **version**, and make a decision based on the answer. Typically, we would look at the HTTP header `User Agent`[^1]. The header, though, gives us no guarantees and is often false, which makes this method useless. So, rather than ask for an environment's name, it's better to query about its **properties**[^2]. If the response meets our requirements, we can a make a confident and informed decision.
 
-## Skuteční uživatelé
+## Real users
 
-Když už víme, jak správně ověřit prostředí, je třeba rozhodnout, kde udělat onu dělící čáru. Zvolíme sadu **vlastností**, přes které „nejede vlak“ — prohlížeče, které testem neprojdou, obdrží sice základní, ale stále užitečnou verzi bez JavaScriptu. V tuto chvíli je nutné použít nějakou formu **webové analytiky**, zhodnotit naše skutečné uživatele z pohledu prostředí (tedy prohlížeče, zařízení a operačního systému) a rozhodnout se na základě měřitelných dat. Pokud půlka našich uživatelů používá Internet Explorer 8, volíme přirozeně jiný postup, než pokud je takových uživatelů pár promile.
+Now it's time to set the boundary, which is a small set of **properties** we deem neccessary. If a browser can't "cut the mustard", it will receive a basic — but still useful — version without JavaScript. It's a good idea to use some form of **web analytics** at this point. It allows you to evaluate real users' environment (their browser, device and operating system) and decide not on intuition but hard data. If half of the users use Internet Explorer 8, it makes sense to choose a different approach than if there is just a handful of those poor souls.
 
-Jaké vlastnosti zvolit? Nejlepší je vybrat ty, bez kterých se neobejdeme a jejichž absenci nechceme řešit pomocí jiných metod, jako jsou *polyfilly* (k těm později).
+What properties to choose? It's best to pick those we can't live without and which, if missing, we don't to want handle by *polyfilling* (we'll cover that later).
 
 - `querySelector` (✝ *Internet Explorer 7*)
 - `addEventListener` (✝ *Internet Explorer 8*)
@@ -30,9 +30,9 @@ Jaké vlastnosti zvolit? Nejlepší je vybrat ty, bez kterých se neobejdeme a j
 - `Object.assign` (✝ *Internet Explorer 11*)
 - `localStorage` (✝ *Opera Mini*)
 
-Máme-li jasno v cílové skupině, v naší aplikaci (nazvěme ji `app.js`) navrch přidáme jednoduchou podmínku, která ověří potřebné vlastnosti. V případě selhání bez otálení ukončíme vykonávání skriptu[^3]. Pokud ovšem prohlížeč testem projde, aplikaci necháme dělat svou práci. Samotnému HTML dokumentu navíc přidáme třídu `.js`. Díky ní pak i mimo skript víme, že aplikace běží, a tuto informaci hned využijeme při návrhu komponent z pohledu stylů.
+If we are clear about the target group, we'll add a simple condition in our application (let's call it `app.js`) to verify the chosen properties. In case of failure, we will immediately stop execution of the script[^3]. If, however, the browser passes the test, we let the application do its job, and also add a `.js` class to the HTML document. Thanks to this last detail, we can deduce whether the application is running, even outside the context of the script (line in stylesheets). That will be helpful when designing components.
 
-Navrhneme komponentu s třídou `.accordion` a následující strukturou: nadpis, který je zároveň `button`, a pod ním obsah, jež je z počátku schován a který se zobrazí až po kliknutí na tlačítko[^4]. Běžný postup velí obsah skrýt, třeba pomocí `display: none`, a rozbalit jej až tehdy, kdy pomocí JavaScriptu přidáme komponentě třídu `.is-active`[^5]. Ovšem v případě, že se potřebný skript z jakéhokoliv důvodu nenačte, je obsah najednou zcela nedostupný. Proto využijeme zmíněnou třídu `.js` a styly přepíšeme tak, že se logika obrátí: obsah je v základu rozbalený a skryje se pouze tehdy, kdy víme, že ovládací skript běží[^6]. Jde o triviální změnu, ale se zásadním dopadem — tedy zcela v duchu [principu postupného vylepšení](/princip-postupneho-vylepseni/).
+For example, let's make a component with the class `.accordion` and the following structure: a heading, which is also a `button`, and under it, a content, which is hidden by default and shows only after clicking the button[^4]. A common method is to hide the content, perhaps with `display: none`, and reveal it when, using JavaScript, we add the class `.is-active` on the component[^5]. However, if the script fails to load for any reason, the content is lost forever (or until we fix the problem). That's why we use the `.js` class and rewrite the component's styles so that the logic is reversed: the content is visible and hides only if we are certain the script is running[^6]. It's a trivial change with a major impact, truly in the spirit of the [progressive enhancement](/blog/progressive-enhancement/).
 
 ## *Polyfilling*
 
@@ -46,7 +46,7 @@ Jedno z možných spočívá v rozšíření `scout.js` o logiku nahrávání *p
 
 Stále však není dobojováno. Pozorní najdou v předchozím příkladu další problémy: Internet Explorer ve verzi 10 nerozumí klíčovému slovu `let`, verze 11 zase nechápe *arrow* funkce (`(...) => { ... }`), natož *destructuring* (`({ test })`). S potížemi tohoto typu nám *polyfilly* nepomohou, neboť se nejedná o chybějící API, ale o konflikt na úrovni samotné syntaxe jazyka. Ten lze řešit dvěma způsoby. První je zřejmý: použít pouze syntax, jejímž sítem projdou všechny vybrané prohlížeče. Pokud však nechceme slevit a toužíme využít všech možností jazyka, nezbývá nám, než zvolit metodu zvanou *transpilace*, která zdrojový kód převede do podoby stravitelné pro **specifikovanou** sadu prohlížečů. Nejlepším nástrojem pro tento účel je [Babel](https://babeljs.io/). Když jím proženeme náš příklad, je výstupem kód, který snesou i poslední dvě verze Internet Exploreru[^10].
 
-Výsledkem celého snažení je tedy kombinace dvou skriptů, `scout.js` a `app.js`, které zajistí, že naše služba s jistotou poběží v jasně určené množině prohlížečů, ale zároveň zbytečně nezatíží ty uživatele, v jejichž prohlížečích nemá smysl stahovat a spouštět JavaScript. O to důležitejší je pak **správný návrh aplikace** a dodržení [principu postupného vylepšení](/princip-postupneho-vylepseni/). V dalších článcích prozkoumáme, jak podobný přístup použít v i případě *frameworků* jako je React.
+Výsledkem celého snažení je tedy kombinace dvou skriptů, `scout.js` a `app.js`, které zajistí, že naše služba s jistotou poběží v jasně určené množině prohlížečů, ale zároveň zbytečně nezatíží ty uživatele, v jejichž prohlížečích nemá smysl stahovat a spouštět JavaScript. O to důležitejší je pak **správný návrh aplikace** a dodržení [principu postupného vylepšení](/blog/princip-postupneho-vylepseni/). V dalších článcích prozkoumáme, jak podobný přístup použít v i případě *frameworků* jako je React.
 
 [^1]:
     ```js

@@ -1,6 +1,6 @@
 ---
 title: Jak vyzrát na podporu prohlížečů
-translationKey: how-to-handle-browser-support
+translationKey: how-to-wrestle-with-browser-support
 date: 2019-06-26
 tags:
     - web
@@ -32,7 +32,7 @@ Jaké vlastnosti zvolit? Nejlepší je vybrat ty, bez kterých se neobejdeme a j
 
 Máme-li jasno v cílové skupině, v naší aplikaci (nazvěme ji `app.js`) navrch přidáme jednoduchou podmínku, která ověří potřebné vlastnosti. V případě selhání bez otálení ukončíme vykonávání skriptu[^3]. Pokud ovšem prohlížeč testem projde, aplikaci necháme dělat svou práci. Samotnému HTML dokumentu navíc přidáme třídu `.js`. Díky ní pak i mimo skript víme, že aplikace běží, a tuto informaci hned využijeme při návrhu komponent z pohledu stylů.
 
-Navrhneme komponentu s třídou `.accordion` a následující strukturou: nadpis, který je zároveň `button`, a pod ním obsah, jež je z počátku schován a který se zobrazí až po kliknutí na tlačítko[^4]. Běžný postup velí obsah skrýt, třeba pomocí `display: none`, a rozbalit jej až tehdy, kdy pomocí JavaScriptu přidáme komponentě třídu `.is-active`[^5]. Ovšem v případě, že se potřebný skript z jakéhokoliv důvodu nenačte, je obsah najednou zcela nedostupný. Proto využijeme zmíněnou třídu `.js` a styly přepíšeme tak, že se logika obrátí: obsah je v základu rozbalený a skryje se pouze tehdy, kdy víme, že ovládací skript běží[^6]. Jde o triviální změnu, ale se zásadním dopadem — tedy zcela v duchu [principu postupného vylepšení](/princip-postupneho-vylepseni/).
+Navrhneme komponentu s třídou `.accordion` a následující strukturou: nadpis, který je zároveň `button`, a pod ním obsah, jež je z počátku schován a který se zobrazí až po kliknutí na tlačítko[^4]. Běžný postup velí obsah skrýt, třeba pomocí `display: none`, a rozbalit jej až tehdy, kdy pomocí JavaScriptu přidáme komponentě třídu `.is-active`[^5]. Ovšem v případě, že se potřebný skript z jakéhokoliv důvodu nenačte, je obsah najednou zcela nedostupný. Proto využijeme zmíněnou třídu `.js` a styly přepíšeme tak, že se logika obrátí: obsah je v základu rozbalený a skryje se pouze tehdy, kdy víme, že ovládací skript běží[^6]. Jde o triviální změnu, ale se zásadním dopadem — tedy zcela v duchu [principu postupného vylepšení](/blog/princip-postupneho-vylepseni/).
 
 ## *Polyfilling*
 
@@ -46,7 +46,7 @@ Jedno z možných spočívá v rozšíření `scout.js` o logiku nahrávání *p
 
 Stále však není dobojováno. Pozorní najdou v předchozím příkladu další problémy: Internet Explorer ve verzi 10 nerozumí klíčovému slovu `let`, verze 11 zase nechápe *arrow* funkce (`(...) => { ... }`), natož *destructuring* (`({ test })`). S potížemi tohoto typu nám *polyfilly* nepomohou, neboť se nejedná o chybějící API, ale o konflikt na úrovni samotné syntaxe jazyka. Ten lze řešit dvěma způsoby. První je zřejmý: použít pouze syntax, jejímž sítem projdou všechny vybrané prohlížeče. Pokud však nechceme slevit a toužíme využít všech možností jazyka, nezbývá nám, než zvolit metodu zvanou *transpilace*, která zdrojový kód převede do podoby stravitelné pro **specifikovanou** sadu prohlížečů. Nejlepším nástrojem pro tento účel je [Babel](https://babeljs.io/). Když jím proženeme náš příklad, je výstupem kód, který snesou i poslední dvě verze Internet Exploreru[^10].
 
-Výsledkem celého snažení je tedy kombinace dvou skriptů, `scout.js` a `app.js`, které zajistí, že naše služba s jistotou poběží v jasně určené množině prohlížečů, ale zároveň zbytečně nezatíží ty uživatele, v jejichž prohlížečích nemá smysl stahovat a spouštět JavaScript. O to důležitejší je pak **správný návrh aplikace** a dodržení [principu postupného vylepšení](/princip-postupneho-vylepseni/). V dalších článcích prozkoumáme, jak podobný přístup použít v i případě *frameworků* jako je React.
+Výsledkem celého snažení je tedy kombinace dvou skriptů, `scout.js` a `app.js`, které zajistí, že naše služba s jistotou poběží v jasně určené množině prohlížečů, ale zároveň zbytečně nezatíží ty uživatele, v jejichž prohlížečích nemá smysl stahovat a spouštět JavaScript. O to důležitejší je pak **správný návrh aplikace** a dodržení [principu postupného vylepšení](/blog/princip-postupneho-vylepseni/). V dalších článcích prozkoumáme, jak podobný přístup použít v i případě *frameworků* jako je React.
 
 [^1]:
     ```js

@@ -50,7 +50,7 @@ Pokud kterékoliv z vylepšení selže, ať už z důvodu nedostatečné podpory
 
 Princip postupného vylepšení je jednoduchá metoda, která spíše než na konkrétním technologickém řešení spočívá ve **změně přístupu** při návrhu aplikace. A ač se zdá, že jde o více práce, opak je ve výsledku pravdou. Na oplátku totiž získáme v podstatě univerzální podporu v prohlížečích a jistotu, že se aplikace nerozpadne pod nejmenším tlakem. Princip lze shrnout do jednoho doporučení: používat JavaScript, ale **nespoléhat** na něj, a využít deklarativní prostředky, které nabízí HTML. V praxi to znamená **strukturovaný** a **sémanticky správný** dokument, a ne „guláš” `div` elementů, které jsou ze své podstaty bez významu a funkce.
 
-V dalších článcích se zaměříme na praktický a strategický přístup k podpoře JavaScriptu v prohlížečích, a na to, jak zachovat princip postupného vylepšení při použití nástrojů jako je React a jemu podobných.
+V dalších článcích se zaměříme na [praktický přístup k podpoře prohlížečů](/blog/jak-vyzrat-na-podporu-prohlizecu/), a na to, jak zachovat princip postupného vylepšení při použití nástrojů jako je React a jemu podobných.
 
 
 
