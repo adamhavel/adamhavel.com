@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0">
-    <title>Adam Havel</title>
+    <title>{{ .Page.Title }} — Adam Havel</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css">
     {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify }}
         <style>{{ .Content | safeCSS }}</style>
@@ -33,11 +33,11 @@
         </div>
     </header>
 
-    <main class="site-content">
+    <div class="site-content">
         <div class="wrapper">
             {{ block "main" . }}{{ end }}
         </div>
-    </main>
+    </div>
 
     <footer class="site-footer">
         <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">

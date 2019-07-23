@@ -1,6 +1,8 @@
 .spot {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: $fixedGutter;
     align-items: flex-start;
 
     &:not(:last-child) {
@@ -9,8 +11,6 @@
 }
 
     .spot__image-container {
-        flex-shrink: 0;
-        margin-right: $lineHeight * 1.5rem;
         margin-top: .275em;
         position: relative;
 
@@ -27,19 +27,17 @@
     }
 
         .spot__image {
-            width: 300px;
+            width: 100%;
         }
 
-    .spot__content {
-        flex-grow: 1;
-    }
+    .spot__content {}
 
         .spot__header {
             display: flex;
             align-items: center;
             font-size: .75em;
             opacity: .875;
-            letter-spacing: .1em;
+            letter-spacing: .05em;
             font-weight: 300;
 
             &:before {
@@ -60,10 +58,10 @@
 
             > *:not(:first-child):before {
                 display: inline-block;
-                content: '•';
+                content: '/';
                 margin: 0 .5em;
-                opacity: .75;
-                font-weight: 600;
+                opacity: .5;
+                font-weight: 300;
             }
         }
 
@@ -74,16 +72,15 @@
             .spot__date {}
 
         .spot__heading {
-            font-size: 1.25em;
+            font-size: 1.125em;
             font-weight: 600;
-            letter-spacing: .0125em;
-            margin-top: $lineHeight * .625rem;
+            margin-top: $lineHeight * .75rem;
             font-family: $fontBody;
         }
 
         .spot__desc {
             font-weight: 300;
-            margin-top: $lineHeight * .125rem;
+            margin-top: $lineHeight * .25rem;
         }
 
         .spot__link {

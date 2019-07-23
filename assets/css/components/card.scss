@@ -8,16 +8,17 @@
     .card__header {
         display: flex;
         align-items: center;
-        font-size: .675rem;
+        font-size: .675em;
         opacity: .75;
-        letter-spacing: .125em;
+        letter-spacing: .05em;
+        font-weight: 300;
 
         > *:not(:first-child):before {
-            content: '•';
+            content: '/';
             margin: 0 .6em;
-            opacity: .75;
-            font-size: 1.125em;
-            font-weight: 600;
+            opacity: .5;
+            font-size: 1em;
+            font-weight: 300;
         }
     }
 
@@ -27,6 +28,7 @@
             font-weight: 400;
             font-family: $fontBody;
             font-size: 1em;
+            letter-spacing: .2em;
         }
 
         .card__date {}
@@ -34,14 +36,13 @@
     .card__heading {
         font-size: 1.125em;
         font-weight: 600;
-        letter-spacing: .0125em;
-        margin-top: $lineHeight * .5rem;
+        margin-top: $lineHeight * .75rem;
         font-family: $fontBody;
     }
 
     .card__desc {
         font-weight: 300;
-        margin-top: $lineHeight * .125rem;
+        margin-top: $lineHeight * .25rem;
     }
 
     .card__link {

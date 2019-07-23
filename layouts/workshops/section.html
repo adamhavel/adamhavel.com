@@ -5,33 +5,7 @@
     {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
     {{ $upcoming_workshops := where ($workshops_in_language) "date" "ge" $now }}
 
-    <aside class="section__aside">
-
-        <section class="workshop-info">
-            {{ with index $upcoming_workshops 0 }}
-                <ul class="workshop-info__list">
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Příští školení</strong> {{ ($.GetPage (print .id)).Title }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
-                </ul>
-                <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
-                <p class="workshop-info__desc">Registraci a organizaci školení zajišťuje Root.cz.</p>
-            {{ end }}
-            <section class="workshops-dates">
-                <h2 class="workshops-dates__heading">Termíny</h2>
-                <ul class="workshops-dates__list">
-                    {{ range $upcoming_workshops }}
-                        {{ $is_past := lt .date $now }}
-                        <li class="workshops-dates__item {{ if $is_past }}workshops-dates__item--past{{ end }}">{{ (time .date).Format (i18n "dateFormat") }} – {{ ($.GetPage (print .id)).Title }}</li>
-                    {{ end }}
-                </ul>
-            </section>
-        </section>
-
-    </aside>
-
-    <section class="section__content">
+    <main class="section__content">
 
         <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
             <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
@@ -83,7 +57,33 @@
             </section>
         {{ end }}
 
-    </section>
+    </main>
+
+    <aside class="section__aside">
+
+        <section class="workshop-info">
+            {{ with index $upcoming_workshops 0 }}
+                <ul class="workshop-info__list">
+                    <li class="workshop-info__item"><strong class="workshop-info__heading">Příští školení</strong> {{ ($.GetPage (print .id)).Title }}</li>
+                    <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                    <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
+                    <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
+                </ul>
+                <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
+                <p class="workshop-info__desc">Registraci a organizaci školení zajišťuje Root.cz.</p>
+            {{ end }}
+            <section class="workshops-dates">
+                <h2 class="workshops-dates__heading">Termíny</h2>
+                <ul class="workshops-dates__list">
+                    {{ range $upcoming_workshops }}
+                        {{ $is_past := lt .date $now }}
+                        <li class="workshops-dates__item {{ if $is_past }}workshops-dates__item--past{{ end }}">{{ (time .date).Format (i18n "dateFormat") }} – {{ ($.GetPage (print .id)).Title }}</li>
+                    {{ end }}
+                </ul>
+            </section>
+        </section>
+
+    </aside>
 
 </div>
 {{ end }}

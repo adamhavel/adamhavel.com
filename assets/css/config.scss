@@ -4,13 +4,18 @@ $colorTertiary: #EC2D24;
 $colorBackground: #f8f8fb;
 $colorText: rgba(0, 0, 0, .85);
 
-$lineHeight: 1.5;
+$lineHeight: 1.55;
 
-$fontBody: 'Proxima Nova', sans-serif;
-$fontDisplay: 'Classico URW', sans-serif;
+$fontBody: 'IBM Plex Sans', sans-serif;
+$fontDisplay: 'Jost', sans-serif;
 
-$layoutWidth: 85em;
-$gutter: 3vw;
+$layoutWidth: calc(85em + 5vw);
+$gutter: 4vw;
+
+$fixedGutter: 2.5rem;
+$fluidGutter: 5%;
+
+
 
 $splitLayoutWidthLeft: 38%;
 $splitLayoutWidthRight: 57%;

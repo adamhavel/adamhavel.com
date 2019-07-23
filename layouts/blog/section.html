@@ -32,7 +32,7 @@
         {{ range .Pages }}
             <section class="spot">
                 {{ with .Resources.GetMatch "thumb.*" }}
-                    {{ $image := .Fill "600x450 q75" }}
+                    {{ $image := .Fill "600x400 q75" }}
                     <div class="spot__image-container">
                         <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">
                     </div>
@@ -41,7 +41,7 @@
                     <header class="spot__header">
                         <time class="spot__date">{{ .Date.Format (i18n "dateFormat") }}</time>
                         {{ with .Params.tags }}
-                            <ul class="lede__tags">
+                            <ul class="spot__tags tags">
                                 {{ range . }}
                                     <li>{{ . }}</li>
                                 {{ end }}

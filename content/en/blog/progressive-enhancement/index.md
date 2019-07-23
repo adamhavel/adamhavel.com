@@ -1,5 +1,5 @@
 ---
-title: Progressive enhancement
+title: Progressive Enhancement
 translationKey: progressive-enhancement
 date: 2019-06-17
 tags:

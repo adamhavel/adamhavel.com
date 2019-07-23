@@ -16,13 +16,17 @@
         font-style: normal;
         font-weight: 300;
         display: flex;
-        align-items: baseline;
-        letter-spacing: -.025em;
+        align-items: center;
+        letter-spacing: -.05em;
 
         &:after {
-            height: .69em;
             content: '\\\\\\';
+            letter-spacing: -.075em;
+            xfont-weight: 200;
             opacity: .25;
+            font-size: .8em;
+            position: relative;
+            top: -.03em;
             color: $colorText;
             transform: translateZ(0) skewX(4deg);
             transition: transform .2s, opacity .3s, color .3s;

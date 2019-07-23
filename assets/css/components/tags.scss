@@ -1,0 +1,14 @@
+.tags {
+    display: flex;
+    align-items: center;
+
+    li {
+        display: inline;
+
+        &:not(:last-child):after {
+            content: ',';
+            display: inline-block;
+            padding-right: .25em;
+        }
+    }
+}

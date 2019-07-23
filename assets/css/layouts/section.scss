@@ -1,15 +1,15 @@
 .section {
     padding-top: $lineHeight * 1rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: $gutter;
 }
 
-    .section__content {
-        width: $sectionLayoutWidthMain;
-        margin-right: $sectionLayoutWidthAside + $sectionLayoutGutter;
-    }
+    .section__content {}
 
         .section__heading {
             font-size: 4rem;
-            font-weight: 400;
+            font-weight: 500;
             line-height: 1.5;
             margin-bottom: ($lineHeight * 4rem);
             padding-bottom: 1.5em;
@@ -67,7 +67,5 @@
         }
 
     .section__aside {
-        float: right;
-        width: $sectionLayoutWidthAside;
         margin-top: $lineHeight * 1rem;
     }
