@@ -8,8 +8,13 @@
 }
 
 @font-face {
+    font-family: 'IBM Plex Mono';
+    src: url('/fonts/ibm-plex-mono.woff2') format('woff2');
+}
+
+@font-face {
     font-family: 'Jost';
-    src: url('/fonts/jost.ttf') format('truetype-variations');
+    src: url('/fonts/jost.woff2') format('woff2-variations');
 }
 
 html {
@@ -24,25 +29,11 @@ body {
     background: white;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: $fontBody;
-    font-weight: 600;
-}
-
 code {
-    font-family: 'Hack', monospace;
+    font-family: $fontMono;
 }
 
 img {
     display: block;
     max-width: 100%;
-}
-
-.editable {
-
-    h2, h3, h4, h5, h6 {
-        font-weight: 800;
-        font-family: $fontDisplay;
-        letter-spacing: .02em;
-    }
 }

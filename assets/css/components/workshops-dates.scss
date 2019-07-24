@@ -20,6 +20,7 @@
         font-size: .75rem;
         margin-bottom: $lineHeight * .25rem;
         font-weight: 800;
+        font-variation-settings: 'wght' 800;
     }
 
     .workshops-dates__list {
@@ -30,6 +31,7 @@
             font-size: .875rem;
             letter-spacing: .025em;
             font-weight: 300;
+            font-variation-settings: 'wght' 300;
 
             &:not(:last-child) {
                 margin-bottom: $lineHeight * .125rem;

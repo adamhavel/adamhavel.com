@@ -1,5 +1,5 @@
 .article {
-    padding-top: $lineHeight * 1rem;
+    padding-top: $lineHeight * 2rem;
 }
 
     .article__content {
@@ -14,118 +14,136 @@
             margin-left: calc(33.3% + #{($gutter / 2)});
         }
 
-        .highlight {
+        // .footnote-ref {
+        //     display: inline-block;
+        //     padding: 0 .125em;
+
+        //     a {
+        //         position: relative;
+        //         line-height: 1;
+        //         font-weight: 600;
+        //         color: darken($colorTertiary, 15%);
+        //         text-decoration: none;
+
+        //         &:before {
+        //             display: none;
+        //         }
+
+        //         &:after {
+        //             position: absolute;
+        //             content: '';
+        //             top: 50%;
+        //             left: 50%;
+        //             width: 2em;
+        //             height: 2em;
+        //             background: $colorTertiary;
+        //             opacity: 0;
+        //             border-radius: 50%;
+        //             transform: translate3d(-50%, -53%, 0);
+        //             transition: opacity 1s;
+        //         }
+        //     }
+
+        //     &:target a:after {
+        //         opacity: .1;
+        //     }
+        // }
+
+        // .footnotes {
+        //     display: none;
+        //     counter-reset: footnote;
+        //     width: $splitLayoutWidthLeft;
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     bottom: 0;
+        //     font-size: .875rem;
+        //     padding-top: $lineHeight * .5rem;
+
+        //     li {
+        //         counter-increment: footnote;
+        //         display: block;
+        //         transition: opacity .3s;
+        //         padding-top: $lineHeight * .75rem;
+        //         opacity: .25;
+        //         position: relative;
+        //         filter: grayscale(1);
+
+        //         &:not(:last-child) {
+        //             margin-bottom: $lineHeight * 2rem;
+        //         }
+
+        //         &:hover,
+        //         &:target {
+        //             opacity: 1;
+        //             filter: none;
+        //         }
+
+        //         &:after {
+        //             content: '';
+        //             position: absolute;
+        //             top: 0;
+        //             left: 0;
+        //             width: 100%;
+        //             height: .25rem;
+        //             background: $colorTertiary;
+        //             opacity: .1;
+        //             transform: translateY(-50%);
+        //         }
+
+        //         &:hover,
+        //         &:target {
+
+        //             &:after {
+        //                 opacity: .25;
+        //             }
+
+        //             .footnote-return {
+        //                 opacity: 1;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // .footnote-return {
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     opacity: 0;
+        //     transition: opacity .3s;
+
+        //     &:before {
+        //         content: '↪ ' counter(footnote);
+        //         position: absolute;
+        //         top: 0;
+        //         right: 100%;
+        //         padding-right: 1em;
+        //         color: $colorTertiary;
+        //         font-weight: 600;
+        //         white-space: nowrap;
+        //         transform: translateY(-46%);
+        //     }
+        // }
+    }
+
+        .article__figure {
             clear: left;
             float: left;
-            width: $splitLayoutWidthLeft;
             width: calc(33.3% - #{($gutter / 2)});
-            font-size: .875rem;
-            counter-increment: footnote;
-            display: block;
             margin-left: 0;
-            transition: opacity .3s;
-            padding-top: $lineHeight * 1rem;
-            opacity: .5;
-            position: relative;
-            filter: grayscale(1);
 
             &:not(:last-child) {
                 margin-bottom: $lineHeight * 2rem;
             }
 
-            &:hover,
-            &:target {
-                opacity: 1;
-                filter: none;
-            }
-
-            &:after {
-                content: '';
-                position: absolute;
-                top: $lineHeight * .5rem;
-                left: 0;
-                width: 100%;
-                height: .25rem;
-                background: $colorTertiary;
-                opacity: .1;
-                transform: translateY(-50%);
-            }
-
-            &:hover,
-            &:target {
-
-                &:after {
-                    opacity: .25;
-                }
-
-                .footnote-return {
-                    opacity: 1;
-                }
-            }
-
-            &:not(:last-child) {
-                margin-bottom: $lineHeight * 2rem;
-            }
-        }
-
-        .footnote-ref {
-            display: inline-block;
-            padding: 0 .125em;
-
-            a {
-                position: relative;
-                line-height: 1;
-                font-weight: 600;
-                color: darken($colorTertiary, 15%);
-                text-decoration: none;
-
-                &:before {
-                    display: none;
-                }
-
-                &:after {
-                    position: absolute;
-                    content: '';
-                    top: 50%;
-                    left: 50%;
-                    width: 2em;
-                    height: 2em;
-                    background: $colorTertiary;
-                    opacity: 0;
-                    border-radius: 50%;
-                    transform: translate3d(-50%, -53%, 0);
-                    transition: opacity 1s;
-                }
-            }
-
-            &:target a:after {
-                opacity: .1;
-            }
-        }
-
-        .footnotes {
-            display: none;
-            counter-reset: footnote;
-            width: $splitLayoutWidthLeft;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            font-size: .875rem;
-            padding-top: $lineHeight * .5rem;
-
-            li {
+            &--code {
+                font-size: .875rem;
                 counter-increment: footnote;
-                display: block;
                 transition: opacity .3s;
-                padding-top: $lineHeight * .75rem;
-                opacity: .25;
+                padding-top: $lineHeight * 1rem;
+                opacity: .5;
                 position: relative;
                 filter: grayscale(1);
-
-                &:not(:last-child) {
-                    margin-bottom: $lineHeight * 2rem;
-                }
 
                 &:hover,
                 &:target {
@@ -136,7 +154,7 @@
                 &:after {
                     content: '';
                     position: absolute;
-                    top: 0;
+                    top: $lineHeight * .5rem;
                     left: 0;
                     width: 100%;
                     height: .25rem;
@@ -157,26 +175,12 @@
                     }
                 }
             }
-        }
 
-        .footnote-return {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity .3s;
+            .highlight {
 
-            &:before {
-                content: '↪ ' counter(footnote);
-                position: absolute;
-                top: 0;
-                right: 100%;
-                padding-right: 1em;
-                color: $colorTertiary;
-                font-weight: 600;
-                white-space: nowrap;
-                transform: translateY(-46%);
+
+
+
             }
         }
-    }
 

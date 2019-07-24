@@ -1,23 +1,23 @@
 {{ define "main" }}
-<article class="workshop">
+<main class="workshop">
 
-    <div class="lede">
+    <header class="workshop__header header">
 
         {{ with .Resources.GetMatch "thumb.*" }}
-            {{ $image := .Fill "800x600 q75" }}
-            <figure class="lede__image-container">
-                <img class="lede__image" src="{{ .Permalink }}" role="presentation">
+            {{ $image := .Fill "1200x800 q75" }}
+            <figure class="header__image-container">
+                <img class="header__image" src="{{ .Permalink }}" role="presentation">
             </figure>
         {{ end }}
 
-        <header class="lede__header">
-            <h1 class="lede__heading">{{ .Title }}</h1>
-            <div class="lede__summary">
-                {{ .Summary }}
-            </div>
-        </header>
+        <div class="header__content">
+            <h1 class="header__title">{{ .Title }}</h1>
+            <p class="header__summary">
+                {{ .Summary | plainify | safeHTML }}
+            </p>
+        </div>
 
-    </div>
+    </header>
 
     <div class="workshop__layout">
 
@@ -37,7 +37,7 @@
                         <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
                     </ul>
                     <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
-                    <p class="workshop-info__desc">Registraci a organizaci školení zajišťuje Root.cz.</p>
+                    <p class="workshop-info__desc">Registraci a organizaci zajišťuje Root.cz.</p>
                 {{ end }}
             </section>
 
@@ -53,12 +53,12 @@
 
         </aside>
 
-        {{ $dropcap := substr (index (split .Content "<p>") 2) 0 1 }}
-        <div class="content content--longform workshop__content" data-drop-cap="{{ $dropcap }}">
+        {{ $dropcap := substr (index (split .Content "<p>") 1) 0 1 }}
+        <div class="content workshop__content" data-drop-cap="{{ $dropcap }}">
             {{ .Content }}
         </div>
 
     </div>
 
-</article>
+</main>
 {{ end }}

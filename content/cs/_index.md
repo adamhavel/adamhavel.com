@@ -1,1 +1,1 @@
-Tvořím [projekty](/projekty/) pro&nbsp;web, píšu [články](/blog/) o&nbsp;technologiích, pořádám [školení](/skoleni/) o&nbsp;JavaScriptu, a nabízím [konzultace](/info/) na&nbsp;téma front-end systémů.
+Tvořím [projekty](/projekty/) pro&nbsp;digitální svět,<br>píšu [články](/blog/) o&nbsp;webových technologiích,<br>a pořádám [školení](/skoleni/) o&nbsp;JavaScriptu.

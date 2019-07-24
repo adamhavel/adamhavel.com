@@ -9,7 +9,7 @@
     }
 
 	.leaves {
-        opacity: .85;
+        opacity: .95;
         fill: url(#leaves-gradient);
         filter: url(#roughpaper);
         stroke: #005b32;

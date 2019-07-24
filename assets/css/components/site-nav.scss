@@ -1,5 +1,5 @@
 .site-nav {
-    font-size: .875em;
+    font-size: .75em;
     position: relative;
     z-index: 1;
     opacity: .825;
@@ -21,8 +21,9 @@
         display: block;
         text-decoration: none;
         color: inherit;
-        font-weight: 600;
-        letter-spacing: .025em;
+        font-weight: 700;
+        font-variation-settings: 'wght' 700;
+        letter-spacing: .075em;
         font-family: $fontBody;
         position: relative;
         transition: color .1s;

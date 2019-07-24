@@ -15,6 +15,7 @@
     em {
         font-style: normal;
         font-weight: 300;
+        font-variation-settings: 'wght' 300;
         display: flex;
         align-items: center;
         letter-spacing: -.05em;
@@ -25,8 +26,10 @@
             xfont-weight: 200;
             opacity: .25;
             font-size: .8em;
+            font-weight: 250;
+            font-variation-settings: 'wght' 250;
             position: relative;
-            top: -.03em;
+            top: -.035em;
             color: $colorText;
             transform: translateZ(0) skewX(4deg);
             transition: transform .2s, opacity .3s, color .3s;
@@ -37,6 +40,7 @@
     strong {
         margin-left: .2em;
         font-weight: 600;
+        font-variation-settings: 'wght' 600;
         transition: transform .3s .05s;
         transform: translateZ(0);
     }

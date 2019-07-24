@@ -75,6 +75,7 @@ $galleryGap: 2.5vw;
 
             .gallery__heading {
                 font-weight: 400;
+                font-variation-settings: 'wght' 400;
                 font-size: 5rem;
                 font-family: $fontDisplay;
                 color: rgba(black, .75);
@@ -99,6 +100,7 @@ $galleryGap: 2.5vw;
 
             .gallery__desc {
                 font-weight: 300;
+                font-variation-settings: 'wght' 300;
                 text-align: right;
                 font-size: 1.125em;
             }

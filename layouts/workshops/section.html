@@ -1,78 +1,82 @@
 {{ define "main" }}
 <div class="section">
 
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+        <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.2 0.2" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
+        </filter>
+        <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.03 0.02" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
+        </filter>
+        <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
+
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
+
+            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
+                <feDistantLight azimuth="45" elevation="80" />
+            </feDiffuseLighting>
+
+            <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
+
+            <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
+
+        </filter>
+    </svg>
+
+    <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
+
     {{ $now := now.Format "2006-01-02" }}
     {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
     {{ $upcoming_workshops := where ($workshops_in_language) "date" "ge" $now }}
 
-    <main class="section__content">
+    <div class="section__layout">
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
-            <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-                <feTurbulence baseFrequency="0.2 0.2" result="f1" numOctaves="3" />
-                <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
-            </filter>
-            <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-                <feTurbulence baseFrequency="0.03 0.02" result="f1" numOctaves="3" />
-                <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
-            </filter>
-            <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
+        <main class="section__content">
 
-                <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
-
-                <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
-                    <feDistantLight azimuth="45" elevation="80" />
-                </feDiffuseLighting>
-
-                <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
-
-                <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
-
-            </filter>
-        </svg>
-
-        <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
-
-        {{ range .Sections }}
-            <section class="spot">
-                {{ with .Resources.GetMatch "thumb.*" }}
-                    {{ $image := .Fill "600x450 q75" }}
-                    <div class="spot__image-container">
-                        <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">
+            {{ range .Sections }}
+                <section class="spot">
+                    {{ with .Resources.GetMatch "thumb.*" }}
+                        {{ $image := .Fill "800x600 center q75" }}
+                        <div class="spot__image-container">
+                            <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">
+                        </div>
+                    {{ end }}
+                    <div class="spot__content">
+                        <header class="spot__header">
+                            {{ $id := path.Dir .RelPermalink }}
+                            {{ $relevant_workshops := where ($upcoming_workshops) "id" $id }}
+                            {{ with index $relevant_workshops 0 }}
+                                <p class="spot__title">Příští termín</p>
+                                <time class="spot__date">{{ (time .date).Format (i18n "dateFormat") }}</time>
+                            {{ end }}
+                        </header>
+                        <h2 class="spot__heading">{{ .Title }}</h2>
+                        <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
+                        <a href="{{ .Permalink }}" class="spot__link"></a>
                     </div>
-                {{ end }}
-                <div class="spot__content">
-                    <header class="spot__header">
-                        {{ $id := path.Dir .RelPermalink }}
-                        {{ $relevant_workshops := where ($upcoming_workshops) "id" $id }}
-                        {{ with index $relevant_workshops 0 }}
-                            <p class="spot__title">Příští termín</p>
-                            <time class="spot__date">{{ (time .date).Format (i18n "dateFormat") }}</time>
-                        {{ end }}
-                    </header>
-                    <h2 class="spot__heading">{{ .Title }}</h2>
-                    <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
-                    <a href="{{ .Permalink }}" class="spot__link"></a>
-                </div>
-            </section>
-        {{ end }}
-
-    </main>
-
-    <aside class="section__aside">
-
-        <section class="workshop-info">
-            {{ with index $upcoming_workshops 0 }}
-                <ul class="workshop-info__list">
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Příští školení</strong> {{ ($.GetPage (print .id)).Title }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
-                    <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
-                </ul>
-                <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
-                <p class="workshop-info__desc">Registraci a organizaci školení zajišťuje Root.cz.</p>
+                </section>
             {{ end }}
-            <section class="workshops-dates">
+
+        </main>
+
+        <aside class="section__aside">
+
+            <section class="workshop-info">
+                {{ with index $upcoming_workshops 0 }}
+                    <ul class="workshop-info__list">
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Příští školení</strong> {{ ($.GetPage (print .id)).Title }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
+                    </ul>
+                    <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
+                    <p class="workshop-info__desc">Registraci a organizaci zajišťuje Root.cz.</p>
+                {{ end }}
+            </section>
+
+            <!-- <section class="workshops-dates">
                 <h2 class="workshops-dates__heading">Termíny</h2>
                 <ul class="workshops-dates__list">
                     {{ range $upcoming_workshops }}
@@ -80,10 +84,11 @@
                         <li class="workshops-dates__item {{ if $is_past }}workshops-dates__item--past{{ end }}">{{ (time .date).Format (i18n "dateFormat") }} – {{ ($.GetPage (print .id)).Title }}</li>
                     {{ end }}
                 </ul>
-            </section>
-        </section>
+            </section> -->
 
-    </aside>
+        </aside>
+
+    </div>
 
 </div>
 {{ end }}

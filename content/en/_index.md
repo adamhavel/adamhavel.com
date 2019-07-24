@@ -1,1 +1,1 @@
-I [design and build](/work/) things for&nbsp;the&nbsp;web, provide [consultancy](/) on&nbsp;web&nbsp;development and&nbsp;performance, and&nbsp;run [workshops](/workshops/) about&nbsp;programming in&nbsp;JavaScript.
+I [create](/work/) things for the digital realm,<br>[write](/blog/) on the topic of&nbsp;web development,<br>and&nbsp;[teach](/workshops/) workshops about&nbsp;JavaScript.

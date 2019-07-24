@@ -3,10 +3,9 @@
     flex-direction: column;
     background: rgba(black, .025);
     xbackground: fade_out($colorPrimary, .9);
-    padding: 3em;
-    padding-bottom: 2.75em;
-    border: 1px solid rgba(black, .1);
-    border-bottom-color: rgba(black, .15);
+    padding: $gutter / 2;
+    border: 1px solid rgba(black, .075);
+    border-bottom-color: rgba(black, .125);
     position: relative;
 
     &:not(:last-child) {
@@ -17,15 +16,14 @@
     .workshop-info__list {
 
         &:not(:last-child) {
-            margin-bottom: $lineHeight * 1.5rem;
+            margin-bottom: $lineHeight * 2rem;
         }
     }
 
         .workshop-info__item {
             font-weight: 250;
-            font-size: 1.2em;
-            letter-spacing: .05em;
-            line-height: 1.25;
+            font-variation-settings: 'wght' 250;
+            font-size: 1.125em;
 
             &:not(:last-child) {
                 margin-bottom: $lineHeight * 1rem;
@@ -40,20 +38,21 @@
             .workshop-info__heading {
                 display: block;
                 font-weight: 700;
+                font-variation-settings: 'wght' 700;
                 font-size: .75rem;
                 letter-spacing: .1em;
                 text-transform: uppercase;
-                margin-bottom: $lineHeight * .25rem;
+                margin-bottom: $lineHeight * .125rem;
             }
 
     .workshop-info__register {
-        margin-right: auto;
+        margin: 0 auto;
         margin-bottom: $lineHeight * .5rem;
     }
 
     .workshop-info__desc {
-        font-style: italic;
-        opacity: .75;
-        font-size: .875rem;
-        margin-bottom: $lineHeight * 2rem;
+        font-size: .75rem;
+        font-weight: 300;
+        font-variation-settings: 'wght' 300;
+        text-align: center;
     }

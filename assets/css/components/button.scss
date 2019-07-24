@@ -1,38 +1,56 @@
 .button {
+    $borderWidth: 3px;
+
     position: relative;
     display: inline-block;
     padding: .875em 1.5em;
     text-decoration: none;
+    font-variation-settings: 'wght' 500;
     font-weight: 500;
     font-size: .875em;
     font-family: $fontDisplay;
     color: rgba(black, .675);
     letter-spacing: .1em;
-    border: 3px solid rgba(black, .1);
-    border-bottom: none;
+    border: $borderWidth solid rgba(black, .125);
     text-transform: uppercase;
     background: fade_out($colorPrimary, .5);
     text-align: center;
     transition: background-color .3s;
-    padding-bottom: calc(.875em + 3px);
 
     &:after {
-        bottom: 0;
-        left: -3px;
-        right: -3px;
+        bottom: -$borderWidth;
+        left: -$borderWidth;
+        right: -$borderWidth;
         position: absolute;
         content: '';
-        height: 3px;
-        background: rgba(black, .4);
-        transition: background-color .3s;
+        height: $borderWidth;
+        background: rgba(black, .2);
     }
 
     &:hover,
     &:focus {
-        background: fade_out($colorPrimary, .7);
+        background: fade_out($colorPrimary, .3);
     }
 
     &:active {
-        background: fade_out($colorPrimary, .3);
+        background: $colorPrimary;
+
+        &:after {
+            top: -$borderWidth;
+            bottom: auto;
+        }
+    }
+
+    &[href^="http"] {
+        background: fade_out($colorSecondary, .4);
+
+        &:hover,
+        &:focus {
+            background: fade_out($colorSecondary, .25);
+        }
+
+        &:active {
+            background: $colorSecondary;
+        }
     }
 }

@@ -9,11 +9,13 @@
     }
 
         .index__headline {
-            font-size: 2em;
+            font-size: 2.25em;
             font-weight: 300;
+            font-variation-settings: 'wght' 300;
             font-family: $fontDisplay;
             position: relative;
             z-index: 1;
+            line-height: 1.75;
 
             a {
                 position: relative;

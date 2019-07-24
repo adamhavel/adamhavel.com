@@ -8,19 +8,8 @@ $lineHeight: 1.55;
 
 $fontBody: 'IBM Plex Sans', sans-serif;
 $fontDisplay: 'Jost', sans-serif;
+$fontMono: 'IBM Plex Mono', monospace;
 
-$layoutWidth: calc(85em + 5vw);
+$layoutWidth: calc(85em + 4vw);
 $gutter: 4vw;
-
 $fixedGutter: 2.5rem;
-$fluidGutter: 5%;
-
-
-
-$splitLayoutWidthLeft: 38%;
-$splitLayoutWidthRight: 57%;
-$splitLayoutGutter: 5%;
-
-$sectionLayoutWidthMain: 60%;
-$sectionLayoutWidthAside: 32%;
-$sectionLayoutGutter: 8%;

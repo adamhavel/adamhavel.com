@@ -9,9 +9,10 @@
         display: flex;
         align-items: center;
         font-size: .675em;
-        opacity: .75;
-        letter-spacing: .05em;
-        font-weight: 300;
+        opacity: .875;
+        letter-spacing: .125em;
+        font-weight: 400;
+        font-variation-settings: 'wght' 400;
 
         > *:not(:first-child):before {
             content: '/';
@@ -19,6 +20,7 @@
             opacity: .5;
             font-size: 1em;
             font-weight: 300;
+            font-variation-settings: 'wght' 300;
         }
     }
 
@@ -26,23 +28,26 @@
             text-decoration: none;
             text-transform: uppercase;
             font-weight: 400;
+            font-variation-settings: 'wght' 400;
             font-family: $fontBody;
             font-size: 1em;
-            letter-spacing: .2em;
         }
 
         .card__date {}
 
     .card__heading {
-        font-size: 1.125em;
-        font-weight: 600;
-        margin-top: $lineHeight * .75rem;
-        font-family: $fontBody;
+        font-size: 1.25em;
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
+        margin-top: $lineHeight * .5rem;
+        font-family: $fontDisplay;
+        line-height: 1.25;
     }
 
     .card__desc {
         font-weight: 300;
-        margin-top: $lineHeight * .25rem;
+        font-variation-settings: 'wght' 300;
+        margin-top: $lineHeight * .375rem;
     }
 
     .card__link {

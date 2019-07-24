@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0">
-    <title>{{ .Page.Title }} — Adam Havel</title>
+    <title>{{ if .Page.Title }}{{ .Page.Title }} — Adam Havel{{ else }}Adam Havel{{ end }}</title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css">
     {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify }}
         <style>{{ .Content | safeCSS }}</style>

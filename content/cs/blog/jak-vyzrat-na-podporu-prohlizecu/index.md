@@ -12,7 +12,7 @@ photoDesc: Glenn Carstens-Peters
 photoUrl: https://unsplash.com/photos/6rkJD0Uxois
 ---
 
-Základem webové služby je HTML. To je závěr předchozího článku a předpoklad, na kterém stavíme, když službu s pomocí JavaScriptu zlepšujeme. Jak ovšem zajistit, aby se JavaScript spustil jen tehdy, kdy máme jistotu, že to hostitelské prostředí — typicky prohlížeč — snese? A jak stanovit hranici, která uživatele jasně rozdělí na dva tábory: s JavaScriptem a bez?
+Základem webové služby je HTML. To je závěr [předchozího článku](/blog/princip-postupneho-vylepseni/) a předpoklad, na kterém stavíme, když službu s pomocí JavaScriptu zlepšujeme. Jak ovšem zajistit, aby se JavaScript spustil jen tehdy, kdy máme jistotu, že to hostitelské prostředí — typicky prohlížeč — snese? A jak stanovit hranici, která uživatele jasně rozdělí na dva tábory: s JavaScriptem a bez?
 
 <!--more-->
 

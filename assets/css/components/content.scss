@@ -11,14 +11,15 @@
             float: left;
             line-height: .8;
             font-weight: 500;
+            font-variation-settings: 'wght' 500;
             width: 33.3%;
-            margin-top: -.2em;
+            margin-top: -.05em;
             text-align: right;
             color: rgba(black, .675);
             text-shadow: 3px 3px 0 rgba(black, .075),
                          -3px -3px 0 rgba(black, .075);
             font-family: $fontDisplay;
-            padding: .2em 1.5vw .2em 0;
+            padding: .05em 1.5vw .2em 0;
             background: radial-gradient(farthest-side at right, white, transparent) right no-repeat;
             background-size: 60% 100%;
             border-right: 1px solid rgba(black, .02);
@@ -27,6 +28,7 @@
         > p:first-child {
             font-size: 1.25em;
             font-weight: 200;
+            font-variation-settings: 'wght' 200;
             margin-bottom: $lineHeight * 3rem;
 
             &:first-letter {
@@ -37,6 +39,7 @@
 
     > p {
         font-weight: 300;
+        font-variation-settings: 'wght' 300;
         margin-bottom: $lineHeight * 1rem;
 
         a {
@@ -77,6 +80,7 @@
     > h2 {
         font-size: 1.375rem;
         font-weight: 600;
+        font-variation-settings: 'wght' 600;
         margin-bottom: $lineHeight * .5rem;
         line-height: $lineHeight * 1rem;
 
@@ -88,6 +92,7 @@
     > h3 {
         font-size: 1.125rem;
         font-weight: 600;
+        font-variation-settings: 'wght' 600;
         line-height: $lineHeight * 1rem;
         margin-bottom: $lineHeight * .25rem;
 
@@ -98,6 +103,7 @@
 
     > ul {
         font-weight: 300;
+        font-variation-settings: 'wght' 300;
         margin-bottom: $lineHeight * 1rem;
         font-size: .875em;
 
@@ -116,14 +122,18 @@
                 left: 0;
                 content: '–';
                 font-weight: 300;
+                font-variation-settings: 'wght' 300;
                 opacity: .5;
             }
         }
     }
 
-    code {
-        font-size: .9em;
+    strong {
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
     }
+
+    code {}
 
     pre {
         word-wrap: break-word;

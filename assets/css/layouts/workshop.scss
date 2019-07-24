@@ -2,19 +2,20 @@
     padding-top: $lineHeight * 2rem;
 }
 
-    .workshop__layout {}
+    .workshop__layout {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-column-gap: $gutter;
+    }
 
         .workshop__aside {
-            float: left;
-            width: $splitLayoutWidthLeft - $splitLayoutGutter;
-            margin-left: $splitLayoutGutter;
             margin-top: .25em;
+            padding-left: $gutter;
         }
 
         .workshop__content {
-            margin-left: $splitLayoutWidthLeft + $splitLayoutGutter;
 
-            > :first-child {
+            > p:first-of-type {
                 display: none;
             }
         }
