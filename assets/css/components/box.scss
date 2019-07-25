@@ -1,0 +1,10 @@
+.box {
+    background: rgba(black, .025);
+    padding: $gutter / 2;
+    border: 1px solid rgba(black, .075);
+    border-bottom-color: rgba(black, .125);
+
+    &:not(:last-child) {
+        margin-bottom: $lineHeight * 3rem;
+    }
+}

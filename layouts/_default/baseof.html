@@ -1,9 +1,14 @@
+<!DOCTYPE html>
 <html lang="{{ .Language }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,minimum-scale=1.0">
     <title>{{ if .Page.Title }}{{ .Page.Title }} — Adam Havel{{ else }}Adam Havel{{ end }}</title>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css">
+    {{ if .IsTranslated }}
+        {{ range .Translations }}
+            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+        {{ end }}
+    {{ end }}
     {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify }}
         <style>{{ .Content | safeCSS }}</style>
     {{ end }}

@@ -9,7 +9,6 @@ footnoteReturnLinkContents: ' '
 
 languages:
   en:
-    contentDir: content/en
     title: adamhavel.com
     languageName: English
     baseURL: https://adamhavel.com
@@ -33,9 +32,12 @@ languages:
         url: /workshops/
         weight: 4
   cs:
-    contentDir: content/cs
     title: adamhavel.cz
     languageName: Česky
+    permalinks:
+      blog: /blog/:slug/
+      projects: /projekty/:slug/
+      workshops: /skoleni/:slug/
     baseURL: https://adamhavel.cz
     weight: 2
     menu:

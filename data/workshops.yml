@@ -1,5 +1,5 @@
 - date: 2018-05-16
-  id: /skoleni/moderni-javascript/
+  id: /workshops/modern-javascript
   hours: 9:30–17:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/moderni-js-2/registrace/
@@ -10,7 +10,7 @@
     - JavaScript
 
 - date: 2018-09-21
-  id: /skoleni/moderni-javascript
+  id: /workshops/modern-javascript
   hours: 9:30–17:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/moderni-js-3/registrace/
@@ -21,7 +21,7 @@
     - JavaScript
 
 - date: 2019-01-16
-  id: /skoleni/moderni-javascript
+  id: /workshops/modern-javascript
   hours: 9:30–17:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/moderni-js-5/registrace/
@@ -32,7 +32,7 @@
     - JavaScript
 
 - date: 2019-02-04
-  id: /skoleni/prakticky-javascript
+  id: /workshops/practical-javascript
   hours: 9:30–17:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/prakticky-javascript/registrace/
@@ -43,7 +43,7 @@
     - JavaScript
 
 - date: 2019-05-06
-  id: /skoleni/moderni-javascript
+  id: /workshops/modern-javascript
   hours: 9:30–17:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/moderni-jas-1/registrace/
@@ -54,7 +54,7 @@
     - JavaScript
 
 - date: 2019-05-07
-  id: /skoleni/prakticky-javascript
+  id: /workshops/practical-javascript
   hours: 9:30–17:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/prakticky-javs-1/registrace/
@@ -65,7 +65,7 @@
     - JavaScript
 
 - date: 2019-08-19
-  id: /skoleni/moderni-javascript
+  id: /workshops/modern-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/moderni-javasc-1/registrace/
@@ -76,7 +76,7 @@
     - JavaScript
 
 - date: 2019-08-20
-  id: /skoleni/prakticky-javascript
+  id: /workshops/practical-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/prakticky-javascript-2/registrace/
@@ -87,7 +87,7 @@
     - JavaScript
 
 - date: 2019-10-21
-  id: /skoleni/moderni-javascript
+  id: /workshops/modern-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/moderni-javascript-2/registrace/
@@ -98,7 +98,7 @@
     - JavaScript
 
 - date: 2019-10-22
-  id: /skoleni/prakticky-javascript
+  id: /workshops/practical-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/prakticky-javascript-3/registrace/
@@ -109,7 +109,7 @@
     - JavaScript
 
 - date: 2019-12-09
-  id: /skoleni/moderni-javascript
+  id: /workshops/modern-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/moderni-javascript-3/registrace/
@@ -120,7 +120,7 @@
     - JavaScript
 
 - date: 2019-12-10
-  id: /skoleni/prakticky-javascript
+  id: /workshops/practical-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
   url: https://www.root.cz/skoleni/termin/prakticky-javascript-4/registrace/

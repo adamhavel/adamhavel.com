@@ -1,0 +1,4 @@
+---
+title: Školení
+url: '/skoleni/'
+---

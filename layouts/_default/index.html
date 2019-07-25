@@ -3,16 +3,15 @@
 
     <div class="index__layout">
         <div class="index__headline">{{ .Content }}</div>
-        <div class="index__image">
+        <div class="index__image" role="presentation">
             {{ (resources.Get "img/circle.svg").Content | safeHTML }}
         </div>
     </div>
 
-
-    <div class="index__cards">
+    <main class="index__cards">
 
         <section class="card">
-            {{ with .GetPage "projekty" }}
+            {{ with .GetPage "projects" }}
                 {{ with (index .Pages 0) }}
                     <header class="card__header">
                         <h2 class="card__title">{{ i18n "latestProject" }}</h2>
@@ -59,7 +58,7 @@
             {{ end }}
         </section>
 
-    </div>
+    </main>
 
 </div>
 {{ end }}

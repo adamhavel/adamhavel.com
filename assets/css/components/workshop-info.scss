@@ -1,16 +1,6 @@
 .workshop-info {
     display: flex;
     flex-direction: column;
-    background: rgba(black, .025);
-    xbackground: fade_out($colorPrimary, .9);
-    padding: $gutter / 2;
-    border: 1px solid rgba(black, .075);
-    border-bottom-color: rgba(black, .125);
-    position: relative;
-
-    &:not(:last-child) {
-        margin-bottom: $lineHeight * 3rem;
-    }
 }
 
     .workshop-info__list {
