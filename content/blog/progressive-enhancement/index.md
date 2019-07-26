@@ -19,6 +19,10 @@ Of course, there is the question of how many users actually turn off JavaScript 
 
 We then stumble on a second type of problems: a script downloads but doesn’t execute. Why? JavaScript is a complicated language and on top of that, it has no static type check. So it's no surprise that we often make mistakes that will show up only at runtime. But we can live with that. And there is nothing holding us from using the likes of TypeScript if we can’t. But there is another reason this could happen and that reason is browser support.
 
+{{< figures/quote >}}
+The environment is a combination of a device, operating system, and browser. From a practical point of view, an infinite set. It's a wonder that our application ever works!
+{{< /figures/quote >}}
+
 JavaScript is an easy and frequent target for mockery. Few, however, can appreciate the hostility of the hosting environment, the browser. When we work with language like Python, we are usually sure the application will execute on a server with some — but exact — version of the language. In the case of JavaScript (with the exemption of Node.js), there are no certainties. The environment is a combination of a device, operating system, and browser. From a practical point of view, an infinite set. It's a wonder that our application ever works!
 
 ## Resilient technologies
@@ -105,6 +109,10 @@ However, if we leave the example as it is, we lose data validation. The browser 
 Back in the safety of HTML, we begin to fathom how to build those reliable foundations with simple links and forms. That's the starting point of the elusive principle of progressive enhancement. We define the so called minimum viable experience: what methods does the web service have to offer **at all times** in order to be useful? We then build those methods using the most simple — therefore the most resilient — technology available. In return, we get the certainty that the service will fulfil its job in almost any environment, and the luxury of using JavaScript to **enhance** the service at will and without worries.
 
 Let’s try the principle on a service like Google Docs. The elements `textarea`, `input` and `form` are our foundation. They allow us to send data to a remote server which then saves it in a database, thus providing an access to the data from anywhere. With the basics built, nothing holds us from enhancing the basic experience. By sending the form automatically using AJAX when the content changes, the user doesn’t have to submit it manually every time. In the next round of enhancement, we save the data in `localStorage` so that it won’t get lost if the remote server is not available, and send it only after it’s back online. To finish, we could use *WebSocket* to allow for more users work with one document at the same time.
+
+{{< figures/quote >}}
+We offer all users — regardless of whether they have an old device or a browser — a functional service.
+{{< /figures/quote >}}
 
 If any of these enhancements fails, either due to a lack of browser-side support, poor connection, or JavaScript error, we know for sure that **users will still get the basic service**. In our example, storing the content in cloud is the most important thing and the enhancements are what distinguishes the service from similar ones.
 

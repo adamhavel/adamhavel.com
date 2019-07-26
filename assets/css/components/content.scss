@@ -78,9 +78,9 @@
     }
 
     > h2 {
-        font-size: 1.375rem;
-        font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-size: 1.325rem;
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
         margin-bottom: $lineHeight * .5rem;
         line-height: $lineHeight * 1rem;
 
@@ -90,11 +90,13 @@
     }
 
     > h3 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        font-variation-settings: 'wght' 600;
+        font-size: .9rem;
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
         line-height: $lineHeight * 1rem;
         margin-bottom: $lineHeight * .25rem;
+        text-transform: uppercase;
+        letter-spacing: .15em;
 
         &:not(:first-child) {
             margin-top: $lineHeight * 1.25rem;

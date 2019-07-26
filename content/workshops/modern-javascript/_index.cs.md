@@ -6,8 +6,8 @@ layout: single
 menu:
     main:
         parent: 'workshops'
-photoDesc: Fabian Grohs
-photoUrl: https://unsplash.com/photos/dC6Pb2JdAqs
+photoDesc: Brendan Church
+photoUrl: https://unsplash.com/photos/pKeF6Tt3c08
 ---
 
 *JavaScript* už dávno neslouží jen k psaní jednoduchých skriptů na webových stránkách. Je to moderní a flexibilní jazyk, jež vyniká velkou svobodou ve stylu programování a návrhu aplikace. To je paradoxně i jeho největší problém a důvod špatné pověsti – právě proto je dobré znát všechna jeho specifika, přednosti, ale i slabiny.

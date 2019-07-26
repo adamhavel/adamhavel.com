@@ -5,8 +5,8 @@ layout: single
 menu:
     main:
         parent: 'workshops'
-photoDesc: Fabian Grohs
-photoUrl: https://unsplash.com/photos/dC6Pb2JdAqs
+photoDesc: Brendan Church
+photoUrl: https://unsplash.com/photos/pKeF6Tt3c08
 ---
 
 JavaScript is no longer used just for writing simple website scripts. It's a modern and flexible language that stands out for the freedom it grants when it comes to programming style and application design. That is, paradoxically, also its biggest problem and one of the reasons for the bad reputation it often gets. But it's also a good reason for getting to know all its specifics, virtues and weaknesses.

@@ -25,6 +25,7 @@
         .header__image {
             width: 100%;
             object-fit: contain;
+            filter: grayscale(.25);
         }
 
         .header__caption {
@@ -34,12 +35,15 @@
             opacity: .4;
             font-size: .75em;
             letter-spacing: .05em;
-            xfont-style: italic;
-            color: $colorText;
             transition: opacity .3s;
 
             .header__image-container:hover & {
                 opacity: 1;
+            }
+
+            a {
+                color: $colorText;
+                text-decoration: none;
             }
         }
 

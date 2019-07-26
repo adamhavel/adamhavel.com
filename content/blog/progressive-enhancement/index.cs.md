@@ -20,6 +20,10 @@ Samozřejmě se musíme ptát, kolik uživatelů má potřebu vypínat JavaScrip
 
 Druhý typ problémů je zákeřnější: skript se sice stáhne, ale nevykoná. Čím to? JavaScript je komplikovaný jazyk, navíc bez statické kontroly typů. Není tedy divu, že často narazíme na chyby, které se projeví až za běhu. S tím se dá žít — a pokud ne, nic nám nebrání využít řešení typu TypeScript. Horší je to s podporou prohlížečů.
 
+{{< figures/quote >}}
+Hostitelské prostředí je kombinací zařízení, operačního systému a prohlížeče — z praktického pohledu tedy nekonečná množina. Je div, že naše aplikace vůbec někdy funguje!
+{{< /figures/quote >}}
+
 JavaScript je v programátorských kruzích častým terčem posměchu. Málokdo však dokáže docenit, v jak nepřátelském prostředí — tím myslím prohlížeč — musí JavaScript konat svou práci. Pokud vyvíjíme v Pythonu, máme jistotu, že aplikace poběží na serveru s danou verzí jazyka. V případě JavaScriptu (s výjimkou Node.js) nemáme jistoty žádné. Hostitelské prostředí je kombinací zařízení, operačního systému a prohlížeče — z praktického pohledu tedy nekonečná množina. Je div, že naše aplikace vůbec někdy funguje!
 
 ## Odolné technologie
@@ -106,6 +110,10 @@ Pokud ovšem kód z příkladu nerozšíříme, přijdeme o validaci dat, kterou
 Zpátky v bezpečí HTML: tušíme, že pomocí zmíněných metod — odkazů a formulářů — lze vytvořit základy webové služby. A právě z tohoto výchozího bodu se vydáme ve směru onoho tajemného principu postupného vylepšení (*progressive enhancement*) z nadpisu. Určíme takzvané „Minimum Viable Experience”: jaké metody musí služba **v každém případě** nabídnout, aby naplnila důvod své existence? Metody vytvoříme pomocí té nejjednodušší (tedy nejodolnější) možné technologie. Jedině pak máme **jistotu**, že služba — bez ohledu na hostitelské prostředí — zajistí svou základní funkci. A teprve tehdy si můžeme dovolit použít JavaScript, službu dál **vylepšovat** dle libosti, a přesto mít klidné spaní.
 
 Postup vyzkoušíme na aplikaci typu Google Docs. Základy postavíme na kombinaci elementů `textarea`, `input` a `form`, pomocí kterých odešleme data vzdálenému serveru, aby je uložil v databázi a zpřístupnil odkudkoliv. Máme-li tak základní funkci pojištěnou, nic nám nebrání zážitek vylepšovat. Ušetříme uživateli ruční schvalování formuláře a obsah při změně odešleme automaticky skrze AJAX. V dalším kole vylepšení obsah uložíme do `localStorage`, čímž zajistíme, že se neztratí v případě, kdy je server nedostupný, a odešle se, až když je server znovu k dispozici. Nakonec použijeme třeba *WebSocket* a umožníme více uživatelům spolupracovat v jeden moment nad jedním dokumentem.
+
+{{< figures/quote >}}
+Všem uživatelům — bez ohledu na to, zdali mají staré zařízení nebo prohlížeč — nabídneme funkční službu.
+{{< /figures/quote >}}
 
 Pokud kterékoliv z vylepšení selže, ať už z důvodu nedostatečné podpory na straně prohlížeče, špatnému připojení nebo chybě v JavaScriptu, víme s jistotou, že **uživatelé nepřijdou o základní funkce služby**. Tou je v našem příkladu uložení obsahu v cloudu, vylepšení je pak tím, co službu odlišuje od konkurence. Ta je ostatně dobrou motivací pro princip postupného vylepšení. Byť se totiž zdá, že jde o jednoduchou, ba triviální, metodu, málokterá webová služba naplňuje jeho podstatu. Pokud tedy využijeme příležitost a navrhneme odolnější aplikaci, získáme přirozenou výhodu. Další motivace tkví v tom, že všem uživatelům — bez ohledu na to, zdali mají staré zařízení nebo prohlížeč — nabídneme funkční službu. Běžný postup naopak velí, abychom vyšli z opačného konce, kterým je web závislý na JavaScriptu nebo konkrétním frameworku, a až v závěsu řešili, jak aplikaci přiblížit co největšímu počtu uživatelů — pomocí *fallbacků*, *polyfillů* a podobně. Z praktických důvodu však tímto směrem dřív nebo později dojdeme do bodu, kdy podpora přestane dávat smysl. Uživatelé, kteří jsou za hranicí této bubliny, mají smůlu.
 
