@@ -4,7 +4,7 @@
     <header class="article__header header">
 
         {{ with .Resources.GetMatch "thumb.*" }}
-            {{ $image := .Fill "1200x800 q75" }}
+            {{ $image := .Fill "1200x800 q50" }}
             <figure class="header__image-container">
                 <a href="{{ $.Page.Params.photoUrl }}" target="_blank">
                     <img class="header__image" src="{{ $image.Permalink }}" role="presentation">

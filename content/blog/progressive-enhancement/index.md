@@ -27,15 +27,76 @@ In light of the previous paragraphs, JavaScript rightly seems like a fragile tec
 
 Apart from being simple, HTML is declarative: we describe **what** we want to see or happen, and not **how** that happens. That reduces the chance of making an error. On top of that, HTML has another remarkable feature: when an error does occur, it is not followed by catastrophic failure.
 
-When a browser comes upon a HTML error[^1], for example an unknown element, it will ignore it and render the document anyway. If we instead chose XHTML, the evil twin of HTML, we would only get an error message. That’s why nobody sane uses it. But why is HTML relevant? Because we can use it to build the foundation of our web service, one that is resilient and reliable. In the world of front-end development, that is a remarkable thing.
+{{< figures/code >}}
+```html
+<html>
+  <head>
+    <title>HTML is resilient</title>
+    <meta name="author" value="Tim Berners-Lee">
+  </head>
+  <body>
+    <section>
+      <p>Lorem ipsum dolor sit emet.
+    </Section>
+  </body>
+</html>
+```
+{{< /figures/code >}}
+
+When a browser comes upon a HTML error{{< figures/code-ref >}}, for example an unknown element, it will ignore it and render the document anyway. If we instead chose XHTML, the evil twin of HTML, we would only get an error message. That’s why nobody sane uses it. But why is HTML relevant? Because we can use it to build the foundation of our web service, one that is resilient and reliable. In the world of front-end development, that is a remarkable thing.
 
 ## Links and forms
 
-From a browser's point of view, most websites stand on two pillars: navigation and communication. We navigate using *hyperlinks*, a declarative method of linking two documents together that we know as the humble, but powerful, links. The second pillar is communication between a browser and a remote server. Links can be used for that, too. However, if we want to send more than a simple data, we use a different method: forms[^2].
+{{< figures/code >}}
+```html
+<form action="/search" class="js-form">
+  <label for="search">Term</label>
+  <input
+    type="text"
+    id="search"
+    name="q"
+    required
+    pattern=".{3,}"
+  />
+  <label>
+    I'm feeling lucky
+    <input type="checkbox" name="lucky" />
+  </label>
+  <button>Search</button>
+</form>
+```
+{{< /figures/code >}}
+
+From a browser's point of view, most websites stand on two pillars: navigation and communication. We navigate using *hyperlinks*, a declarative method of linking two documents together that we know as the humble, but powerful, links. The second pillar is communication between a browser and a remote server. Links can be used for that, too. However, if we want to send more than a simple data, we use a different method: forms{{< figures/code-ref >}}.
 
 Form has a simple and **declarative** interface. First, there is the attribute `action`, which specifies the address where a remote server receives our data. Content belongs to `input` or` textarea`, whose `type`,` required` or `pattern` attributes limit what can be sent. The last necessary element is the `button` whose` type` — unless stated otherwise — is `submit`. It is used to, well, submit the form.
 
-We can **replace** the form basic functionality with one of our own and use JavaScript to **enhance** it with AJAX call[^3]. The point of no return occurs at the moment we click the `button`. By calling `ev.preventDefault()`, we stop the browser from following the standard procedure. What happens next is completely in our hands. At the very least, we have to manually extract data from the form, send it to the server and handle the response. Since it's an AJAX call and not a normal request, we expect the response to be in JSON format, not HTML, which we indicate using the HTTP header `Accept: 'application/json'`.
+{{< figures/code >}}
+```js
+let formEl = document.querySelector('.js-form');
+
+formEl.addEventListener('submit', function(ev) {
+  ev.preventDefault();
+
+  let body = new FormData(this);
+  let isLucky = body.get('lucky');
+
+  fetch(this.getAttribute('action'), {
+    method: 'POST', body,
+    headers: { Accept: 'application/json' }
+  })
+    .then(res => res.json())
+    .then(res => {
+      if (isLucky) {
+        return window.location(res[0].url);
+      }
+      ...
+    });
+});
+```
+{{< /figures/code >}}
+
+We can **replace** the form basic functionality with one of our own and use JavaScript to **enhance** it with AJAX call{{< figures/code-ref >}}. The point of no return occurs at the moment we click the `button`. By calling `ev.preventDefault()`, we stop the browser from following the standard procedure. What happens next is completely in our hands. At the very least, we have to manually extract data from the form, send it to the server and handle the response. Since it's an AJAX call and not a normal request, we expect the response to be in JSON format, not HTML, which we indicate using the HTTP header `Accept: 'application/json'`.
 
 However, if we leave the example as it is, we lose data validation. The browser would normally take care of it on its own based on our declarations on the `input` elements, but since we got cocky, we have to do it ourselves. In case of an error, we need to show some kind of message, too. That's when we start longing for the magic of simple and declarative code, because all of a sudden, we not only have to take care of **what** should happen, but also **how** that happens.
 
@@ -52,60 +113,3 @@ In fact, competition is a good incentive for embracing the principle of progress
 The principle of progressive enhancement is a simple method that relies on changing the way we design applications, rather than on specific technological solutions. And even though it looks like more work, the opposite is true. It gives us almost universal support in browsers and the certainty that the service won’t fall apart under the smallest pressure. The principle can be summarised in one sentence: use JavaScript, but don’t **rely** on it, and take advantage of the declarative methods offered by HTML. In practice, this means writing a **structured** and **semantically correct** document, not a “soup” of `div` elements that are by design without meaning and function.
 
 In following articles, we will focus on [how to handle JavaScript support in browsers](/blog/how-to-wrestle-with-browser-support/), and how to maintain the principle of progressive enhancement when using tools like React.
-
-
-[^1]:
-    ```html
-    <html>
-        <head>
-            <title>HTML is resilient</title>
-            <meta name="author" value="Tim Berners-Lee">
-        </head>
-        <body>
-            <section>
-                <p>Lorem ipsum dolor sit emet.
-            </Section>
-        </body>
-    </html>
-    ```
-
-[^2]:
-    ```html
-    <form action="/search" class="js-form">
-        <label for="search">Term</label>
-        <input
-            type="text"
-            id="search"
-            name="q"
-            required
-            pattern=".{3,}"
-        />
-        <label>
-            I'm feeling lucky
-            <input type="checkbox" name="lucky" />
-        </label>
-        <button>Search</button>
-    </form>
-    ```
-
-[^3]:
-    ```js
-    let formEl = document.querySelector('.js-form');
-
-    formEl.addEventListener('submit', function(ev) {
-        ev.preventDefault();
-
-        let body = new FormData(this);
-        let isLucky = body.get('lucky');
-
-        fetch(this.getAttribute('action'), {
-            method: 'POST', body,
-            headers: { Accept: 'application/json' }
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (isLucky) return window.location(res[0].url);
-                ...
-            });
-    });
-    ```

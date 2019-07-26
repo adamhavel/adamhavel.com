@@ -116,6 +116,7 @@ $galleryGap: 2.5vw;
 
         .gallery__image-container {
             display: block;
+            height: 100%;
             position: relative;
             transition: transform .3s, opacity .3s;
             transform-origin: bottom right;

@@ -1,0 +1,1 @@
+{{ $counterName := "codeRefCounter"}}{{ .Page.Scratch.Set $counterName (add (default 0 (.Page.Scratch.Get $counterName)) 1) }}{{ $counter := .Page.Scratch.Get $counterName }}<sup><a class="article__ref" id="backref-{{ $counter }}" href="#ref-{{ $counter }}">{{ .Page.Scratch.Get $counterName }}</a></sup>

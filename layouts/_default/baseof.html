@@ -58,7 +58,19 @@
             let el = document.querySelector(`[id='${window.location.hash.substr(1)}']`);
 
             if (el) {
-                console.log(el);
+                ev.preventDefault();
+                el.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'center'
+                });
+            }
+        });
+
+        window.addEventListener('load', function(ev) {
+            let el = document.querySelector(`[id='${window.location.hash.substr(1)}']`);
+
+            if (el) {
                 ev.preventDefault();
                 el.scrollIntoView({
                     behavior: 'smooth',

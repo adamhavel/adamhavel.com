@@ -17,6 +17,7 @@ Even though small in size, icons seem to occupy a lot of space in the collective
 
 A sprite is created by putting the icon shapes inside `symbol` elements in a SVG file. Symbols are used because unlike other SVG objects, they aren't rendered until you use them. Unless you want to create the sprite manually, you can use one of the many solutions available to automate the process, such as grunt-svgstore or gulp-svgsprite.
 
+{{< figures/code >}}
 ```xml
 <svg>
     <symbol viewBox="0 0 32 32" id="close">
@@ -28,6 +29,7 @@ A sprite is created by putting the icon shapes inside `symbol` elements in a SVG
     ...
 </svg>
 ```
+{{< /figures/code >}}
 
 To display an icon -- assuming we have the sprite ready and loaded (we’ll get to that) -- write an inline SVG containing a single `use` element which references the icon’s `id` using the `xlink:href` attribute. That’s the easy part.
 

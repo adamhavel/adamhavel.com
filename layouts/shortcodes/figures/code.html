@@ -1,0 +1,7 @@
+{{ $counterName := "codeCounter"}}
+{{ .Page.Scratch.Set $counterName (add (default 0 (.Page.Scratch.Get $counterName)) 1) }}
+{{ $counter := .Page.Scratch.Get $counterName }}
+<figure id="ref-{{ $counter }}" class="article__figure article__figure--code">
+    <a class="" href="#backref-{{ $counter }}">↪ {{ .Page.Scratch.Get $counterName }}</a>
+    {{ .Inner | markdownify }}
+</figure>

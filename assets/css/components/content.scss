@@ -42,7 +42,7 @@
         font-variation-settings: 'wght' 300;
         margin-bottom: $lineHeight * 1rem;
 
-        a {
+        a:not([class]) {
             display: inline-block;
             text-decoration: none;
             position: relative;
@@ -133,7 +133,10 @@
         font-variation-settings: 'wght' 500;
     }
 
-    code {}
+    code {
+        padding: 0 .075em;
+        letter-spacing: -.0125em;
+    }
 
     pre {
         word-wrap: break-word;

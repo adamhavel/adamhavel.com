@@ -28,15 +28,76 @@ Ve světle posledních odstavců se JavaScript poprávu jeví jako křehká tech
 
 Krom toho, že je jednoduché, je HTML deklarativní — popisujeme skrze něj, **co** se má zobrazit nebo stát a neřešíme, **jak** se to stane. Tím se snižuje prostor pro chyby. HTML má navíc další pozoruhodnou vlastnost: když už k chybě dojde, není následkem katastrofické selhání.
 
-Narazí-li prohlížeč na chybu v HTML[^1], třeba neznámý nebo neuzavřený element, zcela ji ignoruje a pokusí se obsah přesto vykreslit. Pokud bychom místo toho zvolili XHTML, zlé dvojče HTML, dostaneme ve stejném případě za trest místo obsahu jen výpis chyby. O použití XHTML však nikdo soudný neuvažuje. K čemu je nám tedy HTML dobré? Vytvoříme v něm základy našeho webu. A to základy, na které se lze vždy spolehnout — ve světě front-endu nevídaná věc.
+{{< figures/code >}}
+```html
+<html>
+  <head>
+    <title>HTML is resilient</title>
+    <meta name="author" value="Tim Berners-Lee">
+  </head>
+  <body>
+    <section>
+      <p>Lorem ipsum dolor sit emet.
+    </Section>
+  </body>
+</html>
+```
+{{< /figures/code >}}
+
+Narazí-li prohlížeč na chybu v HTML{{< figures/code-ref >}}, třeba neznámý nebo neuzavřený element, zcela ji ignoruje a pokusí se obsah přesto vykreslit. Pokud bychom místo toho zvolili XHTML, zlé dvojče HTML, dostaneme ve stejném případě za trest místo obsahu jen výpis chyby. O použití XHTML však nikdo soudný neuvažuje. K čemu je nám tedy HTML dobré? Vytvoříme v něm základy našeho webu. A to základy, na které se lze vždy spolehnout — ve světě front-endu nevídaná věc.
 
 ## Odkazy a formuláře
 
-Z pohledu prohlížeče spočívá většina webů na dvou pilířích: navigaci a komunikaci. K navigaci slouží *hyperlinky*, deklarativní metoda pro propojení dvou dokumentů, které známe jako skromné — ale mocné — odkazy. Druhým pilířem je komunikace mezi prohlížečem a vzdáleným serverem. I tuto roli zčásti zastupují odkazy. Pokud však serveru chceme poslat více než jen jednoduchá data, uplatníme jinou metodu: formulář[^2].
+{{< figures/code >}}
+```html
+<form action="/search" class="js-form">
+  <label for="search">Term</label>
+  <input
+    type="text"
+    id="search"
+    name="q"
+    required
+    pattern=".{3,}"
+  />
+  <label>
+    I'm feeling lucky
+    <input type="checkbox" name="lucky" />
+  </label>
+  <button>Search</button>
+</form>
+```
+{{< /figures/code >}}
+
+Z pohledu prohlížeče spočívá většina webů na dvou pilířích: navigaci a komunikaci. K navigaci slouží *hyperlinky*, deklarativní metoda pro propojení dvou dokumentů, které známe jako skromné — ale mocné — odkazy. Druhým pilířem je komunikace mezi prohlížečem a vzdáleným serverem. I tuto roli zčásti zastupují odkazy. Pokud však serveru chceme poslat více než jen jednoduchá data, uplatníme jinou metodu: formulář{{< figures/code-ref >}}.
 
 Formulář má jednoduché, **deklarativní** rozhraní. Prvním bodem je atribut `action`, který určuje adresu, na které vzdálený server přijme naše data. Obsah patří do elementů `input` nebo `textarea`, pomocí jejichž atributů `type`, `required` nebo `pattern` omezíme, co je možné odeslat. Posledním nutným prvkem je element `button`, jehož `type` — není-li řečeno jinak — je `submit`. Slouží tedy k odeslání formuláře.
 
-Funkci formuláře můžeme **nahradit** JavaScriptem a **vylepšit** o AJAX volání[^3]. Zlom nastane po odeslání formuláře kliknutím na `button`, kdy náš kód — pomocí `ev.preventDefault()` — zabrání běžnému chování prohlížeče. Následný postup je pak zcela v našich rukou, ale přinejmenším musíme z formuláře vytáhnout data, poslat je ručně na server a zpracovat odpověď. Jelikož jde o AJAX a ne běžný požadavek, odpověď čekáme ve formátu JSON, nikoliv HTML, což serveru naznačíme použitím HTTP hlavičky `Accept: 'application/json'`.
+{{< figures/code >}}
+```js
+let formEl = document.querySelector('.js-form');
+
+formEl.addEventListener('submit', function(ev) {
+  ev.preventDefault();
+
+  let body = new FormData(this);
+  let isLucky = body.get('lucky');
+
+  fetch(this.getAttribute('action'), {
+    method: 'POST', body,
+    headers: { Accept: 'application/json' }
+  })
+    .then(res => res.json())
+    .then(res => {
+      if (isLucky) {
+        return window.location(res[0].url);
+      }
+      ...
+    });
+});
+```
+{{< /figures/code >}}
+
+Funkci formuláře můžeme **nahradit** JavaScriptem a **vylepšit** o AJAX volání{{< figures/code-ref >}}. Zlom nastane po odeslání formuláře kliknutím na `button`, kdy náš kód — pomocí `ev.preventDefault()` — zabrání běžnému chování prohlížeče. Následný postup je pak zcela v našich rukou, ale přinejmenším musíme z formuláře vytáhnout data, poslat je ručně na server a zpracovat odpověď. Jelikož jde o AJAX a ne běžný požadavek, odpověď čekáme ve formátu JSON, nikoliv HTML, což serveru naznačíme použitím HTTP hlavičky `Accept: 'application/json'`.
 
 Pokud ovšem kód z příkladu nerozšíříme, přijdeme o validaci dat, kterou za nás v čistém HTML obstará prohlížeč na základě našich deklarací v podobě atributů na `input` elementech. Zdali jsou data ve správném formátu, musíme kontrolovat sami a v případě chyby ručně zobrazit i hlášení. Rychle si pak vzpomeneme na kouzlo jednoduchého a deklarativního kódu, protože najednou řešíme nejen **co** se má stát, ale i **jak** k tomu dojde.
 
@@ -51,61 +112,3 @@ Pokud kterékoliv z vylepšení selže, ať už z důvodu nedostatečné podpory
 Princip postupného vylepšení je jednoduchá metoda, která spíše než na konkrétním technologickém řešení spočívá ve **změně přístupu** při návrhu aplikace. A ač se zdá, že jde o více práce, opak je ve výsledku pravdou. Na oplátku totiž získáme v podstatě univerzální podporu v prohlížečích a jistotu, že se aplikace nerozpadne pod nejmenším tlakem. Princip lze shrnout do jednoho doporučení: používat JavaScript, ale **nespoléhat** na něj, a využít deklarativní prostředky, které nabízí HTML. V praxi to znamená **strukturovaný** a **sémanticky správný** dokument, a ne „guláš” `div` elementů, které jsou ze své podstaty bez významu a funkce.
 
 V dalších článcích se zaměříme na [praktický přístup k podpoře prohlížečů](/blog/jak-vyzrat-na-podporu-prohlizecu/), a na to, jak zachovat princip postupného vylepšení při použití nástrojů jako je React a jemu podobných.
-
-
-
-[^1]:
-    ```html
-    <html>
-        <head>
-            <title>HTML is resilient</title>
-            <meta name="author" value="Tim Berners-Lee">
-        </head>
-        <body>
-            <section>
-                <p>Lorem ipsum dolor sit emet.
-            </Section>
-        </body>
-    </html>
-    ```
-
-[^2]:
-    ```html
-    <form action="/search" class="js-form">
-        <label for="search">Term</label>
-        <input
-            type="text"
-            id="search"
-            name="q"
-            required
-            pattern=".{3,}"
-        />
-        <label>
-            I'm feeling lucky
-            <input type="checkbox" name="lucky" />
-        </label>
-        <button>Search</button>
-    </form>
-    ```
-
-[^3]:
-    ```js
-    let formEl = document.querySelector('.js-form');
-
-    formEl.addEventListener('submit', function(ev) {
-        ev.preventDefault();
-
-        let body = new FormData(this);
-        let isLucky = body.get('lucky');
-
-        fetch(this.getAttribute('action'), {
-            method: 'POST', body,
-            headers: { Accept: 'application/json' }
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (isLucky) return window.location(res[0].url);
-                ...
-            });
-    });
-    ```
