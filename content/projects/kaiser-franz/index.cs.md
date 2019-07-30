@@ -6,8 +6,8 @@ layout: branding
 menu:
     main:
         parent: 'projects'
-tags:
-    - web
+keywords:
+    - website
     - branding
 ---
 

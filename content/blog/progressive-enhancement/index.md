@@ -1,7 +1,7 @@
 ---
 title: Progressive Enhancement
 date: 2019-06-17
-tags:
+keywords:
     - web
     - front-end
 menu:
@@ -17,11 +17,11 @@ Since its inception, JavaScript, along with the whole internet, has come a long 
 
 Of course, there is the question of how many users actually turn off JavaScript in their browsers. You would be right if you guessed it was only an insignificant fraction. Unfortunately, there are other ways you can turn into a user without JavaScript: a page has downloaded, but not the script the website needs to run. That could happen for many reasons: request error, firewall, timeout, content manipulation on the side of your connection or hosting provider, or a browser extension like the AdBlock.
 
-We then stumble on a second type of problems: a script downloads but doesn’t execute. Why? JavaScript is a complicated language and on top of that, it has no static type check. So it's no surprise that we often make mistakes that will show up only at runtime. But we can live with that. And there is nothing holding us from using the likes of TypeScript if we can’t. But there is another reason this could happen and that reason is browser support.
-
 {{< figures/quote >}}
 The environment is a combination of a device, operating system, and browser. From a practical point of view, an infinite set. It's a wonder that our application ever works!
 {{< /figures/quote >}}
+
+We then stumble on a second type of problems: a script downloads but doesn’t execute. Why? JavaScript is a complicated language and on top of that, it has no static type check. So it's no surprise that we often make mistakes that will show up only at runtime. But we can live with that. And there is nothing holding us from using the likes of TypeScript if we can’t. But there is another reason this could happen and that reason is browser support.
 
 JavaScript is an easy and frequent target for mockery. Few, however, can appreciate the hostility of the hosting environment, the browser. When we work with language like Python, we are usually sure the application will execute on a server with some — but exact — version of the language. In the case of JavaScript (with the exemption of Node.js), there are no certainties. The environment is a combination of a device, operating system, and browser. From a practical point of view, an infinite set. It's a wonder that our application ever works!
 

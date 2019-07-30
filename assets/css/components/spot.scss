@@ -1,19 +1,26 @@
 .spot {
-    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: $gutter / 2;
-    align-items: flex-start;
+    align-items: start;
+    position: relative;
 
     &:not(:last-child) {
         margin-bottom: $lineHeight * 3rem;
+    }
+
+    &--small {
+        grid-template-columns: 1fr 2fr;
+
+        &:not(:last-child) {
+            margin-bottom: $lineHeight * 2rem;
+        }
     }
 }
 
     .spot__image-container {
         position: relative;
         background: rgba(black, .025);
-        height: 100%;
 
         &:after {
             content: '';
@@ -75,6 +82,10 @@
                 font-weight: 300;
                 font-variation-settings: 'wght' 300;
             }
+
+            .spot--small & {
+                font-size: .675em;
+            }
         }
 
             .spot__title {
@@ -98,12 +109,20 @@
             margin-top: $lineHeight * .75rem;
             font-family: $fontDisplay;
             line-height: 1.25;
+
+            .spot--small & {
+                font-size: 1.25em;
+            }
         }
 
         .spot__desc {
             font-weight: 300;
             font-variation-settings: 'wght' 300;
             margin-top: $lineHeight * .5rem;
+
+            .spot--small & {
+                font-size: .925em;
+            }
         }
 
         .spot__link {

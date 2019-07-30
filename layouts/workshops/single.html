@@ -28,6 +28,7 @@
             {{ $id := path.Dir .RelPermalink }}
             {{ $now := now.Format "2006-01-02" }}
             {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
+            {{ $workshops_in_language = .Site.Data.workshops }}
             {{ $relevant_workshops := where ($workshops_in_language) "id" $id }}
             {{ $upcoming_workshops := where ($relevant_workshops) "date" "ge" $now }}
             {{ $past_workshops := where ($relevant_workshops) "date" "lt" $now }}
@@ -44,7 +45,7 @@
                 {{ end }}
             </section>
 
-            <section class="workshops-dates">
+            <!-- <section class="workshops-dates">
                 <h2 class="workshops-dates__heading">Termíny</h2>
                 <ul class="workshops-dates__list">
                     {{ range $relevant_workshops }}
@@ -52,7 +53,7 @@
                         <li class="workshops-dates__item {{ if $is_past }}workshops-dates__item--past{{ end }}">{{ (time .date).Format (i18n "dateFormat") }}</li>
                     {{ end }}
                 </ul>
-            </section>
+            </section> -->
 
         </aside>
 

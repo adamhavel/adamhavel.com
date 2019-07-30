@@ -10,7 +10,7 @@ resources:
 menu:
     main:
         parent: 'projects'
-tags:
+keywords:
     - fotografie
 ---
 

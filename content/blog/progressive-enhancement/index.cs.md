@@ -2,7 +2,7 @@
 title: Princip postupného vylepšení
 slug: princip-postupneho-vylepseni
 date: 2019-06-17
-tags:
+keywords:
     - web
     - front-end
 menu:
@@ -18,11 +18,11 @@ Od svého zrodu prošel JavaScript, spolu s celým internetem, obrovským vývoj
 
 Samozřejmě se musíme ptát, kolik uživatelů má potřebu vypínat JavaScript, a správně tušíme, že malý zlomek. Skutečnost je ovšem složitější. Mezi uživatele bez JavaScriptu se totiž snadno zařadíme i jinak: stáhne se stránka, ale už ne skript, který web potřebuje pro svůj chod. Možných důvodů je spousta: chyba v požadavku, firewall, timeout („metro vjelo do tunelu”), manipulace na straně poskytovatele připojení či hostingu, nebo třeba rozšíření v prohlížeči typu AdBlock.
 
-Druhý typ problémů je zákeřnější: skript se sice stáhne, ale nevykoná. Čím to? JavaScript je komplikovaný jazyk, navíc bez statické kontroly typů. Není tedy divu, že často narazíme na chyby, které se projeví až za běhu. S tím se dá žít — a pokud ne, nic nám nebrání využít řešení typu TypeScript. Horší je to s podporou prohlížečů.
-
 {{< figures/quote >}}
 Hostitelské prostředí je kombinací zařízení, operačního systému a prohlížeče — z praktického pohledu tedy nekonečná množina. Je div, že naše aplikace vůbec někdy funguje!
 {{< /figures/quote >}}
+
+Druhý typ problémů je zákeřnější: skript se sice stáhne, ale nevykoná. Čím to? JavaScript je komplikovaný jazyk, navíc bez statické kontroly typů. Není tedy divu, že často narazíme na chyby, které se projeví až za běhu. S tím se dá žít — a pokud ne, nic nám nebrání využít řešení typu TypeScript. Horší je to s podporou prohlížečů.
 
 JavaScript je v programátorských kruzích častým terčem posměchu. Málokdo však dokáže docenit, v jak nepřátelském prostředí — tím myslím prohlížeč — musí JavaScript konat svou práci. Pokud vyvíjíme v Pythonu, máme jistotu, že aplikace poběží na serveru s danou verzí jazyka. V případě JavaScriptu (s výjimkou Node.js) nemáme jistoty žádné. Hostitelské prostředí je kombinací zařízení, operačního systému a prohlížeče — z praktického pohledu tedy nekonečná množina. Je div, že naše aplikace vůbec někdy funguje!
 

@@ -2,7 +2,7 @@
 title: Full Stack Fest 2018
 slug: full-stack-fest-2018
 date: 2019-01-03
-tags:
+keywords:
     - web
     - konference
 menu:
@@ -26,11 +26,11 @@ Narozdíl od předchozího roku se spolu s decentralizací automaticky nespojova
 Ať už mluvíme o mikroslužbách, distribuovaných databázích, blockchainu, nebo o čerstvém příslibu takzvaného „Webu 3.0“, decentralizaci se v budoucnu nevyhneme.
 {{< /figures/quote >}}
 
-Podobné téma, ale jiný úhel pohledu, [prezentovala Tara Vancil](https://youtu.be/raUE23RKLvE), která je součástí týmu kolem experimentálního [prohlížeče Beaker](https://beakerbrowser.com/). Ten sebevědomě cílí přímo na jeden ze základů internetu — protokol HTTP — a míní ho nahradit protokolem jménem [DAT](https://datproject.org/), který staví na principech peer-to-peer technologií. Podobně jako BitTorrent rozbíjí tradiční schéma server a klient, a nahrazuje ho komplexní sítí rovnocenných uzlů. Pokud chci přispět obsahem (třeba webovou stránkou) musím se do sítě zapojit a z počátku nechat svůj počítač figurovat jako „server“. Zajímavá část přichází, když si moje stránky zobrazí první návštěvníci. Tehdy se i oni stanou poskytovateli a web díky tomu existuje na několika různých místech, jejichž počet je odvozen od jeho oblíbenosti. Tím zaniká nutnost, aby můj počítač byl vždy připojen — dokud je k síti připojen alespoň jeden z uzlů, který si moje stránky zobrazil, jsou stále dostupné. Zároveň tak vzniká obsah, u kterého dramaticky vzrůstá odolnost vůči cenzuře. Vzpomeňme třeba na zákaz Wikipedie v Turecku nebo model centrálně kontrolovaného internetu v Číně.
+Podobné téma, ale jiný úhel pohledu, [přednášela Tara Vancil](https://youtu.be/raUE23RKLvE), která je součástí týmu kolem experimentálního [prohlížeče Beaker](https://beakerbrowser.com/). Ten sebevědomě cílí přímo na jeden ze základů internetu — protokol HTTP — a míní ho nahradit protokolem jménem [DAT](https://datproject.org/), který staví na principech peer-to-peer technologií. Podobně jako BitTorrent rozbíjí tradiční schéma server a klient, a nahrazuje ho komplexní sítí rovnocenných uzlů. Pokud chci přispět obsahem (třeba webovou stránkou) musím se do sítě zapojit a z počátku nechat svůj počítač figurovat jako „server“. Zajímavá část přichází, když si moje stránky zobrazí první návštěvníci. Tehdy se i oni stanou poskytovateli a web díky tomu existuje na několika různých místech, jejichž počet je odvozen od jeho oblíbenosti. Tím zaniká nutnost, aby můj počítač byl vždy připojen — dokud je k síti připojen alespoň jeden z uzlů, který si moje stránky zobrazil, jsou stále dostupné. Zároveň tak vzniká obsah, u kterého dramaticky vzrůstá odolnost vůči cenzuře. Vzpomeňme třeba na zákaz Wikipedie v Turecku nebo model centrálně kontrolovaného internetu v Číně.
 
 Smyslem Beakeru je umožnit běžnému uživateli takový obsah vytvářet a číst, a rozšířit povědomí o tomto alternativním pojetí internetu. Zároveň částečně skrývá komplexitu, která v takové decentralizované síti nutně vzniká a se kterou se jako tvůrci i uživatelé budeme potýkat čím dál častěji. Ať už mluvíme o mikroslužbách, distribuovaných databázích, blockchainu, nebo o čerstvém příslibu takzvaného „Webu 3.0“, decentralizaci se v budoucnu nevyhneme. Ve spojitosti s Beakerem mě mrzí jen jedna věc. Nepodporuje technologii velmi podobnou protokolu DAT, kterou je — možná o něco známější — protokol [IPFS](https://ipfs.io/).
 
-{{< figures/image "tara-vancil.jpg" "Tara Vancil" >}}
+{{< figures/image "tara-vancil.jpg" "Tara Vancil uvedla experimentální prohlížeč Beaker, jehož cílem je nabídnout internet, který nestaví na protokolu HTTP, ale na jeho peer-to-peer alternativě v podobě protokolu DAT." >}}
 
 ## Svatý grál optimalizace?
 

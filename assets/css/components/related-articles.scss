@@ -1,0 +1,30 @@
+.related-articles {
+
+}
+
+    .related-articles__heading {
+        font-family: $fontDisplay;
+        font-weight: 500;
+        margin-bottom: $lineHeight * 2rem;
+        font-size: 1.75rem;
+        xtext-align: center;
+        display: flex;
+        align-items: baseline;
+
+        &:after {
+            content: '';
+            display: inline-block;
+            height: .475em;
+            flex-grow: 1;
+            margin-left: .5em;
+            background: rgba(black, .05);
+        }
+    }
+
+    .related-articles__list {
+
+    }
+
+        .related-articles__item {
+
+        }

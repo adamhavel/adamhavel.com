@@ -2,7 +2,7 @@
 title: Ikony bez kompromisů?
 slug: ikony-bez-kompromisu
 date: 2018-11-22
-tags:
+keywords:
     - web
     - optimalizace
 menu:

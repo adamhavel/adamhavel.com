@@ -61,11 +61,12 @@
         }
 
         .header__meta {
-            letter-spacing: .25em;
-            font-weight: 500;
-            font-variation-settings: 'wght' 500;
+            letter-spacing: .325em;
+            font-weight: 400;
+            font-variation-settings: 'wght' 400;
             font-size: .875em;
             display: flex;
+            xtext-transform: uppercase;
 
             > *:not(:first-child):before {
                 display: inline-block;

@@ -18,7 +18,7 @@
         <header class="lede__header article__header">
             <div class="lede__meta">
                 <time class="lede__date">{{ .Date.Format (i18n "dateFormat") }}</time>
-                {{ with .Params.tags }}
+                {{ with .Keywords }}
                     <ul class="lede__tags">
                         {{ range . }}
                             <li>{{ . }}</li>

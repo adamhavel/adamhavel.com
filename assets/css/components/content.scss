@@ -27,9 +27,11 @@
 
         > p:first-child {
             font-size: 1.25em;
-            font-weight: 200;
-            font-variation-settings: 'wght' 200;
+            font-weight: 350;
+            font-variation-settings: 'wght' 350;
             margin-bottom: $lineHeight * 3rem;
+            xwidth: 50%;
+            xmargin-left: calc(50% + #{($gutter / 2)});
 
             &:first-letter {
                 font-size: 0;
@@ -78,25 +80,25 @@
     }
 
     > h2 {
-        font-size: 1.325rem;
-        font-weight: 500;
-        font-variation-settings: 'wght' 500;
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
         margin-bottom: $lineHeight * .5rem;
         line-height: $lineHeight * 1rem;
 
         &:not(:first-child) {
-            margin-top: $lineHeight * 2rem;
+            margin-top: $lineHeight * 2.5rem;
         }
     }
 
     > h3 {
-        font-size: .9rem;
-        font-weight: 500;
-        font-variation-settings: 'wght' 500;
+        font-size: .875rem;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
         line-height: $lineHeight * 1rem;
         margin-bottom: $lineHeight * .25rem;
         text-transform: uppercase;
-        letter-spacing: .15em;
+        letter-spacing: .2em;
 
         &:not(:first-child) {
             margin-top: $lineHeight * 1.25rem;

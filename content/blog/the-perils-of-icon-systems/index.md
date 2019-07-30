@@ -1,7 +1,7 @@
 ---
 title: The Perils of Icon Systems
 date: 2018-11-22
-tags:
+keywords:
     - web
     - optimizations
 menu:

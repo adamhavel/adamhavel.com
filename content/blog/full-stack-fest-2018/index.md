@@ -1,7 +1,7 @@
 ---
 title: Full Stack Fest 2018
 date: 2019-01-03
-tags:
+keywords:
     - web
     - conferences
 menu:
@@ -29,16 +29,16 @@ A similar topic, but a different point of view, was [presented by Tara Vancil](h
 
 The purpose of Beaker is to allow ordinary users to create and read such content, and to raise awareness of the alternative to the current internet. At the same time, it partially conceals the complexity that necessarily arises in decentralized networks. Whether we talk about microservices, distributed databases, blockchain, or the promise of the so-called "Web 3.0", we will increasingly face this complexity both as creators and users. There's one thing I regret regarding Beaker, though. It doesn't (yet) support the [IPFS protocol](https://ipfs.io/), which is very similar to DAT and perhaps more well-known.
 
-{{< figures/image "tara-vancil.jpg" "Tara Vancil" >}}
+{{< figures/image "tara-vancil.jpg" "Tara Vancil presented the experimental browser Beaker. Its purpose is to offer a version of the internet that is not based on the protocol HTTP, but on a peer-to-peer alternative called DAT." >}}
 
 ## The Holy Grail of optimization?
 
 From the front-end side of the fence, we got several contributions to the evergreen topic of optimization. And despite some innovations, it still rings true that it's a treacherous area, with just a few signs of elegant solutions here and there.
 
-The [talk from Patrick Hamann](https://youtu.be/ga_-zsTHRm8) was essential in this regard. Thanks to his work at Fastly, he showed us that the so-called HTTP server push is not as straighforward as we thought. In this, it was similar to an older [article by Jake Archibald](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/). Server push was one of the big promises of the HTTP2 protocol that would solve all our website loading problems. How to send all the files required for rendering a website to a client as fast as possible? The server knows exactly which files those are, but the client has to download the whole HTML document first in order to find out all the dependencies like styles or images. Server push theoretically allows sending all the dependecies at once based on just the one original request for the document. The problem, however, arises when we consider cache. It appears on several levels (memory, service worker, HTTP cache and the new push cache) and behaves differently in different browsers. As usual, the solution is not easy and is based on compromises. But in combination with current and future technologies like [Cache Digest](https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-04), [Early Hints](https://tools.ietf.org/html/rfc8297) or [preloading](https://w3c.github.io/preload/), it's still a big step forward.
+The [talk from Patrick Hamann](https://youtu.be/ga_-zsTHRm8) was essential in this regard. Thanks to his work at Fastly, he showed us that the so-called HTTP server push is not as straighforward as we thought. In this, it was similar to an older [article by Jake Archibald](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/). Server push was one of the big promises of the HTTP2 protocol that we hoped would solve all our website loading problems. How to send all the files required for rendering a website to a client as fast as possible? The server knows exactly which files those are, but the client has to download the whole HTML document first in order to find out all the dependencies like styles or images. Server push theoretically allows sending all the dependecies at once based on just the one original request for the document. The problem, however, arises when we consider cache. It appears on several levels (memory, service worker, HTTP cache and the new push cache) and behaves differently in different browsers. As usual, the solution is not easy and is based on compromises. But in combination with current and future technologies like [Cache Digest](https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-04), [Early Hints](https://tools.ietf.org/html/rfc8297) or [preloading](https://w3c.github.io/preload/), it's still a big step forward.
 
 {{< figures/quote >}}
-Server push was one of the big promises of the HTTP2 protocol that would solve all our website loading problems.
+Server push was one of the big promises of the HTTP2 protocol that we hoped would solve all our website loading problems.
 {{< /figures/quote >}}
 
 In the uplifting [presentation on native modules in JavaScript](https://youtu.be/O4r9D2jI0_w), Serg Hospodarets demonstrated we can already try testing modules in production environment. We can't toss out transpilation and bundling yet, but thanks to the `nomodule` directive, we can at least send significantly less data to those browsers that support modules and HTTP2 multiplexing. No directive, however, can help us when dealing with the so far insufficient support for dynamic module loading.

@@ -29,6 +29,7 @@
 
     {{ $now := now.Format "2006-01-02" }}
     {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
+    {{ $workshops_in_language = .Site.Data.workshops }}
     {{ $upcoming_workshops := where ($workshops_in_language) "date" "ge" $now }}
 
     <div class="section__layout">
@@ -72,7 +73,9 @@
                         <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
                     </ul>
                     <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
-                    <p class="workshop-info__desc">Registraci a organizaci zajišťuje Root.cz.</p>
+                    {{ if (hasPrefix .url "https://www.root.cz") }}
+                        <p class="workshop-info__desc">Registraci a organizaci zajišťuje Root.cz.</p>
+                    {{ end }}
                 {{ end }}
             </section>
 

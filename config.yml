@@ -5,7 +5,15 @@ pygmentsCodefences: true
 pygmentsUseClasses: true
 pygmentsStyle: github
 
-footnoteReturnLinkContents: ' '
+related:
+  threshold: 80
+  includeNewer: true
+  toLower: false
+  indices:
+  - name: keywords
+    weight: 100
+  - name: date
+    weight: 10
 
 languages:
   en:

@@ -6,8 +6,6 @@
   soldout: false
   lang: cs
   price: 5 100 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2018-09-21
   id: /workshops/modern-javascript
@@ -17,8 +15,6 @@
   soldout: false
   lang: cs
   price: 5 100 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-01-16
   id: /workshops/modern-javascript
@@ -28,8 +24,6 @@
   soldout: false
   lang: cs
   price: 5 100 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-02-04
   id: /workshops/practical-javascript
@@ -39,8 +33,6 @@
   soldout: false
   lang: cs
   price: 5 100 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-05-06
   id: /workshops/modern-javascript
@@ -50,8 +42,6 @@
   soldout: true
   lang: cs
   price: 5 100 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-05-07
   id: /workshops/practical-javascript
@@ -61,8 +51,6 @@
   soldout: true
   lang: cs
   price: 5 100 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-08-19
   id: /workshops/modern-javascript
@@ -72,8 +60,6 @@
   soldout: false
   lang: cs
   price: 5 700 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-08-20
   id: /workshops/practical-javascript
@@ -83,8 +69,6 @@
   soldout: false
   lang: cs
   price: 5 700 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-10-21
   id: /workshops/modern-javascript
@@ -94,8 +78,6 @@
   soldout: false
   lang: cs
   price: 5 700 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-10-22
   id: /workshops/practical-javascript
@@ -105,8 +87,6 @@
   soldout: false
   lang: cs
   price: 5 700 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-12-09
   id: /workshops/modern-javascript
@@ -116,8 +96,6 @@
   soldout: false
   lang: cs
   price: 5 700 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript
 
 - date: 2019-12-10
   id: /workshops/practical-javascript
@@ -127,5 +105,3 @@
   soldout: false
   lang: cs
   price: 5 700 Kč <em>bez DPH</em>
-  tags:
-    - JavaScript

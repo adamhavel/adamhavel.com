@@ -1,8 +1,11 @@
 {{ $url := .Get 0 }}
 {{ $caption := .Get 1 }}
 {{ with .Page.Resources.GetMatch $url }}
-    {{ $image := .Fill "1200x600 q50" }}
-    <figure class="article__figure article__figure--image">
-        <img src="{{ $image.Permalink }}" alt="{{ $caption }}">
+    {{ $image := .Fill "1200x800 q50" }}
+    <figure class="article__figure article__figure--image figure">
+        <div class="figure__image-container">
+            <img class="figure__image" src="{{ $image.Permalink }}" alt="{{ $caption }}">
+        </div>
+        <figcaption class="figure__caption">{{ $caption }}</figcaption>
     </figure>
 {{ end }}

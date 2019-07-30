@@ -1,7 +1,7 @@
 ---
 title: How to Wrestle with Browser Support
 date: 2019-06-26
-tags:
+keywords:
     - web
     - front-end
 menu:
@@ -106,7 +106,7 @@ After we decide on our target group, we'll add a simple condition into our appli
 
 For example, let's make a component with the class `.accordion` and the following structure: a heading, which is also a `button`, and under it, a content that is hidden by default and shows only after clicking the button{{< figures/code-ref >}}. A common method is to hide the content, perhaps with `display: none`, and reveal it with the help of JavaScript by adding the class `.is-active` to the component{{< figures/code-ref >}}. If, however, the script fails to load for any reason, the content is lost forever (or until we fix the problem). That's why we use the `.js` class and rewrite the component's styles so that the logic is reversed: the content is visible and hides only if we are certain the script is running{{< figures/code-ref >}}. It's a trivial change with a major impact, truly in the spirit of the [progressive enhancement](/blog/progressive-enhancement/).
 
-## *Polyfilling*
+## Polyfilling
 
 {{< figures/code >}}
 ```js
@@ -192,7 +192,7 @@ reqPolyfills.forEach(({ src }) => {
 
 We could let the `scout.js` script pick which *polyfill* to load. For each of them, it would ask whether it’s needed, and act accordingly. After all necessary *polyfills* had loaded, the rest of the application would be requested{{< figures/code-ref >}}. But, since *Promise* is one of the APIs we are *polyfilling*, we can’t enjoy the conveniency of `Promise.all` and need to implement our own — and very naive — solution based on the `counter` variable. When `counter === 0` turns true, we can finally use `fetch` without worry.
 
-## *Transpilation*
+## Transpilation
 
 {{< figures/code >}}
 ```js

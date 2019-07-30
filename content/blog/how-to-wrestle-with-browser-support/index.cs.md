@@ -2,7 +2,7 @@
 title: Jak vyzrát na podporu prohlížečů
 slug: jak-vyzrat-na-podporu-prohlizecu
 date: 2019-06-26
-tags:
+keywords:
     - web
     - front-end
 menu:
@@ -107,7 +107,7 @@ Máme-li jasno v cílové skupině, v naší aplikaci (nazvěme ji `app.js`) nav
 
 Navrhneme komponentu s třídou `.accordion` a následující strukturou: nadpis, který je zároveň `button`, a pod ním obsah, jež je z počátku schován a který se zobrazí až po kliknutí na tlačítko{{< figures/code-ref >}}. Běžný postup velí obsah skrýt, třeba pomocí `display: none`, a rozbalit jej až tehdy, kdy pomocí JavaScriptu přidáme komponentě třídu `.is-active`{{< figures/code-ref >}}. Ovšem v případě, že se potřebný skript z jakéhokoliv důvodu nenačte, je obsah najednou zcela nedostupný. Proto využijeme zmíněnou třídu `.js` a styly přepíšeme tak, že se logika obrátí: obsah je v základu rozbalený a skryje se pouze tehdy, kdy víme, že ovládací skript běží{{< figures/code-ref >}}. Jde o triviální změnu, ale se zásadním dopadem — tedy zcela v duchu [principu postupného vylepšení](/blog/princip-postupneho-vylepseni/).
 
-## *Polyfilling*
+## Polyfilling
 
 {{< figures/code >}}
 ```js
@@ -188,7 +188,7 @@ reqPolyfills.forEach(({ src }) => {
 
 Jedno z možných spočívá v rozšíření `scout.js` o logiku nahrávání *polyfillů*. U každého z nich se zeptáme, zdali je potřeba, a pokud ano, pak jej stáhneme. Když máme jistotu, že jsou všechny nutné knihovny načteny, stáhneme i zbytek aplikace{{< figures/code-ref >}}. Jelikož v tomto příkladě jeden z *polyfillů* předpokládá chybějící podporu pro *Promise*, nemůžeme pro kontrolu načtení knihoven použít příhodné `Promise.all`, ale musíme implementovat vlastní (velmi naivní) řešení postavené na proměnné `counter`. V momentě, kdy dojde ke splnění podmínky `counter === 0`, víme s jistotou, že lze použít `fetch`.
 
-## *Transpilace*
+## Transpilace
 
 {{< figures/code >}}
 ```js

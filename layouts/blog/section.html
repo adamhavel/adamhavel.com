@@ -40,7 +40,7 @@
                 <div class="spot__content">
                     <header class="spot__header">
                         <time class="spot__date">{{ .Date.Format (i18n "dateFormat") }}</time>
-                        {{ with .Params.tags }}
+                        {{ with .Keywords }}
                             <ul class="spot__tags tags">
                                 {{ range . }}
                                     <li>{{ . }}</li>

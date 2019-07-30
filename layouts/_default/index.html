@@ -15,7 +15,7 @@
                 {{ with (index .Pages 0) }}
                     <header class="card__header">
                         <h2 class="card__title">{{ i18n "latestProject" }}</h2>
-                        {{ with .Params.tags }}
+                        {{ with .Keywords }}
                             <ul class="card__tags tags">
                                 {{ range . }}
                                     <li>{{ . }}</li>
