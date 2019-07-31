@@ -5,7 +5,7 @@
     <link rel="preload" href="fonts/ibm-plex-sans.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/jost.woff2" as="font" type="font/woff2" crossorigin>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0">
-    <title>{{ if .Page.Title }}{{ .Page.Title }} — Adam Havel{{ else }}Adam Havel{{ end }}</title>
+    <title>{{ if .Page.Title }}{{ .Page.Title }} — Adam Havel{{ else }}Adam Havel — developer & designer{{ end }}</title>
     {{ if .IsTranslated }}
         {{ range .Translations }}
             <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">

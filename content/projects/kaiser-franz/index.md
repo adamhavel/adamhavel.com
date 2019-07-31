@@ -2,7 +2,6 @@
 title: Kaiser Franz
 type: projects
 date: 2019-05-13
-layout: branding
 menu:
     main:
         parent: 'projects'

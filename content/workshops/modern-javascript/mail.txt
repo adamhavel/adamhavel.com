@@ -1,0 +1,17 @@
+Dobrý den,
+příští úterý nás čeká školení “Moderní JavaScript” a proto Vám s předstihem píšu ohledně dvou důležitých informací (a jedné žádosti).
+
+Kurz se sice koná v počítačové učebně, ale přesto Vám doporučuji — je-li to možné — vzít si s sebou vlastní notebook. Pokud by to byl problém, dejte mi prosím vědět, ať můžu dopředu vyřešit případné potíže s počítači v učebně. S tím souvisí moje další prosba, a to sice abyste na Vašem zařízení měli nainstalovaný některý z běžných prohlížečů (ať už Firefox, Edge, Safari nebo Chrome), pokud možno v nejnovější verzi.
+
+A nakonec Vás chci požádat ještě o jednu věc. Abych se mohl lépe připravit na úterní školení, hodila by se mi alespoň hrubá představa o Vašich předchozích zkušenostech, ať už s JavaScriptem nebo jinými jazyky. Pokud Vám to nevadí, vyplňte prosím dotazy na konci tohoto mailu a pošlete mi je zpátky jako odpověď. Odpovídejte na co chcete, jak chcete (ať už slovně nebo číselně) a v jakémkoliv rozsahu uznáte za vhodné.
+
+- Jaké jsou Vaše zkušenosti s programováním obecně (konkrétní jazyky, praxe, studium, ap.)?
+- Jaké jsou Vaše zkušenosti s JavaScriptem?
+- Co Vás vedlo k tomu přihlásit se na školení (zájem, zaměstnání, ap.)? 
+- Co očekáváte, že Vám školení přinese?
+
+Děkuji,
+Adam Havel
+
+
+
