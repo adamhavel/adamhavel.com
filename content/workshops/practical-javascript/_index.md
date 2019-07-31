@@ -1,6 +1,5 @@
 ---
 title: Practical JavaScript
-type: workshops
 layout: single
 menu:
     main:

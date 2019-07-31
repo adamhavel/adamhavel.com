@@ -1,7 +1,7 @@
 ---
 title: Praktický JavaScript
 slug: prakticky-javascript
-type: workshops
+url: '/skoleni/prakticky-javascript/'
 layout: single
 menu:
     main:

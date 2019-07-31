@@ -1,7 +1,7 @@
 ---
 title: Moderní JavaScript
 slug: moderni-javascript
-type: workshops
+url: '/skoleni/moderni-javascript/'
 layout: single
 menu:
     main:
