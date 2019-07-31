@@ -1,39 +1,39 @@
 {{ define "main" }}
 <div class="section">
 
-    <section class="section__content">
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+        <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.1 0.2" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
+        </filter>
+        <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.02 0.08" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
+        </filter>
+        <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
-            <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-                <feTurbulence baseFrequency="0.1 0.2" result="f1" numOctaves="3" />
-                <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
-            </filter>
-            <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-                <feTurbulence baseFrequency="0.02 0.08" result="f1" numOctaves="3" />
-                <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
-            </filter>
-            <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
 
-                <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
+            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
+                <feDistantLight azimuth="45" elevation="80" />
+            </feDiffuseLighting>
 
-                <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
-                    <feDistantLight azimuth="45" elevation="80" />
-                </feDiffuseLighting>
+            <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
 
-                <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
+            <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
 
-                <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
+        </filter>
+    </svg>
 
-            </filter>
-        </svg>
+    <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
 
-        <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
+    <main class="section__layout section__layout--grid">
 
         {{ range .Pages }}
             <section class="spot">
-                {{ with .Resources.GetMatch "thumb*" }}
-                    {{ $image := .Fill "600x450 q75" }}
-                    <div class="spot__image-container">
+                {{ with .Resources.GetMatch "thumb.*" }}
+                    {{ $image := .Fill "600x800 center q50" }}
+                    <div class="spot__image-container spot__image-container--vertical">
                         <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">
                     </div>
                 {{ end }}
@@ -41,7 +41,7 @@
                     <header class="spot__header">
                         <time class="spot__date">{{ .Date.Format (i18n "dateFormat") }}</time>
                         {{ with .Keywords }}
-                            <ul class="lede__tags">
+                            <ul class="spot__tags tags">
                                 {{ range . }}
                                     <li>{{ . }}</li>
                                 {{ end }}
@@ -49,13 +49,13 @@
                         {{ end }}
                     </header>
                     <h3 class="spot__heading">{{ .Title }}</h3>
-                    <p class="spot__desc">{{ .Summary | plainify }}</p>
+                    <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
                     <a href="{{ .Permalink }}" class="spot__link"></a>
                 </div>
             </section>
         {{ end }}
 
-    </section>
+    </main>
 
 </div>
 {{ end }}

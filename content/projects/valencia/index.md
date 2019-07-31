@@ -1,17 +1,16 @@
 ---
 title: València
-slug: valencia
 type: projects
 date: 2014-01-28
 layout: gallery
 resources:
-    - name: thumb
+    - name: thumb.jpg
       src: img/01.jpg
 menu:
     main:
         parent: 'projects'
 keywords:
-    - fotografie
+    - photography
 ---
 
-Různé tváře Valèncie z doby, kdy jsem měl možnost v tomto španělském městě na malou chvíli žít a studovat. A přestože je Valèncie známá především díky velkolepému – a fotogenickému – projektu od architekta Santiaga Calatravy, zvídavému návštěvníkovi nabídne o mnoho více.
+Different faces of València, taken at the time when I had the fleeting opportunity to live and study in this Spanish city. València is known mainly for its magnificent and photogenic project by the architect Santiago Calatrava, but – if you make the effort – it offers much more than that.

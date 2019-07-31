@@ -1,5 +1,5 @@
 ---
-title: Progressive Enhancement
+title: The Art of Progressive Enhancement
 date: 2019-06-17
 keywords:
     - web

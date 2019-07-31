@@ -25,7 +25,7 @@
     <div class="workshop__layout">
 
         <aside class="workshop__aside">
-            {{ $id := path.Base .Dir }}
+            {{ $id := path.Base .File.Dir }}
             {{ $now := now.Format "2006-01-02" }}
             {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
             {{ $workshops_in_language = .Site.Data.workshops }}

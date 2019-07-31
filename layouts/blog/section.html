@@ -33,7 +33,7 @@
             <section class="spot">
                 {{ with .Resources.GetMatch "thumb.*" }}
                     {{ $image := .Fill "600x800 center q50" }}
-                    <div class="spot__image-container">
+                    <div class="spot__image-container spot__image-container--vertical">
                         <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">
                     </div>
                 {{ end }}

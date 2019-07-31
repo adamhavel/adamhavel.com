@@ -48,7 +48,7 @@
             {{ $upcoming_workshops := where .Site.Data.workshops "date" "ge" (now.Format "2006-01-02") }}
             {{ $upcoming_workshop := index (where ($upcoming_workshops) "lang" (print .Language)) 0 }}
             {{ $upcoming_workshop = index $upcoming_workshops 0 }}
-            {{ with .GetPage (print $upcoming_workshop.id) }}
+            {{ with .GetPage (path.Join "workshops" $upcoming_workshop.id) }}
                 <header class="card__header">
                     <h2 class="card__title">{{ i18n "upcomingWorkshop" }}</h2>
                     <time class="card__date">{{ (time $upcoming_workshop.date).Format (i18n "dateFormat") }}</time>

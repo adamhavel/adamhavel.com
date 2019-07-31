@@ -46,7 +46,7 @@
                     {{ end }}
                     <div class="spot__content">
                         <header class="spot__header">
-                            {{ $id := path.Base .Dir }}
+                            {{ $id := path.Base .File.Dir }}
                             {{ $relevant_workshops := where ($upcoming_workshops) "id" $id }}
                             {{ with index $relevant_workshops 0 }}
                                 <p class="spot__title">{{ i18n "nextDate" }}</p>

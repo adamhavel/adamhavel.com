@@ -9,7 +9,7 @@
             </header>
         </div>
 
-        {{ range $index, $image := union (.Resources.Match "thumb") (.Resources.Match "img/*") }}
+        {{ range $index, $image := union (.Resources.Match "thumb.jpg") (.Resources.Match "img/*") }}
             {{ $is_large_thumb := eq (mod $index 6) 0 }}
             {{ $thumb := cond $is_large_thumb ($image.Resize "1600x q75") ($image.Resize "800x q75") }}
             {{ $is_vertical := gt $image.Height $image.Width }}
@@ -22,7 +22,7 @@
 
         <div class="gallery__item gallery__item--meta">
             <footer class="gallery__footer content">
-                <p class="gallery__license">Všechny fotografie jsou chráněny autorským zákonem a licencí <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.cs">CC BY-NC-SA 4.0</a>. V případě, že byste fotografie chtěli použít nad rámec licence, neváhejte mi <a href="mailto:adam.havel@protonmail.com">napsat</a>.</p>
+                <p class="gallery__license">{{ i18n "photosLicense" | safeHTML }}</p>
             </footer>
         </div>
 
