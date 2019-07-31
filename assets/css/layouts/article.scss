@@ -61,7 +61,6 @@
                 font-size: 1.75em;
                 font-weight: 350;
                 text-align: right;
-                line-height: 1.5;
 
                 &:before {
                     content: '';
@@ -74,9 +73,7 @@
                     opacity: .075;
                 }
 
-                blockquote {
-                    xpadding-right: $gutter / 2;
-                }
+                blockquote {}
             }
 
             &--code {

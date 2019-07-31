@@ -9,3 +9,27 @@ other = "Poslední článek"
 
 [upcomingWorkshop]
 other = "Příští školení"
+
+[nextDate]
+other = "Příští termín"
+
+[date]
+other = "Termín"
+
+[price]
+other = "Cena"
+
+[venue]
+other = "Místo konání"
+
+[register]
+other = "Registrovat"
+
+[excVAT]
+other = "bez DPH"
+
+[rootNote]
+other = "Registraci a organizaci zajišťuje Root.cz."
+
+[relatedArticles]
+other = "Související články"

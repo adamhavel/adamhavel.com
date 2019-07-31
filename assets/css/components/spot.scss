@@ -10,7 +10,7 @@
     }
 
     &--small {
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 3fr;
 
         &:not(:last-child) {
             margin-bottom: $lineHeight * 2rem;
@@ -112,6 +112,7 @@
 
             .spot--small & {
                 font-size: 1.25em;
+                margin-top: $lineHeight * .5rem;
             }
         }
 
@@ -121,7 +122,8 @@
             margin-top: $lineHeight * .5rem;
 
             .spot--small & {
-                font-size: .925em;
+                font-size: .875em;
+                margin-top: $lineHeight * .25rem;
             }
         }
 

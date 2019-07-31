@@ -5,7 +5,7 @@
   url: https://www.root.cz/skoleni/termin/moderni-js-2/registrace/
   soldout: false
   lang: cs
-  price: 5 100 Kč <em>bez DPH</em>
+  price: 5 100 Kč
 
 - date: 2018-09-21
   id: /workshops/modern-javascript
@@ -14,7 +14,7 @@
   url: https://www.root.cz/skoleni/termin/moderni-js-3/registrace/
   soldout: false
   lang: cs
-  price: 5 100 Kč <em>bez DPH</em>
+  price: 5 100 Kč
 
 - date: 2019-01-16
   id: /workshops/modern-javascript
@@ -23,7 +23,7 @@
   url: https://www.root.cz/skoleni/termin/moderni-js-5/registrace/
   soldout: false
   lang: cs
-  price: 5 100 Kč <em>bez DPH</em>
+  price: 5 100 Kč
 
 - date: 2019-02-04
   id: /workshops/practical-javascript
@@ -32,7 +32,7 @@
   url: https://www.root.cz/skoleni/termin/prakticky-javascript/registrace/
   soldout: false
   lang: cs
-  price: 5 100 Kč <em>bez DPH</em>
+  price: 5 100 Kč
 
 - date: 2019-05-06
   id: /workshops/modern-javascript
@@ -41,7 +41,7 @@
   url: https://www.root.cz/skoleni/termin/moderni-jas-1/registrace/
   soldout: true
   lang: cs
-  price: 5 100 Kč <em>bez DPH</em>
+  price: 5 100 Kč
 
 - date: 2019-05-07
   id: /workshops/practical-javascript
@@ -50,7 +50,7 @@
   url: https://www.root.cz/skoleni/termin/prakticky-javs-1/registrace/
   soldout: true
   lang: cs
-  price: 5 100 Kč <em>bez DPH</em>
+  price: 5 100 Kč
 
 - date: 2019-08-19
   id: /workshops/modern-javascript
@@ -59,7 +59,7 @@
   url: https://www.root.cz/skoleni/termin/moderni-javasc-1/registrace/
   soldout: false
   lang: cs
-  price: 5 700 Kč <em>bez DPH</em>
+  price: 5 700 Kč
 
 - date: 2019-08-20
   id: /workshops/practical-javascript
@@ -68,7 +68,7 @@
   url: https://www.root.cz/skoleni/termin/prakticky-javascript-2/registrace/
   soldout: false
   lang: cs
-  price: 5 700 Kč <em>bez DPH</em>
+  price: 5 700 Kč
 
 - date: 2019-10-21
   id: /workshops/modern-javascript
@@ -77,7 +77,7 @@
   url: https://www.root.cz/skoleni/termin/moderni-javascript-2/registrace/
   soldout: false
   lang: cs
-  price: 5 700 Kč <em>bez DPH</em>
+  price: 5 700 Kč
 
 - date: 2019-10-22
   id: /workshops/practical-javascript
@@ -86,7 +86,7 @@
   url: https://www.root.cz/skoleni/termin/prakticky-javascript-3/registrace/
   soldout: false
   lang: cs
-  price: 5 700 Kč <em>bez DPH</em>
+  price: 5 700 Kč
 
 - date: 2019-12-09
   id: /workshops/modern-javascript
@@ -95,7 +95,7 @@
   url: https://www.root.cz/skoleni/termin/moderni-javascript-3/registrace/
   soldout: false
   lang: cs
-  price: 5 700 Kč <em>bez DPH</em>
+  price: 5 700 Kč
 
 - date: 2019-12-10
   id: /workshops/practical-javascript
@@ -104,4 +104,4 @@
   url: https://www.root.cz/skoleni/termin/prakticky-javascript-4/registrace/
   soldout: false
   lang: cs
-  price: 5 700 Kč <em>bez DPH</em>
+  price: 5 700 Kč

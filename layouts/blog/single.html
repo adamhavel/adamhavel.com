@@ -35,12 +35,12 @@
 
         {{ with .Site.RegularPages.Related . | first 3 }}
             <aside class="article__related-articles related-articles">
-                <h2 class="related-articles__heading">Souvisejicí články</h2>
+                <h2 class="related-articles__heading">{{ i18n "relatedArticles" }}</h2>
                 <ul class="related-articles__list">
                     {{ range . }}
                         <li class="related-articles__item spot spot--small">
                             {{ with .Resources.GetMatch "thumb.*" }}
-                                {{ $image := .Fill "600x600 center q75" }}
+                                {{ $image := .Fill "400x400 center q75" }}
                                 <div class="spot__image-container">
                                     <img class="spot__image" src="{{ $image.Permalink }}" role="presentation">
                                 </div>

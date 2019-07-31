@@ -49,7 +49,7 @@
                             {{ $id := path.Dir .RelPermalink }}
                             {{ $relevant_workshops := where ($upcoming_workshops) "id" $id }}
                             {{ with index $relevant_workshops 0 }}
-                                <p class="spot__title">Příští termín</p>
+                                <p class="spot__title">{{ i18n "nextDate" }}</p>
                                 <time class="spot__date">{{ (time .date).Format (i18n "dateFormat") }}</time>
                             {{ end }}
                         </header>
@@ -67,14 +67,14 @@
             <section class="box workshop-info">
                 {{ with index $upcoming_workshops 0 }}
                     <ul class="workshop-info__list">
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Příští školení</strong> {{ ($.GetPage (print .id)).Title }}</li>
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "upcomingWorkshop" }}</strong> {{ ($.GetPage (print .id)).Title }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "date" }}</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "venue" }}</strong> {{ .location | safeHTML }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "price" }}</strong> {{ .price | safeHTML }} <em>{{ i18n "excVAT" }}</em></li>
                     </ul>
-                    <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
+                    <a href="{{ .url }}" class="button workshop-info__register">{{ i18n "register" }}</a>
                     {{ if (hasPrefix .url "https://www.root.cz") }}
-                        <p class="workshop-info__desc">Registraci a organizaci zajišťuje Root.cz.</p>
+                        <p class="workshop-info__desc">{{ i18n "rootNote" }}</p>
                     {{ end }}
                 {{ end }}
             </section>

@@ -36,12 +36,12 @@
             <section class="box workshop-info">
                 {{ with index $upcoming_workshops 0 }}
                     <ul class="workshop-info__list">
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Nejbližší termín</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Místo konání</strong> {{ .location | safeHTML }}</li>
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">Cena</strong> {{ .price | safeHTML }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "nextDate" }}</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "venue" }}</strong> {{ .location | safeHTML }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "price" }}</strong> {{ .price | safeHTML }} <em>{{ i18n "excVAT" }}</em></li>
                     </ul>
-                    <a href="{{ .url }}" class="button workshop-info__register">Registrovat</a>
-                    <p class="workshop-info__desc">Registraci a organizaci zajišťuje Root.cz.</p>
+                    <a href="{{ .url }}" class="button workshop-info__register">{{ i18n "register" }}</a>
+                    <p class="workshop-info__desc">{{ i18n "rootNote" }}</p>
                 {{ end }}
             </section>
 

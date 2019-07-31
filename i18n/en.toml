@@ -9,3 +9,27 @@ other = "Latest article"
 
 [upcomingWorkshop]
 other = "Upcoming workshop"
+
+[nextDate]
+other = "Next date"
+
+[date]
+other = "Date"
+
+[price]
+other = "Price"
+
+[venue]
+other = "Venue"
+
+[register]
+other = "Register"
+
+[excVAT]
+other = "exc. VAT"
+
+[rootNote]
+other = "Registration and organization is provided by Root.cz."
+
+[relatedArticles]
+other = "Related articles"
