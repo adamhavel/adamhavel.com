@@ -44,35 +44,49 @@
                 font-size: 1.25em;
                 font-weight: 350;
                 margin-bottom: -.45em;
-                font-variation-settings: 'wdth' 85;
+                font-variation-settings: 'wght' 350, 'wdth' 90;
             }
 
-        .project__image-container {
-            position: relative;
-            padding-bottom: 800 / 1200 * 100%;
-            background: rgba(black, .05);
+        .project__image-container {}
 
-            &:after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border: 6px solid black;
-                opacity: .1;
-                z-index: 2;
-                pointer-events: none;
-            }
+            .project__image {}
+
+    .project__content {
+
+        > p:first-of-type {
+            display: none;
+        }
+    }
+
+
+.project__inspiration {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-column-gap: $gutter;
+    align-items: start;
+    margin-bottom: ($lineHeight * 3rem);
+}
+
+    .project__inspiration-photo {
+        filter: grayscale(.5);
+    }
+
+    .project__inspiration-content {}
+
+        .project__inspiration-heading {
+            font-weight: 500;
+            line-height: 1;
+            font-variation-settings: 'wght' 500, 'wdth' 85;
+            text-transform: uppercase;
+            font-size: 2rem;
+            margin-bottom: ($lineHeight * 1.5rem);
+            display: flex;
+            justify-content: space-between;
+            margin-right: calc(50% + #{$gutter / 2});
         }
 
-            .project__image {
-                position: absolute;
-                z-index: 1;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                filter: grayscale(.25);
-            }
+        .project__inspiration-desc {
+            font-weight: 300;
+            font-size: 1.125em;
+            font-variation-settings: 'wght' 300;
+        }

@@ -15,18 +15,90 @@
             </div>
             <h1 class="project__title">{{ .Title }}</h1>
             <div class="project__summary">
-                {{ .Summary }}
+                {{ .Summary | plainify | safeHTML }}
             </div>
         </div>
         {{ with .Resources.GetMatch "thumb.*" }}
-            {{ $image := .Fill "1600x1000 q75" }}
-            <figure class="project__image-container">
+            {{ $image := .Fill "1500x1000 q75" }}
+            <figure class="project__image-container image-container">
                 <a href="{{ $.Page.Params.photoUrl }}" target="_blank">
-                    <img class="project__image" src="{{ $image.Permalink }}" role="presentation">
+                    <img class="project__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
                 </a>
             </figure>
         {{ end }}
     </header>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+        <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.01 0.01" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
+        </filter>
+        <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.02 0.08" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
+        </filter>
+        <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
+
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
+
+            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="5">
+                <feDistantLight azimuth="80" elevation="50" />
+            </feDiffuseLighting>
+
+            <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
+
+            <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
+
+        </filter>
+    </svg>
+
+    <section class="project__content">
+        {{ .Content }}
+
+        <section class="project__inspiration">
+
+            {{ with .Resources.GetMatch "img/kaiser.*" }}
+                {{ $image := .Fill "600x900 q75 center" }}
+                <figure class="project__inspiration-photo image-container image-container--2:3">
+                    <a href="{{ $image.Permalink }}" target="_blank">
+                        <img class="project__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
+                    </a>
+                </figure>
+            {{ end }}
+
+            {{ with .Resources.GetMatch "img/arcimboldo.*" }}
+                {{ $image := .Fill "600x900 q75 center" }}
+                <figure class="project__inspiration-photo image-container image-container--2:3">
+                    <a href="{{ $image.Permalink }}" target="_blank">
+                        <img class="project__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
+                    </a>
+                </figure>
+            {{ end }}
+
+            <div class="project__inspiration-content">
+
+                <h2 class="project__inspiration-heading"><span>{{ delimit (split "Inspirace" "") "</span><span>" }}</span></h2>
+
+                <p class="project__inspiration-desc">Jméno Kaiser Franz samozřejmě pochází od předposledního císaře Rakouska-Uherska, Františka Josefa I. Právě z jeho nepřehlédnutelného kníru vyrostl základ pro nové logo a první inspirace. Druhý díl skládanky vznikl ve spojitosti s dalším známým králem zemí českých, Rudolfem II. Habsburským. Tohoto císaře Svaté říše římské svérázným způsobem zpodobnil italský malíř Giuseppe Arcimboldo, který své portrtéty komponoval na způsob zátiší z rozličných předmetů, převážně jídla. A přestože nás od obou vladařů dělí jedno, respektive čtyři staletí, jsou jejich podoby obecně známé i dnes.</p>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            {{ with .Resources.GetMatch "img/logo.*" }}
+                {{ $image := .Fill "1200x800 q75 center" }}
+                <figure class="image-container">
+                    <a href="{{ $image.Permalink }}" target="_blank">
+                        <img class="image-container__source" src="{{ $image.Permalink }}" role="presentation">
+                    </a>
+                </figure>
+            {{ end }}
+
+        </section>
+
+    </section>
 
 </main>
 {{ end }}

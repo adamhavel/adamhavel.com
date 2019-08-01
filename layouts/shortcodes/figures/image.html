@@ -3,8 +3,8 @@
 {{ with .Page.Resources.GetMatch $url }}
     {{ $image := .Fill "1200x800 q50" }}
     <figure class="article__figure article__figure--image figure">
-        <div class="figure__image-container">
-            <img class="figure__image" src="{{ $image.Permalink }}" alt="{{ $caption }}">
+        <div class="figure__image-container image-container">
+            <img class="figure__image image-container__source" src="{{ $image.Permalink }}" alt="{{ $caption }}">
         </div>
         <figcaption class="figure__caption">{{ $caption }}</figcaption>
     </figure>
