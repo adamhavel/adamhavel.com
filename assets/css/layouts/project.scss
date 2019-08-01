@@ -6,7 +6,7 @@
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-column-gap: $gutter;
-        margin-bottom: ($lineHeight * 3rem);
+        margin-bottom: ($lineHeight * 5rem);
     }
 
         .project__lede {
@@ -62,8 +62,7 @@
 .project__inspiration {
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
-    grid-column-gap: $gutter;
-    align-items: start;
+    grid-column-gap: $gutter / 2;
     margin-bottom: ($lineHeight * 3rem);
 }
 
@@ -71,22 +70,54 @@
         filter: grayscale(.5);
     }
 
-    .project__inspiration-content {}
+    .project__inspiration-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
         .project__inspiration-heading {
-            font-weight: 500;
+            font-weight: 600;
             line-height: 1;
-            font-variation-settings: 'wght' 500, 'wdth' 85;
+            font-variation-settings: 'wght' 600, 'wdth' 85;
             text-transform: uppercase;
             font-size: 2rem;
-            margin-bottom: ($lineHeight * 1.5rem);
+            margin-bottom: ($lineHeight * 2rem);
             display: flex;
             justify-content: space-between;
-            margin-right: calc(50% + #{$gutter / 2});
+            margin-left: calc(50% + #{$gutter / 4});
         }
 
         .project__inspiration-desc {
             font-weight: 300;
             font-size: 1.125em;
-            font-variation-settings: 'wght' 300;
+            font-variation-settings: 'wght' 300, 'wdth' 85;
+            column-count: 2;
+            column-gap: $gutter / 2;
+            text-align: justify;
+            xmargin-top: auto;
+            margin-bottom: ($lineHeight * 2rem);
+            line-height: 1.75;
         }
+
+        .project__inspiration-caption {
+            margin-bottom: -.45em;
+            font-weight: 400;
+            font-size: .875em;
+            margin-right: calc(50% + #{$gutter / 4});
+            letter-spacing: .05em;
+            counter-reset: caption;
+
+            li {
+                display: flex;
+                justify-content: space-between;
+
+                &:before {
+                    counter-increment: caption;
+                    content: counter(caption);
+                    font-weight: 300;
+                    opacity: .75;
+                }
+            }
+        }
+
