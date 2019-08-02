@@ -45,6 +45,7 @@
                 font-weight: 350;
                 margin-bottom: -.45em;
                 font-variation-settings: 'wght' 350, 'wdth' 90;
+                line-height: 1.75;
             }
 
         .project__image-container {}
@@ -63,7 +64,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
     grid-column-gap: $gutter / 2;
-    margin-bottom: ($lineHeight * 3rem);
+    margin-bottom: ($lineHeight * 5rem);
+    align-items: start;
 }
 
     .project__inspiration-photo {
@@ -73,17 +75,19 @@
     .project__inspiration-content {
         display: flex;
         flex-direction: column;
+        align-self: stretch;
         justify-content: space-between;
     }
 
         .project__inspiration-heading {
-            font-weight: 600;
+            font-weight: 700;
             line-height: 1;
-            font-variation-settings: 'wght' 600, 'wdth' 85;
+            font-variation-settings: 'wght' 700;
             text-transform: uppercase;
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin-bottom: ($lineHeight * 2rem);
             display: flex;
+            font-family: $fontDisplay;
             justify-content: space-between;
             margin-left: calc(50% + #{$gutter / 4});
         }
@@ -95,7 +99,6 @@
             column-count: 2;
             column-gap: $gutter / 2;
             text-align: justify;
-            xmargin-top: auto;
             margin-bottom: ($lineHeight * 2rem);
             line-height: 1.75;
         }
@@ -107,6 +110,7 @@
             margin-right: calc(50% + #{$gutter / 4});
             letter-spacing: .05em;
             counter-reset: caption;
+            xmargin-top: auto;
 
             li {
                 display: flex;
@@ -119,5 +123,45 @@
                     opacity: .75;
                 }
             }
+        }
+
+.project__showcase {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: $gutter;
+    margin-bottom: ($lineHeight * 5rem);
+    align-items: start;
+}
+
+    .project__showcase-photo {
+
+    }
+
+    .project__showcase-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: stretch;
+    }
+
+        .project__showcase-heading {
+            font-weight: 700;
+            line-height: 1;
+            font-variation-settings: 'wght' 700;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            margin-bottom: ($lineHeight * 2rem);
+            display: flex;
+            font-family: $fontDisplay;
+            justify-content: space-between;
+            margin-left: 30%;
+        }
+
+        .project__showcase-desc {
+            font-weight: 300;
+            font-size: 1.25em;
+            font-variation-settings: 'wght' 300, 'wdth' 90;
+            line-height: 1.75;
+            text-align: justify;
         }
 

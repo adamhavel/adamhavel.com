@@ -15,6 +15,12 @@
 
         .workshop__content {
 
+            > p {
+                font-weight: 300;
+                font-variation-settings: 'wght' 300;
+                margin-bottom: $lineHeight * 1rem;
+            }
+
             > p:first-of-type {
                 display: none;
             }

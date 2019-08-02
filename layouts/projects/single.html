@@ -51,11 +51,11 @@
                 </figure>
             {{ end }}
 
-            <div class="project__inspiration-content">
+            <div class="project__inspiration-content content">
 
                 <h2 class="project__inspiration-heading"><span>{{ delimit (split "Inspirace" "") "</span><span>" }}</span></h2>
 
-                <p class="project__inspiration-desc">Jméno Kaiser Franz samozřejmě pochází od předposledního císaře Rakouska-Uherska, Františka Josefa I. Právě z jeho nepřehlédnutelného kníru vyrostl základ pro nové logo. Druhý díl skládanky vznikl ve spojitosti s dalším známým králem zemí českých, Rudolfem II. Habsburským. Tohoto císaře Svaté říše římské svérázným způsobem zpodobnil italský malíř Giuseppe Arcimboldo, který své portrtéty komponoval na způsob zátiší z rozličných předmetů, převážně jídla. A přestože nás od obou vladařů dělí jedno, respektive čtyři staletí, jsou jejich podoby obecně známé i dnes.</p>
+                <p class="project__inspiration-desc">Jméno Kaiser Franz samozřejmě pochází od předposledního císaře Rakouska-Uherska, Františka Josefa I. Právě z jeho nepřehlédnutelného kníru vyrostl základ pro nové logo. Druhý díl skládanky vznikl ve spojitosti s dalším známým králem zemí českých, Rudolfem II. Habsburským. Tohoto císaře Svaté říše římské svérázným způsobem zpodobnil italský malíř Giuseppe Arcimboldo, který své portrtéty komponoval na způsob zátiší z rozličných předmetů, převážně jídla. A přestože nás od obou vladařů dělí jedno, respektive čtyři staletí, jsou tyto jejich podoby a charakteristiky známé i dnes.</p>
 
                 <ol class="project__inspiration-caption">
                     <li>František Josef I.</li>
@@ -66,16 +66,45 @@
 
         </section>
 
-        <section>
+        <section class="project__showcase">
 
-            {{ with .Resources.GetMatch "img/logo.*" }}
+            {{ with .Resources.GetMatch "img/logo.jpg" }}
                 {{ $image := .Fill "1200x800 q75 center" }}
-                <figure class="image-container">
+                <figure class="image-container project__showcase-photo">
                     <a href="{{ $image.Permalink }}" target="_blank">
                         <img class="image-container__source" src="{{ $image.Permalink }}" role="presentation">
                     </a>
                 </figure>
             {{ end }}
+
+            <div class="project__showcase-content  content">
+
+                <h2 class="project__showcase-heading"><span>{{ delimit (split "Brand" "") "</span><span>" }}</span></h2>
+
+                <p class="project__showcase-desc">Aby té nostalgie ovšem nebylo příliš, je v logu použit font <a href="https://www.emigre.com/Fonts/Mr-Eaves-Sans-and-Modern">Mrs Eaves XL Modern</a>. Jeho úkolem je logo — plné detailů a asociací — vyvážit a vrátit zpátky do současnosti. Font je proto jednoduchý, přímý, a moderní, s vyjímkou drobné dekorace v písmenu „R“, která znovu evokuje císařův knír. Tento detail přijde vhod, když je název Kaiser Franz zobrazen samostatně. V případě, kdy je logo třeba zobrazit v malých rozměrech, lze místo detailní verze použít jen zjednodušenou siluetu.</p>
+
+            </div>
+
+        </section>
+
+        <section class="project__showcase">
+
+            {{ with .Resources.GetMatch "img/web.jpg" }}
+                {{ $image := .Fill "1200x800 q75 center" }}
+                <figure class="image-container project__showcase-photo">
+                    <a href="{{ $image.Permalink }}" target="_blank">
+                        <img class="image-container__source" src="{{ $image.Permalink }}" role="presentation">
+                    </a>
+                </figure>
+            {{ end }}
+
+            <div class="project__showcase-content  content">
+
+                <h2 class="project__showcase-heading"><span>{{ delimit (split "Stránky" "") "</span><span>" }}</span></h2>
+
+                <p class="project__showcase-desc">Aby té nostalgie ovšem nebylo příliš, je v logu použit font <a href="https://www.emigre.com/Fonts/Mr-Eaves-Sans-and-Modern">Mrs Eaves XL Modern</a>. Jeho úkolem je logo — plné detailů a asociací — vyvážit a vrátit zpátky do současnosti. Font je proto jednoduchý, přímý, a moderní, s vyjímkou drobné dekorace v písmenu „R“, která znovu evokuje císařův knír. Tento detail přijde vhod, když je název Kaiser Franz zobrazen samostatně. V případě, kdy je logo třeba zobrazit v malých rozměrech, lze místo detailní verze použít jen zjednodušenou siluetu.</p>
+
+            </div>
 
         </section>
 
