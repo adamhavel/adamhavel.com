@@ -50,4 +50,8 @@
         height: 100%;
         object-fit: cover;
         filter: grayscale(.25);
+
+        &--desaturated {
+            filter: grayscale(.5);
+        }
     }
