@@ -1,5 +1,11 @@
 <figure class="article__figure article__figure--quote">
     <blockquote>
-        {{ .Inner | markdownify }}
+        {{ $markdown := .Inner | markdownify }}
+
+        {{ if not ( strings.Contains $markdown "<p>" ) }}
+            <p>{{ $markdown }}</p>
+        {{ else }}
+            {{ $markdown }}
+        {{ end }}
     </blockquote>
 </figure>

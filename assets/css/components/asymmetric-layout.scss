@@ -1,0 +1,32 @@
+.asymmetric-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: $gutter;
+    margin-bottom: ($lineHeight * 6rem);
+    align-items: start;
+}
+
+    .asymmetric-layout__figure {
+        grid-column: 1 / 3;
+    }
+
+        .asymmetric-layout__image {}
+
+    .asymmetric-layout__content {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+    }
+
+        .asymmetric-layout__heading {
+            margin-bottom: ($lineHeight * 2rem);
+            margin-left: 30%;
+        }
+
+        .asymmetric-layout__summary {
+            font-weight: 300;
+            font-size: 1.125em;
+            font-variation-settings: 'wght' 300, 'wdth' 90;
+            line-height: 1.65;
+            text-align: justify;
+        }

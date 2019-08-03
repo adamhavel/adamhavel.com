@@ -1,0 +1,47 @@
+{{ $url := .Get "url" }}
+<section class="web-showcase">
+
+    <div class="web-showcase__content">
+
+        <h2 class="web-showcase__heading spread-heading"><span>{{ delimit (split (.Get "title") "") "</span><span>" }}</span></h2>
+
+        <div class="web-showcase__summary content">
+            {{ $markdown := .Inner | markdownify }}
+
+            {{ if not ( strings.Contains $markdown "<p>" ) }}
+                <p>{{ $markdown }}</p>
+            {{ else }}
+                {{ $markdown }}
+            {{ end }}
+        </div>
+
+    </div>
+
+    {{ with .Page.Resources.GetMatch "img/mobile.jpg" }}
+        {{ $image := .Fill "600x900 q80 top" }}
+        <figure class="web-showcase__figure web-showcase__figure--mobile">
+            <a href="{{ $url }}" target="_blank">
+                <img class="web-showcase__image" src="{{ $image.Permalink }}" role="presentation">
+            </a>
+        </figure>
+    {{ end }}
+
+    {{ with .Page.Resources.GetMatch "img/tablet.jpg" }}
+        {{ $image := .Fill "1200x900 q80 center" }}
+        <figure class="web-showcase__figure web-showcase__figure--tablet">
+            <a href="{{ $url }}" target="_blank">
+                <img class="web-showcase__image" src="{{ $image.Permalink }}" role="presentation">
+            </a>
+        </figure>
+    {{ end }}
+
+    {{ with .Page.Resources.GetMatch "img/web.jpg" }}
+        {{ $image := .Fill "1800x1013 q80 center" }}
+        <figure class="web-showcase__figure web-showcase__figure--web">
+            <a href="{{ $url }}" target="_blank">
+                <img class="web-showcase__image" src="{{ $image.Permalink }}" role="presentation">
+            </a>
+        </figure>
+    {{ end }}
+
+</section>

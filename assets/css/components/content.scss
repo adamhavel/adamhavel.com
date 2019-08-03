@@ -40,6 +40,9 @@
     }
 
     > p {
+        &:not(:last-child) {
+            margin-bottom: $lineHeight * 1rem;
+        }
 
         a:not([class]) {
             display: inline-block;

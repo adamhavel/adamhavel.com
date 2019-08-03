@@ -1,0 +1,43 @@
+{{ $id := .Ordinal }}
+<section class="peristyle-layout">
+
+    {{ with .Page.Resources.GetMatch (.Get "img1") }}
+        {{ $image := .Fill "600x1200 q75 center" }}
+        <figure class="peristyle-layout__figure image-container image-container--1:2">
+            <a href="{{ $image.Permalink }}" target="_blank">
+                <img class="peristyle-layout__image image-container__source image-container__source--desaturated" src="{{ $image.Permalink }}" aria-labelledby="#peristyle-layout-{{ $id }}__caption-1">
+            </a>
+        </figure>
+    {{ end }}
+
+    {{ with .Page.Resources.GetMatch (.Get "img2") }}
+        {{ $image := .Fill "600x1200 q75 center" }}
+        <figure class="peristyle-layout__figure image-container image-container--1:2">
+            <a href="{{ $image.Permalink }}" target="_blank">
+                <img class="peristyle-layout__image image-container__source image-container__source--desaturated" src="{{ $image.Permalink }}" aria-labelledby="#peristyle-layout-{{ $id }}__caption-2">
+            </a>
+        </figure>
+    {{ end }}
+
+    <div class="peristyle-layout__content">
+
+        <h2 class="peristyle-layout__heading spread-heading"><span>{{ delimit (split (.Get "title") "") "</span><span>" }}</span></h2>
+
+        <div class="peristyle-layout__summary content">
+            {{ $markdown := .Inner | markdownify }}
+
+            {{ if not ( strings.Contains $markdown "<p>" ) }}
+                <p>{{ $markdown }}</p>
+            {{ else }}
+                {{ $markdown }}
+            {{ end }}
+        </div>
+
+        <ol class="peristyle-layout__captions">
+            <li id="peristyle-layout-{{ $id }}__caption-1" class="peristyle-layout__caption">{{ .Get "img1-caption" }}</li>
+            <li id="peristyle-layout-{{ $id }}__caption-2" class="peristyle-layout__caption">{{ .Get "img2-caption" }}</li>
+        </ol>
+
+    </div>
+
+</section>

@@ -4,7 +4,7 @@
 
     .workshop__layout {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: $gutter;
     }
 
@@ -14,11 +14,11 @@
         }
 
         .workshop__content {
+            grid-column: 2 / -1;
 
             > p {
                 font-weight: 300;
                 font-variation-settings: 'wght' 300;
-                margin-bottom: $lineHeight * 1rem;
             }
 
             > p:first-of-type {

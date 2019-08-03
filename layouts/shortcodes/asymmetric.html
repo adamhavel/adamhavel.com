@@ -1,0 +1,29 @@
+{{ $id := .Ordinal }}
+<section class="asymmetric-layout">
+
+    {{ with .Page.Resources.GetMatch (.Get "img") }}
+        {{ $image := .Fill "1200x800 q75 center" }}
+        <figure class="image-container asymmetric-layout__figure">
+            <a href="{{ $image.Permalink }}" target="_blank">
+                <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}" aria-describedby="#asymmetric-layout-{{ $id }}__summary">
+            </a>
+        </figure>
+    {{ end }}
+
+    <div class="asymmetric-layout__content">
+
+        <h2 class="asymmetric-layout__heading spread-heading"><span>{{ delimit (split (.Get "title") "") "</span><span>" }}</span></h2>
+
+        <div class="asymmetric-layout__summary content" id="asymmetric-layout-{{ $id }}__summary">
+            {{ $markdown := .Inner | markdownify }}
+
+            {{ if not ( strings.Contains $markdown "<p>" ) }}
+                <p>{{ $markdown }}</p>
+            {{ else }}
+                {{ $markdown }}
+            {{ end }}
+        </div>
+
+    </div>
+
+</section>
