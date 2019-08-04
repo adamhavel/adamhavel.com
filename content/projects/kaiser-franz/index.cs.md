@@ -14,11 +14,11 @@ Kaiser Franz je originální koncept různých podob gastronomie založené na s
 <!--more-->
 
 {{< peristyle title="Inspirace" img1="img/kaiser.jpg" img1-caption="František Josef I." img2="img/arcimboldo.jpg" img2-caption="Rudolf II. jako Vertumnus" >}}
-Jméno Kaiser Franz samozřejmě pochází od předposledního císaře Rakouska-Uherska, Františka Josefa I. Právě z jeho nepřehlédnutelného kníru vyrostl základ pro nové logo a první inspirace. Druhý díl skládanky vznikl ve spojitosti s dalším známým králem zemí českých, Rudolfem II. Habsburským. Tohoto císaře Svaté říše římské svérázným způsobem zpodobnil italský malíř Giuseppe Arcimboldo, který své portrtéty komponoval na způsob zátiší z rozličných předmetů, převážně jídla. A přestože nás od obou vladařů dělí jedno, respektive čtyři staletí, jejich podoby zůstaly obecně známé i dnes.
+Jméno Kaiser Franz samozřejmě pochází od předposledního císaře Rakouska-Uherska, Františka Josefa I. Právě z jeho nepřehlédnutelného kníru vyrostl základ pro nové logo a první inspirace. Druhý díl skládanky vznikl ve spojitosti s dalším známým králem zemí českých, Rudolfem II. Habsburským. Tohoto císaře Svaté říše římské svérázným způsobem zpodobnil italský malíř Giuseppe Arcimboldo, který své portrtéty komponoval na způsob zátiší z rozličných předmetů, převážně jídla. A přestože nás od obou vladařů dělí jedno, respektive čtyři staletí, jejich podoba zůstala — z různých, převážně nostalgických důvodů — obecně známá i dnes.
 {{< /peristyle >}}
 
 {{< asymmetric title="Brand & logo" img="img/logo.jpg" >}}
-Aby té nostalgie ovšem nebylo příliš, je v logu použit font [Mrs Eaves XL Modern](https://www.emigre.com/Fonts/Mr-Eaves-Sans-and-Modern). Jeho úkolem je logo — plné detailů a asociací — vyvážit a vrátit zpátky do současnosti. Font je proto jednoduchý, přímý, a moderní, s vyjímkou drobné dekorace v písmenu „R“, která znovu evokuje císařův knír.Tento detail přijde vhod, když je název Kaiser Franz zobrazen samostatně. V případě, kdy je logo třeba zobrazit v malých rozměrech, lze místo detailní verze použít jen zjednodušenou siluetu.
+Aby té nostalgie ovšem nebylo příliš, je v logu použit font [Mrs Eaves XL Modern](https://www.emigre.com/Fonts/Mr-Eaves-Sans-and-Modern). Jeho úkolem je logo — plné detailů a asociací — vyvážit a vrátit zpátky do současnosti. Font je proto jednoduchý, přímý, a moderní, s vyjímkou drobné dekorace v písmenu „R“, která znovu evokuje císařův knír. Tento detail přijde vhod, když je název Kaiser Franz zobrazen samostatně. V případě, kdy je logo třeba zobrazit v malých rozměrech, lze místo detailní verze použít jen zjednodušenou siluetu.
 {{< /asymmetric >}}
 
 {{< web-showcase title="Website" url="https://kaiserfranz.cz" >}}
