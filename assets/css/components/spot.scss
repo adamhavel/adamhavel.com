@@ -5,6 +5,10 @@
     align-items: start;
     position: relative;
 
+    @media (max-width: $mediumScreen) {
+        grid-column-gap: $gutter;
+    }
+
     &:not(:last-child) {
         margin-bottom: $lineHeight * 3rem;
     }

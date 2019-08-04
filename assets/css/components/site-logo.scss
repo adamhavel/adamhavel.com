@@ -5,6 +5,10 @@
     font-family: $fontBody;
     line-height: .875;
 
+    @media (max-width: $smallScreen) {
+        font-size: 1.25em;
+    }
+
     span {
         display: flex;
         align-items: baseline;

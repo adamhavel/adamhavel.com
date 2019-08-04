@@ -8,60 +8,66 @@
     &:focus {
         opacity: 1;
     }
+}
 
-    ul {
+    .site-nav__list {
         display: flex;
     }
 
-    li:not(:first-child) {
-        margin-left: 2em;
-    }
+        .site-nav__item {
 
-    a {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        font-weight: 700;
-        font-variation-settings: 'wght' 700;
-        letter-spacing: .075em;
-        font-family: $fontBody;
-        position: relative;
-        transition: color .1s;
-        line-height: 1.75;
-        text-transform: uppercase;
+            &:not(:first-child) {
+                margin-left: 2em;
+            }
 
-        &:before {
-            content: '';
-            position: absolute;
-            bottom: $lineHeight * -.5rem;
-            left: 0;
-            right: 0;
-            height: $lineHeight * .125rem;
-            background: $colorPrimary;
-            transform-origin: bottom;
-            transform: scaleY(0);
-            transition: transform .2s;
-            opacity: .75;
-        }
+            @media (max-width: $smallScreen) {
 
-        &:hover,
-        &:focus {
-
-            &:before {
-                transform: scaleY(2) !important;
+                &:not(.is-active):not(:last-child) {
+                    display: none;
+                }
             }
         }
 
-        &.is-active {
+            .site-nav__link {
+                display: block;
+                text-decoration: none;
+                color: inherit;
+                font-weight: 700;
+                font-variation-settings: 'wght' 700;
+                letter-spacing: .075em;
+                font-family: $fontBody;
+                position: relative;
+                transition: color .1s;
+                text-transform: uppercase;
 
-            &:before {
-                background: $colorTertiary;
-                transform: none;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    bottom: $lineHeight * -.5rem;
+                    left: 0;
+                    right: 0;
+                    height: $lineHeight * .125rem;
+                    background: $colorPrimary;
+                    transform-origin: bottom;
+                    transform: scaleY(0);
+                    transition: transform .2s;
+                    opacity: .75;
+                }
+
+                &:hover,
+                &:focus {
+
+                    &:before {
+                        transform: scaleY(2) !important;
+                    }
+                }
+
+                .site-nav__item.is-active &:before {
+                    background: $colorTertiary;
+                    transform: none;
+                }
+
+                &[lang]:before {
+                    background: $colorSecondary;
+                }
             }
-        }
-
-        &[lang]:before {
-            background: $colorSecondary;
-        }
-    }
-}

@@ -24,14 +24,14 @@
             <a href="/" class="site-logo"><span><em>A</em> <strong>Havel</strong></span></a>
 
             <nav class="site-nav">
-                <ul>
+                <ul class="site-nav__list">
                     {{ range .Site.Menus.main }}
                         {{ $isActive := (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .)) }}
-                        <li><a href="{{ .URL }}" class="{{ if $isActive }}is-active{{ end }}">{{ .Name }}</a></li>
+                        <li class="site-nav__item {{ if $isActive }}is-active{{ end }}"><a class="site-nav__link" href="{{ .URL }}">{{ .Name }}</a></li>
                     {{ end }}
                     {{ if .IsTranslated }}
                         {{ with (index .Translations 0) }}
-                            <li><a lang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+                            <li class="site-nav__item"><a class="site-nav__link" hreflang="{{ .Lang }}" lang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
                         {{ end}}
                     {{ end }}
                 </ul>

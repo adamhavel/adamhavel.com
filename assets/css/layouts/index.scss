@@ -2,20 +2,39 @@
 
     .index__layout {
         display: grid;
-        margin-bottom: 4em;
+        margin-bottom: $lineHeight * 2rem;
         align-items: center;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 3vw;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: $gutter;
+
+        @media (max-width: $mediumScreen) {
+            grid-template-columns: minmax(25em, 1fr) 1fr;
+        }
+
+        @media (max-width: $smallScreen) {
+            grid-template-columns: 1fr;
+        }
     }
 
         .index__headline {
             font-size: 2.25em;
+            font-size: calc(1.125em + 1vw);
             font-weight: 300;
             font-variation-settings: 'wght' 300;
             font-family: $fontDisplay;
             position: relative;
             z-index: 1;
             line-height: 1.75;
+
+            @media (max-width: $mediumScreen) {
+                font-size: calc(1em + 1vw);
+            }
+
+            @media (max-width: $smallScreen) {
+                font-weight: 350;
+                font-variation-settings: 'wght' 350;
+                text-align: center;
+            }
 
             a {
                 position: relative;
@@ -45,11 +64,17 @@
             }
         }
 
-        .index__image {}
+        .index__image {
+
+            @media (max-width: $smallScreen) {
+                order: -1;
+            }
+        }
 
     .index__cards {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-column-gap: 4%;
+        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+        grid-column-gap: $gutter;
+        grid-row-gap: $lineHeight * 2rem;
         align-items: start;
     }

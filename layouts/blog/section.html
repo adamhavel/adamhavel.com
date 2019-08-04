@@ -1,30 +1,6 @@
 {{ define "main" }}
 <div class="section">
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
-        <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-            <feTurbulence baseFrequency="0.1 0.2" result="f1" numOctaves="3" />
-            <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
-        </filter>
-        <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-            <feTurbulence baseFrequency="0.02 0.08" result="f1" numOctaves="3" />
-            <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
-        </filter>
-        <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
-
-            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
-
-            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
-                <feDistantLight azimuth="45" elevation="80" />
-            </feDiffuseLighting>
-
-            <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
-
-            <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
-
-        </filter>
-    </svg>
-
     <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
 
     <main class="section__layout section__layout--grid">
@@ -56,6 +32,30 @@
         {{ end }}
 
     </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+        <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.1 0.2" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
+        </filter>
+        <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.02 0.08" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
+        </filter>
+        <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
+
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
+
+            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
+                <feDistantLight azimuth="45" elevation="80" />
+            </feDiffuseLighting>
+
+            <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
+
+            <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
+
+        </filter>
+    </svg>
 
 </div>
 {{ end }}

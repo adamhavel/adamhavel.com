@@ -1,9 +1,13 @@
 .section {
     padding-top: $lineHeight * 1rem;
+
+    @media (max-width: $smallScreen) {
+        padding-top: 0;
+    }
 }
 
     .section__heading {
-        font-size: 4rem;
+        font-size: calc(2rem + 3vw);
         font-weight: 500;
         font-variation-settings: 'wght' 500;
         line-height: 1.5;
@@ -12,6 +16,10 @@
         font-family: $fontDisplay;
         text-align: center;
         position: relative;
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: ($lineHeight * 2rem);
+        }
 
         &:after {
             content: '';
@@ -63,12 +71,17 @@
 
     .section__layout {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         grid-column-gap: $gutter;
 
         &--grid {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fill, minmax(30em, 1fr));
             grid-gap: $gutter;
+
+            @media (max-width: $smallScreen) {
+                grid-template-columns: 1fr;
+                grid-row-gap: ($lineHeight * 2rem);
+            }
 
             > * {
                 margin: 0 !important;

@@ -4,4 +4,8 @@
     background-repeat: no-repeat;
     background-position: bottom;
     padding: ($lineHeight * 2rem) 0 ($lineHeight * 5rem);
+
+    @media (max-width: $smallScreen) {
+        padding: ($lineHeight * 1rem) 0 ($lineHeight * 3rem);
+    }
 }
