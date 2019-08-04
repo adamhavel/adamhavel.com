@@ -30,8 +30,6 @@
             font-weight: 350;
             font-variation-settings: 'wght' 350;
             margin-bottom: $lineHeight * 3rem;
-            xwidth: 50%;
-            xmargin-left: calc(50% + #{($gutter / 2)});
 
             &:first-letter {
                 font-size: 0;

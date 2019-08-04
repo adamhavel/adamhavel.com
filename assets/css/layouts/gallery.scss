@@ -7,17 +7,6 @@ $galleryGap: 2.5vw;
     padding: ($lineHeight * 6rem) $galleryGap 0;
     position: relative;
     grid-auto-flow: dense;
-
-    &:before {
-        xcontent: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: radial-gradient(closest-side, $colorSecondary, transparent);
-        opacity: .25;
-    }
 }
 
     .gallery__item {
@@ -80,8 +69,6 @@ $galleryGap: 2.5vw;
                 font-family: $fontDisplay;
                 color: rgba(black, .75);
                 line-height: 1;
-                xtext-shadow: .05em .05em 0 rgba(black, .075),
-                             -.05em -.05em 0 rgba(black, .075);
                 margin-bottom: $lineHeight * 1rem;
                 text-align: right;
 
@@ -112,7 +99,10 @@ $galleryGap: 2.5vw;
             border-width: 1px 0 0 1px;
         }
 
-            .gallery__license {}
+            .gallery__license {
+                font-weight: 300;
+                font-variation-settings: 'wght' 300;
+            }
 
         .gallery__image-container {
             display: block;
