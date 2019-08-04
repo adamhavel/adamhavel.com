@@ -9,7 +9,7 @@
             </header>
         </div>
 
-        {{ range $index, $image := union (.Resources.Match "thumb.jpg") (.Resources.Match "img/*") }}
+        {{ range $index, $image := union (.Resources.Match "thumb.jpg") (.Resources.Match "img/*.jpg") }}
             {{ $is_large_thumb := eq (mod $index 6) 0 }}
             {{ $thumb := cond $is_large_thumb ($image.Resize "1600x q75") ($image.Resize "800x q75") }}
             {{ $is_vertical := gt $image.Height $image.Width }}
