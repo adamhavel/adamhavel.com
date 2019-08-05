@@ -1,11 +1,11 @@
 .site-header {
     background: white;
     margin-top: ($lineHeight * 3rem);
-    padding: ($lineHeight * .5rem) 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .025);
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .05);
+    overflow: hidden;
 
     @media (max-width: $smallScreen) {
         margin-top: 0;
@@ -14,6 +14,12 @@
 
     .site-header__wrapper {
         display: flex;
-        align-items: flex-end;
+        height: $lineHeight * 1.75rem;
         justify-content: space-between;
     }
+
+        .site-header__logo {
+            align-self: center;
+        }
+
+        .site-header__nav {}

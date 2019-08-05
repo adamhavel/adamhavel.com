@@ -21,9 +21,10 @@
 
         <div class="site-header__wrapper wrapper">
 
-            <a href="/" class="site-logo"><span><em>A</em> <strong>Havel</strong></span></a>
+            <a href="/" class="site-logo site-header__logo"><span><em>A</em> <strong>Havel</strong></span></a>
 
-            <nav class="site-nav">
+            <nav class="site-nav site-header__nav js-site-nav">
+                <button class="site-nav__toggle js-site-nav__toggle" type="button">{{ i18n "goTo" }} …</button>
                 <ul class="site-nav__list">
                     {{ range .Site.Menus.main }}
                         {{ $isActive := (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .)) }}
@@ -31,11 +32,23 @@
                     {{ end }}
                     {{ if .IsTranslated }}
                         {{ with (index .Translations 0) }}
-                            <li class="site-nav__item"><a class="site-nav__link" hreflang="{{ .Lang }}" lang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+                            <li class="site-nav__item" lang="{{ .Lang }}"><a class="site-nav__link" hreflang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
                         {{ end}}
                     {{ end }}
+                    <li class="site-nav__item site-nav__item--toggle"><button class="site-nav__close js-site-nav__toggle" type="button" aria-label="{{ i18n "close" }}">×</button></li>
                 </ul>
             </nav>
+
+            <script>
+                let toggles = [].slice.call(document.querySelectorAll('.js-site-nav__toggle'));
+                let nav = document.querySelector('.js-site-nav');
+
+                nav.addEventListener('click', function(ev) {
+                    if (toggles.indexOf(ev.target) != -1) {
+                        nav.classList.toggle('is-active');
+                    }
+                });
+            </script>
 
         </div>
     </header>
@@ -55,8 +68,8 @@
         </svg>
     </footer>
 
-    <script type="module">
-        window.addEventListener('hashchange', function(ev) {
+    <script>
+        function scrollToHash(ev) {
             let el = document.querySelector(`[id='${window.location.hash.substr(1)}']`);
 
             if (el) {
@@ -67,20 +80,10 @@
                     inline: 'center'
                 });
             }
-        });
+        }
 
-        window.addEventListener('load', function(ev) {
-            let el = document.querySelector(`[id='${window.location.hash.substr(1)}']`);
-
-            if (el) {
-                ev.preventDefault();
-                el.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'center'
-                });
-            }
-        });
+        window.addEventListener('hashchange', scrollToHash);
+        window.addEventListener('load', scrollToHash);
     </script>
 </body>
 </html>
