@@ -3,9 +3,9 @@
 
     <div class="index__layout">
         <div class="index__headline">{{ .Content }}</div>
-        <div class="index__image" role="presentation">
+        <figure class="index__figure" role="presentation">
             {{ (resources.Get "img/circle.svg").Content | safeHTML }}
-        </div>
+        </figure>
     </div>
 
     <main class="index__cards">

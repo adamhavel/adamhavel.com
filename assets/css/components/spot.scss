@@ -1,13 +1,10 @@
 .spot {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-column-gap: $gutter / 2;
+    grid-row-gap: $lineHeight * .5rem;
     align-items: start;
     position: relative;
-
-    @media (max-width: $mediumScreen) {
-        grid-column-gap: $gutter;
-    }
 
     &:not(:last-child) {
         margin-bottom: $lineHeight * 3rem;
@@ -15,6 +12,25 @@
 
     &--small {
         grid-template-columns: 1fr 3fr;
+
+        &:not(:last-child) {
+            margin-bottom: $lineHeight * 2rem;
+        }
+    }
+
+    @media (max-width: $largeScreen) {
+
+        &--vertical {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: $mediumScreen) {
+        grid-column-gap: $gutter;
+    }
+
+    @media (max-width: $smallScreen) {
+        grid-template-columns: 1fr;
 
         &:not(:last-child) {
             margin-bottom: $lineHeight * 2rem;
@@ -98,6 +114,14 @@
                 font-size: 1.25em;
                 margin-top: $lineHeight * .5rem;
             }
+
+            @media (max-width: $mediumScreen) {
+                margin-top: $lineHeight * .25rem !important;
+            }
+
+            @media (max-width: $smallScreen) {
+                font-size: 1.25em;
+            }
         }
 
         .spot__desc {
@@ -108,6 +132,18 @@
             .spot--small & {
                 font-size: .875em;
                 margin-top: $lineHeight * .25rem;
+            }
+
+            @media (min-width: $largeScreen) {
+
+                .spot--vertical & {
+                    font-variation-settings: 'wght' 300, 'wdth' 90;
+                }
+            }
+
+            @media (max-width: $smallScreen) {
+                margin-top: $lineHeight * .25rem;
+                font-variation-settings: 'wght' 300, 'wdth' 90;
             }
         }
 

@@ -4,6 +4,16 @@
     grid-template-columns: 1fr 1fr;
     grid-column-gap: $gutter;
     align-items: end;
+
+    @media (max-width: $mediumScreen) {
+        margin-bottom: $lineHeight * 2rem;
+    }
+
+    @media (max-width: $smallScreen) {
+        grid-template-columns: 1fr;
+        margin-bottom: $lineHeight * 1.5rem;
+        grid-row-gap: $lineHeight * 1.5rem;
+    }
 }
 
     .header__image-container {}
@@ -40,6 +50,20 @@
             line-height: 1.125;
             margin-bottom: ($lineHeight * 2rem);
             font-family: $fontDisplay;
+
+            @media (max-width: $largeScreen) {
+                font-size: calc(3rem + 2vw);
+                margin-bottom: ($lineHeight * 1rem);
+            }
+
+            @media (max-width: $mediumScreen) {
+                font-size: calc(2rem + 3vw);
+            }
+
+            @media (max-width: $smallScreen) {
+                font-size: calc(1.5rem + 3vw);
+                margin-bottom: ($lineHeight * .5rem);
+            }
         }
 
         .header__meta {
@@ -48,6 +72,7 @@
             font-variation-settings: 'wght' 400;
             font-size: .875em;
             display: flex;
+            flex-wrap: wrap;
 
             > *:not(:first-child):before {
                 display: inline-block;
@@ -56,6 +81,10 @@
                 opacity: .5;
                 font-weight: 300;
                 font-variation-settings: 'wght' 300;
+            }
+
+            @media (max-width: $smallScreen) {
+                font-size: calc(.675rem + .25vw);
             }
         }
 
@@ -67,5 +96,13 @@
             font-size: 1.125em;
             font-weight: 400;
             font-variation-settings: 'wght' 400;
+
+            @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
+                font-size: 1em;
+            }
+
+            @media (max-width: $smallScreen) {
+                font-variation-settings: 'wght' 400, 'wdth' 90;
+            }
         }
 

@@ -7,4 +7,12 @@
     &:not(:last-child) {
         margin-bottom: $lineHeight * 3rem;
     }
+
+    @media (max-width: $mediumScreen) {
+        padding: $gutter;
+    }
+
+    @media (max-width: $smallScreen) {
+        padding: $gutter * 2;
+    }
 }

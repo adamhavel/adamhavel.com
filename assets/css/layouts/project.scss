@@ -1,5 +1,13 @@
 .project {
     padding-top: $lineHeight * 2rem;
+
+    @media (max-width: $mediumScreen) {
+        padding-top: $lineHeight * 1rem;
+    }
+
+    @media (max-width: $smallScreen) {
+        padding-top: 0;
+    }
 }
 
     .project__header {
@@ -7,11 +15,23 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: $gutter;
         margin-bottom: ($lineHeight * 6rem);
+
+        @media (max-width: $mediumScreen) {
+            margin-bottom: ($lineHeight * 3rem);
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: ($lineHeight * 2rem);
+            grid-template-columns: 1fr;
+            grid-row-gap: $lineHeight * 1rem;
+        }
     }
 
         .project__lede {
             display: flex;
             flex-direction: column;
+            align-self: stretch;
         }
 
             .project__meta {
@@ -21,6 +41,23 @@
                 font-size: .875em;
                 margin-top: -.25em;
                 text-align: right;
+
+                @media (max-width: $smallScreen) {
+                    display: flex;
+                    margin-top: 0;
+                    text-align: left;
+                    font-size: calc(.675rem + .25vw);
+                    margin-bottom: $lineHeight * 1rem;
+
+                    > *:not(:first-child):before {
+                        display: inline-block;
+                        content: '/';
+                        margin: 0 .5em;
+                        opacity: .5;
+                        font-weight: 300;
+                        font-variation-settings: 'wght' 300;
+                    }
+                }
             }
 
                 .project__date {
@@ -38,6 +75,22 @@
                 line-height: .875;
                 margin-bottom: ($lineHeight * 1.25rem);
                 font-family: $fontDisplay;
+
+                @media (max-width: $largeScreen) {
+                    font-size: calc(4rem + 1vw);
+                }
+
+                @media (max-width: $mediumScreen) {
+                    font-size: calc(1rem + 9vw);
+                }
+
+                @media (max-width: $smallScreen) {
+                    order: -1;
+                    font-size: calc(1.5rem + 3vw);
+                    margin-bottom: ($lineHeight * .5rem);
+                    font-weight: 500;
+                    font-variation-settings: 'wght' 500;
+                }
             }
 
             .project__summary {
@@ -47,10 +100,32 @@
                 font-variation-settings: 'wght' 350, 'wdth' 90;
                 line-height: 1.65;
                 text-align: justify;
+
+                @media (max-width: $largeScreen) {
+                    font-size: calc(1em + .25vw);
+                    line-height: 1.55;
+                }
+
+                @media (max-width: $mediumScreen) {
+                    font-size: calc(1em + .5vw);
+                    text-align: left;
+                }
+
+                @media (max-width: $smallScreen) {
+                    font-size: calc(1em + .25vw);
+                }
             }
 
         .project__image-container {
             grid-column: 2 / 4;
+
+            @media (max-width: $mediumScreen) {
+                grid-column: initial;
+            }
+
+            @media (max-width: $smallScreen) {
+                order: -1;
+            }
         }
 
             .project__image {}

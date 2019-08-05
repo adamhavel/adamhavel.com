@@ -1,6 +1,42 @@
 {{ define "main" }}
 <div class="section">
 
+    <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
+
+    <main class="section__layout section__layout--grid">
+
+        {{ range .Pages }}
+            <section class="spot spot--vertical">
+                {{ with .Resources.GetMatch "thumb.*" }}
+                    {{ $image3x4 := .Fill "600x800 center q50" }}
+                    {{ $image3x2 := .Fill "1200x800 q50" }}
+                    <figure class="spot__image-container image-container image-container--3:4 image-container--3:2@largeScreen">
+                        <picture>
+                            <source class="spot__image image-container__source" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.largeScreen }})">
+                            <img class="spot__image image-container__source" src="{{ $image3x4.Permalink }}" role="presentation">
+                        </picture>
+                    </figure>
+                {{ end }}
+                <div class="spot__content">
+                    <header class="spot__header">
+                        <time class="spot__date">{{ .Date.Format (i18n "dateFormat") }}</time>
+                        {{ with .Keywords }}
+                            <ul class="spot__tags tags">
+                                {{ range . }}
+                                    <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        {{ end }}
+                    </header>
+                    <h3 class="spot__heading">{{ .Title }}</h3>
+                    <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
+                    <a href="{{ .Permalink }}" class="spot__link"></a>
+                </div>
+            </section>
+        {{ end }}
+
+    </main>
+
     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
         <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
             <feTurbulence baseFrequency="0.1 0.2" result="f1" numOctaves="3" />
@@ -24,38 +60,6 @@
 
         </filter>
     </svg>
-
-    <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
-
-    <main class="section__layout section__layout--grid">
-
-        {{ range .Pages }}
-            <section class="spot">
-                {{ with .Resources.GetMatch "thumb.*" }}
-                    {{ $image := .Fill "600x800 center q50" }}
-                    <div class="spot__image-container image-container image-container--3:4">
-                        <img class="spot__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
-                    </div>
-                {{ end }}
-                <div class="spot__content">
-                    <header class="spot__header">
-                        <time class="spot__date">{{ .Date.Format (i18n "dateFormat") }}</time>
-                        {{ with .Keywords }}
-                            <ul class="spot__tags tags">
-                                {{ range . }}
-                                    <li>{{ . }}</li>
-                                {{ end }}
-                            </ul>
-                        {{ end }}
-                    </header>
-                    <h3 class="spot__heading">{{ .Title }}</h3>
-                    <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
-                    <a href="{{ .Permalink }}" class="spot__link"></a>
-                </div>
-            </section>
-        {{ end }}
-
-    </main>
 
 </div>
 {{ end }}

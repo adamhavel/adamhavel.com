@@ -19,10 +19,24 @@
             text-shadow: 3px 3px 0 rgba(black, .075),
                          -3px -3px 0 rgba(black, .075);
             font-family: $fontDisplay;
-            padding: .05em 1.5vw .2em 0;
+            padding: .05em ($gutter / 2) .2em 0;
             background: radial-gradient(farthest-side at right, white, transparent) right no-repeat;
             background-size: 60% 100%;
             border-right: 1px solid rgba(black, .02);
+
+            @media (max-width: $mediumScreen) {
+                margin-right: $gutter / 2;
+                font-size: calc(8em + 2vw);
+                padding-bottom: .05em;
+                width: auto;
+            }
+
+            @media (max-width: $smallScreen) {
+                margin-top: -.025em;
+                margin-right: $gutter;
+                padding-right: $gutter;
+                font-size: calc(6em + 4vw);
+            }
         }
 
         > p:first-child {
@@ -30,10 +44,24 @@
             font-weight: 350;
             font-variation-settings: 'wght' 350;
             margin-bottom: $lineHeight * 3rem;
+            margin-left: calc(33.3% + #{($gutter / 2)});
 
             &:first-letter {
                 font-size: 0;
             }
+
+            @media (max-width: $mediumScreen) {
+                margin-left: 0;
+                font-size: calc(1em + .25vw);
+            }
+
+            @media (max-width: $smallScreen) {
+                font-variation-settings: 'wght' 350, 'wdth' 90;
+            }
+        }
+
+        @media (max-width: $smallScreen) {
+            font-size: 1em;
         }
     }
 
@@ -87,6 +115,14 @@
         &:not(:first-child) {
             margin-top: $lineHeight * 2.5rem;
         }
+
+        @media (max-width: $smallScreen) {
+            font-size: calc(1rem + 1vw);
+
+            &:not(:first-child) {
+                margin-top: $lineHeight * 1.5rem;
+            }
+        }
     }
 
     > h3:not([class]) {
@@ -100,6 +136,14 @@
 
         &:not(:first-child) {
             margin-top: $lineHeight * 1.25rem;
+        }
+
+        @media (max-width: $smallScreen) {
+            font-size: calc(.675rem + .5vw);
+
+            &:not(:first-child) {
+                margin-top: $lineHeight * 1rem;
+            }
         }
     }
 

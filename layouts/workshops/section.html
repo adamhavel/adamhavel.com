@@ -1,30 +1,6 @@
 {{ define "main" }}
 <div class="section">
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
-        <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-            <feTurbulence baseFrequency="0.2 0.2" result="f1" numOctaves="3" />
-            <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
-        </filter>
-        <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
-            <feTurbulence baseFrequency="0.03 0.02" result="f1" numOctaves="3" />
-            <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
-        </filter>
-        <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
-
-            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
-
-            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
-                <feDistantLight azimuth="45" elevation="80" />
-            </feDiffuseLighting>
-
-            <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
-
-            <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
-
-        </filter>
-    </svg>
-
     <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
 
     {{ $now := now.Format "2006-01-02" }}
@@ -39,10 +15,14 @@
             {{ range .Sections }}
                 <section class="spot">
                     {{ with .Resources.GetMatch "thumb.*" }}
-                        {{ $image := .Fill "800x600 center q75" }}
-                        <div class="spot__image-container image-container image-container--4:3">
-                            <img class="spot__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
-                        </div>
+                        {{ $image4x3 := .Fill "800x600 center q50" }}
+                        {{ $image3x2 := .Fill "1200x800 center q50" }}
+                        <figure class="spot__image-container image-container image-container--4:3 image-container--3:2@smallScreen">
+                            <picture>
+                                <source class="spot__image image-container__source" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
+                                <img class="spot__image image-container__source" src="{{ $image4x3.Permalink }}" role="presentation">
+                            </picture>
+                        </figure>
                     {{ end }}
                     <div class="spot__content">
                         <header class="spot__header">
@@ -92,6 +72,30 @@
         </aside>
 
     </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+        <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.2 0.2" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="8"></feDisplacementMap>
+        </filter>
+        <filter id="waves" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
+            <feTurbulence baseFrequency="0.03 0.02" result="f1" numOctaves="3" />
+            <feDisplacementMap in="SourceGraphic" in2="f1" scale="20"></feDisplacementMap>
+        </filter>
+        <filter id="roughpaper" x="0%" y="0%" width="100%" height="100%">
+
+            <feTurbulence type="fractalNoise" baseFrequency="0.1" result="f1" numOctaves="5" />
+
+            <feDiffuseLighting in="f1" lighting-color="white" result="f2" surfaceScale="10">
+                <feDistantLight azimuth="45" elevation="80" />
+            </feDiffuseLighting>
+
+            <feComposite in="f2" in2="SourceGraphic" result="f3" operator="in" />
+
+            <feBlend in="f3" in2="SourceGraphic" mode="multiply" />
+
+        </filter>
+    </svg>
 
 </div>
 {{ end }}

@@ -18,6 +18,11 @@
             margin-left: .5em;
             background: rgba(black, .05);
         }
+
+        @media (max-width: $smallScreen) {
+            font-size: calc(1.25rem + 1vw);
+            margin-bottom: $lineHeight * 1rem;
+        }
     }
 
     .related-articles__list {

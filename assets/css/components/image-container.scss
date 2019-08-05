@@ -27,6 +27,36 @@
         padding-bottom: 100%;
     }
 
+    &--1\:1\@mediumScreen {
+        @media (max-width: $mediumScreen) {
+            padding-bottom: 100%;
+        }
+    }
+
+    &--2\:3\@mediumScreen {
+        @media (max-width: $mediumScreen) {
+            padding-bottom: (3/2) * 100%;
+        }
+    }
+
+    &--3\:2\@smallScreen {
+        @media (max-width: $smallScreen) {
+            padding-bottom: (2/3) * 100%;
+        }
+    }
+
+    &--3\:2\@mediumScreen {
+        @media (max-width: $mediumScreen) {
+            padding-bottom: (2/3) * 100%;
+        }
+    }
+
+    &--3\:2\@largeScreen {
+        @media (max-width: $largeScreen) {
+            padding-bottom: (2/3) * 100%;
+        }
+    }
+
     &:after {
         content: '';
         position: absolute;

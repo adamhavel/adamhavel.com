@@ -3,6 +3,10 @@
     padding-left: 1.5em;
     overflow: hidden;
     padding-top: $lineHeight * .25rem;
+
+    @media (max-width: $smallScreen) {
+        padding: 0;
+    }
 }
 
     .card__header {
@@ -13,6 +17,10 @@
         letter-spacing: .125em;
         font-weight: 400;
         font-variation-settings: 'wght' 400;
+
+        @media (max-width: $tinyScreen) {
+            font-variation-settings: 'wght' 400, 'wdth' 90;
+        }
 
         > *:not(:first-child):before {
             content: '/';
@@ -48,6 +56,14 @@
         font-weight: 300;
         font-variation-settings: 'wght' 300;
         margin-top: $lineHeight * .375rem;
+
+        @media (max-width: $smallScreen) {
+            margin-top: $lineHeight * .25rem;
+        }
+
+        @media (max-width: $tinyScreen) {
+            font-variation-settings: 'wght' 300, 'wdth' 90;
+        }
     }
 
     .card__link {
@@ -66,5 +82,9 @@
             border-color: $colorPrimary;
             opacity: .75;
             transform: translateZ(0) scaleX(1.25);
+        }
+
+        @media (max-width: $smallScreen) {
+            display: none;
         }
     }

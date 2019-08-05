@@ -15,6 +15,12 @@ related:
   - name: date
     weight: 10
 
+params:
+  largeScreen: 88em
+  mediumScreen: 65em
+  smallScreen: 45em
+  tinyScreen: 30em
+
 languages:
   en:
     title: adamhavel.com

@@ -1,4 +1,4 @@
-$galleryGap: 2.5vw;
+$galleryGap: $gutter;
 
 .gallery {
     display: grid;
@@ -7,6 +7,18 @@ $galleryGap: 2.5vw;
     padding: ($lineHeight * 6rem) $galleryGap 0;
     position: relative;
     grid-auto-flow: dense;
+
+    @media (max-width: $largeScreen) {
+        padding: ($lineHeight * 2rem) 0 0 0;
+    }
+
+    @media (max-width: $mediumScreen) {
+        padding: 0;
+    }
+
+    @media (max-width: $smallScreen) {
+        display: block;
+    }
 }
 
     .gallery__item {
@@ -25,6 +37,10 @@ $galleryGap: 2.5vw;
         &:nth-child(6n + 2):not(&--vertical) {
             grid-column-end: span 2;
             grid-row-end: span 2;
+
+            @media (max-width: $smallScreen) {
+                grid-row-end: initial;
+            }
         }
 
         &:nth-child(9) {
@@ -58,9 +74,23 @@ $galleryGap: 2.5vw;
             opacity: .075;
             transform: skewX(-2deg);
         }
+
+        @media (max-width: $largeScreen) {
+            margin: 0 !important;
+        }
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: $lineHeight * 1rem !important;
+        }
     }
 
-        .gallery__header {}
+        .gallery__header {
+            text-align: right;
+
+            @media (max-width: $smallScreen) {
+                text-align: left;
+            }
+        }
 
             .gallery__heading {
                 font-weight: 500;
@@ -70,7 +100,6 @@ $galleryGap: 2.5vw;
                 color: rgba(black, .75);
                 line-height: 1;
                 margin-bottom: $lineHeight * 1rem;
-                text-align: right;
 
                 &:after {
                     content: '';
@@ -88,8 +117,11 @@ $galleryGap: 2.5vw;
             .gallery__desc {
                 font-weight: 300;
                 font-variation-settings: 'wght' 300;
-                text-align: right;
                 font-size: 1.125em;
+
+                @media (max-width: $smallScreen) {
+                    font-variation-settings: 'wght' 300, 'wdth' 90;
+                }
             }
 
         .gallery__footer {
@@ -97,6 +129,13 @@ $galleryGap: 2.5vw;
             background: radial-gradient(farthest-side at top left, white, transparent);
             border: solid rgba(black, .02);
             border-width: 1px 0 0 1px;
+
+            @media (max-width: $smallScreen) {
+                padding: 0;
+                border: 0;
+                background: 0;
+                font-size: .875em;
+            }
         }
 
             .gallery__license {

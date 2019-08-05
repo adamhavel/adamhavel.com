@@ -6,12 +6,16 @@
     <main class="section__layout section__layout--grid">
 
         {{ range .Pages }}
-            <section class="spot">
+            <section class="spot spot--vertical">
                 {{ with .Resources.GetMatch "thumb.*" }}
-                    {{ $image := .Fill "600x800 center q50" }}
-                    <div class="spot__image-container image-container image-container--3:4">
-                        <img class="spot__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
-                    </div>
+                    {{ $image3x4 := .Fill "600x800 center q50" }}
+                    {{ $image3x2 := .Fill "1200x800 q50" }}
+                    <figure class="spot__image-container image-container image-container--3:4 image-container--3:2@largeScreen">
+                        <picture>
+                            <source class="spot__image image-container__source" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.largeScreen }})">
+                            <img class="spot__image image-container__source" src="{{ $image3x4.Permalink }}" role="presentation">
+                        </picture>
+                    </figure>
                 {{ end }}
                 <div class="spot__content">
                     <header class="spot__header">

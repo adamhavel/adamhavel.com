@@ -1,12 +1,34 @@
 .peristyle-layout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: $gutter;
+    grid-gap: $gutter;
     margin-bottom: ($lineHeight * 6rem);
-    align-items: start;
+
+    @media (max-width: $mediumScreen) {
+        margin-bottom: ($lineHeight * 3rem);
+    }
+
+    @media (max-width: $smallScreen) {
+        display: block;
+        margin-bottom: ($lineHeight * 2rem);
+    }
 }
 
-    .peristyle-layout__figure {}
+    .peristyle-layout__figure {
+
+        @media (max-width: $mediumScreen) {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+
+            &:nth-of-type(2) {
+                grid-row: 2 / 3;
+            }
+        }
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: ($lineHeight * 1rem);
+        }
+    }
 
         .peristyle-layout__image {}
 
@@ -15,11 +37,21 @@
         flex-direction: column;
         align-self: stretch;
         grid-column: 3 / 5;
+
+        @media (max-width: $mediumScreen) {
+            grid-row: 1 / 3;
+        }
     }
 
         .peristyle-layout__heading {
             margin-bottom: ($lineHeight * 2rem);
             margin-left: calc(50% + #{$gutter / 2});
+
+            @media (max-width: $mediumScreen) {
+                margin-bottom: ($lineHeight * 1rem);
+                margin-right: calc(50% + #{$gutter / 2});
+                margin-left: 0;
+            }
         }
 
         .peristyle-layout__summary {
@@ -27,6 +59,17 @@
             font-size: 1.125em;
             font-variation-settings: 'wght' 300;
             text-align: justify;
+            margin-bottom: ($lineHeight * 2rem);
+
+            @media (max-width: $mediumScreen) {
+                font-variation-settings: 'wght' 300, 'wdth' 90;
+                text-align: left;
+            }
+
+            @media (max-width: $smallScreen) {
+                margin-bottom: 0;
+                font-size: 1em;
+            }
         }
 
         .peristyle-layout__captions {
@@ -37,6 +80,16 @@
             letter-spacing: .05em;
             counter-reset: caption;
             margin-top: auto;
+
+            @media (max-width: $mediumScreen) {
+                margin-right: 0;
+            }
+
+            @media (max-width: $smallScreen) {
+                margin-top: 0;
+                margin-bottom: ($lineHeight * 1.5rem);
+                order: -1;
+            }
         }
 
             .peristyle-layout__caption {

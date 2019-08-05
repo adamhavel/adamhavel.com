@@ -4,12 +4,25 @@
     grid-gap: $gutter;
     margin-bottom: ($lineHeight * 6rem);
     align-items: start;
+
+    @media (max-width: $mediumScreen) {
+        margin-bottom: ($lineHeight * 3rem);
+        display: block;
+    }
+
+    @media (max-width: $smallScreen) {
+        margin-bottom: ($lineHeight * 2rem);
+    }
 }
 
     .web-showcase__figure {
         position: relative;
         background: rgba(black, .05);
         border: 1px solid rgba(black, .025);
+
+        @media (max-width: $mediumScreen) {
+            margin-bottom: ($lineHeight * 1rem);
+        }
 
         &:before,
         &:after {
@@ -102,6 +115,15 @@
         .web-showcase__heading {
             margin-bottom: ($lineHeight * 2rem);
             margin-right: calc(50% + #{$gutter / 2});
+
+            @media (max-width: $mediumScreen) {
+                margin-bottom: ($lineHeight * 1rem);
+                margin-right: calc(75% + #{$gutter / 2});
+            }
+
+            @media (max-width: $smallScreen) {
+                margin-right: calc(50% + #{$gutter / 2});
+            }
         }
 
         .web-showcase__summary {
@@ -111,5 +133,18 @@
             column-count: 2;
             column-gap: $gutter;
             line-height: 1.75;
+
+            @media (max-width: $mediumScreen) {
+                line-height: 1.65;
+                font-size: 1.125em;
+                margin-bottom: ($lineHeight * 1rem);
+            }
+
+            @media (max-width: $smallScreen) {
+                columns: 1;
+                line-height: 1.55;
+                font-size: 1em;
+                text-align: left;
+            }
         }
 

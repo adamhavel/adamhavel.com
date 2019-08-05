@@ -1,5 +1,13 @@
 .article {
     padding-top: $lineHeight * 2rem;
+
+    @media (max-width: $mediumScreen) {
+        padding-top: $lineHeight * 1rem;
+    }
+
+    @media (max-width: $smallScreen) {
+        padding-top: 0;
+    }
 }
 
     .article__content {
@@ -17,6 +25,20 @@
 
         > * {
             margin-left: calc(33.3% + #{($gutter / 2)});
+        }
+
+        @media (max-width: $mediumScreen) {
+
+            > * {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: $smallScreen) {
+
+            > p {
+                font-variation-settings: 'wght' 300, 'wdth' 90;
+            }
         }
     }
 
@@ -54,9 +76,23 @@
             float: left;
             margin-left: 0;
 
+            @media (max-width: $mediumScreen) {
+                margin-right: $gutter;
+            }
+
+            @media (max-width: $smallScreen) {
+                float: none;
+                margin-right: 0;
+            }
+
             &--image {
                 width: calc(66.6% - #{($gutter / 2)});
                 margin: ($lineHeight * 1.5rem) $gutter ($lineHeight * 2rem) 0;
+
+                @media (max-width: $mediumScreen) {
+                    width: auto;
+                    margin: ($lineHeight * 1.5rem) 0;
+                }
             }
 
             &--quote {
@@ -78,7 +114,22 @@
                     opacity: .075;
                 }
 
-                blockquote {}
+                @media (max-width: $mediumScreen) {
+                    font-size: calc(1em + 1vw);
+                    margin: ($lineHeight * .25rem) $gutter ($lineHeight * 1.5rem) $gutter;
+                }
+
+                @media (max-width: $smallScreen) {
+                    width: auto;
+                    margin: ($lineHeight * 2rem) 0;
+                    font-size: calc(1em + 1.25vw);
+                    text-align: center;
+
+                    &:before {
+                        margin-right: auto;
+                        margin-bottom: ($lineHeight * .5rem);
+                    }
+                }
             }
 
             &--code {
@@ -90,6 +141,17 @@
                 opacity: .375;
                 filter: grayscale(1);
                 padding-top: $lineHeight * .125rem;
+
+                @media (max-width: $mediumScreen) {
+                    width: calc(50% - #{($gutter / 2)});
+                    filter: none;
+                    opacity: 1;
+                }
+
+                @media (max-width: $smallScreen) {
+                    width: auto;
+                    margin: ($lineHeight * 1.5rem) 0;
+                }
 
                 a {
                     opacity: .5;
@@ -129,6 +191,14 @@
 
         .article__related-articles {
             margin-top: $lineHeight * 5rem;
+
+            @media (max-width: $mediumScreen) {
+                margin-top: $lineHeight * 3rem;
+            }
+
+            @media (max-width: $smallScreen) {
+                margin-top: $lineHeight * 1.5rem;
+            }
         }
 
 

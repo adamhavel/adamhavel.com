@@ -4,9 +4,7 @@
     {{ with .Page.Resources.GetMatch (.Get "img") }}
         {{ $image := .Fill "1200x800 q75 center" }}
         <figure class="image-container asymmetric-layout__figure">
-            <a href="{{ $image.Permalink }}" target="_blank">
-                <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}" aria-describedby="#asymmetric-layout-{{ $id }}__summary">
-            </a>
+            <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}" aria-describedby="#asymmetric-layout-{{ $id }}__summary">
         </figure>
     {{ end }}
 

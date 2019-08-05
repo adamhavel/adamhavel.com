@@ -4,9 +4,14 @@
     <header class="workshop__header header">
 
         {{ with .Resources.GetMatch "thumb.*" }}
-            {{ $image := .Fill "1200x800 center q50" }}
-            <figure class="header__image-container image-container">
-                <img class="header__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
+            {{ $image3x2 := .Fill "1200x800 center q50" }}
+            {{ $image1x1 := .Fill "800x800 center q50" }}
+            <figure class="header__image-container image-container image-container--1:1@mediumScreen image-container--3:2@smallScreen">
+                <picture>
+                    <source class="header__image image-container__source" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
+                    <source class="header__image image-container__source" srcset="{{ $image1x1.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                    <img class="header__image image-container__source" src="{{ $image3x2.Permalink }}" role="presentation">
+                </picture>
                 {{ with $.Page.Params.photoDesc }}
                     <figcaption class="header__caption"><a href="{{ $.Page.Params.photoUrl }}" target="_blank">{{ . | safeHTML }}</a></figcaption>
                 {{ end }}

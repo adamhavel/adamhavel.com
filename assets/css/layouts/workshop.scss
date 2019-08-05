@@ -1,16 +1,56 @@
 .workshop {
     padding-top: $lineHeight * 2rem;
+
+    @media (max-width: $mediumScreen) {
+        padding-top: $lineHeight * 1rem;
+    }
+
+    @media (max-width: $smallScreen) {
+        padding-top: 0;
+    }
 }
+
+    .workshop__header {}
 
     .workshop__layout {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-column-gap: $gutter;
+
+        @media (max-width: $mediumScreen) {
+            padding-left: 0;
+            display: block;
+
+            &:after {
+                display: table;
+                clear: both;
+                content: '';
+            }
+        }
     }
 
         .workshop__aside {
             margin-top: .25em;
             padding-left: $gutter;
+
+            @media (max-width: $largeScreen) {
+                padding-left: 0;
+            }
+
+            @media (max-width: $mediumScreen) {
+                float: left;
+                width: calc(50% - #{$gutter / 2});
+                margin-right: $gutter;
+                margin-bottom: $lineHeight * 1rem;
+            }
+
+            @media (max-width: $smallScreen) {
+                float: none;
+                width: auto;
+                margin-right: 0;
+                margin-top: 0;
+                margin-bottom: $lineHeight * 1.5rem;
+            }
         }
 
         .workshop__content {
@@ -19,6 +59,10 @@
             > p {
                 font-weight: 300;
                 font-variation-settings: 'wght' 300;
+
+                @media (max-width: $smallScreen) {
+                    font-variation-settings: 'wght' 300, 'wdth' 90;
+                }
             }
 
             > p:first-of-type {
