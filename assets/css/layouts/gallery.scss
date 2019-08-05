@@ -112,6 +112,24 @@ $galleryGap: $gutter;
                     border: 1px solid rgba(black, .0125);
                     border-bottom: 1px solid rgba(black, .05);
                 }
+
+                @media (max-width: $largeScreen) {
+                    font-size: calc(3rem + 2vw);
+                }
+
+                @media (max-width: $mediumScreen) {
+                    font-size: calc(2rem + 3vw);
+                    margin-bottom: $lineHeight * .5rem;
+
+                    &:after {
+                        margin-top: $lineHeight * .5rem;
+                        height: .5rem;
+                    }
+                }
+
+                @media (max-width: $smallScreen) {
+                    font-size: calc(2rem + 3vw);
+                }
             }
 
             .gallery__desc {
