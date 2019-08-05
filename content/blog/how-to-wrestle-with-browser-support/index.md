@@ -11,7 +11,7 @@ photoDesc: Glenn Carstens-Peters
 photoUrl: https://unsplash.com/photos/6rkJD0Uxois
 ---
 
-HTML is the foundation of web services. That is the conclusion of the [previous article](/blog/progressive-enhancement/) and the prerequisite we build on when we enhance a service with JavaScript. But how to make JavaScript run only when we know the host environment — typically a browser — will handle it? And where to set the boundary that clearly divides users into two camps: with and without JavaScript?
+HTML is the foundation of web services. That is the conclusion of the [previous article](/blog/the-art-of-progressive-enhancement/) and the prerequisite we build on when we enhance a service with JavaScript. But how to make JavaScript run only when we know the host environment — typically a browser — will handle it? And where to set the boundary that clearly divides users into two camps: with and without JavaScript?
 
 <!--more-->
 
