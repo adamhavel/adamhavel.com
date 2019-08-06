@@ -1,6 +1,6 @@
 ---
-title: Ikony bez kompromisů?
-slug: ikony-bez-kompromisu
+title: Jak spravovat ikony?
+slug: jak-spravovat-ikony
 date: 2018-11-22
 keywords:
     - web

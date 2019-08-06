@@ -1,5 +1,5 @@
 ---
-title: The Perils of Icon Systems
+title: The Primer on Icon Sprites
 date: 2018-11-22
 keywords:
     - web
