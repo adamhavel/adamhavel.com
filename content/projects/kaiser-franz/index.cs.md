@@ -13,7 +13,7 @@ Kaiser Franz je originální koncept různých podob gastronomie založené na s
 
 <!--more-->
 
-{{< peristyle title="Inspirace" img1="img/kaiser.jpg" img1-caption="František Josef I." img2="img/arcimboldo.jpg" img2-caption="Rudolf II. jako Vertumnus" >}}
+{{< peristyle title="Inspirace" img1="img/kaiser.jpg" img1-caption="František Josef I." img2="img/arcimboldo.jpg" img2-caption="Rudolf II. jako Vertumnus" saturation="desaturated" >}}
 Jméno Kaiser Franz samozřejmě pochází od předposledního císaře Rakouska-Uherska, Františka Josefa I. Právě z jeho nepřehlédnutelného kníru vyrostl základ pro nové logo a první inspirace. Druhý díl skládanky vznikl ve spojitosti s dalším známým králem zemí českých, Rudolfem II. Habsburským. Tohoto císaře Svaté říše římské svérázným způsobem zpodobnil italský malíř Giuseppe Arcimboldo, který své portrtéty komponoval na způsob zátiší z rozličných předmetů, převážně jídla. A přestože nás od obou vladařů dělí jedno, respektive čtyři staletí, jejich podoba zůstala — z různých, převážně nostalgických důvodů — obecně známá i dnes.
 {{< /peristyle >}}
 

@@ -1,0 +1,52 @@
+{{ $id := .Ordinal }}
+<section class="asymmetric-layout">
+
+    <div class="asymmetric-layout__grid">
+
+        {{ with .Page.Resources.GetMatch (.Get "img1") }}
+            {{ $image := .Fill "800x600 q50 center" }}
+            <figure class="image-container image-container--4:3">
+                <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}">
+            </figure>
+        {{ end }}
+
+        {{ with .Page.Resources.GetMatch (.Get "img2") }}
+            {{ $image := .Fill "800x600 q50 center" }}
+            <figure class="image-container image-container--4:3">
+                <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}">
+            </figure>
+        {{ end }}
+
+        {{ with .Page.Resources.GetMatch (.Get "img3") }}
+            {{ $image := .Fill "800x600 q50 center" }}
+            <figure class="image-container image-container--4:3">
+                <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}">
+            </figure>
+        {{ end }}
+
+        {{ with .Page.Resources.GetMatch (.Get "img4") }}
+            {{ $image := .Fill "800x600 q50 center" }}
+            <figure class="image-container image-container--4:3">
+                <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}">
+            </figure>
+        {{ end }}
+
+    </div>
+
+    <div class="asymmetric-layout__content">
+
+        <h2 class="asymmetric-layout__heading spread-heading"><span>{{ delimit (split (.Get "title") "") "</span><span>" }}</span></h2>
+
+        <div class="asymmetric-layout__summary content" id="asymmetric-layout-{{ $id }}__summary">
+            {{ $markdown := .Inner | markdownify }}
+
+            {{ if not ( strings.Contains $markdown "<p>" ) }}
+                <p>{{ $markdown }}</p>
+            {{ else }}
+                {{ $markdown }}
+            {{ end }}
+        </div>
+
+    </div>
+
+</section>

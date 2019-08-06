@@ -11,6 +11,22 @@
     }
 }
 
+    .asymmetric-layout__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column: 1 / 3;
+        grid-gap: $gutter;
+
+        @media (max-width: $mediumScreen) {
+            margin-bottom: ($lineHeight * 1.5rem);
+        }
+
+        @media (max-width: $smallScreen) {
+            grid-template-columns: 1fr;
+            grid-gap: $lineHeight * 1rem;
+        }
+    }
+
     .asymmetric-layout__figure {
         grid-column: 1 / 3;
 

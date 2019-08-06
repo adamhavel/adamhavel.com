@@ -3,6 +3,10 @@
     padding-bottom: (2/3) * 100%;
     background: rgba(black, .05);
 
+    &--loose {
+        padding-bottom: 0;
+    }
+
     &--4\:3 {
         padding-bottom: (3/4) * 100%;
     }
@@ -93,5 +97,13 @@
 
         &--desaturated {
             filter: grayscale(.5);
+        }
+
+        &--saturated {
+            xfilter: none;
+        }
+
+        .image-container--loose & {
+            position: relative;
         }
     }

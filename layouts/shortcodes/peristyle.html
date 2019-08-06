@@ -1,4 +1,5 @@
 {{ $id := .Ordinal }}
+{{ $saturation := .Get "saturation" }}
 <section class="peristyle-layout">
 
     {{ with .Page.Resources.GetMatch (.Get "img1") }}
@@ -6,8 +7,8 @@
         {{ $image3x2 := .Fill "900x600 q50" }}
         <figure class="peristyle-layout__figure image-container image-container--1:2 image-container--3:2@mediumScreen">
             <picture aria-labelledby="#peristyle-layout-{{ $id }}__caption-1">
-                <source class="peristyle-layout__image image-container__source image-container__source--desaturated" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
-                <img class="peristyle-layout__image image-container__source image-container__source--desaturated" src="{{ $image1x2.Permalink }}" role="presentation">
+                <source class="peristyle-layout__image image-container__source image-container__source--{{ $saturation }}" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                <img class="peristyle-layout__image image-container__source image-container__source--{{ $saturation }}" src="{{ $image1x2.Permalink }}" role="presentation">
             </picture>
         </figure>
     {{ end }}
@@ -17,8 +18,8 @@
         {{ $image3x2 := .Fill "900x600 q50" }}
         <figure class="peristyle-layout__figure image-container image-container--1:2 image-container--3:2@mediumScreen">
             <picture aria-labelledby="#peristyle-layout-{{ $id }}__caption-2">
-                <source class="peristyle-layout__image image-container__source image-container__source--desaturated" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
-                <img class="peristyle-layout__image image-container__source image-container__source--desaturated" src="{{ $image1x2.Permalink }}" role="presentation">
+                <source class="peristyle-layout__image image-container__source image-container__source--{{ $saturation }}" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                <img class="peristyle-layout__image image-container__source image-container__source--{{ $saturation }}" src="{{ $image1x2.Permalink }}" role="presentation">
             </picture>
         </figure>
     {{ end }}

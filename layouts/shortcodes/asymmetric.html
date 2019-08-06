@@ -2,7 +2,7 @@
 <section class="asymmetric-layout">
 
     {{ with .Page.Resources.GetMatch (.Get "img") }}
-        {{ $image := .Fill "1200x800 q75 center" }}
+        {{ $image := .Fill "1200x800 q50 center Gaussian" }}
         <figure class="image-container asymmetric-layout__figure">
             <img class="asymmetric-layout__image image-container__source" src="{{ $image.Permalink }}" aria-describedby="#asymmetric-layout-{{ $id }}__summary">
         </figure>

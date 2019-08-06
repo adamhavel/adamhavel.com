@@ -13,7 +13,7 @@ Kaiser Franz is an original concept of various forms of gastronomy based on stre
 
 <!--more-->
 
-{{< peristyle title="Inspiration" img1="img/kaiser.jpg" img1-caption="Franz Joseph I of Austria" img2="img/arcimboldo.jpg" img2-caption="Rudolf II as Vertumnus" >}}
+{{< peristyle title="Inspiration" img1="img/kaiser.jpg" img1-caption="Franz Joseph I of Austria" img2="img/arcimboldo.jpg" img2-caption="Rudolf II as Vertumnus" saturation="desaturated" >}}
 The name Kaiser Franz comes from the penultimate emperor of Austria-Hungary, Franz Joseph I. It's out of his unmistakable mustache the first inspiration and the basis for the new logo grew out. The second part of the puzzle emerged in connection with another well-known king of the Czech lands, Rudolf II. Habsburg. This emperor of the Holy Roman Empire was portrayed in a peculiar way by the Italian painter Giuseppe Arcimboldo, who composed his portraits in the manner of still lifes made from various objects, mostly food. And although we are centuries apart from both the regents (one from the former, four from the latter), their likeness has — for various, mostly nostalgic reasons — remained well-known until today.
 {{< /peristyle >}}
 
