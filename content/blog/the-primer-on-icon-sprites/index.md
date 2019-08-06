@@ -15,33 +15,35 @@ Even though small in size, icons seem to occupy a lot of space in the collective
 
 <!--more-->
 
-A sprite is created by putting the icon shapes inside `symbol` elements in a SVG file. Symbols are used because unlike other SVG objects, they aren't rendered until you use them. Unless you want to create the sprite manually, you can use one of the many solutions available to automate the process, such as grunt-svgstore or gulp-svgsprite.
+A sprite is created by putting the icon shapes inside `symbol` elements in a SVG file{{< figures/code-ref >}}. Symbols are used because unlike other SVG objects, they aren't rendered until you use them. Unless you want to create the sprite manually, you can use one of the many solutions available to automate the process, such as grunt-svgstore or gulp-svgsprite.
 
 {{< figures/code >}}
 ```xml
 <svg>
-    <symbol viewBox="0 0 32 32" id="close">
-        <path d="..." />
-    </symbol>
-    <symbol viewBox="0 0 32 32" id="search">
-        <path d="..." />
-    </symbol>
-    ...
+  <symbol viewBox="0 0 32 32" id="close">
+    <path d="..." />
+  </symbol>
+  <symbol viewBox="0 0 32 32" id="search">
+    <path d="..." />
+  </symbol>
+  ...
 </svg>
 ```
 {{< /figures/code >}}
 
-To display an icon -- assuming we have the sprite ready and loaded (we’ll get to that) -- write an inline SVG containing a single `use` element which references the icon’s `id` using the `xlink:href` attribute. That’s the easy part.
+To display an icon -- assuming we have the sprite ready and loaded (we’ll get to that) -- write an inline SVG containing a single `use` element which references the icon’s `id` using the `xlink:href` attribute{{< figures/code-ref >}}. That’s the easy part.
 
+{{< figures/code >}}
 ```xml
 <svg>
-    <use xlink:href="#search"></use>
+  <use xlink:href="#search"></use>
 </svg>
 ```
+{{< /figures/code >}}
 
-Loading the sprite is a bit more involved. First, linking an external SVG sprite (via `xlink:href="sprite.svg#id"`) won't work in Internet Explorer (it will in Edge, though). That leaves you with two options: either put the sprite directly into all templates, or use AJAX and inject it on load. You can choose a third option and do it dynamically on the server side, but that doesn't solve the problem of caching two independent resources as one. That's where the second option comes to rescue. It consists of a small script directly inlined into a document's `head`. Apart from icons, the script can be used to load other non-critical assets such as fonts.
+Loading the sprite is a bit more involved. First, linking an external SVG sprite (via `xlink:href="sprite.svg#id"`) won't work in Internet Explorer (it will in Edge, though). That leaves you with two options: either put the sprite directly into all templates, or use AJAX and inject it on load. You can choose a third option and do it dynamically on the server side, but that doesn't solve the problem of caching two independent resources as one. That's where the second option comes to rescue. It consists of a small script directly inlined into a document's `head`{{< figures/code-ref >}}. Apart from icons, the script can be used to load other non-critical assets such as fonts.
 
-
+{{< figures/code >}}
 ```javascript
 (function(w) {
     'use strict';
@@ -85,6 +87,7 @@ Loading the sprite is a bit more involved. First, linking an external SVG sprite
 
 })(window);
 ```
+{{< /figures/code >}}
 
 When you call the function, it makes an asynchronous request for the provided file URI. The file is then both saved in `localStorage` and injected into a document. The injection method depends on the file type: stylesheets are appended as `textContent` inside a new `style` node, and SVG sprites are injected directly into `head`, using the `insertAdjacentHTML` function. Putting the sprite into `body` would be better, but alas, that part of the document doesn't yet exist when the script runs. A SVG element might not be a valid part of `head`, but it works.
 
@@ -98,16 +101,17 @@ There are several ways to style an icon. First, you can put a presentational att
 
 To begin with, an inline `style` attribute trumps everything. Any styles put at the top of the sprite come next, followed by inline attributes such as `fill` or `stroke`. Finally, anything you write in your global stylesheet has -- assuming the same selector -- the lowest priority. With this cascade in mind, you could employ various approaches. I think it’s best to stick with the global stylesheet and strip all inline attributes when creating the sprite. If you need an icon that doesn't change its color depending on context (e.g. social media icons), define the color directly with a `style` attribute and keep it there. Another trick is to style some part of an icon with the `fill` property set to a specific color, and other with `fill` set to `currentColor`. That gives you the option to dynamically change two colors at once by changing either `fill` and `color`.
 
-Each symbol in the sprite should have a properly defined `viewbox` of its own, but on top of that, it’s best to set a default width and height on each icon element in a template. Otherwise, any SVG without dimensions -- either set directly or by CSS -- will render with width and height of 300 and 150 pixels. That could happen when your styles fail to load or, if you fetch them in a non-blocking manner, before they had the chance to apply.
-
+{{< figures/code >}}
 ```xml
 <svg width="32" height="32" class="e-icon">
-    <use xlink:href="#search"></use>
+  <use xlink:href="#search"></use>
 </svg>
 ```
+{{< /figures/code >}}
 
-Another attribute worth mentioning is `role`. Set it to `image` if you want to make sure an icon is regarded as one by screen readers. But you shouldn’t employ icons on their own anyway, so it’s actually better to hide their presence from screen readers altogether by setting the `aria-hidden` attribute to `true`. If you still wish to use icons without a label, don’t forget to advertise their meaning with the attribute `aria-label`.
+Each symbol in the sprite should have a properly defined `viewbox` of its own, but on top of that, it’s best to set a default width and height on each icon element in a template{{< figures/code-ref >}}. Otherwise, any SVG without dimensions -- either set directly or by CSS -- will render with width and height of 300 and 150 pixels. That could happen when your styles fail to load or, if you fetch them in a non-blocking manner, before they had the chance to apply.
 
+{{< figures/code >}}
 ```html
 <button>
     <svg aria-hidden="true">
@@ -116,7 +120,9 @@ Another attribute worth mentioning is `role`. Set it to `image` if you want to m
     <span>Search</span>
 </button>
 ```
+{{< /figures/code >}}
 
+{{< figures/code >}}
 ```html
 <button>
     <svg role="image" aria-label="Search">
@@ -124,11 +130,13 @@ Another attribute worth mentioning is `role`. Set it to `image` if you want to m
     </svg>
 </button>
 ```
+{{< /figures/code >}}
+
+Another attribute worth mentioning is `role`. Set it to `image` if you want to make sure an icon is regarded as one by screen readers. But you shouldn’t employ icons on their own anyway, so it’s actually better to hide their presence from screen readers altogether by setting the `aria-hidden` attribute to `true`{{< figures/code-ref >}}. If you still wish to use icons without a label, don’t forget to advertise their meaning with the attribute `aria-label`{{< figures/code-ref >}}.
 
 If you require to support a browser that can't handle SVG, you can still employ the system as described before, only with some additional steps. First, you must generate PNG versions of your icons. A second step would be to check for SVG support. You can do that by using Modernizr or by asking the `document.implementation` object. The general idea is to replace the SVG element with a regular `img` that points to the PNG version of the icon. There are, however, several problems to tackle.
 
-To begin with, you need to obtain the icon's `id` in order to construct the image URL. The browser in question doesn’t support SVG though, so it can’t read the `use` element which harbours the `xlink:href` attribute we need. The solution is to extract the type with a regular expression, run on the icon's parent node's `innerHTML`. Another problem is that Internet Explorer 8 treats the new injected image as if it had no dimensions. To help with that, a blank block element has to be placed alongside the new icon and styled the same way as a regular icon. And finally, the loading script won't work in Internet Explorer 8, but it can be easily modified to support it (replace `addEventListener()` with `onload` and so on).
-
+{{< figures/code >}}
 ```js
 if (!document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Image', '1.1')) {
     [].forEach.call(document.querySelectorAll('svg.e-icon'), function(icon) {
@@ -146,7 +154,9 @@ if (!document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Imag
     });
 }
 ```
+{{< /figures/code >}}
 
+{{< figures/code >}}
 ```scss
 $iconSize: 1em;
 
@@ -191,13 +201,19 @@ $iconSize: 1em;
     }
 }
 ```
+{{< /figures/code >}}
+
+To begin with, you need to obtain the icon's `id` in order to construct the image URL. The browser in question doesn’t support SVG though, so it can’t read the `use` element which harbours the `xlink:href` attribute we need. The solution is to extract the type with a regular expression, run on the icon's parent node's `innerHTML`{{< figures/code-ref >}}. Another problem is that Internet Explorer 8 treats the new injected image as if it had no dimensions. To help with that, a blank block element has to be placed alongside the new icon and styled the same way as a regular icon{{< figures/code-ref >}}.
 
 The last use case concerns a situation where you need an icon for something like a list bullet. Let's assume the bullet is complex enough that you can't produce it only with CSS or Unicode symbols. You could put an `use` element in each list item, but that’s needless repetition. Now imagine a scenario where you want to use the same icon in different contexts, each requiring a different color. Even if you inlined the SVG directly into a stylesheet, you can’t alter the icon properties depending on the context. One solution would be to use icon fonts as an alternative system for cases like this. That'd give you the option to change the bullet's fill by simply changing its text color. But to me, that seems way too complicated.
 
 In an attempt to solve this conundrum, I tried an approach that exploits CSS filters, specifically the `drop-shadow`. Unlike the `box-shadow` property, which produces rectangular shadows (including any rounded corners or transformations), the `drop-shadow` filter takes the exact shape of an element into account. Changing the bullet color is therefore as simple as changing the color of its shadow. That is, if you manage to hide the original icon producing the shadow.
 
-You can't make the icon transparent or move its background position out of the element container, because that would make the shadow disappear. What works is positioning the icon out of its container and setting the `overflow` property on the container to `hidden`. By adjusting the `drop-shadow` offset to the negative of the icon's translation value, the shadow remains the only visible part of the bullet. Of course, this solution is far from ideal. To begin with, filters aren't supported in any version of Internet Explorer. You can, however, easily target non-supporting browsers with Modernizr and restore the original icon. Second, using filters in this manner might hinder the rendering performance. And the worst part, this technique stopped working in the latest Chrome -- the shadow won’t show if the original icon isn’t visible, regardless the technique used.
+You can't make the icon transparent or move its background position out of the element container, because that would make the shadow disappear. What works is positioning the icon out of its container and setting the `overflow` property on the container to `hidden`. By adjusting the `drop-shadow` offset to the negative of the icon's translation value, the shadow remains the only visible part of the bullet{{< figures/code-ref >}}.
 
+Of course, this solution is far from ideal. To begin with, filters aren't supported in any version of Internet Explorer. You can, however, easily target non-supporting browsers with Modernizr and restore the original icon. Second, using filters in this manner might hinder the rendering performance. And the worst part, this technique stopped working in the latest Chrome -- the shadow won’t show if the original icon isn’t visible, regardless the technique used.
+
+{{< figures/code >}}
 ```scss
 .c-bullet-list {
 
@@ -231,12 +247,15 @@ You can't make the icon transparent or move its background position out of the e
     }
 }
 ```
+{{< /figures/code >}}
 
 That leaves us with only one viable option, the one I already mentioned: inlining an icon into a stylesheet as a data URI.
-This technique allows us to skip a blocking network request and provides a way to alter the icon directly in CSS. On top of that, if you are going to use an icon more than once and have a preprocessor in place, you can create a mixin or a function that could provide a way to color the icon using parameters. It won’t help the repetition, but it will at least provide a single point of truth. Of course, any such icon shouldn’t be overly complex. On the other hand, the more you use it, the better it can be compressed.
+This technique allows us to skip a blocking network request and provides a way to alter the icon directly in CSS. On top of that, if you are going to use an icon more than once and have a preprocessor in place, you can create a mixin or a function that could provide a way to color the icon using parameters{{< figures/code-ref >}}. It won’t help the repetition, but it will at least provide a single point of truth. Of course, any such icon shouldn’t be overly complex. On the other hand, the more you use it, the better it can be compressed.
 
+{{< figures/code >}}
 ```scss
 @function bullet($color) {
     @return url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010.7%2016%22%3E%3Cpath%20fill%3D%22#{$color}%22%20d%3D%22M.7%202.7L6.4%208%20.6%2013.3%202.4%2015%2010%208%202.4%201%20.7%202.7z%22%2F%3E%3C%2Fsvg%3E');
 }
 ```
+{{< /figures/code >}}
