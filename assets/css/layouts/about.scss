@@ -1,0 +1,88 @@
+.about {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: $gutter;
+
+    @media (max-width: $smallScreen) {
+        display: block;
+    }
+}
+
+    .about__figure {
+        grid-row: 1 / 4;
+
+        &:after {
+            border-width: 2px !important;
+            opacity: .05 !important;
+        }
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: ($lineHeight * 1rem);
+        }
+    }
+
+        .about__image {}
+
+    .about__heading {
+        grid-column: 2 / -1;
+        grid-row: 1 / 2;
+        font-family: $fontDisplay;
+        font-size: 5rem;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        line-height: 1;
+        margin-bottom: $lineHeight * 2rem;
+        margin-left: -.0675em;
+        margin-top: -.125em;
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: ($lineHeight * 1rem);
+            margin-top: 0;
+        }
+    }
+
+    .about__summary {
+        grid-column: 2 / -1;
+        grid-row: 2 / 3;
+        font-size: 1.25em;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        margin-bottom: $lineHeight * 2rem;
+
+        @media (max-width: $smallScreen) {
+            font-size: 1.125em;
+            margin-bottom: ($lineHeight * 1rem);
+        }
+
+        @media (max-width: $tinyScreen) {
+            font-variation-settings: 'wght' 600, 'wdth' 90;
+        }
+    }
+
+    .about__content {
+        grid-column: 2 / -1;
+        grid-row: 3 / 4;
+        column-count: 2;
+        column-gap: $gutter;
+        margin-bottom: -.4em;
+
+        > p {
+            font-weight: 300;
+            font-variation-settings: 'wght' 300;
+
+            &:first-of-type {
+                display: none;
+            }
+        }
+
+        @media (max-width: $mediumScreen) {
+            columns: 1;
+        }
+
+        @media (max-width: $tinyScreen) {
+
+            > p {
+                font-variation-settings: 'wght' 300, 'wdth' 90;
+            }
+        }
+    }

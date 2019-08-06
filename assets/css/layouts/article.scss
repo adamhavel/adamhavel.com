@@ -1,14 +1,4 @@
-.article {
-    padding-top: $lineHeight * 2rem;
-
-    @media (max-width: $mediumScreen) {
-        padding-top: $lineHeight * 1rem;
-    }
-
-    @media (max-width: $smallScreen) {
-        padding-top: 0;
-    }
-}
+.article {}
 
     .article__content {
 

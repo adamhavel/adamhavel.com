@@ -1,9 +1,10 @@
 .site-content {
-    background: radial-gradient(farthest-side ellipse at bottom, white, transparent), $colorBackground;
-    background-size: 100% ($lineHeight * 5rem);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    padding: ($lineHeight * 2rem) 0 ($lineHeight * 5rem);
+    background: $colorBackground;
+    padding: ($lineHeight * 4rem) 0 ($lineHeight * 5rem);
+
+    @media (max-width: $mediumScreen) {
+        padding-top: $lineHeight * 3rem;
+    }
 
     @media (max-width: $smallScreen) {
         padding: ($lineHeight * 1rem) 0 ($lineHeight * 3rem);

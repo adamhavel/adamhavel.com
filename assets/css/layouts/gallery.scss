@@ -4,12 +4,12 @@ $galleryGap: $gutter;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: $galleryGap;
-    padding: ($lineHeight * 6rem) $galleryGap 0;
+    padding: ($lineHeight * 4rem) $galleryGap 0;
     position: relative;
     grid-auto-flow: dense;
 
     @media (max-width: $largeScreen) {
-        padding: ($lineHeight * 2rem) 0 0 0;
+        padding: 0;
     }
 
     @media (max-width: $mediumScreen) {

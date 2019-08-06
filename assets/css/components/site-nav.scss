@@ -2,7 +2,7 @@
     display: flex;
     font-size: .75em;
 
-    @media (max-width: $smallScreen) {
+    @media (max-width: $tinyScreen) {
         font-size: .675em;
     }
 }
@@ -10,7 +10,7 @@
     .site-nav__list {
         display: flex;
 
-        @media (max-width: $smallScreen) {
+        @media (max-width: $tinyScreen) {
             position: absolute;
             top: 0;
             left: 0;
@@ -71,7 +71,7 @@
                     display: none;
                 }
 
-                @media (max-width: $smallScreen) {
+                @media (max-width: $tinyScreen) {
                     display: flex;
                 }
             }
@@ -80,7 +80,7 @@
                 margin-left: 2em;
             }
 
-            @media (max-width: $smallScreen) {
+            @media (max-width: $tinyScreen) {
 
                 &:not(:first-child) {
                     margin-left: 0;
@@ -106,9 +106,10 @@
                     opacity: 1;
                 }
 
-                @media (max-width: $smallScreen) {
+                @media (max-width: $tinyScreen) {
                     letter-spacing: .05em;
-                    font-variation-settings: 'wght' 700, 'wdth' 85;
+                    font-weight: 600;
+                    font-variation-settings: 'wght' 600, 'wdth' 85;
                 }
             }
 
@@ -138,7 +139,7 @@
         background: none;
         cursor: pointer;
 
-        @media (min-width: $smallScreen) {
+        @media (min-width: $tinyScreen) {
             display: none;
         }
     }

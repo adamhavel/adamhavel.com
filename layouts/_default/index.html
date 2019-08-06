@@ -1,14 +1,20 @@
 {{ define "main" }}
-<div class="index">
+<main class="index">
 
     <div class="index__layout">
         <div class="index__headline">{{ .Content }}</div>
-        <figure class="index__figure" role="presentation">
+        <div class="index__figure" role="presentation">
+            <!-- {{ with resources.Get "img/mac.png" }}
+                <img class="index__mac" src="{{ .Permalink }}" role="presentation">
+            {{ end }}
+            {{ with resources.Get "img/mac.png" }}
+                <img class="index__mac" src="{{ .Permalink }}" role="presentation">
+            {{ end }} -->
             {{ (resources.Get "img/circle.svg").Content | safeHTML }}
-        </figure>
+        </div>
     </div>
 
-    <main class="index__cards">
+    <section class="index__cards">
 
         <section class="card">
             {{ with .GetPage "projects" }}
@@ -59,7 +65,7 @@
             {{ end }}
         </section>
 
-    </main>
+    </section>
 
-</div>
+</main>
 {{ end }}
