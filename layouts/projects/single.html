@@ -21,12 +21,12 @@
 
         {{ with .Resources.GetMatch "thumb.*" }}
             {{ $image3x2 := .Fill "1500x1000 q50 center" }}
-            {{ $image2x3 := .Fill "800x800 q50" }}
-            {{ $image3x2small := .Fill "900x600 q50" }}
+            {{ $image2x3 := .Fill "600x800 q50 left" }}
+            {{ $image3x2small := .Fill "900x600 q50 center" }}
             <figure class="project__image-container image-container image-container--2:3@mediumScreen image-container--3:2@smallScreen">
                 <picture>
-                    <source class="project__image image-container__source" srcset="{{ $image2x3.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
                     <source class="project__image image-container__source" srcset="{{ $image3x2small.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
+                    <source class="project__image image-container__source" srcset="{{ $image2x3.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
                     <img class="project__image image-container__source" src="{{ $image3x2.Permalink }}" role="presentation">
                 </picture>
             </figure>
