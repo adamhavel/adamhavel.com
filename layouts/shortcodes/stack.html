@@ -24,10 +24,12 @@
             {{ with $.Page.Resources.GetMatch . }}
                 {{ $aspectRatio := div (float .Height) .Width }}
                 {{ $height := math.Round (mul 1200 $aspectRatio) }}
+                {{ $smallHeight := math.Round (mul 800 $aspectRatio) }}
                 {{ $image := .Fill (replace "1200x$height q50 center" "$height" $height) }}
+                {{ $imageSmall := .Fill (replace "800x$height q50 center" "$height" $smallHeight) }}
                 <figure class="stack-layout__figure image-container image-container--loose">
                     <picture>
-                        <source class="stack-layout__image image-container__source" srcset="{{ $image.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                        <source class="stack-layout__image image-container__source" srcset="{{ $imageSmall.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
                         <img class="stack-layout__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
                     </picture>
                 </figure>
