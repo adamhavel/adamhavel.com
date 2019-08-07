@@ -1,55 +1,50 @@
-.asymmetric-layout {
+.stack-layout {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: $gutter;
+    grid-gap: $gutter;
     margin-bottom: ($lineHeight * 6rem);
-    align-items: start;
 
     @media (max-width: $mediumScreen) {
-        margin-bottom: ($lineHeight * 3rem);
         display: block;
+        margin-bottom: ($lineHeight * 3rem);
+    }
+
+    @media (max-width: $smallScreen) {
+        margin-bottom: ($lineHeight * 2rem);
     }
 }
 
-    .asymmetric-layout__grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column: 1 / 3;
-        grid-gap: $gutter;
+    .stack-layout__figures {
+        grid-column: 2 / -1;
+    }
+
+        .stack-layout__figure {
+            margin-bottom: $gutter;
+
+            @media (max-width: $smallScreen) {
+                margin-bottom: ($lineHeight * 1rem);
+            }
+        }
+
+            .stack-layout__image {}
+
+    .stack-layout__content {
 
         @media (max-width: $mediumScreen) {
-            margin-bottom: ($lineHeight * 1.5rem);
+            margin-bottom: $gutter;
         }
 
         @media (max-width: $smallScreen) {
-            grid-template-columns: 1fr;
-            grid-gap: $lineHeight * 1rem;
+            margin-bottom: ($lineHeight * 1rem);
         }
     }
 
-    .asymmetric-layout__figure {
-        grid-column: 1 / 3;
-
-        @media (max-width: $mediumScreen) {
-            margin-bottom: ($lineHeight * 1.5rem);
-        }
-    }
-
-        .asymmetric-layout__image {}
-
-    .asymmetric-layout__content {
-        display: flex;
-        flex-direction: column;
-        align-self: stretch;
-    }
-
-        .asymmetric-layout__heading {
+        .stack-layout__heading {
             margin-bottom: ($lineHeight * 2rem);
-            margin-left: 30%;
+            margin-right: 30%;
 
             @media (max-width: $mediumScreen) {
                 margin-bottom: ($lineHeight * 1rem);
-                margin-left: 0;
                 margin-right: calc(75% + #{$gutter / 2});
             }
 
@@ -58,7 +53,7 @@
             }
         }
 
-        .asymmetric-layout__summary {
+        .stack-layout__summary {
             font-weight: 300;
             font-size: 1.125em;
             font-variation-settings: 'wght' 300, 'wdth' 90;

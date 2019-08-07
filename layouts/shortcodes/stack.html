@@ -1,0 +1,40 @@
+{{ $saturation := .Get "saturation" }}
+<section class="stack-layout">
+
+    <div class="stack-layout__content">
+
+        <h2 class="stack-layout__heading spread-heading"><span>{{ delimit (split (.Get 0) "") "</span><span>" }}</span></h2>
+
+        <div class="stack-layout__summary content">
+            {{ $markdown := .Inner | markdownify }}
+
+            {{ if not ( strings.Contains $markdown "<p>" ) }}
+                <p>{{ $markdown }}</p>
+            {{ else }}
+                {{ $markdown }}
+            {{ end }}
+        </div>
+
+    </div>
+
+    <div class="stack-layout__figures">
+
+        {{ range after 1 .Params }}
+
+            {{ with $.Page.Resources.GetMatch . }}
+                {{ $aspectRatio := div (float .Height) .Width }}
+                {{ $height := math.Round (mul 1200 $aspectRatio) }}
+                {{ $image := .Fill (replace "1200x$height q50 center" "$height" $height) }}
+                <figure class="stack-layout__figure image-container image-container--loose">
+                    <picture>
+                        <source class="stack-layout__image image-container__source" srcset="{{ $image.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                        <img class="stack-layout__image image-container__source" src="{{ $image.Permalink }}" role="presentation">
+                    </picture>
+                </figure>
+            {{ end }}
+
+        {{ end }}
+
+    </div>
+
+</section>
