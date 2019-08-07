@@ -1,15 +1,17 @@
 .PHONY: develop build clean clean-build
 
-build: node_modules clean-build
+build: static/lib clean-build
 	hugo
 
-develop: node_modules clean-build
+develop: static/lib clean-build
 	hugo server
+
+static/lib: node_modules
+	mkdir static/lib
+	cp -R node_modules/reveal.js static/lib/reveal.js
 
 node_modules:
 	npm install
-	mkdir static/lib
-	cp -R node_modules/reveal.js static/lib/reveal.js
 
 clean-build:
 	rm -rf public
