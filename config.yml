@@ -5,6 +5,8 @@ pygmentsCodefences: true
 pygmentsUseClasses: true
 pygmentsStyle: github
 
+timeout: 30000
+
 related:
   threshold: 80
   includeNewer: true
