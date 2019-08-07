@@ -4,12 +4,6 @@
     <div class="index__layout">
         <div class="index__headline">{{ .Content }}</div>
         <div class="index__figure" role="presentation">
-            <!-- {{ with resources.Get "img/mac.png" }}
-                <img class="index__mac" src="{{ .Permalink }}" role="presentation">
-            {{ end }}
-            {{ with resources.Get "img/mac.png" }}
-                <img class="index__mac" src="{{ .Permalink }}" role="presentation">
-            {{ end }} -->
             {{ (resources.Get "img/circle.svg").Content | safeHTML }}
         </div>
     </div>

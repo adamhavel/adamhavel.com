@@ -75,9 +75,9 @@
 </g>
 <g class="leaves">
 	<radialGradient id="leaves-gradient" cx="110" data-x="98.4243" cy="80" data-y="94.964" r="72.8207" gradientUnits="userSpaceOnUse">
-		<stop offset="0" style="stop-color:#00B576"/>
-		<stop offset="0.85" style="stop-color:#00864E"/>
-		<stop offset="1" style="stop-color:#005b32"/>
+		<stop offset="0" style="stop-color:#64a890"/>
+		<stop offset="0.85" style="stop-color:#367b5e"/>
+		<stop offset="1" style="stop-color:#31614b"/>
 	</radialGradient>
 	<path d="M140.7,134c2.2-2.5,4.2-4.9,6.3-7.3c4.6-5.1,6.8-11.1,7-17.9c0.1-2.6-0.7-5.3,0.9-7.7c0.4-6.5,3.3-11.7,8-16.1
 		c1.9-1.7,3.5-3.7,5.4-5.3c1.7-1.4,2.2-3.6,3.3-5.3c0.2-0.4,0.1-1.1-0.1-1.6c-2.3-6.2-4.5-12.3-8-18c-3.6-5.9-7.8-11.3-12.8-16
