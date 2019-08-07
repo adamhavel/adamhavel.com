@@ -1,70 +1,96 @@
 .card {
     position: relative;
-    padding-left: 1.5em;
-    overflow: hidden;
-    padding-top: $lineHeight * .25rem;
 
-    @media (max-width: $smallScreen) {
-        padding: 0;
+    @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: $gutter;
     }
 }
 
     .card__header {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         font-size: .675em;
-        opacity: .875;
-        letter-spacing: .125em;
+        letter-spacing: .25em;
         font-weight: 400;
         font-variation-settings: 'wght' 400;
 
-        @media (max-width: $tinyScreen) {
-            font-variation-settings: 'wght' 400, 'wdth' 90;
-        }
-
-        > *:not(:first-child):before {
-            content: '/';
-            margin: 0 .6em;
-            opacity: .5;
-            font-size: 1em;
-            font-weight: 300;
-            font-variation-settings: 'wght' 300;
+        @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
+            grid-column: 1 / -1;
         }
     }
 
         .card__title {
             text-decoration: none;
             text-transform: uppercase;
-            font-weight: 400;
-            font-variation-settings: 'wght' 400;
+            font-weight: 600;
+            font-variation-settings: 'wght' 600;
             font-family: $fontBody;
             font-size: 1em;
         }
 
         .card__date {}
 
-    .card__heading {
-        font-size: 1.25em;
-        font-weight: 500;
-        font-variation-settings: 'wght' 500;
+    .card__figure {
         margin-top: $lineHeight * .5rem;
-        font-family: $fontDisplay;
-        line-height: 1.25;
-    }
 
-    .card__desc {
-        font-weight: 300;
-        font-variation-settings: 'wght' 300;
-        margin-top: $lineHeight * .375rem;
-
-        @media (max-width: $smallScreen) {
-            margin-top: $lineHeight * .25rem;
+        &:before {
+            content: '';
+            position: absolute;
+            z-index: 3;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: opacity .3s;
+            mix-blend-mode: multiply;
+            opacity: .001;
+            pointer-events: none;
+            background: $colorPrimary;
         }
 
-        @media (max-width: $tinyScreen) {
+        .card:hover &:before,
+        .card:focus &:before {
+            opacity: .6;
+        }
+
+        @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
+            grid-column: 1 / 2;
+        }
+    }
+
+        .card__image {
+            filter: grayscale(1) !important;
+        }
+
+    .card__content {
+        margin-top: $lineHeight * .75rem;
+
+        @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
+            grid-column: 2 / -1;
+            margin-top: $lineHeight * .375rem;
+        }
+    }
+
+        .card__heading {
+            font-size: 1.325rem;
+            font-weight: 500;
+            font-variation-settings: 'wght' 500;
+            font-family: $fontDisplay;
+            line-height: 1.125;
+        }
+
+        .card__desc {
+            font-weight: 300;
             font-variation-settings: 'wght' 300, 'wdth' 90;
+            margin-top: $lineHeight * .5rem;
+
+            @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
+                font-variation-settings: 'wght' 300, 'wdth' 100;
+            }
         }
-    }
 
     .card__link {
         position: absolute;
@@ -72,20 +98,6 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border-left: .5rem solid rgba(0, 0, 0, .05);
         font-size: 0;
-        transition: border-color .3s, transform .2s, opacity .3s;
-        transform-origin: left;
-        transform: translateZ(0);
-
-        &:hover {
-            border-color: $colorPrimary;
-            opacity: .75;
-            transform: translateZ(0) scaleX(1.25);
-        }
-
-        @media (max-width: $smallScreen) {
-            border: 0;
-            transform: none !important;
-        }
+        z-index: 4;
     }

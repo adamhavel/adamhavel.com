@@ -1,19 +1,19 @@
 .index {}
 
     .index__layout {
-        padding: $lineHeight * 2rem 0;
         display: grid;
-        margin-bottom: $lineHeight * 2rem;
+        margin-bottom: $lineHeight * 4rem;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: $gutter;
 
         @media (max-width: $mediumScreen) {
-            grid-template-columns: minmax(25em, 1fr) 1fr;
+            grid-template-columns: 1fr;
+            margin-bottom: $lineHeight * 3rem;
         }
 
         @media (max-width: $smallScreen) {
-            grid-template-columns: 1fr;
+            margin-bottom: $lineHeight * 2rem;
         }
     }
 
@@ -32,14 +32,13 @@
             }
 
             @media (max-width: $mediumScreen) {
-                font-size: calc(1em + 1vw);
-                font-weight: 350;
-                font-variation-settings: 'wght' 350;
+                text-align: center;
             }
 
             @media (max-width: $smallScreen) {
                 font-size: calc(1em + 1.125vw);
-                text-align: center;
+                font-weight: 350;
+                font-variation-settings: 'wght' 350;
             }
 
             a {
@@ -73,14 +72,24 @@
         .index__figure {
             position: relative;
 
-            @media (max-width: $smallScreen) {
+            @media (max-width: $mediumScreen) {
                 order: -1;
+                max-width: 60%;
+                margin: 0 auto;
+            }
+
+            @media (max-width: $smallScreen) {
+                max-width: 100%;
             }
         }
 
     .index__cards {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         grid-column-gap: $gutter;
         grid-row-gap: $lineHeight * 2rem;
+
+        @media (max-width: $mediumScreen) {
+            grid-template-columns: 1fr;
+        }
     }

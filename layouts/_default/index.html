@@ -15,16 +15,23 @@
                 {{ with (index .Pages 0) }}
                     <header class="card__header">
                         <h2 class="card__title">{{ i18n "latestProject" }}</h2>
-                        {{ with .Keywords }}
-                            <ul class="card__tags tags">
-                                {{ range . }}
-                                    <li>{{ . }}</li>
-                                {{ end }}
-                            </ul>
-                        {{ end }}
+                        <time class="card__date">{{ .Date.Format (i18n "dateFormat") }}</time>
                     </header>
-                    <h3 class="card__heading">{{ .Title }}</h3>
-                    <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
+                    {{ with .Resources.GetMatch "thumb.*" }}
+                        {{ $image2x1 := .Fill "900x450 q50 center" }}
+                        {{ $image1x1 := .Fill "500x500 q50 center" }}
+                        <figure class="card__figure image-container image-container--2:1 image-container--1:1@mediumScreen image-container--2:1@smallScreen">
+                            <picture>
+                                <source class="card__image image-container__source" srcset="{{ $image2x1.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
+                                <source class="card__image image-container__source" srcset="{{ $image1x1.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                                <img class="card__image image-container__source" src="{{ $image2x1.Permalink }}" role="presentation">
+                            </picture>
+                        </figure>
+                    {{ end }}
+                    <div class="card__content">
+                        <h3 class="card__heading">{{ .Title }}</h3>
+                        <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
+                    </div>
                     <a href="{{ .Permalink }}" class="card__link"></a>
                 {{ end }}
             {{ end }}
@@ -37,8 +44,21 @@
                         <h2 class="card__title">{{ i18n "latestArticle" }}</h2>
                         <time class="card__date">{{ .Date.Format (i18n "dateFormat") }}</time>
                     </header>
-                    <h3 class="card__heading">{{ .Title }}</h3>
-                    <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
+                    {{ with .Resources.GetMatch "thumb.*" }}
+                        {{ $image2x1 := .Fill "900x450 q50 center" }}
+                        {{ $image1x1 := .Fill "500x500 q50 center" }}
+                        <figure class="card__figure image-container image-container--2:1 image-container--1:1@mediumScreen image-container--2:1@smallScreen">
+                            <picture>
+                                <source class="card__image image-container__source" srcset="{{ $image2x1.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
+                                <source class="card__image image-container__source" srcset="{{ $image1x1.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                                <img class="card__image image-container__source" src="{{ $image2x1.Permalink }}" role="presentation">
+                            </picture>
+                        </figure>
+                    {{ end }}
+                    <div class="card__content">
+                        <h3 class="card__heading">{{ .Title }}</h3>
+                        <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
+                    </div>
                     <a href="{{ .Permalink }}" class="card__link"></a>
                 {{ end }}
             {{ end }}
@@ -53,8 +73,21 @@
                     <h2 class="card__title">{{ i18n "upcomingWorkshop" }}</h2>
                     <time class="card__date">{{ (time $upcoming_workshop.date).Format (i18n "dateFormat") }}</time>
                 </header>
-                <h3 class="card__heading">{{ .Title }}</h3>
-                <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
+                {{ with .Resources.GetMatch "thumb.*" }}
+                    {{ $image2x1 := .Fill "900x450 q50 center" }}
+                    {{ $image1x1 := .Fill "500x500 q50 center" }}
+                    <figure class="card__figure image-container image-container--2:1 image-container--1:1@mediumScreen image-container--2:1@smallScreen">
+                        <picture>
+                            <source class="card__image image-container__source" srcset="{{ $image2x1.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
+                            <source class="card__image image-container__source" srcset="{{ $image1x1.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                            <img class="card__image image-container__source" src="{{ $image2x1.Permalink }}" role="presentation">
+                        </picture>
+                    </figure>
+                {{ end }}
+                <div class="card__content">
+                        <h3 class="card__heading">{{ .Title }}</h3>
+                        <p class="card__desc">{{ .Summary | plainify | safeHTML }}</p>
+                    </div>
                 <a href="{{ .Permalink }}" class="card__link"></a>
             {{ end }}
         </section>
