@@ -26,7 +26,7 @@ It begins when a teacher decides to create a new test. At first, he is presented
 Before allowed further, a student is presented with a modal citing a passage from the Ethical codex of CTU which she has to acknowledge in order to continue. While seemingly a superfluous formality, the reasoning behind this step is based on research by Dan Ariely, who led a series of experiments on cheating. As Ariely concluded, “recalling moral standards at the time of temptation can work wonders to decrease dishonest behavior and potentially prevent it altogether.”
 
 If that doesn't help, two techniques are employed to prevent — and hopefully discourage — students from cheating. When a student switches to a different browser tab or opens another application, the teacher leading the exam immediately receives a notification. A resourceful student, however, might think of a way to slip through. If he perhaps prepares a file with notes and resizes the browser window in advance so that the notes can be seen, this technique alone won't stop him. The application on the student’s computer therefore calculates how much of the screen is used by the browser and if it's not 100&nbsp;%, his cover is blown.
-{{< /asymmetric-with-grid >}}
+{{< /stack >}}
 
 
 
