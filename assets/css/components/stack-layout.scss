@@ -1,6 +1,6 @@
 .stack-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: $gutter;
     margin-bottom: ($lineHeight * 6rem);
 
@@ -14,9 +14,7 @@
     }
 }
 
-    .stack-layout__figures {
-        grid-column: 2 / -1;
-    }
+    .stack-layout__figures {}
 
         .stack-layout__figure {
             margin-bottom: $gutter;
@@ -41,7 +39,7 @@
 
         .stack-layout__heading {
             margin-bottom: ($lineHeight * 2rem);
-            margin-right: 30%;
+            margin-right: calc(50% + #{$gutter / 2});
 
             @media (max-width: $mediumScreen) {
                 margin-bottom: ($lineHeight * 1rem);
@@ -56,11 +54,12 @@
         .stack-layout__summary {
             font-weight: 300;
             font-size: 1.125em;
-            font-variation-settings: 'wght' 300, 'wdth' 90;
-            line-height: 1.65;
-            text-align: justify;
+            font-variation-settings: 'wght' 300;
 
             @media (max-width: $mediumScreen) {
+                font-variation-settings: 'wght' 300, 'wdth' 90;
+                line-height: 1.65;
+                text-align: justify;
                 column-count: 2;
                 column-gap: $gutter;
             }
@@ -69,6 +68,6 @@
                 columns: 1;
                 font-size: 1em;
                 text-align: left;
-                line-height: 1.55;
+                line-height: $lineHeight;
             }
         }

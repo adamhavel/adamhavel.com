@@ -142,7 +142,7 @@
 
             @media (max-width: $smallScreen) {
                 columns: 1;
-                line-height: 1.55;
+                line-height: $lineHeight;
                 font-size: 1em;
                 text-align: left;
             }

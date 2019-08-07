@@ -93,7 +93,7 @@
 
                 @media (max-width: $largeScreen) {
                     font-size: calc(1em + .25vw);
-                    line-height: 1.55;
+                    line-height: $lineHeight;
                 }
 
                 @media (max-width: $mediumScreen) {
