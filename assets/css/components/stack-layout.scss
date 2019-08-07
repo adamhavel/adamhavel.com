@@ -55,11 +55,11 @@
             font-weight: 300;
             font-size: 1.125em;
             font-variation-settings: 'wght' 300;
+            text-align: justify;
 
             @media (max-width: $mediumScreen) {
                 font-variation-settings: 'wght' 300, 'wdth' 90;
                 line-height: 1.65;
-                text-align: justify;
                 column-count: 2;
                 column-gap: $gutter;
             }
