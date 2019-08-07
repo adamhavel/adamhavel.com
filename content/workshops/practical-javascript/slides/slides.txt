@@ -1,0 +1,3107 @@
+<!-- .slide: class="title" data-background="#F5D76E" -->
+# <span>Praktický</span> <span>JavaScript</span>
+
+---
+
+<p style="text-align: center">[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)</p>
+
+---
+
+- [https://www.adamhavel.com/prakticky-javascript](https://www.adamhavel.com/prakticky-javascript)
+- [https://repl.it](https://repl.it)
+
+---
+
+## Co je cílem?
+- získat **přehled** o moderním vývoji v JavaScriptu
+- pochopit základní **koncepty**
+- osvojit si konkrétní **postupy**
+- zkusit je **použít**
+
+---
+
+## Co naopak cílem není?
+- podat **objektivní** výčet všech možností
+- vysvětlit **všechny** detaily
+- zapamatovat si **syntax**
+- zabývat se do hloubky **frameworky**
+
+---
+
+## Ideální představa programu
+1. princip postupného vylepšení
+2. nástroje a automatizace
+3. organizace kódu a moduly
+4. oběd
+5. frameworky a univerzální aplikace
+6. příklad
+7. progresivní webové aplikace
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Princip postupného vylepšení
+
+---
+
+### JavaScript I.
+
+<ul>
+    <li class="fragment">imperativní</li>
+    <li class="fragment">komplikovaný</li>
+    <li class="fragment">nedeterministické prostředí prohlížeče</li>
+    <li class="fragment">nutné stáhnout a zpracovat celý skript</li>
+    <li class="fragment">nejdražší typ dat s ohledem na CPU</li>
+</ul>
+
+---
+
+### JavaScript II.
+
+- validátor zastaví běh kódu v momentě, kdy narazí na neznámý prvek:
+
+```js
+leet foo = "bar";
+// SyntaxError: Unexpected identifier
+```
+
+- chybějící statická typová kontrola a *runtime* chyby:
+
+```js
+function awesomeSplit(str) {
+  return str.toUpperCase().split('');
+}
+
+awesomeSplit(10);
+// TypeError: str.toUpperCase is not a function
+```
+
+---
+
+### JavaScript III.
+
+**Uživatelé bez JavaScriptu:**
+<ul>
+    <li class="fragment">explicitně **vypnutý** v prohlížeči</li>
+    <li class="fragment">**neúspěšný** HTTP požadavek (*firewall*, *timeout*, atd.)</li>
+    <li class="fragment">**manipulace** na straně ISP, operátora, hostingu, atd.</li>
+    <li class="fragment">**rožšíření** v prohlížeči (*AdBlock* ap.)</li>
+    <li class="fragment">chybějící **podpora** v prohlížeči</li>
+    <li class="fragment">*runtime* **chyba**</li>
+</ul>
+---
+
+## Nepoužívat JavaScript?!
+
+---
+
+### HTML I.
+
+<ul>
+    <li class="fragment">deklarativní</li>
+    <li class="fragment">jednoduché</li>
+    <li class="fragment">laxní validátor</li>
+    <li class="fragment">prohlížeč ignoruje, co nezná</li>
+    <li class="fragment">umožňuje postupné vykreslení</li>
+    <li class="fragment">nezbytné</li>
+</ul>
+
+---
+
+### HTML II.
+
+```html
+<html>
+    <head>
+        <title>HTML is resilient</title>
+        <meta name="author" value="Tim Berners-Lee">
+    </head>
+    <body>
+        <section>
+            <p>Lorem ipsum dolor sit emet.
+        </Section>
+    </body>
+</html>
+```
+
+---
+
+### HTML III.
+
+**Postelův zákon (Princip odolnosti):**
+
+<img src="img/postel.jpg" style="float: left; width: 40%; margin-right: 1em">
+
+*„Be conservative in what you send; be liberal in what you accept.“*
+
+---
+
+### HTML IV.
+
+```html
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>XHTML is fragile</title>
+        <meta name="author" value="Tim Berners-Lee">
+    </head>
+    <body>
+        <section>
+            <p>Lorem ipsum dolor sit emet.
+        </Section>
+    </body>
+</html>
+```
+
+---
+
+### HTML V.
+
+<img src="img/xhtml.png">
+
+---
+
+### Princip postupného vylepšení I.
+
+- používát JavaScript, ale **nespoléhat** na něj
+- oddělit **obsah** od JavaScriptu
+- správně pracovat se **strukturou** a **sémantikou** dokumentu
+- i styly jsou **vylepšení**
+- využít funkcionality HTML (odkazy, formuláře)
+
+---
+
+### Princip postupného vylepšení II.
+
+```html
+<form action="/search" class="js-form">
+    <label for="search">Hledat</label>
+    <input
+        type="text"
+        id="search"
+        name="q"
+        required
+        pattern=".{3,}"
+    />
+    <button name="type" value="normal">Search</button>
+    <button name="type" value="lucky">
+        I'm feeling lucky
+    </button>
+</form>
+```
+
+---
+
+### Princip postupného vylepšení III.
+
+```js
+formEl.addEventListener('submit', function(ev) {
+    ev.preventDefault();
+    let body = new FormData(this);
+    let isLucky = body.get('type') === 'lucky';
+    fetch(this.getAttribute('action'), {
+        method: 'POST', body,
+        headers: { 'Accept': 'application/json' }
+    })
+        .then(res => res.json())
+        .then(res => {
+            if (isLucky) return window.location(res[0].url);
+            ...
+        });
+});
+```
+
+---
+
+### Princip postupného vylepšení IV.
+
+*Minimum Viable Experience:*
+
+<ol>
+    <li class="fragment">identifikovat **základní** funkcionalitu</li>
+    <li class="fragment">použít **nejjednodušší** možnou technologii pro její zprovoznění</li>
+    <li class="fragment">**vylepšit**, jak je libo</li>
+</ol>
+
+---
+
+### Princip postupného vylepšení V.
+
+Příklad na službě typu *Google Docs:*
+
+<ol>
+    <li class="fragment">`form`, `textarea` a `button`</li>
+    <li class="fragment">automatické odeslání přes AJAX</li>
+    <li class="fragment">záloha v `localStorage`</li>
+    <li class="fragment">podpora více uživatelů skrze `WebSocket`</li>
+</ol>
+
+---
+
+### Princip postupného vylepšení VI.
+
+Stejný přístup volit i v CSS:
+
+```js
+document.documentElement.classList.add('js');
+```
+
+```scss
+.accordion {
+    ...
+
+    .js & {
+        max-height: 0;
+        overflow: hidden;
+
+        &.is-active {
+            max-height: none;
+        }
+    }
+}
+```
+
+---
+
+### Princip postupného vylepšení VII.
+
+<div style="margin-top: 5em; display: flex; justify-content: space-between; font-size: .5em; text-align: center">
+
+<div style="width: 32%">
+    `.accordion`
+    <img src="img/accordion3.png">
+</div>
+
+<div style="width: 32%" class="fragment">
+    `.js .accordion`
+    <img src="img/accordion1.png">
+</div>
+
+<div style="width: 32%" class="fragment">
+    `.js .accordion.is-active`
+    <img src="img/accordion2.png">
+</div>
+
+</div>
+
+---
+
+### Princip postupného vylepšení VIII.
+
+- postupné vylepšení není *fallback*
+- jde o **změnu přístupu** při návrhu a tvorbě aplikace
+- na první pohled více práce, opak je pravdou
+- máme jistotu, že aplikace **vždy funguje**
+- automaticky získáme **univerzální podporu** pro všechny prohlížeče
+
+---
+
+### Detekce prostředí I.
+
+- web není *binární* platforma jako *iOS* nebo *Android*, ale obrovská množina konfigurací: kombinací **zařízení** a **prostředí**
+- není možné vytvořit jednotný zážitek
+- aplikace musí být **„responzivní“**
+
+---
+
+### Detekce prostředí II.
+
+Jak přistoupit k detekci prostředí?
+
+- nezjišťujeme, o jaké **prostředí** jde (`User-Agent`):
+<!-- .element: class="fragment" -->
+```js
+if (navigator.userAgent.indexOf('Chrome') !== -1) {
+    var myMap = new Map();
+    // ReferenceError: Map is not defined.
+}
+```
+<!-- .element: class="fragment" -->
+
+- ptáme se, jaké má **vlastnosti**:
+<!-- .element: class="fragment" -->
+```js
+if ('fetch' in window) {
+    fetch('https://example.com').then(response => {
+        // No worries.
+    });
+}
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Detekce prostředí III.
+
+- podpora podle **skutečných uživatelů** dle **měření**
+- pokud má 90&nbsp;% uživatelů moderní prohlížeč, nedává smysl 50&nbsp;% času věnovat zbývajícím 10&nbsp;%
+- aplikovat **Paretovo pravidlo**
+
+<img src="img/analytics.png" style="width: 40%;">
+<img src="img/analytics2.png" style="width: 40%;">
+
+---
+
+### Detekce prostředí IV.
+
+Jak rozlišit, kterým prohlížečům posílat JavaScript a kterým ne?
+
+- ptát se na vlastnosti, přes které „nejede vlak“ (*cutting the mustard*)
+
+```js
+if (
+    !document.querySelector
+    || !window.localStorage
+    || !('classList' in document.createElement('_'))
+) {
+    return false;
+}
+
+document.documentElement.classList.add('js');
+// ...
+```
+
+---
+
+### Detekce prostředí V.
+
+Jaké vlastnosti vybrat?
+
+- `querySelector` (✝ *Internet Explorer 7*)
+- `addEventListener` (✝ *Internet Explorer 8*)
+- `classList` (✝ *Internet Explorer 9*)
+- `Object.assign` (✝ *Internet Explorer 11*)
+- `localStorage` (✝ *Opera Mini*)
+
+---
+
+### Detekce prostředí VI.
+
+```html
+<script src="js/scout.js" defer></script>
+```
+
+```js
+// scout.js
+(function() {
+    if (
+        !document.querySelector
+        || !window.localStorage
+        || !('classList' in document.createElement('_'))
+    ) {
+        return false;
+    }
+
+    document.documentElement.classList.add('js');
+    fetch('js/app.js');
+})();
+```
+
+<p class="fragment">
+    **Problém:** *Internet Explorer 10* a *11* nepodporují `fetch`.
+</p>
+
+---
+
+### *Polyfilling* I.
+
+- *polyfilly* umožňují použít API, které prohlížeč nepodporuje
+- **příklad:** `Promise`, `fetch`, `PointerEvents`
+- možné řešení (`defer` zajistí správné pořadí):
+```html
+<script src="js/lib/promise.js" defer></script>
+<script src="js/lib/whatwg-fetch.js" defer></script>
+<script src="js/lib/pep.js" defer></script>
+<script src="js/scout.js" defer></script>
+```
+- **problém:** prohlížeče, které API podporují, *polyfill* nepoužijí, ale musí jej stáhnout
+
+---
+
+### *Polyfilling* II.
+
+Lepší řešení je *polyfilly* stáhnout dle potřeby v `scout.js`:
+
+```js
+let polyfills = [
+    {
+        src: 'js/lib/promise.js',
+        test: 'Promise' in window
+    },
+    {
+        src: 'js/lib/whatwg-fetch.js',
+        test: 'fetch' in window
+    },
+    {
+        src: 'js/lib/pep.js',
+        test: 'PointerEvent' in window
+    }
+];
+```
+
+---
+
+### *Polyfilling* III.
+
+Jednoduché řešení pro asynchronní načtení skriptů:
+
+```js
+function loadScript(src, callback) {
+    let scriptEl = document.createElement('script');
+
+    scriptEl.addEventListener('load', callback.bind(window));
+    scriptEl.src = src;
+    document.head.appendChild(scriptEl);
+};
+```
+
+---
+
+### *Polyfilling* IV.
+
+Stáhneme jen ty *polyfilly*, které jsou potřeba:
+
+```js
+let reqPolyfills = polyfills.filter(({ test }) => !test);
+let counter = reqPolyfills.length;
+
+reqPolyfills.forEach(({ src }) => {
+    loadScript(src, function() {
+        counter--;
+
+        if (counter === 0) { // All polyfills loaded.
+            fetch('js/app.js').then(() => {
+                document.documentElement.classList.add('js');
+            });
+        }
+    });
+})
+```
+
+---
+
+### *Polyfilling* V.
+
+**Problém:** *polyfilly* řeší chybějící API, ale ne syntax.
+
+```js
+let reqPolyfills = polyfills.filter(({ test }) => !test);
+// SyntaxError: Unexpected identifier.
+```
+
+- deklarace proměnných přes `let` (✝ *IE 10*)
+- *arrow* funkce `(...) => { ... }` (✝ *IE 11*)
+- *destructuring* `({ test })` (✝ *IE 11*)
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Nástroje a automatizace
+
+---
+
+### *Transpiling* I.
+
+Transformace novější **syntaxe** (*ES2015+*) do podoby, která je podporována **specifikovanou** sadou prohlížečů.
+
+```js
+let reqPolyfills = polyfills.filter(({ test }) => !test);
+```
+<!-- .element: class="fragment" -->
+
+<p style="text-align: center">⬇ 😁 *IE 10-11*</p>
+<!-- .element: class="fragment" -->
+
+```js
+var reqPolyfills = polyfills.filter(function(_ref) {
+    var test = _ref.test;
+    return !test;
+});
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### *Transpiling* II.
+
+- [*Babel*](https://babeljs.io/) je nejpoužívanější nástroj na *transpiling*
+- slouží k transformaci kódu pro prohlížeč i server
+- základní sadu transformací určuje *preset* (např. `@babel/preset-env`)
+- lze použít *presety* i pro speciální syntax (`@babel/preset-react`)
+- nabízí volitelné *pluginy* pro experimentální syntax (*Stage 0-3* dle *Ecma TC39*) jako `@babel/plugin-proposal-decorators`
+
+---
+
+### *Transpiling* III.
+
+- podporované prohlížeče lze specifikovat pomocí *browserlist* řetězce:
+
+```js
+"> 2%, not dead, ie11"
+```
+
+```js
+"presets": [
+    [
+        "@babel/preset-env",
+        {
+            "targets": { "browsers": "> 2%, ie 10-11" }
+        }
+    ],
+    "@babel/preset-react"
+],
+"plugins": [
+    "@babel/plugin-proposal-decorators",
+    "@babel/plugin-proposal-class-properties"
+]
+```
+
+---
+
+### `package.json` I.
+
+Závislosti projektu určíme v souboru `package.json`:
+
+```js
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "description": "My application",
+  "main": "js/app.js",
+  "dependencies": {
+    "express": "4.15.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "9.4.4",
+    "cssnano": "4.1.8",
+    "eslint": "5.11.1"
+  }
+}
+```
+
+---
+
+### `package.json` II.
+
+- *npm* je správce balíčků pro JavaScript (původně vznikl pro *Node.js*)
+- `npm install` stáhne všechny závislosti projektu a uloží je do složky `node_modules`
+- `npm install express` stáhne konkrétní balíček a uloží jej do `dependencies` v `package.json`
+- `npm install --save-dev eslint` stáhne balíček a uloží jej do `devDependencies`
+- `npm prune --production` smaže balíčky nepotřebné pro běh aplikace
+
+---
+
+### `package.json` III.
+
+- pro použití *Babelu* musíme nainstalovat balíčky: `@babel/core`, `@babel/preset-env` a `@babel/cli`
+- nastavíme v `package.json`:
+
+```js
+"babel": {
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": { "browsers": "> 2%, ie 10-11" }
+            }
+        ]
+    ]
+}
+```
+
+---
+
+### `package.json` IV.
+
+- *transpilaci* provedeme pomocí:
+
+```bash
+./node_modules/.bin/babel src/js --out-dir build/js
+```
+
+- lze použít příkaz `npx` (součást *npm*):
+
+```bash
+npx babel src/js --out-dir build/js
+```
+
+---
+
+### `package.json` V.
+
+- příkazy nastavené v `package.json` automaticky hledají v `node_modules/.bin`:
+
+```js
+"name": "my-app",
+"scripts": {
+    "build": "babel src/js --out-dir build/js"
+},
+...
+```
+
+```js
+npm run build
+```
+
+---
+
+### `package.json` VI.
+
+- balíčky stažené z veřejného *npm* registru (https://registry.npmjs.org) mohou být nebezpečné
+- nutné ověřit celý strom závislostí (viz `flatmap-stream` a `event-stream`)
+- závislosti je třeba **pravidelně** kontrolovat pomocí `npm audit`:
+
+```js
+npm audit
+found 38 vulnerabilities (15 low, 13 moderate, 10 high)
+in 1559 scanned packages
+run `npm audit fix` to fix 29 of them.
+```
+
+---
+
+### `package.json` VII.
+
+```bash
+# Run `npm update request --depth 4`
+# to resolve 9 vulnerabilities
+┌─────────┬─────────────────────────────────────────────────┐
+│ High    │ Regular Expression Denial of Service            │
+├─────────┼─────────────────────────────────────────────────┤
+│ Package │ sshpk                                           │
+├─────────┼─────────────────────────────────────────────────┤
+│ Dep of  │ grunt-retire [dev]                              │
+├─────────┼─────────────────────────────────────────────────┤
+│ Path    │ grunt-retire > request > http-signature > sshpk │
+├─────────┼─────────────────────────────────────────────────┤
+│ Info    │ https://nodesecurity.io/advisories/606          │
+└─────────┴─────────────────────────────────────────────────┘
+```
+
+---
+
+### Automatizace I.
+
+- automatizace opakovaných operací šetří čas
+- **příklady:**
+    - *transpilace* (*JavaScript*, *TypeScript*, *Sass*, ap.)
+    - *minifikace* (*JavaScript*, CSS, HTML, SVG)
+    - *komprese* (obrázky)
+    - testování
+    - verzování
+- **problém:** prvotní investice času a zvýšená komplexita projektu
+
+---
+
+### Automatizace II.
+
+- velké množství nástrojů a přístupů
+- lepší volit nejjednodušší možné řešení
+- **příklad:** `package.json`
+
+```js
+...
+"scripts": {
+    "build": "npm run build-js; npm run build-css",
+    "build-js": "babel src/js --out-dir build/js",
+    "build-css": "lessc src/css/app.less build/css/app.css"
+},
+...
+```
+
+```bash
+npm run build
+```
+
+---
+
+### Automatizace III.
+
+- **problém:** absence proměnných, nejednotné rozhraní, nepřehlednost
+- v případě větších projektů můžou pomoci mocnější nástroje
+- **příklad:** `Makefile`, *task runnery*
+
+---
+
+### Nástroje I.
+
+- **správce balíčků:** *npm*, *Bower*, *yarn*
+- **bundlery:** *Browserify*, *webpack*, *Rollup*, *Parcel*
+- **task runnery:** *Grunt*, *Gulp*
+- **scaffolding:** *Slush*, *Yeoman*
+
+---
+
+### Nástroje II.
+
+**Správce balíčků:**
+- *npm*
+    - standard
+    - balíčky pro *Node.js* i pro prohlížeč
+- *Bower*
+    - balíčky jen pro prohlížeč
+- *yarn*
+    - stejný registr jako *npm*
+    - důraz na rychlost a determinismus
+
+---
+
+### Nástroje III.
+
+**Bundlery**:
+- na základě tzv. *entry pointu* vytvoří z jeho stromu závislostí **jeden soubor** (*bundle*)
+- podporují různé typy **modulů** (AMD, CommonJS, ESM)
+- umožňují použít balíčky pro *Node.js* v **prohlížeči**
+- pokročilé metody typu *code splitting* a *tree shaking*
+- pomocí *pluginů* umožňují provést další **transformace** (*minifikace*, *transpilace*, ap.)
+
+---
+
+### Nástroje IV.
+
+*webpack*:
+
+```js
+npm install --save-dev webpack
+```
+<!-- .element: class="fragment" -->
+
+```js
+// package.json
+...
+"scripts": {
+    "build": "webpack --config webpack.config.js"
+},
+...
+```
+<!-- .element: class="fragment" -->
+
+```js
+// webpack.config.js
+module.exports = {
+    mode: 'production',
+    entry: './src/js/app.js',
+    output: {
+        filename: 'app.bundle.js',
+        path: './build/js'
+    }
+};
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Nástroje V.
+
+```js
+// math.js
+
+export function square(x) {
+  return x * x;
+}
+
+export function cube(x) {
+  return x * x * x;
+}
+```
+
+```js
+// app.js
+
+import { square } from './math.js';
+
+console.log(`3 squared is ${square(3)}.`);
+```
+
+---
+
+### Nástroje VI.
+
+```js
+// „app.bundle.js“
+
+function square(x) {
+  return x * x;
+}
+
+console.log(`3 squared is ${square(3)}.`);
+```
+
+---
+
+### Nástroje VII.
+
+Transpilace v rámci *webpack*:
+
+```bash
+npm install --save-dev babel-loader
+```
+
+```js
+// webpack.config.js
+module.exports = {
+    ...
+    module: {
+        rules: [
+            {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
+        ]
+    }
+};
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Nástroje VIII.
+
+**Task runnery:**
+
+- zjednodušují tvorbu **komplikovaných** *build* procesů
+- *build* se skládá z jednotlivých *pluginů*
+- *plugin* je skript napsaný v JavaScriptu
+- může obalovat a využívat zkompilované programy (`node_modules/.bin`)
+- zaručuje **jednotné API** napříč různými nástroji (*Babel*, *Less*, *svgo* ap.)
+
+---
+
+### Nástroje IX.
+
+*Grunt*:
+
+```bash
+npm install --save-dev grunt grunt-contrib-less grunt-postcss
+```
+<!-- .element: class="fragment" -->
+
+```bash
+npm install --save-dev autoprefixer
+```
+<!-- .element: class="fragment" -->
+
+```js
+// Gruntfile.js
+module.exports = function(grunt) {
+
+    grunt.initConfig({
+        ...
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-postcss');
+    grunt.registerTask('build-css', ['less', 'postcss']);
+    grunt.registerTask('build', ['build-css']);
+};
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Nástroje X.
+
+Konfigurace pluginu `grunt-contrib-less`:
+
+```js
+grunt.initConfig({
+    less: {
+        default: {
+            options: {
+                strictMath: true
+            },
+            src: 'src/css/default.less',
+            dest: 'build/css/default.css'
+        }
+    }
+});
+```
+
+---
+
+### Nástroje XI.
+
+Konfigurace pluginu `grunt-postcss`:
+
+```js
+grunt.initConfig({
+    less: { ... },
+    postcss: {
+        options: {
+            processors: [
+                require('autoprefixer')({ ... })
+            ]
+        },
+        default: {
+            src: 'build/css/default.css'
+        }
+    }
+});
+```
+
+```bash
+./node_modules/.bin/grunt build
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Nástroje XII.
+
+Konfigurace *webpack* pomocí pluginu `grunt-webpack`:
+
+```bash
+npm install --save-dev grunt-webpack babel-loader
+```
+<!-- .element: class="fragment" -->
+
+```bash
+npm install --save-dev @babel/core @babel/preset-env
+```
+<!-- .element: class="fragment" -->
+
+```js
+// Gruntfile.js
+...
+grunt.loadNpmTasks('grunt-webpack');
+grunt.registerTask('build-css', ['less', 'postcss']);
+grunt.registerTask('build-js', ['webpack']);
+grunt.registerTask('build', ['build-css', 'build-js']);
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Nástroje XIII.
+
+Konfigurace pluginu `grunt-webpack`:
+
+```js
+grunt.initConfig({
+    ...
+    webpack: {
+        mode: 'production',
+        entry: './src/js/app.js',
+        output: {
+            filename: 'app.bundle.js',
+            path: './build/js'
+        },
+        module: {
+            rules: [{ loader: 'babel-loader', ... }]
+        }
+    }
+});
+```
+
+---
+
+### Nástroje XIV.
+
+Definice skriptů v `package.json`:
+
+```js
+// package.json
+...
+"scripts": {
+    "build": "grunt build"
+},
+...
+```
+
+```bash
+npm run build
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Nástroje XV.
+
+**Automatizace** úkolu při vývoji:
+
+```bash
+npm install --save-dev grunt-contrib-watch
+```
+
+```js
+grunt.initConfig({
+    watch: {
+        css: {
+            files: 'src/css/**/*.less',
+            tasks: ['build-css']
+        },
+        js: {
+            files: 'src/js/**/*.js',
+            tasks: ['build-js']
+        }
+    }
+});
+
+grunt.registerTask('develop', ['build', 'watch']);
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Nástroje XVI.
+
+```js
+// package.json
+...
+"scripts": {
+    "build": "grunt build",
+    "develop": "grunt develop"
+},
+...
+```
+
+```bash
+npm run develop
+```
+
+---
+
+### Nástroje XVII.
+
+*Gulp*:
+
+```js
+let gulp = require('gulp');
+let less = require('gulp-less');
+let postcss = require('gulp-postcss');
+let autoprefixer = require('autoprefixer');
+
+gulp.task('build-css', function(done) {
+  gulp.src('./src/css/default.less')
+    .pipe(less())
+    .pipe(postcss([
+        autoprefixer({ browsers: ['> 2%'] }
+    ])
+    .pipe(gulp.dest('./build/css/'))
+    .on('end', done);
+});
+```
+
+---
+
+### Nástroje XVIII.
+
+- každý *Grunt* plugin provádí *I/O* nad **soubory**
+- *Gulp* operuje na principu ***streamů***
+- *streamy* se **řetězí** pomocí funkcí
+- ke čtení a zápisu dochází jen na **začátku** a **konci** celého procesu
+- *build* je ve výsledku **rychlejší**
+- není třeba pro každý dílčí krok definovat **cestu** ke vstupu a výstupu
+- v praxi jde spíš o množství *pluginů* a **preference**
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Organizace kódu a moduly
+
+---
+
+### Proč moduly?
+
+- **čitelnost** kódu
+- **oddělení** zodpovědností
+- změny na **lokální** úrovni
+- **znovupoužití** kódu a modulů
+- lepší **správa** závislostí
+- lepší **architektura** aplikace
+
+---
+
+## Historie
+
+- samostatné skripty
+- AMD (Async Module Definition)
+- CommonJS
+- ESM (nativní moduly)
+
+---
+
+### Samostatné skripty I.
+
+```html
+<script src="vendor/polyfill.js"></script>
+<script src="lib/core.js"></script>
+<script src="components/dropdown.js"></script>
+<script src="components/modal.js"></script>
+<script src="application.js"></script>
+```
+
+```js
+// dropdown.js
+var delay = 2000;
+```
+
+```js
+// modal.js
+var delay = 4000;
+```
+
+---
+
+### Samostatné skripty II.
+
+- Pro:
+    - oddělení kódu
+    - samostatné soubory
+​
+- Proti:
+    - globální kontext
+    - nejednotné
+
+---
+
+### Samostatné skripty III.
+
+Zapouzdření do funkce:
+
+```js
+// dropdown.js
+function Dropdown(el) {
+    var delay = 2000;
+    var toggle = function() {
+        el.classList.toggle('is-active');
+    }
+
+    return {
+        delay: delay,
+        toggle: toggle
+    };
+}
+```
+
+---
+
+### Samostatné skripty III.
+
+Zapouzdření v *IIFE*:
+
+```js
+// dropdown.js
+(function Dropdown(w) {
+    var delay = 2000;
+
+    w.dropdown = {
+        delay: delay
+    };
+})(window);
+```
+
+---
+
+### AMD I.
+
+```js
+// dropdown.js
+define(
+    'components/dropdown',
+    ['vendor/polyfill', 'lib/core'],
+    function(core) {
+        var dropdown = { delay: 2000 };
+        return dropdown;
+    }
+);
+```
+
+```js
+// application.js
+define(
+    ['components/dropdown', 'components/modal'],
+    function(dropdown, modal) {
+        ...
+    }
+);
+```
+
+---
+
+### AMD II.
+
+- Pro:
+    - oddělený kontext
+    - znovupoužití modulů
+    - vkládání závislostí (*dependency injection*)
+    - nástroje (*Require.js*)
+​
+- Proti:
+    - komplikovaná syntax
+    - asynchronní závislosti
+
+---
+
+### CommonJS I.
+
+```js
+// dropdown.js
+require('../vendor/polyfill');
+require('../lib/core');
+
+var dropdown = { delay: 2000 };
+
+module.exports = dropdown;
+```
+
+```js
+// application.js
+const dropdown = require('./components/dropdown');
+const modal = require('./components/modal');
+```
+
+---
+
+### CommonJS II.
+
+- Pro:
+    - oddělený kontext
+    - znovupoužití modulů
+    - nativní podpora v Node.js
+    - nástroje (*Browserify*)
+​
+- Proti:
+    - pouze synchronní načtení závislostí
+    - nepodporováno v prohlížeči
+
+---
+
+### Nativní moduly I.
+
+```js
+// dropdown.js
+import '../vendor/polyfill.js';
+import '../lib/core.js';
+
+export const dropdown = { delay: 2000 };
+```
+
+```js
+// application.js
+import { dropdown } from './components/dropdown.js';
+```
+
+---
+
+### Nativní moduly II.
+
+- Pro:
+    - oddělený kontext
+    - znovupoužití modulů
+    - možnost více exportů (pojmenovaných)
+    - neblokující import, vykonaný ve správném pořadí
+    - statický i dynamický import
+    - standard (*EcmaScript 2015*)
+    - nástroje (*Webpack*, *Babel*, *Rollup*)
+
+- Proti: podpora?
+
+---
+
+### Nativní moduly III.
+
+<img src="img/caniuse.png">
+
+---
+
+### Nativní moduly IV.
+
+```html
+<script type="module" src="module.js">
+```
+
+- atribut `type` musí být `module`
+- automaticky předpokládá `"use strict"`
+- odložené načtení (`defer`)
+
+---
+
+### Typy exportů a importů I.
+
+Pojmenovaný export:
+
+```js
+// export.js
+export const foo = 'bar';
+```
+
+```js
+// export.js
+const foo = 'bar';
+export { foo };
+```
+
+```js
+// import.js
+import { foo } from './export.js';
+foo; // "bar"
+```
+
+```js
+// import.js
+import { foo as baz } from './export.js';
+baz; // "bar"
+```
+
+---
+
+### Typy exportů a importů II.
+
+*Default* export:
+
+```js
+// export.js
+export default 'bar';
+```
+
+```js
+// export.js
+const foo = 'bar';
+export { foo as default };
+```
+
+```js
+// import.js
+import baz from './export.js';
+baz; // "bar"
+```
+
+---
+
+### Typy exportů a importů III.
+
+Více pojmenovaných exportů:
+
+```js
+// export.js
+export const Alice = { gender: 'female' };
+export const Bob = { gender: 'male' };
+```
+
+```js
+// import.js
+import { Alice, Bob } from './export.js';
+Bob.gender; // "male"
+```
+
+```js
+// import.js
+import * as Persons from './export.js';
+Persons.Alice.gender; // "female"
+```
+
+---
+
+### Typy exportů a importů IV.
+
+Kombinace *default* a pojmenovaných exportů:
+
+```js
+// export.js
+const Alice = { gender: 'female' };
+const Bob = { gender: 'male' };
+
+export { Alice as default, Bob };
+```
+
+```js
+// import.js
+import Person from './export.js';
+Person.gender; // "female"
+```
+
+```js
+// import.js
+import Alice, { Bob } from './export.js';
+Alice.gender; // "female"
+Bob.gender; // "male"
+```
+
+---
+
+### Typy exportů a importů V.
+
+Bez exportů:
+
+```js
+// module.js
+console.log('Do something useful.');
+```
+
+```js
+// import.js
+import './module.js'; // "Do something useful."
+```
+
+---
+
+### Načtení modulů I.
+
+- moduly jsou „singletony“
+- načtou se a vykonají pouze **jednou**, i když jsou importované na **více** místech
+
+```js
+// module.js
+console.log('Module loaded.');
+```
+
+```js
+// foo.js
+import './module.js';
+```
+
+```js
+// bar.js
+import './module.js';
+```
+
+```js
+// "Module loaded."
+```
+
+---
+
+### Načtení modulů II.
+
+Nutné použít ***HTTP/2*** (kvůli *multiplexingu* požadavků):
+
+<img src="img/http2.png">
+
+---
+
+### Omezení
+
+- `import` a `export` nelze použít v **zanořených** blocích
+- nelze **dynamicky** vytvářet název modulu při importu
+
+```js
+// SyntaxError: 'import' may only appear at the top level.
+if (!window.fetch) {
+    import '../lib/whatwg-fetch/fetch.js';
+}
+```
+
+```js
+// SyntaxError: Unexpected token.
+const LIB_DIR = '../lib';
+
+import `${LIB_DIR}/whatwh-fetch/fetch.js`;
+```
+
+---
+
+### *Hoisting*
+
+- `import` je podobně jako `var` a `function` „vytažen“ (*hoisting*) na začátek modulu
+- pořadí je zachováno
+
+```js
+console.log(foo);
+import './module1.js';
+var foo = 'bar';
+console.log(message);
+import { message } from './module2.js';
+```
+
+```js
+import './module1.js';
+import { message } from './module2.js';
+var foo = 'bar';
+console.log(foo); // "bar"
+console.log(message); // "Hoisting saves the day."
+```
+
+---
+
+### Vzdálený skript
+
+```js
+import 'https://example.com/module.js';
+/* Access to Script at 'https://example.com/module.js'
+ * from origin 'https://adamhavel.com'
+ * has been blocked by CORS policy. /
+```
+
+- pozor na *CORS* (*cross-origin resource sharing*) a *same-origin policy*
+- nutné nastavit hlavičku `Access-Control-Allow-Origin` a správný *MIME* typ
+
+```nginx
+location ~* \.(?:js|mjs)$ {
+    add_header Content-Type "text/javascript";
+    add_header Access-Control-Allow-Origin "*";
+}
+```
+
+---
+
+### Cesta k modulu I.
+
+```js
+import Foo from '../libs/foo/dist/foo.js';
+```
+
+- musí jít o **platné URL**
+- **absolutní** nebo začínat na `/`, `./` nebo `../`
+- včetně **přípony** v názvu souboru
+- nelze ho dynamicky vytvořit
+- neřeší automaticky cesty typu `node_modules`
+
+---
+
+### Cesta k modulu II.
+
+`packagemap` definuje vlastní cesty k modulům:
+
+```html
+<script type="packagemap" src="package-map.json"></script>
+```
+
+```html
+<script type="packagemap">
+{
+    "path_prefix": "/node_modules",
+    "packages": {
+        "moment": { "main": "src/moment.js" },
+        "lodash": { "path": "lodash", "main": "lodash.js" }
+    }
+}
+</script>
+```
+
+```html
+<script type="module">
+    import moment from 'moment';
+    import _ from 'lodash';
+</script>
+```
+
+---
+
+### Dynamický import I.
+
+```js
+const MOD_DIR = './modules';
+
+import(MOD_DIR + '/lodash.js')
+    .then(lodash => {
+        const _ = lodash.default;
+        let foo = _.lowerCase('FOO');
+    });
+
+const { default: _ } = await import(`${MOD_DIR}/lodash.js`);
+let foo = _.lowerCase('FOO');
+```
+
+- vrací *Promise* (lze použít s `async/await`)
+- hodnotou je objekt reprezentující export modulu
+- cestu lze tvořit **dynamicky**
+
+---
+
+### Dynamický import II.
+
+- lze použít v jakékoliv úrovni **zanoření** jako například v cyklu, podmínce, ap.
+- vhodné pro ***lazy-loading*** modulů až v momentě, kdy jsou potřeba
+
+```js
+let accordionEls = document.querySelectorAll('.accordion');
+
+if (accordionEls.length) {
+    const { Accordion } = await import('./accordion.js');
+
+    Array.from(accordionEls, el => Accordion(el));
+}
+```
+
+---
+
+### Podpora v Node.js
+
+```bash
+node --experimental-modules main.mjs
+```
+
+- **experimentální podpora** při použití příznaku
+- nutné použít příponu `.mjs` (podobně jako `type="module"` indikuje modul)
+- možnost využít *polyfill* [esm](https://github.com/standard-things/esm)
+
+---
+
+### Podpora v prohlížečích I.
+
+**Dvě verze aplikace:** *bundle* (`app.bundle.js`) a netranspilovaný *entry point* (`app.js`)
+
+```html
+<script type="module" src="app.js"></script>
+<script nomodule src="app.bundle.js"></script>
+```
+
+- prohlížeče podporující ESM **nestáhnou** skript s atributem `nomodule` (s vyjímkou Edge)
+- skript s `type="module"` je naopak **ignorován** prohlížeči bez podpory
+- neřeší problém dynamického importu (*Firefox* a *Edge*)
+
+---
+
+### Podpora v prohlížečích II.
+
+Transpilace pro moderní prohlížeče v případě použití **experimentální** syntaxe:
+
+```js
+"presets": [
+    [
+        "@babel/preset-env",
+        {
+            "targets": { "esmodules": true }
+        }
+    ]
+],
+"plugins": ["@babel/plugin-proposal-decorators"]
+```
+---
+
+### Podpora v prohlížečích III.
+
+- lze použít polyfill [System.js](https://github.com/systemjs/systemjs)
+- nutná transpilace (plugin `@babel/plugin-transform-modules-systemjs`)
+- umožňuje ESM i pro starší prohlížeče
+- dynamický import přes `System.import`
+- podpora pro `packagemap` (`systemjs-packagemap`)
+- zachová výhodu ***lazy-loadingu***
+
+---
+
+### Podpora v prohlížečích IV.
+
+```
+// app.js
+import { flattenDeep } from 'lodash';
+```
+
+```html
+<script type="systemjs-packagemap">
+{
+    "path_prefix": "/node_modules",
+    "packages": {
+        "lodash": { "main": "lodash/lodash.js" }
+    }
+}
+</script>
+<script src="js/lib/system.js"></script>
+<script>
+    System.import('js/app.js');
+</script>
+```
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Frameworky a univerzální aplikace
+
+---
+
+### Frameworky I.
+
+- *framework* je **sada návrhových vzorů** (např. *data binding* a jeho vzor *observer*)
+- představuje **náhled tvůrců** na řešení konkrétních problémů
+- nabízí **neměnnou kombinaci postupů**
+- **příklady:** *AngularJS*, *React*, *Vue*, *Ember*, *Polymer*, *Angular*, *Meteor*, ...
+
+---
+
+### Frameworky II.
+
+**Výhody:**
+- umožňují **rychlý** vývoj
+- nemusíme „vynalézat kolo“
+- řeší **architekturu** aplikace
+- skvělé na ***prototyping***
+- nutí k **doporučeným postupům**
+- vedou k **jednotnému** stylu vývoje
+- **návody**, jak postupovat v běžných situacích
+- staví na ***open source*** komunitě
+
+---
+
+### Frameworky III.
+
+**Nevýhody:**
+- návrhové vzory se nemění, *frameworky* ano
+- nutnost znát **specifické detaily** konkrétních *frameworků* (*syntax* ap.)
+- naučit se *framework* představuje **investici**, která dříve nebo později přijde vniveč
+- **omezují** počet možných řešení
+- v případě nepředvídaných problémů je třeba **obcházet** doporučené postupy
+- problém s dlouhodobou **podporou**
+
+---
+
+### Frameworky IV.
+
+- *frameworky* mají obrovské výhody, ale nejsou všelék
+- prioritou by mělo být ovládnout **jazyk** a **návrhové vzory**
+- ideálně zapojit až tehdy, když mám představu, co jejich použitím **získám** a **ztratím**
+- naučit se rozpoznat **principy**, na kterých jednotlivé *frameworky* staví a umět je **porovnat**
+- vývoj v JavaScriptu bez *frameworku* vyžaduje značnou **zkušenost** a **disciplínu**, a v dnešní době je nepopulární
+
+---
+
+### Knihovny I.
+
+- *frameworky* se potýkají s **architekturou** a **životním cyklem** celé aplikace
+- knihovny řeší (ideálně jeden) **konkrétní problém**, ale nenutí k jedné architektuře
+- knihovny se dají **skládat** dohromady dle potřeb daného projektu
+
+---
+
+### Knihovny II.
+
+- [*jQuery*](https://jquery.com) (manipulace nad *DOM*)
+```js
+$('.button').toggleClass('active');
+```
+
+- [*Lodash*](https://lodash.com) (*utility*)
+```js
+_.intersection([2, 1], [2, 3]);
+```
+
+- [*Ramda*](https://ramdajs.com) (funkcionální programování)
+```js
+let add = R.curry((x, y) => x + y);
+```
+
+- [*Immutable.js*](https://facebook.github.io/immutable-js/) (neměnné struktury)
+```js
+let list = List([ 1, 2 ]);
+```
+---
+
+### Knihovny III.
+
+- některé „*frameworky*“ jsou ve skutečnosti **ekosystémy** spřízněných **knihoven**
+- příkladem je *React* nebo *Vue*
+- *React* řeší **konkrétní** problém: front-endové komponenty a souvisejicí manipulace nad *DOM*
+- lze **rozšiřovat** dle potřeby:
+    - *Redux* (*state managment*)
+    - *React Router* (*routing*)
+    - ...
+
+---
+
+### React I.
+
+```jsx
+import React from 'react';
+
+function Timer() {
+    return <p>ETA: 10</p>
+}
+
+export default Timer;
+```
+
+```html
+<Timer />
+```
+
+- *React* používá tzv. *JSX* syntax
+- *transpilace* pomocí `@babel/preset-react`
+
+```js
+function Timer() {
+    return React.createElement('p', null, 'ETA: 10');
+}
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### React II.
+
+- chceme-li komponentu **nastavit**, použijeme `props`
+- v rámci *JSX* bloku se `{}` **interpretuje**
+
+```jsx
+function Timer(props) {
+    return <p>ETA: {props.count}</p>
+}
+```
+
+```html
+<Timer count="100" />
+```
+
+- `props` jsou **vnější** vstup
+- z pohledu komponenty je nelze měnit, pouze **číst** (*read-only*)
+- komponenty jsou s ohledem na `props` ***pure*** funkce
+
+---
+
+### React III.
+
+Podobně jako v případě `${...}` v rámci ``` `...` ``` (*template literal*) může být uvnitř `{...}` jakýkoliv **výraz**, včetně dalšího *JSX*:
+
+```jsx
+function Timer(props) {
+    let { count } = props;
+
+    return <p>
+        ETA: {count > 0 ? <time>{count + 's'}</time> : 'N/A'}
+    </p>;
+}
+```
+
+---
+
+### React IV.
+
+- komponenty lze definovat pomocí `class`
+- oproti jednoduché funkci umožňuje nastavit další **metody**
+- komponenta musí mít alespoň metodu `render()`:
+
+```jsx
+import React from 'react';
+
+class Timer extends React.Component {
+    render() {
+        return <p>ETA: {this.props.count}</p>
+    }
+}
+
+export default Timer;
+```
+
+---
+
+### React V.
+
+- vnější vstup může být **dynamický**
+- změní-li se `props`, funkce se znovu **vykoná**
+- dojde k **překreslení** komponenty
+
+```js
+let count = 10;
+
+setInterval(function() {
+    if (count > 0) count--;
+}, 1000);
+```
+
+```jsx
+<Timer count={count} />
+```
+
+---
+
+### React VI.
+
+- komponenta může mít vlastní **vnitřní** stav (`state`)
+- `state` je k dispozici jen v případě `class`
+- jeho prvotní hodnotu nastavíme v **konstruktoru**
+- konstruktor se zavolá jen **jednou**
+
+```jsx
+class Timer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { count: props.count };
+    }
+
+    render() {
+        return <p>ETA: {this.state.count}</p>
+    }
+}
+```
+
+---
+
+### React VII.
+
+- změny v `props` se nepropíšou do vnitřního stavu
+- úpravy stavu musí řešit samotná komponenta na základě **vnitřní** logiky nebo **interakce**
+- lze použít tzv. ***life-cycle*** metody
+- `componentDidMount()` se zavolá, když se komponenta stane **součástí** *DOM*
+- `componentWillUnmount()` nebo `shouldComponentUpdate()` jsou další příklady *life-cycle* metod
+
+---
+
+### React VIII.
+
+```jsx
+class Timer extends React.Component {
+    ...
+
+    componentDidMount() {
+        setInterval(() => this.setState(state => ({
+            count: (state.count > 0) ? state.count-- : 0
+        })), 1000);
+    }
+}
+```
+
+- stav se mění pomocí metody `setState()`, jejímž vstupem je *callback* funkce
+- funkce obdrží stávající `state` jako parametr
+- vrácený objekt je **vložen** (*merged*) do `state`
+- mimo konstruktor nelze upravovat `state` **přímo**
+
+---
+
+### React IX.
+
+```jsx
+class Timer extends React.Component {
+    ...
+
+    reset(ev) {
+        ev.preventDefault();
+        this.setState(() => ({ count: this.props.count }));
+    }
+
+    render() {
+        return <button onClick={this.reset.bind}>
+            ETA: {this.state.count}
+        </button>
+    }
+}
+```
+
+- události se odchytávají pomocí funkcí na **atributech** jako `onClick`, `onSubmit`, ap.
+- `ev` není nativní objekt, ale `SyntheticEvent`
+
+---
+
+### React X.
+
+- komponenta není referencí na ***DOM* element**
+- potřebujeme-li referenci, musíme použít `React.createRef()`
+
+```jsx
+class Timer extends React.Component {
+    ...
+
+    constructor(props) {
+        ...
+        this.btn = React.createRef();
+    }
+
+    render() {
+        return <button type="button" ref={this.btn}>
+            ETA: {this.state.count}
+        </button>
+    }
+}
+```
+
+---
+
+### React XI.
+
+- referenci na ***DOM* element** získáme až voláním `current` nad `ref`
+- hodí se v případě, kdy potřebujeme reagovat na událost, která nemá **ekvivalent** v atributech typu `onClick` nebo získat **hodnotu** konkrétního atributu
+
+```jsx
+class Timer extends React.Component {
+    ...
+
+    componentDidMount() {
+        this.btn.current.addEventListener('oddEvent', ...);
+    }
+}
+```
+
+---
+
+### React XII.
+
+```jsx
+class Timer extends React.Component {
+    ...
+
+    constructor(props) {
+        super(props);
+        this.reset = this.reset.bind(this);
+    }
+}
+```
+
+- pomocí `bind()` nastavíme metodám pevnou referenci na **komponentu** v rámci `this`
+- hodí se i v případě, kdy metody **předáváme** pomocí `props` jiným komponentám a chceme zachovat **původní** referenci
+- lepší volat `bind()` v konstruktoru než v `render()`
+
+---
+
+### React XIII.
+
+**Výhody:**
+
+<ul>
+    <li class="fragment">vede k tvorbě malých **komponent**</li>
+    <li class="fragment">komponenty definujeme **deklarativně**</li>
+    <li class="fragment">přímá manipulace nad *DOM* je **skrytá**</li>
+    <li class="fragment">změny v *DOM* jsou **optimalizované** díky *Virtual DOM*</li>
+    <li class="fragment">**nevyžaduje** konkrétní architekturu aplikace</li>
+</ul>
+
+---
+
+### React XIV.
+
+**Nevýhody:**
+
+<ul>
+    <li class="fragment">**speciální** syntax (*JSX*)</li>
+    <li class="fragment">**vyžaduje** transpilaci</li>
+    <li class="fragment">zvyšuje **komplexitu** projektu</li>
+    <li class="fragment">přímá interakce nad *DOM* je těžkopádná</li>
+</ul>
+
+---
+
+### Redux I.
+
+- *React* se zabývá pouze *view* vrstvou
+- *Redux* řeší **správu stavu aplikace** (*state managment*)
+- narozdíl od většiny implementací *MVC* mají jednotlivé části aplikace jasnou **roli**
+- vede k jednoduché a předvídatelné **propagaci změn**
+- změny stavu mohou nastat **pouze** předem daným a jasně určeným způsobem
+- jde spíše o **sadu principů** než knihovnu
+
+---
+
+### Redux II.
+
+Architektura *Reduxu* je založena na třech **konceptech**:
+
+- *Store*
+- *Actions*
+- *Reducers*
+
+---
+
+### Redux III.
+
+***Store*** představuje **stav** celé aplikace v podobě **objektu**:
+
+```js
+{
+    todos: [
+        {
+            text: 'Eat pizza',
+            completed: true
+        }, {
+            text: 'Exercise',
+            completed: false
+        }
+    ],
+    visibility: 'SHOW_COMPLETED'
+}
+```
+
+---
+
+### Redux IV.
+
+- *store* je jediný **zdroj pravdy** (*single source of truth*)
+- stav aplikace je v každý moment jasně **daný**
+- umožňuje jednoduchý ***debugging***
+- lze jej snadno **serializovat**
+- nesmí se upravovat přímo, pouze **číst** (*read-only*)
+- úpravy mohou nastat pouze na základě **akcí** (*action*)
+
+---
+
+### Redux V.
+
+***Action*** je **objekt**, který popisuje **změnu** stavu:
+
+```js
+{ type: 'ADD_TODO', text: 'Eat more pizza' }
+```
+
+```js
+{ type: 'COMPLETE_TODO', index: 1 }
+```
+
+```js
+{ type: 'SET_VISIBILITY_FILTER', filter: 'SHOW_ALL' }
+```
+
+- akce samy o sobě nic **nedělají**
+- jde o jednoduché objekty, lze je tedy snadno **serializovat**
+
+---
+
+### Redux VI.
+
+***Reducer*** je funkce, která na základě **stavu** a **akce** vrací **nový stav**:
+
+```js
+function todos(state = [], action) {
+    switch (action.type) {
+        case 'ADD_TODO':
+            return state.concat({
+                text: action.text, completed: false
+            });
+        case 'COMPLETE_TODO':
+            return state.map((todo, i) =>
+                (i === action.index)
+                    ? { ...todo, completed: true } : todo);
+        default:
+            return state;
+    }
+}
+```
+
+---
+
+### Redux VII.
+
+- *reducer* musí být ***pure*** funkce:
+    - nesmí mít **vedlejší účinky**
+    - pro daný vstup musí vždy vracet **stejný výstup**
+- nikdy **neupravuje** `state`, ale vrací **nový objekt**
+- vyžaduje použití `concat()`, `map()`, `...`, ap.
+- musí umět reagovat na **jakoukoliv** akci:
+
+```js
+default:
+    return state;
+```
+
+- je třeba definovat **prvotní stav**:
+
+```js
+function todos(state = [], action) { ... }
+```
+
+---
+
+### Redux VIII.
+
+Každá „větev“ ve *store* má **vlastní** *reducer*:
+
+```js
+function visibility(state = 'SHOW_ALL', action) {
+    switch (action.type) {
+        case 'SET_VISIBILITY_FILTER':
+            return action.filter;
+        default:
+            return state;
+    }
+}
+```
+
+---
+
+### Redux IX.
+
+**Spojením** jednotlivých *reducerů* vznikne **aplikace**:
+
+```js
+function todoApp(state = {}, action) {
+    return {
+        todos: todos(state.todos, action),
+        visibility: visibility(state.visibility, action)
+    }
+}
+```
+
+---
+
+### Redux X.
+
+*Redux* dodává užitečné funkce pro zprovoznění tohoto **návrhového vzoru**:
+
+```js
+import { combineReducers, createStore } from 'redux';
+
+const reducer = combineReducers({ visibility, todos });
+const store = createStore(reducer);
+store.dispatch({ type: 'ADD_TODO', text: 'Buy groceries' });
+store.getState();
+
+/* {
+ *    todos: [
+ *        { text: 'Buy groceries', completed: false }
+ *    ],
+ *    visibility: 'SHOW_ALL'
+ * }
+ */
+```
+
+---
+
+### React + Redux I.
+
+- *React* ani *Redux* se vzájemně **nevyžadují**
+- dají se použít **společně** nebo **nezávisle** na sobě
+- pro jejich **propojení** je možné využít *binding* knihovnu `react-redux` a funkci `connect()`:
+
+```js
+import { connect } from 'react-redux';
+```
+
+- bez `connect()` bychom museli `store` předávat komponentám skrze `props`
+
+---
+
+### React + Redux II.
+
+- `connect()` lze použít jako *dekorátor* (vyžaduje `@babel/plugin-proposal-decorators`)
+- jejím parametrem je *callback* funkce, která dostane **aktuální stav** `store` jako vstup:
+
+```js
+import React from 'react';
+import { connect } from 'react-redux';
+
+@connect(state => ({
+    todos: state.todos,
+    visibilityFilter: state.visibility
+}))
+class TodoList extends React.Component {
+    ...
+}
+```
+
+---
+
+### React + Redux III.
+
+- *callback* funkce vrací **objekt**, tzv. *store mapping*
+- vybrané prvky ze `state` se na základě *mappingu* **propíšou** do `props`
+
+```js
+@connect(state => ({
+    todos: state.todos,
+    visibilityFilter: state.visibility
+}))
+class TodoList extends React.Component {
+    constructor(props) {
+        super(props);
+        props.visibilityFilter; // "SHOW_ALL"
+    }
+}
+
+export default TodoList;
+```
+
+---
+
+### React + Redux IV.
+
+V případě, že nechci nebo nemohu použít `connect()` jako *dekorátor*, musím jej zavolat **ručně** nad komponentou:
+
+```jsx
+class TodoList extends React.Component {
+    ...
+}
+
+export default connect(state => ({
+    todos: state.todos,
+    visibilityFilter: state.visibility
+}))(TodoList);
+```
+
+---
+
+### React + Redux V.
+
+- komponenty **napojené** na `store` se nazývají *container components*
+- ze `store` by měly **odebírat** (*subscribe*) jen to nejnutnější
+- jakákoliv změna v dané části `store` se propíše do `props` a **automaticky** vyvolá překreslení (*render*)
+
+---
+
+### React + Redux VI.
+
+- většina komponent **nepotřebuje** přístup ke `store`
+- „obyčejné“ komponenty se nazývají *presentational components*
+- **pozor:** globální `store` a jeho `state` nesouvisí s **vnitřním stavem** komponenty `this.state`
+- pokud data nevyužívá **více** komponent, nepatří do `store`, ale do `this.state`:
+
+```js
+class Accordion extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { isActive: false };
+    }
+}
+```
+
+---
+
+### React + Redux VII.
+
+- ke změně stavu musíme vyvolat **akci**
+- pro zpracování akce potřebujeme `dispatch()`
+- díky `connect()` obdržíme `dispatch()` v `props`:
+
+```js
+@connect(...)
+class TodoList extends React.Component {
+
+    addTodo() {
+        this.props.dispatch({
+            type: 'ADD_TODO',
+            text: 'Eat pizza'
+        });
+    }
+}
+```
+
+---
+
+### React + Redux VIII.
+
+- aby mohly komponenty přistupovat ke `store`, musíme *Virtual DOM* obalit elementem `Provider`
+- `render()` **vykreslí** aplikaci do daného elementu:
+
+```js
+// app.js
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+...
+
+const store = createStore(reducer);
+render(
+    <Provider store={store}>
+        <TodoList />
+    </Provider>,
+    document.getElementById('root')
+);
+```
+
+---
+
+### React + Redux IX.
+
+Je třeba vytvořit ***bundle*** (`js/app.bundle.js`) pro prohlížeče:
+
+```html
+<html>
+    <head>
+        <title>TodoList</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script src="js/app.bundle.js" async></script>
+    </body>
+</html>
+```
+
+---
+
+### React + Redux X.
+
+- *bundle* můžeme vytvořit pomocí *webpack*
+- musíme použít potřebné *presety* a *pluginy*, a přidat ***polyfilly*** dle cílových uživatelů:
+
+```js
+// webpack.config.js
+module.exports = {
+  entry: ['./lib/promise.js', './src/js/app.js'],
+  output: { filename: 'app.bundle.js' },
+  module: {
+    rules: [{
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env','@babel/preset-react'],
+        plugins: ['@babel/plugin-proposal-decorators']
+      }
+    }]
+  }
+};
+```
+
+---
+
+### Univerzální aplikace I.
+
+- *React* je ***single-page application*** *framework*
+- server v rámci odpovědi neposílá **obsah**
+- obsah se vykreslí až v **prohlížeči** po načtení aplikace v *bundle* souboru
+- další data aplikace získává pomocí ***AJAX***
+- změny v *DOM* jsou **postupné**
+
+---
+
+### Univerzální aplikace II.
+
+- pokud se z **jakéhokoliv** důvodu aplikace nenačte, je výsledkem **prázdná stránka**
+- *bundle* musí obsahovat spoustu *polyfillů* a *transpilace*, aby **podporoval** co nejvíce uživatelů
+- výsledkem je velký soubor, který se dlouho **stahuje** a **zpracovává** — do té chvíle je stránka **prázdná**
+
+---
+
+### Univerzální aplikace III.
+
+- server by měl vracet **obsah**, který dává smysl sám o sobě a v základní podobě funguje i **bez JavaScriptu**
+- *single-page application* je **vylepšení**
+- *React* „navěsíme“ na aplikaci **vykreslenou** už na serveru (*server-side rendering*)
+- hlavní výhoda *Node.js* spočívá ve **společném jazyku** a tedy potenciálně **sdíleném kódu**
+
+---
+
+### Univerzální aplikace IV.
+
+- aplikaci **rozdělíme** do tří složek: `client`, `server` a `common`
+- v `client` zůstane *entry point* (`app.js`) na základě kterého vznikne *bundle* pro **prohlížeč**
+- v `server` vznikne skript pro spuštění *Node.js* serveru, který bude umět **vykreslit** celou aplikaci
+- vše ostatní (komponenty, akce, *reducery*, ap.) je **sdílené** a patří do složky `common`
+
+---
+
+### Univerzální aplikace V.
+
+- pomocí *express* vytvoříme jednoduchý HTTP server
+- *callback* funkce `function(req, res)` pro každý požadavek vytvoří odpověď:
+
+```js
+// server/index.js
+import express from 'express';
+
+const app = express();
+
+app.get('*', function(req, res) {
+    ...
+});
+
+app.listen();
+```
+
+---
+
+### Univerzální aplikace VI.
+
+- mimo *express* importujeme všechny nutné závislosti
+- místo `render()` použijeme `renderToString()`:
+
+```js
+// server/index.js
+import express from 'express';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+import { renderToString } from 'react-dom/server';
+import TodoList from '../common/components/TodoList';
+import { todos, visibility } from '../common/reducers';
+
+...
+```
+
+---
+
+### Univerzální aplikace VII.
+
+- pro každý požadavek vytvoříme **vlastní** `store`
+- do `initialState` uložíme **serializovaný** `state`
+- voláním `renderToString()` nad aplikací získáme **HTML řetězec**
+
+```jsx
+// server/index.js
+function(req, res) {
+    const reducer = combineReducers({ visibility, todos });
+    const store = createStore(reducer);
+    const initialState = JSON.serialize(store.getState());
+    const appHtmlString = renderToString(
+        <Provider store={store}>
+            <TodoList />
+        </Provider>
+    );
+}
+```
+
+---
+
+### Univerzální aplikace VIII.
+
+- v HTML odpovědi místo **prázdného** elementu `#root` pošleme **vykreslenou** aplikaci
+- do `window` uložíme **serializovaný** `state`
+
+```js
+// server/index.js
+function(req, res) {
+    ...
+
+    res.send(`<html>
+      <head>...</head>
+        <body>
+          <div id="root">${appHtmlString}</div>
+          <script>window.__STATE = ${initialState};</script>
+          <script src="js/app.bundle.js" async></script>
+        </body>
+    </html>`);
+}
+```
+
+---
+
+### Univerzální aplikace IX.
+
+- `app.js` musíme upravit, aby umělo pracovat s vykreslenou aplikací
+- místo `render()` použijeme `hydrate()`:
+
+```js
+// client/app.js
+import React from 'react';
+import { hydrate } from 'react-dom';
+import { Provider } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+import TodoList from '../common/components/TodoList';
+import { todos, visibility } from '../common/reducers';
+```
+
+---
+
+### Univerzální aplikace X.
+
+- druhý parametr `createStore()` umožňuje vložit alternativní **prvotní stav**
+- pro **inicializaci** `store` použijeme `state` vložený serverem do `window.__STATE`
+- poté můžeme `state` **smazat** pro uvolnění paměti
+
+```js
+// client/app.js
+...
+
+const reducer = combineReducers({ visibility, todos });
+const store = createStore(reducer, window.__STATE);
+
+delete window.__STATE;
+```
+
+---
+
+### Univerzální aplikace XI.
+
+- `hydrate()` narozdíl od `render()` předpokládá **vykreslený obsah**
+- na **existující** *DOM* „navěsí“ aplikaci a předá ji kontrolu (odchytávání událostí ap.)
+
+```js
+// client/app.js
+...
+
+hydrate(
+    <Provider store={store}>
+        <TodoList />
+    </Provider>,
+    document.getElementById('root')
+);
+```
+
+---
+
+### Univerzální aplikace XII.
+
+- výsledkem je aplikace, která — v podstatě **zadarmo** — funguje v prohlížeči i bez JavaScriptu
+- server i prohlížeč **sdílí** skoro všechen kód
+- podmínkou je dodržení **principu postupného vylepšení**
+- můžeme si dovolit **zvýšit** požadavky na podporované prohlížeče
+- vyhneme se zbytečné *transpilaci* a *polyfillů*, a tím **zmenšíme** a **zrychlíme** *bundle*
+
+---
+
+### Univerzální aplikace XIII.
+
+`preset-env` nastavíme tak, aby cílilo jen na prohlížeče podporující **nativní moduly**:
+
+```js
+// webpack.config.js
+{
+    loader: 'babel-loader',
+    options: {
+        presets: [
+            [
+                '@babel/preset-env',
+                { targets: { esmodules: true } }
+            ],
+            '@babel/preset-react'
+        ],
+        plugins: ['@babel/plugin-proposal-decorators']
+    }
+}
+```
+
+```html
+<script src="js/app.bundle.js" type="module"></script>
+```
+<!-- .element: class="fragment" -->
+
+---
+
+### Univerzální aplikace XIV.
+
+- pro účely **serveru** musíme *transpilovat* **jednotlivé** soubory, *bundle* se použije jen v prohlížeči
+- potřebujeme všechny soubory ze složek `server` a `common`
+- *transpilaci* můžeme provést například pomocí *pluginu* `grunt-babel`
+
+---
+
+### Univerzální aplikace XIV.
+
+Konfigurace `grunt-babel` a nastavení **cílového prostředí** (*Node.js*) pomocí `preset-env`:
+
+```js
+// Gruntfile.js
+babel: {
+    options: {
+        presets: [
+            [
+                '@babel/preset-env',
+                { targets: { node: 'current' } }
+            ],
+            '@babel/preset-react'
+        ],
+        plugins: ['@babel/plugin-proposal-decorators']
+    }
+}
+```
+
+---
+
+### Univerzální aplikace XV.
+
+```js
+// Gruntfile.js
+babel: {
+    ...
+    server: {
+        files: [{
+            cwd: './src',
+            expand: true,
+            src: ['server/**/*.js', 'common/**/*.js'],
+            dest: './build'
+        }]
+    }
+}
+```
+
+```js
+// package.json
+"scripts": {
+    "start": "node build/server/index.js"
+}
+```
+
+```bash
+npm run start
+```
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad — [odkaz](https://repl.it/@jackdaw/exercise-react)
+
+<ul style="font-size: .725em;">
+    <li>do aplikace doplňte **komponenty** `TodoList` a `Todo`</li>
+    <li>cílem je rozhraní pro **přidávání** a **mazání** úkolů, a jejich **přepínání** do dokončeného stavu a zpátky</li>
+    <li>
+        **Bonus:**
+        <ul>
+            <li>doplňte **filtrování** úkolů podle stavu dokončení</li>
+            <li>přidejte možnost **rozbalit** a **zabalit** ovládací prvky filtrování</li>
+        </ul>
+    <li>
+        **Tipy:**
+        <ul>
+            <li>využijte existujících *reducerů* a jejich *akcí*</li>
+            <li>rozmyslete, jak a jestli komponenty **napojíte** na *store*</li>
+            <li>dejte pozor při použití `this` v metodách</li>
+            <li>uvažte, zdali potřebujete operovat nad **skutečným** *DOM*</li>
+            <li>při návrhu komponent uplatněte **princip postupného vylepšení** z pohledu **funkcionality** i **sémantiky** elementů</li>
+        </ul>
+    </li>
+</ul>
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Progresivní webové aplikace
+
+---
+
+### Mobilní aplikace I.
+
+- **nativní** aplikace pro *Android* a *iOS*
+- různé **jazyky** a vývojová **prostředí**:
+    - *Android*: *Java*, *Kotlin*, *C*, *C++*, *C#*
+    - *iOS*: *Objective-C*, *Swift*
+
+
+---
+
+### Mobilní aplikace II.
+
+**Výhody:**
+- **rychlý** chod a interakce
+- využívá **nativního rozhraní** a prvků
+- integrace na úrovni systému (**notifikace** ap.)
+- **jednoduchá** správa a nastavení
+- **instalace** na plochu
+- přístup k **nativním** ***API*** zařízení a jeho *hardwaru*
+
+---
+
+### Mobilní aplikace III.
+
+**Nevýhody:**
+- **drahý** vývoj
+- **nekompatibilní** kód napříč platformami
+- **závislost** na *Play Store* a *App Store*
+- **poplatky** za **účast** na tržišti a každý **prodej** aplikace
+- třeba počítat s obrovskou **konkurencí** na tržištích
+- pomalá **aktualizace** závislá na specifickém procesu **schvalování**
+
+---
+
+### Mobilní aplikace IV.
+
+- pomocí `WebView` lze použít **webové technologie** a „zabalit“ je do podoby **nativní** aplikace
+- snižuje **cenu** a **komplexitu** vývoje mobilních aplikací
+- umožňují rychlejší **aktualizaci** skrze webovou vrstvu
+- zároveň kombinují některé **nedostatky** obou světů:
+    - závislost na tržištích
+    - „pomalé“ interakce
+
+---
+
+### Mobilní aplikace V.
+
+- *React Native* umožňuje vývoj čistě v *JavaScriptu*
+- založené na stejných **principech** jako *React*
+- na základě *Virtual DOM* generuje **nativní** prvky rozhraní:
+
+```jsx
+import React from 'react';
+import { AppRegistry, Text } from 'react-native';
+
+class HelloWorldApp extends Component {
+    render() {
+        return <Text>Hello world!</Text>;
+    }
+}
+
+AppRegistry.registerComponent('HelloWorld', HelloWorldApp);
+```
+
+---
+
+### Mobilní web I.
+
+- mobilní zařízení představují skoro **půlku** všech přístupů a jejich počet **vzrůstá**
+- s nástupem **responzivního** webu došlo ke sloučení *desktopové* a mobilní verze
+- na **mobilní *user experience*** (*UX*) se kladou vysoké nároky a mnohdy větší důraz než na *UX* na *desktopu*:
+    - monitor a **vyšší rozlišení** představuje **vylepšení**, ne nutnou podmínku (princip ***mobile first***)
+    - to samé platí pro rychlost (a stav) **připojení** k internetu (princip ***offline first***)
+
+---
+
+### Mobilní web II.
+
+**Výhody:**
+- **jednoduché** a **stabilní** technologie (*HTML*, *CSS*, ap.)
+- jedna aplikace dokáže pokrýt různé **typy přístupů** (*desktop*, mobilní zařízení)
+- **nezávislost** na platformách a zařízeních
+- běží **všude** tam, kde je k dispozici **prohlížeč**
+- umožňuje okamžité **aktualizace**
+- jednoduchá **distribuce** a **sdílení** (*URL*)
+
+---
+
+### Mobilní web III.
+
+**Nevýhody:**
+- vyžaduje **připojení** k internetu
+- *cache* v prohlížeči je **nespolehlivá**
+- závislé na **prohlížeči** a jeho rozhraní
+- absence klasické **instalace**
+
+---
+
+### Progresivní webová aplikace I.
+
+- *progressive web application* (*PWA*) je sada **technologií, postupů a doporučení**
+- s jejich pomocí jde v **prohlížeči** vytvořit ***UX*** schopné **konkurovat** nativním aplikacím
+- lze je aplikovat na již existující webovou aplikaci
+- kompatibilní s **principem postupného vylepšení**
+- nutnou podmínkou je ***responzivní*** web a použití ***HTTPS***
+
+---
+
+### Progresivní webová aplikace II.
+
+*PWA* se zaměřuje na **oblasti** a **situace**, ve kterých klasický web **zaostává** za nativními aplikacemi:
+- **instalace** a správa
+- závislost na **prohlížeči**
+- **pomalé** nebo **nefunkční** připojení k internetu
+- notifikace
+
+---
+
+### Progresivní webová aplikace III.
+
+*Web app manifest* umožňuje definovat ***metadata*** webové aplikace:
+
+```json
+{
+    "name": "Financial Times",
+    "short_name": "FT",
+    "start_url": "/index.html",
+    "background_color": "#9f0c3f",
+    "theme_color": "#fff1e0",
+    "display": "standalone",
+    "icons": [{
+        "src": "/img/icon.png",
+        "sizes": "192x192"
+    }]
+}
+```
+
+```html
+<link rel="manifest" href="manifest.json">
+```
+
+---
+
+### Progresivní webová aplikace IV.
+
+<img src="img/ft.png" style="height: 50vh; float: right; margin-left: 1em">
+
+Pokud web splňuje základní **požadavky** (*HTTPS*, `manifest.json`, atd.) a uživatel jej za určitou dobu **vícekrát** navštíví, nabídne prohlížeč **instalaci**.
+
+Po „instalaci“ je webová aplikace umístěna na ploše stejně jako **nativní aplikace** a lze ji skrze systém spravovat a odstranit.
+
+---
+
+### Progresivní webová aplikace V.
+
+- pole `icons` definuje **ikony** pro různá rozlišení
+- `short_name` udává **popisek** pod ikonou
+- `start_url` je URL, které se spustí po **otevření**
+- `display` umožňuje nastavit **rozhraní** aplikace:
+    - `fullscreen` nebo `standalone` značí, že web poběží s **žádným** nebo **minimálním** viditelným rozhraním prohlížeče
+    - `browser` zobrazí klasické rozhraní prohlížeče
+- `theme_color` lze použít pro nastavení barvy rozhraní prohlížeče v případech, kdy je viditelné
+
+---
+
+### *Service Worker* I.
+
+Jedna z **podmínek** *PWA* je *service worker*:
+- speciální **skript**, který instalujeme pro daný web
+- po instalaci běží v **pozadí** a **vlastním vlákně**
+- je **nezávislý** na webové stránce a prohlížeči
+- operuje jako ***proxy***:
+    - nemá přístup k samotnému webu a jeho *DOM*
+    - odchytává **požadavky** na server a jeho **odpovědi**
+    - může požadavky a odpovědi **upravovat** a dokonce **vytvářet** vlastní
+
+---
+
+### *Service Worker* II.
+
+```html
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(
+            './service-worker.js',
+            { scope: '/foo' }
+        )
+            .then(registration => {
+                console.log('Service Worker registered!');
+            });
+    }
+</script>
+```
+
+- skript se stáhne a instaluje jen **jednou**
+- k novému stažení a registraci dojde až při změně **obsahu** nebo **názvu** souboru
+- `scope` omezí *URL*, na která *service worker* **reaguje**
+
+---
+
+### *Service Worker* III.
+
+```js
+// service-worker.js
+const CACHE_NAME = 'my-cache-v2';
+const FILES_TO_CACHE = ['css/default.css', 'js/app.js'];
+
+self.addEventListener('install', ev => {
+    ev.waitUntil(
+        return caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(FILES_TO_CACHE));
+    );
+});
+```
+
+- při registraci dojde k události `install`
+- pomocí `caches` můžeme do **pojmenované** *cache* ručně vložit **konkrétní** soubory
+- `ev.waitUntil()` zajistí, že se nevykoná žádný další kód, dokud se **nevyhodnotí** *Promise* uvnitř
+
+---
+
+### *Service Worker* IV.
+
+```js
+self.addEventListener('activate', ev => {
+  ev.waitUntil(
+    caches.keys().then(cacheNames => Promise.all(
+      cacheNames.map(cacheName => {
+        if (cacheName !== CACHE_NAME) {
+          return caches.delete(cacheName);
+        }
+      })
+    ));
+  );
+});
+```
+
+- během události `activate` můžeme **promazat** nepoužívané *cache*
+- k zavolání `activate` dojde hned po `install`, pokud není aktivní **předchozí** verze *service worker*
+
+---
+
+### *Service Worker* V.
+
+```js
+self.addEventListener('fetch', ev => {
+    ev.respondWith(caches.open(CACHE_NAME)
+        .then(cache => cache.match(ev.request))
+        .then(matchingRes => {
+            if (matchingRes) return matchingRes;
+
+            return fetch(ev.request).then(res => {
+                cache.put(ev.request, res.clone());
+                return res;
+            });
+        }));
+});
+```
+
+- je-li požadovaný soubor (`ev.request`) v *cache*, **okamžitě** jej vrátíme
+- pokud ne, **přepošleme** požadavek na server a odpověď přes odesláním klientovi uložíme v *cache*
+
+---
+
+### *Service Worker* VI.
+
+- *service worker* umožňuje aplikaci účinně **reagovat** na **rychlost** nebo **absenci** připojení
+- nabízí absolutní **kontrolu** nad stavem *cache* a zpracováním požadavků
+- dává k dispozici řadu **optimalizací** a **scénářů**:
+    - *cache only*
+    - *cache and update*
+    - *cache, update and refresh*
+    - další příklady na [*Service Worker Cookbook*](https://serviceworke.rs/)
+- **knihovna** pro usnadnění — [*Workbox*](https://developers.google.com/web/tools/workbox/)
+
+---
+
+### *Service Worker* VII.
+
+<img src="img/caniuse-serviceworker.png">
+
+---
+
+### Notifikace I.
+
+- webové aplikace můžou zobrazit **notifikaci** jen v momentě, kdy jsou **otevřené** v prohlížeči
+- notifikace na úrovni **systému** bez otevřeného prohlížeče vyžaduje:
+    - **oprávnění** od uživatele
+    - aplikační server pro **posílání** notifikací
+    - *push* server pro jejich **příjem**
+    - *service worker* pro jejich **zobrazení**
+
+---
+
+### Notifikace II.
+
+```js
+navigator.serviceWorker.register('./service-worker.js')
+    .then(registration => {
+        Notification.requestPermission().then(result => {
+            if (result !== 'granted') return;
+
+            let options = { applicationServerKey: 'RfS...' };
+            registration.pushManager.subscribe(options)
+                .then(subscription => {
+                    ...
+                });
+        })
+    });
+```
+
+- `applicationServerKey` je **veřejný** klíč aplikačního serveru
+- s pomocí `subscription` lze uživateli posílat notifikace
+
+---
+
+### Notifikace III.
+
+```json
+{
+    "endpoint": "https://fcm.googleapis.com/fcm/send/c7V...",
+    "expirationTime": null,
+    "keys": {
+        "p256dh": "BJs...",
+        "auth": "TJX..."
+    }
+}
+```
+
+- `endpoint` je **unikátní** URL *push serveru* pro daného uživatele
+- `subscription` **pošleme** aplikačnímu serveru a **uložíme** do databáze
+
+---
+
+### Notifikace IV.
+
+Aplikační server se u *push* serveru **identifikuje** pomocí *VAPID* protokolu a vygenerovaného páru klíčů:
+
+```js
+import webpush from 'web-push';
+
+const vapidKeys = webpush.generateVAPIDKeys();
+```
+
+---
+
+### Notifikace V.
+
+```js
+import webpush from 'web-push';
+
+let options = {
+    vapidDetails: { ... }
+};
+
+let data = {
+    title: 'Delivery update',
+    body: 'Your pizza is ready!'
+};
+
+webpush.sendNotification(subscription, data, options);
+```
+
+- uložené `subscription` použijeme pro odeslání notifikace
+- díky `vapidDetails` *push* server **ověří**, že požadavek pochází z našeho aplikačního serveru
+
+---
+
+### Notifikace VI.
+
+V případě `push` události se *service worker* „probudí“ a zobrazí **systémovou** notifikaci:
+
+```js
+self.addEventListener('push', ev => {
+    let { title, body } = ev.data;
+    let options = { body, icon: 'img/badge.png' };
+
+    ev.waitUntil(
+        self.registration.showNotification(title, options);
+    );
+});
+```
+
+--- <!-- .slide: class="title" data-background="#F5D76E" -->
+
+## Děkuji za pozornost!
