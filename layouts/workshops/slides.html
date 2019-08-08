@@ -21,13 +21,16 @@
                 ></section>
             </div>
         </div>
-        <script src="{{ $libDir }}/lib/js/head.min.js"></script>
         <script src="{{ $libDir }}/js/reveal.js"></script>
         <script>
             Reveal.initialize({
                 controls: false,
                 history: true,
                 transitionSpeed: 'fast',
+                markdown: {
+                    pedantic: false,
+                    gfm: true
+                },
                 dependencies: [
                     { src: '{{ $libDir }}/plugin/markdown/marked.js' },
                     { src: '{{ $libDir }}/plugin/markdown/markdown.js' },

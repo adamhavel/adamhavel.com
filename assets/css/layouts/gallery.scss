@@ -12,10 +12,6 @@ $galleryGap: $gutter;
         padding: 0;
     }
 
-    @media (max-width: $mediumScreen) {
-        padding: 0;
-    }
-
     @media (max-width: $smallScreen) {
         display: block;
     }
@@ -176,7 +172,7 @@ $galleryGap: $gutter;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                border: 4px solid black;
+                border: 2px solid black;
                 opacity: .075;
                 pointer-events: none;
                 transition: opacity .3s;

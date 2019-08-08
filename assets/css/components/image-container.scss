@@ -1,4 +1,5 @@
 .image-container {
+    display: block;
     position: relative;
     padding-bottom: (2/3) * 100%;
     background: rgba(black, .05);
@@ -84,14 +85,10 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border: 3px solid black;
+        border: 2px solid black;
         opacity: .075;
         z-index: 2;
         pointer-events: none;
-
-        @media (max-width: $smallScreen) {
-            border-width: 2px;
-        }
     }
 }
 
@@ -110,7 +107,7 @@
         }
 
         &--saturated {
-            xfilter: none;
+            filter: none;
         }
 
         .image-container--loose & {

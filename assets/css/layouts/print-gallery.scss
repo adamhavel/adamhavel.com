@@ -1,0 +1,37 @@
+.print-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: $gutter;
+}
+
+    .print-gallery__header {
+        align-self: end;
+        text-align: right;
+        padding-right: $gutter;
+    }
+
+        .print-gallery__heading {
+            font-family: $fontDisplay;
+            font-weight: 200;
+            font-variation-settings: 'wght' 200;
+            margin-bottom: $lineHeight * 2rem;
+            font-size: 5rem;
+            line-height: 1.125;
+        }
+
+        .print-gallery__summary {
+            font-weight: 300;
+            font-variation-settings: 'wght' 300;
+            font-size: 1.125em;
+        }
+
+    .print-gallery__item {
+
+        &:not(:first-of-type) {
+            grid-column: 1 / -1;
+        }
+    }
+
+        .print-gallery__image-container {}
+
+            .print-gallery__image {}
