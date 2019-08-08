@@ -12,8 +12,8 @@
                     {{ $image3x2 := .Fill "1200x800 q50 center" }}
                     <figure class="spot__image-container image-container image-container--3:4 image-container--3:2@largeScreen">
                         <picture>
-                            <source class="spot__image image-container__source" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.largeScreen }})">
-                            <img class="spot__image image-container__source" src="{{ $image3x4.Permalink }}" role="presentation">
+                            <source class="spot__image image-container__source image-container__source" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.largeScreen }})">
+                            <img class="spot__image image-container__source image-container__source" src="{{ $image3x4.Permalink }}" role="presentation">
                         </picture>
                     </figure>
                 {{ end }}

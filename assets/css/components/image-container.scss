@@ -85,10 +85,14 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border: 2px solid black;
+        border: 3px solid black;
         opacity: .075;
         z-index: 2;
         pointer-events: none;
+
+        @media (max-width: $smallScreen) {
+            border-width: 3px;
+        }
     }
 }
 

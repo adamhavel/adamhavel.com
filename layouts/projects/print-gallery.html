@@ -10,10 +10,17 @@
         {{ range $index, $image := (.Resources.Match "img/*.jpg") }}
             {{ $isFirst := eq $index 0 }}
             {{ $thumb := cond $isFirst ($image.Resize "1200x q85") ($image.Resize "2400x q85") }}
+            {{ $thumbMedium := $image.Resize "1800x q85" }}
+            {{ $thumbSmall := $image.Resize "1200x q85" }}
             <div class="print-gallery__item">
                 <a class="print-gallery__image-container image-container {{ cond $isFirst "image-container--1:1" "image-container--2:1" }}" href="{{ $image.Permalink }}">
-                    <img class="print-gallery__image image-container__source image-container__source--saturated" src="{{ $thumb.Permalink }}">
+                    <picture>
+                        <source class="print-gallery__image image-container__source image-container__source--saturated" srcset="{{ $thumbSmall.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
+                        <source class="print-gallery__image image-container__source image-container__source--saturated" srcset="{{ $thumbMedium.Permalink }}" media="(max-width: {{ $.Site.Params.mediumScreen }})">
+                        <img class="print-gallery__image image-container__source image-container__source--saturated" src="{{ $thumb.Permalink }}">
+                    </picture>
                 </a>
+
             </div>
         {{ end }}
 

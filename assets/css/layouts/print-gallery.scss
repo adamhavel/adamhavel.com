@@ -2,33 +2,70 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-row-gap: $gutter;
+
+    @media (max-width: $mediumScreen) {
+        display: block;
+    }
 }
 
     .print-gallery__header {
         align-self: end;
         text-align: right;
         padding-right: $gutter;
+
+        @media (max-width: $mediumScreen) {
+            padding-right: 0;
+            text-align: left;
+            margin-bottom: $lineHeight * 2rem;
+        }
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: $lineHeight * 1rem;
+        }
     }
 
         .print-gallery__heading {
             font-family: $fontDisplay;
-            font-weight: 200;
-            font-variation-settings: 'wght' 200;
+            font-weight: 400;
+            font-variation-settings: 'wght' 400;
             margin-bottom: $lineHeight * 2rem;
-            font-size: 5rem;
+            font-size: 4rem;
             line-height: 1.125;
+
+            @media (max-width: $mediumScreen) {
+                margin-bottom: $lineHeight * 1rem;
+                font-size: calc(2rem + 2vw);
+            }
+
+            @media (max-width: $smallScreen) {
+                margin-bottom: $lineHeight * .5rem;
+                font-size: calc(1.5rem + 2vw);
+            }
         }
 
         .print-gallery__summary {
             font-weight: 300;
             font-variation-settings: 'wght' 300;
             font-size: 1.125em;
+            text-align: justify;
+
+            @media (max-width: $smallScreen) {
+                font-variation-settings: 'wght' 300, 'wdth' 90;
+            }
         }
 
     .print-gallery__item {
 
         &:not(:first-of-type) {
             grid-column: 1 / -1;
+        }
+
+        @media (max-width: $mediumScreen) {
+            margin-bottom: $lineHeight * 2rem;
+        }
+
+        @media (max-width: $smallScreen) {
+            margin-bottom: $lineHeight * 1rem;
         }
     }
 
