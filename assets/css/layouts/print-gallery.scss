@@ -49,6 +49,10 @@
             font-size: 1.125em;
             text-align: justify;
 
+            @media (max-width: $mediumScreen) {
+                text-align: left;
+            }
+
             @media (max-width: $smallScreen) {
                 font-variation-settings: 'wght' 300, 'wdth' 90;
             }
