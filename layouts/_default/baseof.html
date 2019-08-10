@@ -1,3 +1,6 @@
+{{ $title := cond (isset .Page.Params "title") (printf "%s — Adam Havel" .Page.Title) (i18n "defaultTitle") -}}
+{{ $defaultDescription := (.Site.GetPage "/").Summary | htmlUnescape | replaceRE "\n" " " -}}
+{{ $description := cond .IsNode $defaultDescription .Summary }}
 <!DOCTYPE html>
 <html lang="{{ .Language }}">
 <head>
@@ -5,19 +8,19 @@
     <link rel="preload" href="/fonts/ibm-plex-sans.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/jost.woff2" as="font" type="font/woff2" crossorigin>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0">
-    <meta name="description" content="{{ cond .IsNode (print ((.Site.GetPage "/").Summary | htmlUnescape | replaceRE "\n" " ")) .Summary }}">
-    <title>{{ if .Page.Title }}{{ .Page.Title }} — Adam Havel{{ else }}{{ i18n "defaultTitle" }}{{ end }}</title>
-    {{ if .IsTranslated }}
-        {{ range .Translations }}
-            <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
-        {{ end }}
-    {{ end }}
-    {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify }}
+    <meta name="description" content="{{ $description }}">
+    <title>{{ $title }}</title>
+    {{ range .Translations -}}
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+    {{ end -}}
+    {{ with .OutputFormats.Get "rss" -}}
+        <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink }}" title="{{ $title }}">
+    {{ end -}}
+    {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify -}}
         <style>{{ .Content | safeCSS }}</style>
     {{ end }}
 </head>
 <body class="body">
-
     <header class="site-header">
 
         <div class="site-header__wrapper wrapper">
@@ -27,14 +30,14 @@
             <nav class="site-nav site-header__nav js-site-nav">
                 <button class="site-nav__toggle js-site-nav__toggle" type="button">{{ i18n "goTo" }} …</button>
                 <ul class="site-nav__list">
-                    {{ range .Site.Menus.main }}
+                    {{ range .Site.Menus.main -}}
                         {{ $isActive := (or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .)) }}
                         <li class="site-nav__item {{ if $isActive }}is-active{{ end }}"><a class="site-nav__link" href="{{ .URL }}">{{ .Name }}</a></li>
                     {{ end }}
-                    {{ if .IsTranslated }}
-                        {{ with (index .Translations 0) }}
+                    {{ if .IsTranslated -}}
+                        {{ with (index .Translations 0) -}}
                             <li class="site-nav__item" lang="{{ .Lang }}"><a class="site-nav__link" hreflang="{{ .Lang }}" href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
-                        {{ end}}
+                        {{ end -}}
                     {{ end }}
                     <li class="site-nav__item site-nav__item--toggle"><button class="site-nav__close js-site-nav__toggle" type="button" aria-label="{{ i18n "close" }}">×</button></li>
                 </ul>

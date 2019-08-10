@@ -1,5 +1,5 @@
 defaultContentLanguage: en
-disableKinds: ["taxonomy", "taxonomyTerm", "sitemap", "RSS"]
+disableKinds: ["taxonomy", "taxonomyTerm", "sitemap"]
 
 pygmentsCodefences: true
 pygmentsUseClasses: true
