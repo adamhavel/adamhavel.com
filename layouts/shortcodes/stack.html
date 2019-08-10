@@ -25,8 +25,8 @@
                 {{ $aspectRatio := div (float .Height) .Width }}
                 {{ $height := math.Round (mul 1200 $aspectRatio) }}
                 {{ $smallHeight := math.Round (mul 800 $aspectRatio) }}
-                {{ $image := .Fill (printf "1200x%d q50 center" $height) }}
-                {{ $imageSmall := .Fill (printf "800x%d q50 center" $smallHeight) }}
+                {{ $image := .Fill (printf "1200x%v q50 center" $height) }}
+                {{ $imageSmall := .Fill (printf "800x%v q50 center" $smallHeight) }}
                 <figure class="stack-layout__figure image-container image-container--loose">
                     <picture>
                         <source class="stack-layout__image image-container__source" srcset="{{ $imageSmall.Permalink }}" media="(max-width: {{ $.Site.Params.smallScreen }})">
