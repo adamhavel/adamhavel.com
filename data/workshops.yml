@@ -74,7 +74,6 @@
   id: modern-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
-  url: https://www.root.cz/skoleni/termin/moderni-javascript-2/registrace/
   soldout: false
   lang: cs
   price: 6 100 Kč
@@ -83,7 +82,6 @@
   id: practical-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
-  url: https://www.root.cz/skoleni/termin/prakticky-javascript-3/registrace/
   soldout: false
   lang: cs
   price: 6 100 Kč
@@ -92,7 +90,6 @@
   id: modern-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
-  url: https://www.root.cz/skoleni/termin/moderni-javascript-3/registrace/
   soldout: false
   lang: cs
   price: 6 100 Kč
@@ -101,7 +98,6 @@
   id: practical-javascript
   hours: 9:30–16:00
   location: Milady Horákové 116/109<br>Praha 6
-  url: https://www.root.cz/skoleni/termin/prakticky-javascript-4/registrace/
   soldout: false
   lang: cs
   price: 6 100 Kč

@@ -40,12 +40,13 @@
 
             <section class="box workshop-info">
                 {{ with index $upcoming_workshops 0 }}
+                    {{ $date := (time .date).Format (i18n "dateFormat") }}
                     <ul class="workshop-info__list">
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "nextDate" }}</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "nextDate" }}</strong> {{ $date }}, {{ .hours }}</li>
                         <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "venue" }}</strong> {{ .location | safeHTML }}</li>
                         <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "price" }}</strong> {{ .price | safeHTML }} <em>{{ i18n "excVAT" }}</em></li>
                     </ul>
-                    <a href="{{ .url }}" class="button workshop-info__register">{{ i18n "register" }}</a>
+                    <a href="mailto:adam.havel@protonmail.com?subject={{ $.Title }} ({{ $date }})" class="button workshop-info__register">{{ i18n "register" }}</a>
                     <p class="workshop-info__desc">{{ i18n "rootNote" }}</p>
                 {{ end }}
             </section>

@@ -2,7 +2,7 @@
 title: About
 ---
 
-I'm thirty-something, living just outside of Prague, in a small house with a big garden. I have a knack for designing systems, visual or technical, and a love of simple, beautiful solutions. And, just to bring a tiny bit of chaos into this otherwise orderly life of mine, I do swing dancing, and listen to — and play! — weird music, usually at the same time.
+I'm thirty-something, living just outside of Prague, in a small house with a big garden. I have a knack for designing systems (both visual and logical), a love of simple, beautiful solutions, and I care deeply about privacy and peer-to-peer technology. And, just to bring a tiny bit of chaos into this otherwise orderly life of mine, I do swing dancing, and listen to — and play! — weird music, usually at the same time.
 
 <!--more-->
 

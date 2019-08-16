@@ -46,16 +46,16 @@
 
             <section class="box workshop-info">
                 {{ with index $upcoming_workshops 0 }}
+                    {{ $name := ($.GetPage (print .id)).Title }}
+                    {{ $date := (time .date).Format (i18n "dateFormat") }}
                     <ul class="workshop-info__list">
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "upcomingWorkshop" }}</strong> {{ ($.GetPage (print .id)).Title }}</li>
-                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "date" }}</strong> {{ (time .date).Format (i18n "dateFormat") }}, {{ .hours }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "upcomingWorkshop" }}</strong> {{ $name }}</li>
+                        <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "date" }}</strong> {{ $date }}, {{ .hours }}</li>
                         <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "venue" }}</strong> {{ .location | safeHTML }}</li>
                         <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "price" }}</strong> {{ .price | safeHTML }} <em>{{ i18n "excVAT" }}</em></li>
                     </ul>
-                    <a href="{{ .url }}" class="button workshop-info__register">{{ i18n "register" }}</a>
-                    {{ if (hasPrefix .url "https://www.root.cz") }}
-                        <p class="workshop-info__desc">{{ i18n "rootNote" }}</p>
-                    {{ end }}
+                    <a href="mailto:adam.havel@protonmail.com?subject={{ $name }} ({{ $date }})" class="button workshop-info__register">{{ i18n "register" }}</a>
+                    <p class="workshop-info__desc">{{ i18n "rootNote" }}</p>
                 {{ end }}
             </section>
 
