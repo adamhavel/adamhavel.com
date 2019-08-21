@@ -1,7 +1,7 @@
 .section {}
 
     .section__heading {
-        font-size: calc(2rem + 3vw);
+        font-size: calc(2rem + 2vw);
         font-weight: 500;
         font-variation-settings: 'wght' 500;
         line-height: 1.5;
@@ -11,6 +11,10 @@
         font-family: $fontDisplay;
         text-align: center;
         position: relative;
+
+        @media (max-width: $largeScreen) {
+            font-size: calc(2rem + 3vw);
+        }
 
         @media (max-width: $smallScreen) {
             margin-top: 0;

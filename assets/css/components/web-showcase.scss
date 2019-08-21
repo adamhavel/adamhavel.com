@@ -132,10 +132,9 @@
             text-align: justify;
             column-count: 2;
             column-gap: $gutter;
-            line-height: 1.75;
+            line-height: 1.65;
 
             @media (max-width: $mediumScreen) {
-                line-height: 1.65;
                 font-size: 1.125em;
                 margin-bottom: ($lineHeight * 1rem);
             }

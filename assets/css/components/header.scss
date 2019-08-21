@@ -44,9 +44,9 @@
     }
 
         .header__title {
-            font-size: 5rem;
-            font-weight: 500;
-            font-variation-settings: 'wght' 500;
+            font-size: 4rem;
+            font-weight: 650;
+            font-variation-settings: 'wght' 650;
             line-height: 1.125;
             margin-bottom: ($lineHeight * 2rem);
             font-family: $fontDisplay;
@@ -67,7 +67,7 @@
         }
 
         .header__meta {
-            letter-spacing: .325em;
+            letter-spacing: .5em;
             font-weight: 400;
             font-variation-settings: 'wght' 400;
             font-size: .875em;
@@ -77,7 +77,7 @@
             > *:not(:first-child):before {
                 display: inline-block;
                 content: '/';
-                margin: 0 .5em;
+                margin: 0 1.25em;
                 opacity: .5;
                 font-weight: 300;
                 font-variation-settings: 'wght' 300;

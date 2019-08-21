@@ -26,6 +26,7 @@
             position: relative;
             z-index: 1;
             line-height: 1.75;
+            text-align: right;
 
             @media (max-width: $largeScreen) {
                 font-size: calc(1em + 1.25vw);

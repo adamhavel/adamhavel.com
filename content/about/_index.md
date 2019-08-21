@@ -12,7 +12,7 @@ Few years after that, when I realized I won't be designing games any time soon, 
 
 I quickly realized I could do this for other people — and for money, too! Since then, I might have made close to a hundred websites, each one a little better than the previous.
 
-After studying this thing called information technology at [CTU](https://www.fit.cvut.cz/en) in Prague, I landed my first real job at [Czech Radio](https://www.rozhlas.cz). That was back in the era of the *LAMP* stack, a time where the divide between the front and the back haven't yet reached the depth and distance it spans today. But step by step, I chose the **front-end** side. That helped me get a job at [Heureka](https://m.heureka.cz) where, for the past four years, I've been helping tranforming the whole monolith into a responsive bundle.
+After studying information technology at [CTU](https://www.fit.cvut.cz/en) in Prague, I landed my first real job at [Czech Radio](https://www.rozhlas.cz). That was back in the era of the *LAMP* stack, a time where the divide between the front and the back haven't yet reached the depth and distance it spans today. But step by step, I chose the **front-end** side. That helped me get a job at [Heureka](https://m.heureka.cz) where, for the past four years, I've been helping tranforming the whole monolith into a responsive bundle.
 
 Most recently, I've started [teaching](/workshops/) full-day **workshops** on JavaScript — what makes it a different, great (and at times, terrible) tool for modern web development.
 

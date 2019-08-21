@@ -63,7 +63,7 @@
                 font-weight: 700;
                 font-variation-settings: 'wght' 700;
                 line-height: .875;
-                margin-bottom: ($lineHeight * 1.25rem);
+                margin-bottom: ($lineHeight * 1.5rem);
                 font-family: $fontDisplay;
 
                 @media (max-width: $largeScreen) {
@@ -84,16 +84,14 @@
             }
 
             .project__summary {
-                font-size: 1.25em;
+                font-size: 1.325em;
                 font-weight: 350;
                 margin-bottom: -.45em;
                 font-variation-settings: 'wght' 350, 'wdth' 90;
-                line-height: 1.65;
                 text-align: justify;
 
                 @media (max-width: $largeScreen) {
                     font-size: calc(1em + .25vw);
-                    line-height: $lineHeight;
                 }
 
                 @media (max-width: $mediumScreen) {
