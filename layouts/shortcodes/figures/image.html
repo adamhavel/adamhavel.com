@@ -6,6 +6,6 @@
         <div class="figure__image-container image-container">
             <img class="figure__image image-container__source" src="{{ $image.Permalink }}" alt="{{ $caption }}">
         </div>
-        <figcaption class="figure__caption">{{ $caption }}</figcaption>
+        <figcaption class="figure__caption">{{ $caption | markdownify }}</figcaption>
     </figure>
 {{ end }}

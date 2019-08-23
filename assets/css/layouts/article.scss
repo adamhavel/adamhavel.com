@@ -88,7 +88,7 @@
             &--quote {
                 width: calc(50% - #{($gutter * 3/2)});
                 font-family: $fontDisplay;
-                margin: ($lineHeight * 2rem) $gutter;
+                margin: ($lineHeight * 1.625rem) $gutter ($lineHeight * 2rem);
                 font-size: 1.75em;
                 font-weight: 350;
                 text-align: right;
