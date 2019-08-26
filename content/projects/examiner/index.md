@@ -10,7 +10,7 @@ keywords:
 thumbCrop: right
 ---
 
-Examiner is a web application for both teachers and students. Its purpose is to help the first group with the dull process of creating and evaluating written tests. The students, then, use the same application for taking the tests. At the end, both groups part ways. Hopefully in peace.
+Examiner is a web application for both teachers and students. Its purpose is to help the first group with the dull process of creating and evaluating written tests. The students, then, use the same application for taking the tests. At the end, and hopefully in peace, both groups part ways.
 
 <!--more-->
 
