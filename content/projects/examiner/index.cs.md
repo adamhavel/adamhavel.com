@@ -5,7 +5,7 @@ menu:
     main:
         parent: 'projects'
 keywords:
-    - app
+    - aplikace
     - website
 thumbCrop: right
 ---

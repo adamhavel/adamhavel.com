@@ -45,7 +45,6 @@
             margin-bottom: $lineHeight * 4rem !important;
             margin-left: calc(12.5% + #{($gutter / 2)});
             width: calc(87.5% - #{($gutter / 2)});
-            xbackground: red;
 
             &:first-letter {
                 font-size: 0;
@@ -55,10 +54,12 @@
                 margin-left: 0;
                 width: auto;
                 font-size: calc(1em + .25vw);
+                margin-bottom: $lineHeight * 2rem !important;
             }
 
             @media (max-width: $smallScreen) {
                 font-variation-settings: 'wght' 400, 'wdth' 90;
+                margin-bottom: $lineHeight * 1rem !important;
             }
         }
 
