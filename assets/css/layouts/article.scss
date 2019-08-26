@@ -88,7 +88,7 @@
             &--quote {
                 width: calc(50% - #{($gutter * 3/2)});
                 font-family: $fontDisplay;
-                margin: ($lineHeight * 1.625rem) $gutter ($lineHeight * 2rem);
+                margin: ($lineHeight * 1.55rem) $gutter ($lineHeight * 2rem);
                 font-size: 1.75em;
                 font-weight: 350;
                 text-align: right;
@@ -96,10 +96,10 @@
                 &:before {
                     content: '';
                     display: block;
-                    height: .5em;
-                    margin-bottom: ($lineHeight * 1rem);
+                    height: .6em;
+                    margin-bottom: ($lineHeight * 1.5rem);
                     background: black;
-                    width: 66.6%;
+                    width: 50%;
                     margin-left: auto;
                     opacity: .075;
                 }
@@ -128,7 +128,7 @@
                 line-height: 1.325;
                 letter-spacing: -.05em;
                 transition: opacity .3s;
-                opacity: .5;
+                opacity: .75;
                 filter: grayscale(1);
                 padding-top: $lineHeight * .125rem;
 
