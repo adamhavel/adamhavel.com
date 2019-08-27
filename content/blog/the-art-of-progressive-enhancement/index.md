@@ -7,8 +7,8 @@ keywords:
 menu:
     main:
         parent: 'blog'
-photoDesc: Debby Hudson
-photoUrl: https://unsplash.com/photos/bAYP_kAtNWg
+photoDesc: Matthew Cabret
+photoUrl: https://unsplash.com/photos/z5hrJtzMlpw
 ---
 
 Since its inception, JavaScript, along with the whole internet, has come a long way. The little scripting language became a moloch, on whose shoulders rests the weight of many of the websites we use everyday. To validate this statement, turn off the JavaScript support in your browser and you will see those websites fall apart before your eyes. Perhaps as fast as your trust in Facebook's good intentions.

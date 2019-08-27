@@ -8,8 +8,8 @@ keywords:
 menu:
     main:
         parent: 'blog'
-photoDesc: Debby Hudson
-photoUrl: https://unsplash.com/photos/bAYP_kAtNWg
+photoDesc: Matthew Cabret
+photoUrl: https://unsplash.com/photos/z5hrJtzMlpw
 ---
 
 Od svého zrodu prošel JavaScript, spolu s celým internetem, obrovským vývojem a z neškodně působícího jazyka se stal moloch, na jehož bedrech spočívá nemalá tíha webů, které dnes používáme. Ostatně stačí provést malý pokus. JavaScript v prohlížeči na chvíli vypneme a záhy zjistíme, že se nám web před očima rozpadá rychleji než důvěra v dobré úmysly Facebooku.

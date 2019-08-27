@@ -24,18 +24,17 @@
     {{ end -}}
 
     {{ with .Resources.GetMatch "thumb.*" -}}
-        {{ $image := .Fill "2400x2400 q50" -}}
+        {{ $image := .Fill "1200x1200 q50" -}}
         {{ $shortTitle := $.Title | truncate 70 -}}
-        {{ $siteName := i18n "defaultTitle" -}}
         {{ $desc := $.Summary | plainify | safeHTML | truncate 200 -}}
         <meta property="og:title" content="{{ $shortTitle }}" />
         <meta property="og:description" content="{{ $desc }}" />
         <meta property="og:image" content="{{ $image.Permalink }}" />
-        <meta property="og:site_name" content="{{ $siteName }}" />
+        <meta property="og:site_name" content="{{ $.Site.BaseURL }}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ $.Permalink }}" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="{{ $siteName }}" />
+        <meta name="twitter:site" content="{{ $.Site.BaseURL }}" />
         <meta name="twitter:creator" content="@adamhavel" />
         <meta name="twitter:title" content="{{ $shortTitle }}" />
         <meta name="twitter:description" content="{{ $desc }}" />
