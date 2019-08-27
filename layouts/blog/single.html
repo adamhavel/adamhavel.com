@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="article">
+<main class="article wrapper">
 
     <header class="article__header header">
 
@@ -35,7 +35,7 @@
     </header>
 
     {{ $dropcap := substr (index (split .Content "<p>") 1) 0 1 }}
-    <section class="article__content content content--longform" data-drop-cap="{{ $dropcap }}">
+    <article class="article__content content content--longform" data-drop-cap="{{ $dropcap }}">
         {{ .Content }}
 
         {{ with .Site.RegularPages.Related . | first 3 }}
@@ -67,14 +67,14 @@
                                 </header>
                                 <h3 class="spot__heading">{{ .Title }}</h3>
                                 <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
-                                <a href="{{ .Permalink }}" class="spot__link"></a>
+                                <a href="{{ .Permalink }}" class="spot__link" title="{{ .Title }}"></a>
                             </div>
                         </li>
                     {{ end }}
                 </ul>
             </aside>
         {{ end }}
-    </section>
+    </article>
 
 </main>
 {{ end }}

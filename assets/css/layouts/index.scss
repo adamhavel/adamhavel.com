@@ -84,13 +84,18 @@
             }
         }
 
-    .index__cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: $gutter;
-        grid-row-gap: $lineHeight * 2rem;
-
-        @media (max-width: $mediumScreen) {
-            grid-template-columns: 1fr;
-        }
+    .index__content {
+        background: rgba(black, .0325);
+        padding: ($lineHeight * 2.5rem) 0 ($lineHeight * 4rem);
     }
+
+        .index__cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: $gutter;
+            grid-row-gap: $lineHeight * 2rem;
+
+            @media (max-width: $mediumScreen) {
+                grid-template-columns: 1fr;
+            }
+        }

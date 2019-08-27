@@ -1,31 +1,29 @@
 {{ define "main" }}
+<main class="gallery wrapper">
 
-    <div class="gallery">
-
-        <div class="gallery__item gallery__item--meta">
-            <header class="gallery__header">
-                <h1 class="gallery__heading">{{ .Title }}</h1>
-                <p class="gallery__desc">{{ .RawContent }}</p>
-            </header>
-        </div>
-
-        {{ range $index, $image := union (.Resources.Match "thumb.jpg") (.Resources.Match "img/*.jpg") }}
-            {{ $is_large_thumb := eq (mod $index 6) 0 }}
-            {{ $thumb := cond $is_large_thumb ($image.Resize "1600x q75") ($image.Resize "800x q75") }}
-            {{ $is_vertical := gt $image.Height $image.Width }}
-            <div class="gallery__item {{ if $is_vertical }}gallery__item--vertical{{ end }}">
-                <a class="gallery__image-container" href="{{ $image.Permalink }}">
-                    <img class="gallery__image" src="{{ $thumb.Permalink }}">
-                </a>
-            </div>
-        {{ end }}
-
-        <div class="gallery__item gallery__item--meta">
-            <footer class="gallery__footer content">
-                <p class="gallery__license">{{ i18n "photosLicense" | safeHTML }}</p>
-            </footer>
-        </div>
-
+    <div class="gallery__item gallery__item--meta">
+        <header class="gallery__header">
+            <h1 class="gallery__heading">{{ .Title }}</h1>
+            <p class="gallery__desc">{{ .RawContent }}</p>
+        </header>
     </div>
 
+    {{ range $index, $image := union (.Resources.Match "thumb.jpg") (.Resources.Match "img/*.jpg") }}
+        {{ $is_large_thumb := eq (mod $index 6) 0 }}
+        {{ $thumb := cond $is_large_thumb ($image.Resize "1600x q75") ($image.Resize "800x q75") }}
+        {{ $is_vertical := gt $image.Height $image.Width }}
+        <div class="gallery__item {{ if $is_vertical }}gallery__item--vertical{{ end }}">
+            <a class="gallery__image-container" href="{{ $image.Permalink }}">
+                <img class="gallery__image" src="{{ $thumb.Permalink }}">
+            </a>
+        </div>
+    {{ end }}
+
+    <div class="gallery__item gallery__item--meta">
+        <footer class="gallery__footer content">
+            <p class="gallery__license">{{ i18n "photosLicense" | safeHTML }}</p>
+        </footer>
+    </div>
+
+</main>
 {{ end }}

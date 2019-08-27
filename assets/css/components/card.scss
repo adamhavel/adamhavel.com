@@ -1,5 +1,6 @@
 .card {
     position: relative;
+    overflow: hidden;
 
     @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
         display: grid;
@@ -75,17 +76,20 @@
     }
 
         .card__heading {
-            font-size: 1.325rem;
+            font-size: 1.25rem;
             font-weight: 500;
             font-variation-settings: 'wght' 500;
             font-family: $fontDisplay;
             line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .card__desc {
             font-weight: 300;
             font-variation-settings: 'wght' 300, 'wdth' 90;
-            margin-top: $lineHeight * .5rem;
+            margin-top: $lineHeight * .375rem;
 
             @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
                 font-variation-settings: 'wght' 300, 'wdth' 100;

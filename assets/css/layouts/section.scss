@@ -1,4 +1,6 @@
-.section {}
+.section {
+    padding-bottom: $lineHeight * 5rem;
+}
 
     .section__heading {
         font-size: calc(2rem + 2vw);

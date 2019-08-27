@@ -4,7 +4,7 @@ $galleryGap: $gutter;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: $galleryGap;
-    padding: ($lineHeight * 4rem) $galleryGap 0;
+    padding: ($lineHeight * 4rem) $galleryGap ($lineHeight * 5rem);
     position: relative;
     grid-auto-flow: dense;
 

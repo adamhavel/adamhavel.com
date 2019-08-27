@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="workshop">
+<main class="workshop wrapper">
 
     <header class="workshop__header header">
 
@@ -64,9 +64,9 @@
         </aside>
 
         {{ $dropcap := substr (index (split .Content "<p>") 1) 0 1 }}
-        <div class="content workshop__content" data-drop-cap="{{ $dropcap }}">
+        <article class="content workshop__content" data-drop-cap="{{ $dropcap }}">
             {{ .Content }}
-        </div>
+        </article>
 
     </div>
 

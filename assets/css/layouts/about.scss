@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: $gutter;
+    padding-bottom: $lineHeight * 5rem;
 
     @media (max-width: $smallScreen) {
         display: block;

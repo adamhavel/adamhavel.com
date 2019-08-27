@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="section">
+<div class="section wrapper">
 
     <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
 
@@ -35,7 +35,7 @@
                         </header>
                         <h2 class="spot__heading">{{ .Title }}</h2>
                         <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
-                        <a href="{{ .Permalink }}" class="spot__link"></a>
+                        <a href="{{ .Permalink }}" class="spot__link" title="{{ .Title }}"></a>
                     </div>
                 </section>
             {{ end }}

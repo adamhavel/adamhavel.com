@@ -1,9 +1,9 @@
 {{ define "main" }}
-<div class="section">
+<main class="section wrapper">
 
     <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
 
-    <main class="section__layout section__layout--grid">
+    <div class="section__layout section__layout--grid">
 
         {{ range .Pages }}
             <section class="spot spot--vertical">
@@ -30,12 +30,12 @@
                     </header>
                     <h3 class="spot__heading">{{ .Title }}</h3>
                     <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
-                    <a href="{{ .Permalink }}" class="spot__link"></a>
+                    <a href="{{ .Permalink }}" class="spot__link" title="{{ .Title }}"></a>
                 </div>
             </section>
         {{ end }}
 
-    </main>
+    </div>
 
     <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
         <filter id="noise" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse">
@@ -61,5 +61,5 @@
         </filter>
     </svg>
 
-</div>
+</main>
 {{ end }}

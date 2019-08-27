@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="project">
+<main class="project wrapper">
 
     <header class="project__header">
         <div class="project__lede">
@@ -33,9 +33,9 @@
         {{ end }}
     </header>
 
-    <section class="project__content">
+    <article class="project__content">
         {{ .Content }}
-    </section>
+    </article>
 
 </main>
 {{ end }}

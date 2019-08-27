@@ -1,12 +1,12 @@
 .site-content {
     background: $colorBackground;
-    padding: ($lineHeight * 4rem) 0 ($lineHeight * 5rem);
+    padding-top: ($lineHeight * 4rem);
 
     @media (max-width: $mediumScreen) {
         padding-top: $lineHeight * 3rem;
     }
 
     @media (max-width: $smallScreen) {
-        padding: ($lineHeight * 1rem) 0 ($lineHeight * 3rem);
+        padding-top: ($lineHeight * 1rem);
     }
 }
