@@ -4,21 +4,44 @@
 <!DOCTYPE html>
 <html lang="{{ .Language }}">
 <head>
-    <meta charset="utf-8">
-    <link rel="preload" href="/fonts/ibm-plex-sans.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/jost.woff2" as="font" type="font/woff2" crossorigin>
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0">
-    <meta name="description" content="{{ $description }}">
+    <meta charset="utf-8" />
+    <link rel="preload" href="/fonts/ibm-plex-sans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jost.woff2" as="font" type="font/woff2" crossorigin />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0" />
+    <meta name="description" content="{{ $description }}" />
     <title>{{ $title }}</title>
+
     {{ range .Translations -}}
-        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}">
+        <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}" />
     {{ end -}}
+
     {{ with .OutputFormats.Get "rss" -}}
-        <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink }}" title="{{ $title }}">
+        <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink }}" title="{{ $title }}" />
     {{ end -}}
+
     {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify -}}
         <style>{{ .Content | safeCSS }}</style>
+    {{ end -}}
+
+    {{ with .Resources.GetMatch "thumb.*" -}}
+        {{ $image := .Fill "2400x2400 q50" -}}
+        {{ $shortTitle := $.Title | truncate 70 -}}
+        {{ $siteName := i18n "defaultTitle" -}}
+        {{ $desc := $.Summary | plainify | safeHTML | truncate 200 -}}
+        <meta property="og:title" content="{{ $shortTitle }}" />
+        <meta property="og:description" content="{{ $desc }}" />
+        <meta property="og:image" content="{{ $image.Permalink }}" />
+        <meta property="og:site_name" content="{{ $siteName }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ $.Permalink }}" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="{{ $siteName }}" />
+        <meta name="twitter:creator" content="@adamhavel" />
+        <meta name="twitter:title" content="{{ $shortTitle }}" />
+        <meta name="twitter:description" content="{{ $desc }}" />
+        <meta name="twitter:image" content="{{ $image.Permalink }}" />
     {{ end }}
+
 </head>
 <body class="body">
     <header class="site-header">
