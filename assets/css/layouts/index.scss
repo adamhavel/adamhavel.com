@@ -2,7 +2,7 @@
 
     .index__layout {
         display: grid;
-        margin-bottom: $lineHeight * 4rem;
+        margin-bottom: $lineHeight * 2rem;
         align-items: center;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: $gutter;
