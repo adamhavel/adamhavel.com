@@ -2,64 +2,8 @@
     position: relative;
     z-index: 1;
 
-    &--dropcap {
-
-        &:before {
-            content: attr(data-drop-cap);
-            font-size: 10em;
-            float: left;
-            line-height: .8;
-            font-weight: 500;
-            font-variation-settings: 'wght' 500;
-            margin-top: -.025em;
-            margin-right: $gutter / 2;
-            margin-left: -.0675em;
-            text-align: right;
-            color: rgba(black, .675);
-            text-shadow: 3px 3px 0 rgba(black, .075),
-                         -3px -3px 0 rgba(black, .075);
-            font-family: $fontDisplay;
-            padding: .05em ($gutter / 2) .25em 0;
-            background: radial-gradient(farthest-side at right, white, transparent) right no-repeat;
-            background-size: 60% 100%;
-            border-right: 1px solid rgba(black, .02);
-
-            @media (max-width: $mediumScreen) {
-                margin-right: $gutter / 2;
-                font-size: calc(8em + 2vw);
-                padding-bottom: .05em;
-            }
-
-            @media (max-width: $smallScreen) {
-                padding-right: $gutter / 2;
-                font-size: calc(6em + 4vw);
-            }
-        }
-
-        > p:first-child:first-letter {
-            font-size: 0;
-        }
-    }
-
     &--longform {
         font-size: 1.125em;
-
-        > p:first-child {
-            font-size: 1.325em;
-            font-weight: 350;
-            font-variation-settings: 'wght' 350;
-            margin-bottom: $lineHeight * 4rem !important;
-
-            @media (max-width: $mediumScreen) {
-                font-size: calc(1em + .25vw);
-                margin-bottom: $lineHeight * 2rem !important;
-            }
-
-            @media (max-width: $smallScreen) {
-                font-variation-settings: 'wght' 400, 'wdth' 90;
-                margin-bottom: $lineHeight * 1rem !important;
-            }
-        }
 
         @media (max-width: $smallScreen) {
             font-size: 1em;
@@ -67,6 +11,9 @@
     }
 
     > p {
+        font-weight: 300;
+        font-variation-settings: 'wght' 300;
+
         &:not(:last-child) {
             margin-bottom: $lineHeight * 1rem;
         }
@@ -84,7 +31,7 @@
                 top: 85%;
                 left: 0;
                 right: 0;
-                background: var(--accentColor, $colorPrimary);
+                background: $colorPrimary;
                 opacity: .675;
                 height: 5%;
                 transition: transform .2s, opacity .5s;
@@ -99,6 +46,10 @@
                 transform: scale(1.1, 21) translateY(10%);
                 opacity: .15;
             }
+        }
+
+        @media (max-width: $smallScreen) {
+            font-variation-settings: 'wght' 300, 'wdth' 90;
         }
     }
 

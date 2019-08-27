@@ -48,16 +48,7 @@
         .workshop__content {
             grid-column: 2 / -1;
 
-            > p {
-                font-weight: 300;
-                font-variation-settings: 'wght' 300;
-
-                @media (max-width: $smallScreen) {
-                    font-variation-settings: 'wght' 300, 'wdth' 90;
-                }
-            }
-
-            > p:first-of-type {
-                xdisplay: none;
+            > :first-child {
+                display: none;
             }
         }

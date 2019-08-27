@@ -1,0 +1,56 @@
+.standfirst {
+    font-size: 1.5em;
+    margin-left: calc(12.5% + #{($gutter / 2)});
+    margin-bottom: $lineHeight * 3rem;
+
+    @media (max-width: $mediumScreen) {
+        margin-left: 0;
+        font-size: calc(1em + .25vw);
+        margin-bottom: $lineHeight * 2rem;
+    }
+
+    @media (max-width: $smallScreen) {
+        margin-bottom: $lineHeight * 1rem;
+    }
+
+    &:before {
+        content: attr(data-drop-cap);
+        font-size: 10em;
+        float: left;
+        line-height: .8;
+        font-weight: 350;
+        font-variation-settings: 'wght' 350;
+        margin-top: -.05em;
+        margin-right: $gutter / 2;
+        margin-left: -.0675em;
+        margin-bottom: .125em;
+        color: rgba(black, .675);
+        text-shadow: 3px 3px 0 rgba(black, .075),
+                     -3px -3px 0 rgba(black, .075);
+        font-family: $fontDisplay;
+        padding: .05em ($gutter / 2) .05em 0;
+        background: radial-gradient(farthest-side at right, white, transparent) right no-repeat;
+        background-size: 60% 100%;
+        border-right: 1px solid rgba(black, .02);
+
+        @media (max-width: $mediumScreen) {
+            margin-right: $gutter / 2;
+            font-size: calc(8em + 2vw);
+        }
+
+        @media (max-width: $smallScreen) {
+            padding-right: $gutter / 2;
+            font-size: calc(6em + 4vw);
+        }
+    }
+
+    > p:first-letter {
+        font-size: 0;
+    }
+
+    &:after {
+        display: table;
+        clear: both;
+        content: '';
+    }
+}

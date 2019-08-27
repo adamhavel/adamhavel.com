@@ -92,17 +92,3 @@
 
             .header__tags {}
 
-        .header__summary {
-            font-size: 1.125em;
-            font-weight: 400;
-            font-variation-settings: 'wght' 400;
-
-            @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
-                font-size: 1em;
-            }
-
-            @media (max-width: $smallScreen) {
-                font-variation-settings: 'wght' 400, 'wdth' 90;
-            }
-        }
-

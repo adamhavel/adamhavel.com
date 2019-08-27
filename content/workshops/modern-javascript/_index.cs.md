@@ -16,9 +16,9 @@ JavaScript už dávno neslouží jen k psaní jednoduchých skriptů na webovýc
 
 <!--more-->
 
-Od svého vzniku prošel JavaScript obrovským vývojem a dnes se řadí mezi nejvýznamnější programovací jazyky. Díky svojí flexibilitě nabývá mnoho podob – ve své tradiční roli na straně prohlížeče pohání webové aplikace pro miliardy lidí, pod názvem *Node.js* pak nabízí nástroj pro tvorbu serverových služeb.
+Od svého vzniku prošel JavaScript obrovským vývojem a dnes se řadí mezi nejvýznamnější programovací jazyky. Díky svojí flexibilitě nabývá mnoho podob – ve své tradiční roli na straně prohlížeče pohání webové aplikace pro miliardy lidí, pod názvem Node.js pak nabízí nástroj pro tvorbu serverových služeb.
 
-Právě jeho flexibilita ovšem pro mnoho nováčků představuje kámen úrazu. Na školení se proto dozvíte, v čem se *JavaScript* liší od ostatních jazyků, jak přistupovat k návrhu aplikací a jak se vyvarovat častých chyb. Formou praktických příkladů se naučíte pracovat se základními stavebními kameny jazyka, ať už na straně prohlížeče nebo serveru.
+Právě jeho flexibilita ovšem pro mnoho nováčků představuje kámen úrazu. Na školení se proto dozvíte, v čem se JavaScript liší od ostatních jazyků, jak přistupovat k návrhu aplikací a jak se vyvarovat častých chyb. Formou praktických příkladů se naučíte pracovat se základními stavebními kameny jazyka, ať už na straně prohlížeče nebo serveru.
 
 ## Pro koho je školení určeno
 

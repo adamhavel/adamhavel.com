@@ -43,6 +43,9 @@
 
     </header>
 
+    {{ $dropcap := substr (.Summary | plainify) 0 1 -}}
+    <section class="workshop__standfirst standfirst content" data-drop-cap="{{ $dropcap }}">{{ .Summary }}</section>
+
     <div class="workshop__layout">
 
         <aside class="workshop__aside">
@@ -72,8 +75,7 @@
 
         </aside>
 
-        {{ $dropcap := substr (index (split .Content "<p>") 1) 0 1 }}
-        <article class="content content--longform workshop__content" data-drop-cap="{{ $dropcap }}">
+        <article class="content content--longform workshop__content">
             {{ .Content }}
         </article>
 

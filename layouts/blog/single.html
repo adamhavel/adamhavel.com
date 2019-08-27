@@ -34,10 +34,12 @@
 
     </header>
 
-    {{ $dropcap := substr (index (split .Content "<p>") 1) 0 1 }}
-    <article class="article__content content content--longform content--dropcap" data-drop-cap="{{ $dropcap }}">
+    {{ $dropcap := substr (.Summary | plainify) 0 1 -}}
+    <section class="article__standfirst standfirst content" data-drop-cap="{{ $dropcap }}">{{ .Summary }}</section>
+
+    <div class="article__content content content--longform">
         {{ .Content }}
-    </article>
+    </div>
 
     {{ with .Site.RegularPages.Related . | first 3 }}
         <aside class="article__related-articles related-articles">
