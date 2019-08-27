@@ -1,7 +1,7 @@
 ---
 title: "JSCamp and CSSCamp 2019: Write less code"
 slug: jscamp-and-csscamp-2019
-date: 2019-08-27
+date: 2019-08-30
 keywords:
     - web
     - conferences
@@ -10,6 +10,7 @@ menu:
         parent: 'blog'
 photoDesc: Cable car in Barcelona — Valdemaras D.
 photoUrl: https://unsplash.com/photos/aktjetKBqzc
+accentColor: "#952931"
 ---
 
 Barcelona plní nejen titulky novin, ale hostí i řadu skvělých konferencí — o jedné takové už jsem ostatně [psal](/blog/full-stack-fest-2018) — a kombinace *JSCamp* a *CSSCamp 2019* nebyla výjimkou. Jak napovídá název, každoročním těžištěm konferencí jsou JavaScript a CSS ve všech svých podobách. Pro ty nejlepší přednášející však posloužily jen jako odrazový můstek k prozkoumání témat širšího záběru.

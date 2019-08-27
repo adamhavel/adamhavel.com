@@ -7,8 +7,9 @@ keywords:
 menu:
     main:
         parent: 'blog'
-photoDesc: La Sagrada Familia — Erwan Hesry
-photoUrl: https://unsplash.com/photos/QYYg0KwTGYc
+photoDesc: La Sagrada Familia — Paolo Nicolello
+photoUrl: https://unsplash.com/photos/Bx60CBuweYA
+accentColor: "#6987b0"
 ---
 
 Have you ever felt the urge to throw that bag full of useless things — the one they still give you on conferences despite common sense — on the stage? It happens to me. At that moment, instead of hard-won experiences or thoughts, you listen to something that resembles reading a documentation and, on top of that, the person on the stage pretends it's all so fascinating.

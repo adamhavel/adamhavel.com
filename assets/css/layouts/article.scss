@@ -1,6 +1,4 @@
 .article {
-    xpadding-bottom: $lineHeight * 5rem;
-    xoverflow-x: hidden;
 
     &:after {
         display: table;
@@ -114,13 +112,14 @@
                 font-weight: 350;
                 font-variation-settings: 'wght' 350;
                 text-align: right;
+                color: var(--accentColor, black);
 
                 &:before {
                     content: '';
                     display: block;
                     height: .6em;
                     margin-bottom: ($lineHeight * 1.5rem);
-                    background: black;
+                    background: var(--accentColor, black);
                     width: 50%;
                     margin-left: auto;
                     opacity: .075;

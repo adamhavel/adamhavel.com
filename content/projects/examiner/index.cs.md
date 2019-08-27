@@ -7,7 +7,7 @@ menu:
 keywords:
     - aplikace
     - website
-thumbCrop: right
+accentColor: "#efc737"
 ---
 
 Examiner je webová aplikace pro učitelé i studenty. Jejím smyslem je první skupině ulehčit práci při nudném úkolu vytváření a hodnocení písemných testů. Zároveň umožňuje studentům tyto testy absolvovat přímo ve webovém prohlížeči. Výsledkem by měl být o trochu lepší zážitek pro obě zúčastněné skupiny.

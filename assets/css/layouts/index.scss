@@ -63,7 +63,8 @@
                     transform: scaleY(3) scaleX(1.025);
                 }
 
-                &:hover:before {
+                &:hover:before,
+                &:focus:before {
                     opacity: 1;
                     transform: none;
                 }
