@@ -1,10 +1,21 @@
 .related-articles {
+    background: rgba(black, .675);
+    color: rgba(white, .925);
+    padding: ($lineHeight * 2.5rem) $gutter ($lineHeight * 4rem);
 
+    @media (max-width: $mediumScreen) {
+        padding: ($lineHeight * 2rem) $gutter ($lineHeight * 3rem);
+    }
+
+    @media (max-width: $smallScreen) {
+        padding: ($lineHeight * 1rem) $gutter ($lineHeight * 2rem);
+    }
 }
 
     .related-articles__heading {
         font-family: $fontDisplay;
-        font-weight: 500;
+        font-weight: 400;
+        font-variation-settings: 'wght' 400;
         margin-bottom: $lineHeight * 2rem;
         font-size: 1.75rem;
         display: flex;
@@ -15,8 +26,8 @@
             display: inline-block;
             height: .475em;
             flex-grow: 1;
-            margin-left: .5em;
-            background: rgba(black, .05);
+            margin-left: .75em;
+            background: rgba(black, .125);
         }
 
         @media (max-width: $smallScreen) {
@@ -25,10 +36,11 @@
         }
     }
 
-    .related-articles__list {
-
-    }
+    .related-articles__list {}
 
         .related-articles__item {
 
+            .image-container:after {
+                opacity: .675;
+            }
         }

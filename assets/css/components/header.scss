@@ -1,5 +1,5 @@
 .header {
-    margin-bottom: $lineHeight * 4rem;
+    margin-bottom: $lineHeight * 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: $gutter;
@@ -44,7 +44,7 @@
     }
 
         .header__title {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 650;
             font-variation-settings: 'wght' 650;
             line-height: 1.125;
@@ -67,7 +67,7 @@
         }
 
         .header__meta {
-            letter-spacing: .5em;
+            letter-spacing: .375em;
             font-weight: 400;
             font-variation-settings: 'wght' 400;
             font-size: .875em;

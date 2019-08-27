@@ -4,6 +4,8 @@ layout: single
 menu:
     main:
         parent: 'workshops'
+keywords:
+    - full-day
 photoDesc: Ashkan Forouzani
 photoUrl: https://unsplash.com/photos/v31lgBn5114
 ---

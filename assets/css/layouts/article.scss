@@ -1,18 +1,32 @@
 .article {
-    padding-bottom: $lineHeight * 5rem;
+    xpadding-bottom: $lineHeight * 5rem;
+    xoverflow-x: hidden;
+
+    &:after {
+        display: table;
+        clear: both;
+        content: '';
+    }
 }
 
     .article__content {
 
+        &:before {
+            margin-left: calc(12.5% + #{($gutter / 2)} - .0675em) !important;
+
+            @media (max-width: $mediumScreen) {
+                margin-left: -.0675em !important;
+            }
+        }
+
         > p {
             font-weight: 300;
             font-variation-settings: 'wght' 300;
-        }
 
-        &:after {
-            display: table;
-            clear: both;
-            content: '';
+            &:first-child {
+                margin-left: calc(12.5% + #{($gutter / 2)});
+                width: calc(87.5% - #{($gutter / 2)});
+            }
         }
 
         > * {
@@ -20,6 +34,11 @@
         }
 
         @media (max-width: $mediumScreen) {
+
+            > p:first-child {
+                margin-left: 0;
+                width: auto;
+            }
 
             > * {
                 margin-left: 0;
@@ -93,6 +112,7 @@
                 margin: ($lineHeight * 1.55rem) $gutter ($lineHeight * 2rem);
                 font-size: 1.75em;
                 font-weight: 350;
+                font-variation-settings: 'wght' 350;
                 text-align: right;
 
                 &:before {
@@ -152,6 +172,7 @@
                     transition: opacity .3s;
                     color: $colorTertiary;
                     font-weight: 600;
+                    font-variation-settings: 'wght' 600;
                     text-decoration: none;
                     margin-bottom: $lineHeight * .5rem;
 
@@ -181,16 +202,28 @@
             }
         }
 
-        .article__related-articles {
-            margin-top: $lineHeight * 5rem;
+    .article__related-articles {
+        $gap: 50vw + $gutter;
 
-            @media (max-width: $mediumScreen) {
-                margin-top: $lineHeight * 3rem;
-            }
+        margin-left: calc(33.3% + #{($gutter / 2)});
+        margin-top: $lineHeight * 3rem;
+        margin-right: calc(#{$fixedLayoutWidth / 2} - #{50vw + $gutter});
+        padding-right: calc(#{50vw + $gutter} - #{$fixedLayoutWidth / 2}) !important;
 
-            @media (max-width: $smallScreen) {
-                margin-top: $lineHeight * 1.5rem;
-            }
+        @media (max-width: $largeScreen) {
+            margin-right: -$gutter;
+            padding-right: $gutter !important;
         }
+
+        @media (max-width: $mediumScreen) {
+            margin-left: -$gutter;
+            margin-top: $lineHeight * 2rem;
+            margin-right: -$gutter;
+        }
+
+        @media (max-width: $smallScreen) {
+            margin-top: $lineHeight * 1rem;
+        }
+    }
 
 

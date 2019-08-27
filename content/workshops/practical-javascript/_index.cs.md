@@ -6,6 +6,8 @@ layout: single
 menu:
     main:
         parent: 'workshops'
+keywords:
+    - celodenní
 photoDesc: Ashkan Forouzani
 photoUrl: https://unsplash.com/photos/v31lgBn5114
 ---

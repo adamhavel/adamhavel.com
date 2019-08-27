@@ -2,8 +2,7 @@
     position: relative;
     z-index: 1;
 
-    &--longform {
-        font-size: 1.125em;
+    &--dropcap {
 
         &:before {
             content: attr(data-drop-cap);
@@ -14,7 +13,7 @@
             font-variation-settings: 'wght' 500;
             margin-top: -.025em;
             margin-right: $gutter / 2;
-            margin-left: calc(12.5% + #{($gutter / 2)} - .0675em);
+            margin-left: -.0675em;
             text-align: right;
             color: rgba(black, .675);
             text-shadow: 3px 3px 0 rgba(black, .075),
@@ -29,7 +28,6 @@
                 margin-right: $gutter / 2;
                 font-size: calc(8em + 2vw);
                 padding-bottom: .05em;
-                margin-left: -.0675em;
             }
 
             @media (max-width: $smallScreen) {
@@ -38,21 +36,21 @@
             }
         }
 
+        > p:first-child:first-letter {
+            font-size: 0;
+        }
+    }
+
+    &--longform {
+        font-size: 1.125em;
+
         > p:first-child {
             font-size: 1.325em;
             font-weight: 350;
             font-variation-settings: 'wght' 350;
             margin-bottom: $lineHeight * 4rem !important;
-            margin-left: calc(12.5% + #{($gutter / 2)});
-            width: calc(87.5% - #{($gutter / 2)});
-
-            &:first-letter {
-                font-size: 0;
-            }
 
             @media (max-width: $mediumScreen) {
-                margin-left: 0;
-                width: auto;
                 font-size: calc(1em + .25vw);
                 margin-bottom: $lineHeight * 2rem !important;
             }

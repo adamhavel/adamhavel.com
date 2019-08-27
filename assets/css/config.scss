@@ -10,8 +10,9 @@ $fontBody: 'IBM Plex Sans', sans-serif;
 $fontDisplay: 'Jost', sans-serif;
 $fontMono: 'IBM Plex Mono', monospace;
 
-$layoutWidth: calc(85em + 4vw);
 $gutter: 4vw;
+$fixedLayoutWidth: 85em;
+$layoutWidth: calc(#{$fixedLayoutWidth} + #{$gutter});
 $fixedGutter: 2.5rem;
 
 $largeScreen: 88em;

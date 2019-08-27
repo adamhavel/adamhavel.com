@@ -1,4 +1,11 @@
 {{ define "main" }}
+{{ $id := path.Base .File.Dir -}}
+{{ $now := now.Format "2006-01-02" -}}
+{{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) -}}
+{{ $workshops_in_language = .Site.Data.workshops -}}
+{{ $relevant_workshops := where ($workshops_in_language) "id" $id -}}
+{{ $upcoming_workshops := where ($relevant_workshops) "date" "ge" $now -}}
+{{ $past_workshops := where ($relevant_workshops) "date" "lt" $now -}}
 <main class="workshop wrapper">
 
     <header class="workshop__header header">
@@ -19,10 +26,19 @@
         {{ end }}
 
         <div class="header__content">
-            <h1 class="header__title">{{ .Title }}</h1>
-            <p class="header__summary">
-                {{ .Summary | plainify | safeHTML }}
-            </p>
+            <h1 class="header__title">{{ delimit (split .Title " ") "<br>" }}</h1>
+            <div class="header__meta">
+                {{ with index $upcoming_workshops 0 -}}
+                    <time class="header__date">{{ (time .date).Format (i18n "dateFormat") }}</time>
+                {{ end -}}
+                {{ with .Keywords -}}
+                    <ul class="header__tags tags">
+                        {{ range . -}}
+                            <li>{{ . }}</li>
+                        {{ end -}}
+                    </ul>
+                {{ end -}}
+            </div>
         </div>
 
     </header>
@@ -30,17 +46,10 @@
     <div class="workshop__layout">
 
         <aside class="workshop__aside">
-            {{ $id := path.Base .File.Dir }}
-            {{ $now := now.Format "2006-01-02" }}
-            {{ $workshops_in_language := where .Site.Data.workshops "lang" (print .Language) }}
-            {{ $workshops_in_language = .Site.Data.workshops }}
-            {{ $relevant_workshops := where ($workshops_in_language) "id" $id }}
-            {{ $upcoming_workshops := where ($relevant_workshops) "date" "ge" $now }}
-            {{ $past_workshops := where ($relevant_workshops) "date" "lt" $now }}
 
             <section class="box workshop-info">
-                {{ with index $upcoming_workshops 0 }}
-                    {{ $date := (time .date).Format (i18n "dateFormat") }}
+                {{ with index $upcoming_workshops 0 -}}
+                    {{ $date := (time .date).Format (i18n "dateFormat") -}}
                     <ul class="workshop-info__list">
                         <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "nextDate" }}</strong> {{ $date }}, {{ .hours }}</li>
                         <li class="workshop-info__item"><strong class="workshop-info__heading">{{ i18n "venue" }}</strong> {{ .location | safeHTML }}</li>
@@ -48,7 +57,7 @@
                     </ul>
                     <a href="mailto:adam.havel@protonmail.com?subject={{ $.Title }} ({{ $date }})" class="button workshop-info__register">{{ i18n "register" }}</a>
                     <p class="workshop-info__desc">{{ i18n "rootNote" }}</p>
-                {{ end }}
+                {{ end -}}
             </section>
 
             <!-- <section class="workshops-dates">
@@ -64,7 +73,7 @@
         </aside>
 
         {{ $dropcap := substr (index (split .Content "<p>") 1) 0 1 }}
-        <article class="content workshop__content" data-drop-cap="{{ $dropcap }}">
+        <article class="content content--longform workshop__content" data-drop-cap="{{ $dropcap }}">
             {{ .Content }}
         </article>
 
