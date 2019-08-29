@@ -45,3 +45,6 @@ other = "Adam Havel — developer & designer"
 
 [photosLicense]
 other = "All photos are protected by copyright and are licensed under <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en\">CC BY-NC-SA 4.0</a>. If you would like to use the photos beyond the scope of the license, do not hesitate to <a href=\"mailto:adam.havel@protonmail.com\">contact me</a>."
+
+[welcome]
+other = "Hey."

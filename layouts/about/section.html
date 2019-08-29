@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main class="about wrapper">
 
-    <h1 class="about__heading">Hey.</h1>
+    <h1 class="about__heading">{{ i18n "welcome" }}</h1>
 
     <p class="about__summary">
         {{ .Summary | plainify | safeHTML }}

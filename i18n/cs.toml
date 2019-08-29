@@ -46,3 +46,6 @@ other = "Adam Havel — vývojář a designer"
 [photosLicense]
 other = "Všechny fotografie jsou chráněny autorským zákonem a licencí <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/deed.cs\">CC BY-NC-SA 4.0</a>. V případě, že byste fotografie chtěli použít nad rámec licence, neváhejte mi <a href=\"mailto:adam.havel@protonmail.com\">napsat</a>."
 
+[welcome]
+other = "Zdravím!"
+

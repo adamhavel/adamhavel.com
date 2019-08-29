@@ -2234,8 +2234,9 @@ doF();
 ```
 
 V jakém pořadí proběhnou jednotlivé funkce?
-<p style="font-size: .75em; text-align: center">`doA()` → `doF()` → `doB()` → `doC()` → `doE()` → `doD()`</p>
-<!-- .element: class="fragment" -->
+
+`doA()` → `doF()` → `doB()` → `doC()` → `doE()` → `doD()`
+<!-- .element: class="fragment" style="font-size: .75em; text-align: center" -->
 
 ---
 
@@ -2295,21 +2296,16 @@ ajax("https://example.com", function cb(err, response) {
 // B
 ```
 
-<ul class="fragment">
-    <li>`A` a `B` jsou pod přímou kontrolou našeho kódu</li>
-    <li>běh `C` je závislý na implementaci funkce `ajax`</li>
-</ul>
-
+- `A` a `B` jsou pod přímou kontrolou našeho kódu
+- běh `C` je závislý na implementaci funkce `ajax`
 
 ---
 
 ## *Callback* (VI.)
 
-<ol style="font-size: .75em;">
-    <li>*callback* je zavolán nečekaným způsobem</li>
-    <li>*callback* není zavolán vůbec</li>
-    <li>*callback* je zavolán vícekrát</li>
-</ol>
+1. <!-- .element: style="font-size: .75em" --> *callback* je zavolán nečekaným způsobem
+2. <!-- .element: style="font-size: .75em" --> *callback* není zavolán vůbec
+3. <!-- .element: style="font-size: .75em" --> *callback* je zavolán vícekrát
 
 ```js
 function ajax(url, cb) {
