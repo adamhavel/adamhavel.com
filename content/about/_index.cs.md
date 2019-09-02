@@ -3,7 +3,7 @@ title: Info
 url: '/info/'
 ---
 
-Už něco přes tři dekády žiju v Praze nebo v jejím okolí, nejraději pak v malém domě s velkou zahradu. Umím navrhovat systémy mnoha druhů, mám rád jednoduchá a elegantní řešení, a zajímám se o decentralizované technologie a problematiku ochrany soukromí. Abych se nezbláznil z vše prostupujícího řádu mojí profese, rozbíjím jej alespoň tancem swingu a poslechem (a hraním) divné hudby, často v ten samý okamžik.
+Už něco přes tři dekády žiju v Praze nebo v jejím okolí, nejraději pak v malém domě s velkou zahradou. Umím navrhovat systémy mnoha druhů, mám rád jednoduchá a elegantní řešení, a zajímám se o decentralizované technologie a problematiku ochrany soukromí. Abych se nezbláznil z vše prostupujícího řádu mojí profese, rozbíjím jej alespoň tancem swingu a poslechem (a hraním) divné hudby, často v ten samý okamžik.
 
 <!--more-->
 

@@ -10,10 +10,9 @@ menu:
         parent: 'blog'
 photoDesc: Lanovka v Barceloně — Valdemaras D.
 photoUrl: https://unsplash.com/photos/aktjetKBqzc
-accentColor: "#952931"
 ---
 
-Barcelona plní nejen titulky novin, ale hostí i řadu skvělých konferencí — o jedné takové už jsem ostatně [psal](/blog/full-stack-fest-2018) — a kombinace *JSCamp* a *CSSCamp 2019* nebyla výjimkou. Jak napovídá název, každoročním těžištěm konferencí jsou JavaScript a CSS ve všech svých podobách. Pro ty nejlepší přednášející však posloužily jen jako odrazový můstek k prozkoumání témat širšího záběru.
+Barcelona plní nejen titulky novin, ale hostí i řadu skvělých konferencí — o jedné takové už jsem ostatně [psal](/blog/full-stack-fest-2018) — a kombinace *JSCamp* a *CSSCamp 2019* nebyla výjimkou. Jak napovídají názvy, každoročním těžištěm konferencí jsou JavaScript a CSS ve všech svých podobách. Pro ty nejlepší přednášející však posloužily jen jako odrazový můstek k prozkoumání témat širšího záběru.
 
 <!--more-->
 
