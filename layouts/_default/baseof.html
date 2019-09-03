@@ -19,7 +19,8 @@
         <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink }}" title="{{ $title }}" />
     {{ end -}}
 
-    {{ with resources.Get "css/default.scss" | toCSS | postCSS | minify -}}
+    {{ $style := cond (isset .Page.Params "style") .Page.Params.style .Page.Type }}
+    {{ with resources.Get (printf "css/%s.scss" $style) | toCSS | postCSS | minify -}}
         <style>{{ .Content | safeCSS }}</style>
     {{ end -}}
 

@@ -3,7 +3,7 @@
 
     <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
 
-    <div class="section__layout section__layout--grid">
+    <div class="section__layout section__layout--blog">
 
         {{ range .Pages }}
             <section class="spot spot--vertical">
@@ -28,7 +28,7 @@
                             </ul>
                         {{ end }}
                     </header>
-                    <h3 class="spot__heading">{{ .Title }}</h3>
+                    <h2 class="spot__heading">{{ .Title }}</h2>
                     <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
                     <a href="{{ .Permalink }}" class="spot__link" title="{{ .Title }}"></a>
                 </div>

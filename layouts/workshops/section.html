@@ -8,7 +8,7 @@
     {{ $workshops_in_language = .Site.Data.workshops }}
     {{ $upcoming_workshops := where ($workshops_in_language) "date" "ge" $now }}
 
-    <div class="section__layout">
+    <div class="section__layout section__layout--workshops">
 
         <main class="section__content">
 

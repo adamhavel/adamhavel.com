@@ -1,0 +1,111 @@
+$previewGutter: ($lineHeight * 1.25rem);
+
+.preview {
+    position: relative;
+    padding: 0 $previewGutter;
+
+    @media (max-width: $smallScreen) {
+        padding: 0;
+    }
+}
+
+    .preview__heading {
+        letter-spacing: .05em;
+        font-size: 1em;
+        font-weight: 600;
+        font-variation-settings: 'wght' 600;
+        position: absolute;
+        bottom: 0;
+        left: $previewGutter;
+        right: $previewGutter;
+        transform-origin: bottom left;
+        transform: rotate(-90deg);
+        line-height: $previewGutter;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        @media (max-width: $smallScreen) {
+            position: static;
+            transform: none;
+        }
+    }
+
+    .preview__image-container {
+
+            &:before {
+                content: '';
+                position: absolute;
+                z-index: 3;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                transition: opacity .3s;
+                mix-blend-mode: multiply;
+                opacity: .001;
+                pointer-events: none;
+                background: $colorPrimary;
+            }
+
+            .preview:hover &:before,
+            .preview:focus &:before {
+                opacity: .6;
+            }
+        }
+
+            .preview__image {}
+
+    .preview__meta {
+        display: flex;
+        align-items: center;
+        font-size: .75em;
+        letter-spacing: .125em;
+        font-weight: 450;
+        font-variation-settings: 'wght' 450;
+        position: absolute;
+        line-height: $previewGutter;
+        top: 0;
+        left: $previewGutter;
+        right: $previewGutter;
+        transform-origin: top right;
+        transform: rotate(-90deg);
+        justify-content: flex-end;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        > *:not(:first-child):before {
+            display: inline-block;
+            content: '/';
+            margin: 0 .5em;
+            opacity: .5;
+            font-weight: 300;
+            font-variation-settings: 'wght' 300;
+        }
+
+        @media (max-width: $smallScreen) {
+            position: static;
+            transform: none;
+        }
+    }
+
+        .preview__date {
+            white-space: nowrap;
+        }
+
+        .preview__tags {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    .preview__link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        font-size: 0;
+        z-index: 4;
+    }

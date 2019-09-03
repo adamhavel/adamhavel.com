@@ -1,3 +1,4 @@
 ---
 title: Workshops
+style: section
 ---

@@ -73,20 +73,37 @@
 
     .section__layout {
         display: grid;
+        grid-gap: $gutter;
         grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: $gutter;
-        grid-row-gap: ($lineHeight * 2rem);
 
-        @media (max-width: $mediumScreen) {
+        &--workshops {
 
-            &:not(&--grid) {
+            @media (max-width: $mediumScreen) {
                 grid-template-columns: 1fr;
+                grid-row-gap: ($lineHeight * 2rem);
             }
         }
 
-        &--grid {
+        &--blog {
             grid-template-columns: repeat(2, 1fr);
-            grid-gap: $gutter;
+
+            @media (max-width: $smallScreen) {
+                grid-template-columns: 1fr;
+                grid-row-gap: ($lineHeight * 2rem);
+            }
+
+            > * {
+                margin: 0 !important;
+            }
+        }
+
+        &--projects {
+            grid-column-gap: calc(#{$gutter} - #{$lineHeight * 1.5rem});
+
+            @media (max-width: $mediumScreen) {
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: $gutter;
+            }
 
             @media (max-width: $smallScreen) {
                 grid-template-columns: 1fr;

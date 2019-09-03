@@ -7,7 +7,6 @@ menu:
 keywords:
     - app
     - website
-accentColor: "#efc737"
 ---
 
 Examiner is a web application for both teachers and students. Its purpose is to help the first group with the dull process of creating and evaluating written tests. The students, then, use the same application for taking the tests. At the end, and hopefully in peace, both groups part ways.

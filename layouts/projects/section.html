@@ -3,35 +3,30 @@
 
     <h1 class="section__heading"><span data-content="{{ .Title }}">{{ .Title }}</span></h1>
 
-    <div class="section__layout section__layout--grid">
+    <div class="section__layout section__layout--projects">
 
         {{ range .Pages }}
-            <section class="spot spot--vertical">
+            <section class="preview">
+                <h2 class="preview__heading">{{ .Title }}</h2>
                 {{ with .Resources.GetMatch "thumb.*" }}
-                    {{ $image3x4 := .Fill "600x800 q50" }}
-                    {{ $image3x2 := .Fill "1200x800 q50 center" }}
-                    <figure class="spot__image-container image-container image-container--3:4 image-container--3:2@largeScreen">
+                    {{ $image := .Fill "800x800 q50" }}
+                    <figure class="preview__image-container image-container image-container--1:1">
                         <picture>
-                            <source class="spot__image image-container__source image-container__source" srcset="{{ $image3x2.Permalink }}" media="(max-width: {{ $.Site.Params.largeScreen }})">
-                            <img class="spot__image image-container__source image-container__source" src="{{ $image3x4.Permalink }}" role="presentation">
+                            <img class="preview__image image-container__source image-container__source" src="{{ $image.Permalink }}" role="presentation">
                         </picture>
                     </figure>
                 {{ end }}
-                <div class="spot__content">
-                    <header class="spot__header">
-                        <time class="spot__date">{{ .Date.Format (i18n "dateFormat") }}</time>
-                        {{ with .Keywords }}
-                            <ul class="spot__tags tags">
-                                {{ range . }}
-                                    <li>{{ . }}</li>
-                                {{ end }}
-                            </ul>
-                        {{ end }}
-                    </header>
-                    <h3 class="spot__heading">{{ .Title }}</h3>
-                    <p class="spot__desc">{{ .Summary | plainify | safeHTML }}</p>
-                    <a href="{{ .Permalink }}" class="spot__link" title="{{ .Title }}"></a>
-                </div>
+                <header class="preview__meta">
+                    <time class="preview__date">{{ .Date.Format (i18n "dateFormat") }}</time>
+                    {{ with .Keywords }}
+                        <ul class="preview__tags tags">
+                            {{ range . }}
+                                <li>{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    {{ end }}
+                </header>
+                <a href="{{ .Permalink }}" class="preview__link" title="{{ .Title }}"></a>
             </section>
         {{ end }}
 
