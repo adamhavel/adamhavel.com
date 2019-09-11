@@ -3,7 +3,8 @@
 
 ---
 
-<p style="text-align: center">[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)</p>
+[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)
+<!-- .element: style="text-align: center" -->
 
 ---
 
@@ -105,34 +106,28 @@
 
 ## Jaký je?
 
-<ul>
-  <li class="fragment">interpretovaný <span class="fragment">(jak se to vezme)</span></li>
-  <li class="fragment">typově dynamický</li>
-  <li class="fragment">založený na událostech</li>
-  <li class="fragment">multiparadigmatický</li>
-</ul>
+- interpretovaný (jak se to vezme) <!-- .element: class="fragment" -->
+- typově dynamický <!-- .element: class="fragment" -->
+- založený na událostech <!-- .element: class="fragment" -->
+- multiparadigmatický <!-- .element: class="fragment" -->
 
 ---
 
 ### Multiparadigmatický?
 
-<ul>
-  <li class="fragment">imperativní / deklarativní</li>
-  <li class="fragment">objektově orientovaný <span class="fragment">(≠ třídně orientovaný)</span></li>
-  <li class="fragment">prototypální</li>
-  <li class="fragment">funkcionální</li>
-</ul>
+- imperativní / deklarativní <!-- .element: class="fragment" -->
+- objektově orientovaný (≠ třídně orientovaný) <!-- .element: class="fragment" -->
+- prototypální <!-- .element: class="fragment" -->
+- funkcionální <!-- .element: class="fragment" -->
 
 ---
 
 #### Jazyky kompilované do JavaScriptu
 
-<ul>
-  <li class="fragment">CoffeeScript</li>
-  <li class="fragment">TypeScript</li>
-  <li class="fragment">Elm</li>
-  <li class="fragment">Scala</li>
-</ul>
+- CoffeeScript
+- TypeScript
+- Elm
+- Scala
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
@@ -895,6 +890,22 @@ nodesArr
 
 ## `String` (IV.)
 
+*ES2015* přidává metodu `Array.from`:
+
+```js
+var nodes = document.querySelectorAll("span");
+var nodesArr = Array.from(nodes);
+
+nodesArr
+    .reverse()
+    .slice(1, 3)
+    .join(", ");
+```
+
+---
+
+## `String` (V.)
+
 - alternativní zápis se nazývá *template literal*
 - odlišuje se použitím ``` `...` ``` místo `"..."` a `'...'`
 - pomocí `${...}` lze *interpolovat* výrazy
@@ -957,14 +968,12 @@ var param = x || "default"; // "default"
 
 ## Příklad (I.) — [odkaz](https://repl.it/@jackdaw/exercise-i)
 
-<ul style="font-size: .75em;">
-    <li>v proměnné `nodes` je `NodeList` o několika *DOM* elementech</li>
-    <li>elementy mají atributy `data-height` a `data-is-visible`</li>
-    <li>deklarativním přístupem vytvořte z `nodes` pole objektů ve tvaru např. `{ height: "6px", isVisible: true }`</li>
-    <li>ve výsledném poli zůstanou jen ty elementy s atributem `data-height` větším než `5px` a atributem `data-is-visible` rovnajícím se `"true"`</li>
-    <li>**tip:** pro získání atributů použijte funkci `getAttribute(attName)` volanou na daném elementu, např. `el.getAttribute("data-height")`</li>
-    <li>**bonus:** použijte pouze funkci `Array.prototype.reduce`</li>
-</ul>
+- v proměnné `nodes` je `NodeList` o několika *DOM* elementech
+- elementy mají atributy `data-height` a `data-is-visible`
+- deklarativním přístupem vytvořte z `nodes` pole objektů ve tvaru např. `{ height: "6px", isVisible: true }`
+- ve výsledném poli zůstanou jen ty elementy s atributem `data-height` větším než `5px` a atributem `data-is-visible` rovnajícím se `"true"`
+- **tip:** pro získání atributů použijte funkci `getAttribute(attName)` volanou na daném elementu, např. `el.getAttribute("data-height")`
+- **bonus:** použijte pouze funkci `Array.prototype.reduce`
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
@@ -1423,9 +1432,8 @@ console.log(foo.count); // 0
 ```
 <!-- .element: class="fragment" -->
 
-<div class="fragment">
 **Pozor:** `this` není referencí na volanou funkci.
-</div>
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -1951,30 +1959,26 @@ seneca.init("Lucius Annaeus Seneca");
 seneca.speak(); // "Hello, I am Lucius Annaeus Seneca"
 ```
 
----
+--- <!-- .slide: class="longform" -->
 
 ## Prototyp (IX.)
 
-<ol style="font-size: .75em;">
-    <li>objekt `seneca` nemá funkci `init`, ani `speak`, deleguje tedy na svůj prototyp `Bar`</li>
-    <li>objekt `Bar` obsahuje `speak`, ale ne `init` a `identify`, deleguje proto na `Foo`</li>
-    <li>objekt `Foo` volá funkci `init` a `identify`</li>
-    <li>hodnota `this` díky volání funkcí `seneca.init()` a `seneca.speak()` implicitně odkazuje na `seneca`</li>
-    <li>`this.me` ve funkci `init` a `identify` tedy neodkazuje na `Foo.me`, ale na `seneca.me`</li>
-    <li>výsledkem je `"Hello, I am Lucius Annaeus Seneca."`</li>
-</ol>
+1. objekt `seneca` nemá funkci `init`, ani `speak`, **deleguje** tedy na svůj prototyp `Bar`
+2. objekt `Bar` obsahuje `speak`, ale ne `init` a `identify`, **deleguje** proto na `Foo`
+3. objekt `Foo` **volá** funkci `init` a `identify`
+4. hodnota `this` díky volání funkcí `seneca.init()` a `seneca.speak()` implicitně **odkazuje** na `seneca`
+5. `this.me` ve funkci `init` a `identify` tedy **neodkazuje** na `Foo.me`, ale na `seneca.me`
+6. výsledkem je `"Hello, I am Lucius Annaeus Seneca."`
 
----
+--- <!-- .slide: class="longform" -->
 
 ## Prototyp (X.)
 
-<ul style="font-size: .875em;">
-    <li>vazby vznikají mezi **rovnocennými objekty**</li>
-    <li>neexistují **třídy**, pouze **objekty**</li>
-    <li>vlastnosti (funkce a prvky) jsou díky delegaci „vypůjčeny“, nejde o **kopie**</li>
-    <li>vlastnosti se nesnažíme „překrývat“ (polymorfismus), ale **specifikovat** a **delegovat** (viz `speak` a `identify` v předchozím příkladu)</li>
-    <li>neexistují konstruktory, vytvoření (`Object.create`) a inicializace (`seneca.init`) jsou dva separátní kroky</li>
-</ul>
+- vazby vznikají mezi **rovnocennými objekty**
+- neexistují **třídy**, pouze **objekty**
+- vlastnosti (funkce a prvky) jsou díky delegaci „vypůjčeny“, nejde o **kopie**
+- vlastnosti se nesnažíme „překrývat“ (polymorfismus), ale **specifikovat** a **delegovat** (viz `speak` a `identify` v předchozím příkladu)
+- neexistují konstruktory, vytvoření (`Object.create`) a inicializace (`seneca.init`) jsou dva separátní kroky
 
 ---
 
@@ -1993,7 +1997,7 @@ seneca.me; // "Lucius Annaeus Seneca"
 Object.getPrototypeOf(seneca) === Foo.prototype; // true
 ```
 
----
+--- <!-- .slide: class="longform" -->
 
 ## „Třídy“ (II.)
 
@@ -2119,19 +2123,17 @@ Foo.prototype.myProperty = "bar";
 
 ## Příklad (III.) — [odkaz](https://repl.it/@jackdaw/exercise-iii)
 
-<ul style="font-size: .875em;">
-    <li>vytvořte objekty `Vehicle`, `Car` a `Plane`</li>
-    <li>objektu `Vehicle` lze nastavit rychlost a disponuje funkcí `moveFor`, jejímž vstupem je počet hodin a výstupem uražená vzdálenost</li>
-    <li>objekty `Car` a `Plane` mají funkce pro vypsání ujetých, respektive uletěných kilometrů</li>
-    <li>použijte prototypální delegaci pro vytvoření příhodných vazeb</li>
-    <li>vytvořte další objekty, které výše zmíněné objekty využívají</li>
-</ul>
+- vytvořte objekty `Vehicle`, `Car` a `Plane`
+objektu `Vehicle` lze nastavit rychlost a disponuje funkcí `moveFor`, jejímž vstupem je počet hodin a - výstupem uražená vzdálenost
+- objekty `Car` a `Plane` mají funkce pro vypsání ujetých, respektive uletěných kilometrů
+- použijte prototypální delegaci pro vytvoření příhodných vazeb
+- vytvořte další objekty, které výše zmíněné objekty využívají
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
 # Asynchronní operace
 
----
+--- <!-- .slide: class="longform" -->
 
 Model souběžnosti (*concurrency model*) v JavaScriptu operuje na principu *event loop*:
 
@@ -2140,20 +2142,14 @@ while (queue.waitForMessage()) {
     queue.processNextMessage();
 }
 ```
-<!-- .element: class="fragment" -->
 
-<ul>
-    <li class="fragment">tento model je **neblokující** <span class="fragment">(až na vyjímky)</span></li>
-    <li class="fragment">
-        „zprávy“ (*message*):
-        <ul style="font-size: .875em;">
-            <li>jsou do fronty přidány na základě **událostí**</li>
-            <li class="fragment">jsou odbaveny **postupně**</li>
-            <li class="fragment">představují nějakou **funkci**</li>
-            <li class="fragment">jsou zpracovány **celé** (*run-to-completion*)</li>
-        </ul>
-    </li>
-</ul>
+Tento model je **neblokující**.
+
+„Zprávy“ (*message*):
+- jsou do fronty přidány na základě **událostí**
+- jsou odbaveny **postupně**
+- představují nějakou **funkci**
+- jsou zpracovány **celé** (*run-to-completion*)
 
 ---
 
@@ -2303,9 +2299,9 @@ ajax("https://example.com", function cb(err, response) {
 
 ## *Callback* (VI.)
 
-1. <!-- .element: style="font-size: .75em" --> *callback* je zavolán nečekaným způsobem
-2. <!-- .element: style="font-size: .75em" --> *callback* není zavolán vůbec
-3. <!-- .element: style="font-size: .75em" --> *callback* je zavolán vícekrát
+1. *callback* je zavolán nečekaným způsobem
+2. *callback* není zavolán vůbec
+3. *callback* je zavolán vícekrát
 
 ```js
 function ajax(url, cb) {
@@ -2322,18 +2318,16 @@ function ajax(url, cb) {
 }
 ```
 
----
+--- <!-- .slide: class="longform" -->
 
 ## *Promise* (I.)
 
-<ul>
-    <li class="fragment">*promise* je kontejner nad **budoucí** hodnotou</li>
-    <li class="fragment">lze s ním operovat jako s jakoukoliv jinou hodnotou</li>
-    <li class="fragment">*promise* může být buď **naplněn** (*fulfilled*) nebo **odmítnut** (*rejected*)</li>
-    <li class="fragment">nabytí hodnoty (*resolved*) se může stát jen **jednou**</li>
-    <li class="fragment">nabyde-li *promise* hodnoty, je tato hodnota **neměnná** (*immutable*)</li>
-    <li class="fragment">hodnotu získáme voláním `then` nebo `catch` nad daným *promise*</li>
-</ul>
+- *promise* je kontejner nad **budoucí** hodnotou
+- lze s ním operovat jako s jakoukoliv jinou hodnotou
+- *promise* může být buď **naplněn** (*fulfilled*) nebo **odmítnut** (*rejected*)
+- nabytí hodnoty (*resolved*) se může stát jen **jednou**
+- nabyde-li *promise* hodnoty, je tato hodnota **neměnná** (*immutable*)
+- hodnotu získáme voláním `then` nebo `catch` nad daným *promise*
 
 ---
 
@@ -2356,7 +2350,7 @@ function orderBurgers(count) {
 }
 ```
 
-<p class="fragment">`Promise` je vždy **asynchronní**, nezávisle na tom, zdali nabyde hodnoty **okamžitě** nebo **později**.</p>
+`Promise` je vždy **asynchronní**, nezávisle na tom, zdali nabyde hodnoty **okamžitě** nebo **později**.
 
 ---
 
@@ -2493,23 +2487,19 @@ Promise.race([ foo, timeoutPromise(3000) ])
 ## *Promise* (X.)
 
 #### Výhody:
-<ul>
-    <li class="fragment">řeší problém „předání kontroly“ — *callback* nesvěřujeme „cizí“ funkci, ale `then`</li>
-    <li class="fragment">má **konzistentní** rozhraní — je vždy **asynchronní** a vrací **jednu hodnotu**</li>
-    <li class="fragment">hodnoty může nabýt jen **jednou**; ta je pak **neměnná**</li>
-    <li class="fragment">lze řešit situaci, kdy volaná funkce *promise* **nenaplní**</li>
-</ul>
+- řeší problém „předání kontroly“ — *callback* nesvěřujeme „cizí“ funkci, ale `then`
+- má **konzistentní** rozhraní — je vždy **asynchronní** a vrací **jednu hodnotu**
+- hodnoty může nabýt jen **jednou**; ta je pak **neměnná**
+- lze řešit situaci, kdy volaná funkce *promise* **nenaplní**
 
 ---
 
 ## *Promise* (XI.)
 
 #### Nevýhody:
-<ul>
-    <li class="fragment">zapomeneme-li přidat `catch`, jsou chyby vzniklé uvnitř `then` „spolknuty“</li>
-    <li class="fragment">*callbacku* v `then` a `catch` můžeme předat jen jednu hodnotu</li>
-    <li class="fragment">hodnota je „uzavřena“ v kontextu `then`, respektive `catch`</li>
-</ul>
+- zapomeneme-li přidat `catch`, jsou chyby vzniklé uvnitř `then` „spolknuty“
+- *callbacku* v `then` a `catch` můžeme předat jen jednu hodnotu
+- hodnota je „uzavřena“ v kontextu `then`, respektive `catch`
 
 ---
 
@@ -2571,27 +2561,23 @@ main()
 
 ## Generátor (I.)
 
-<ul>
-    <li class="fragment">je speciální typ **funkce**, která se neřídí principem *run-to-completion*</li>
-    <li class="fragment">definujeme pomocí `function*`</li>
-    <li class="fragment">lze zastavit příkazem `yield` použitým **uvnitř** *generátoru*</li>
-    <li class="fragment">lze ovládat **zvenčí** pomocí jeho *iterátoru*</li>
-</ul>
+- je speciální typ **funkce**, která se neřídí principem *run-to-completion*
+- definujeme pomocí `function*`
+- lze zastavit příkazem `yield` použitým **uvnitř** *generátoru*
+- lze ovládat **zvenčí** pomocí jeho *iterátoru*
 
----
+--- <!-- .slide: class="longform" -->
 
 ## Generátor (II.)
 
 *Iterátor* je **funkce**, která splňuje následující požadavky:
 
-<ul style="font-size: .85em">
-    <li>většinou ji získáme pomocí klíče `Symbol.iterator`</li>
-    <li>po **zavolání** vrátí objekt</li>
-    <li>tento objekt má funkci `next`</li>
-    <li>funkce `next` při každém zavolání vrací objekt ve formátu:<br>`{ value: 1, done: false }`</li>
-    <li>`next` **může** v určitý moment vrátit objekt:<br>`{ value: undefined, done: true }`<br></li>
-    <li>v takovém případě při dalších voláních `next` vrací stejný výsledek</li>
-</ul>
+- většinou ji získáme pomocí klíče `Symbol.iterator`
+- po **zavolání** vrátí objekt
+- tento objekt má funkci `next`
+- funkce `next` při každém zavolání vrací objekt ve formátu:<br>`{ value: 1, done: false }`
+- `next` **může** v určitý moment vrátit objekt:<br>`{ value: undefined, done: true }`<br>
+- v takovém případě při dalších voláních `next` vrací stejný výsledek
 
 ---
 
@@ -2608,15 +2594,13 @@ it.next(); // { value: undefined, done: true }
 it.next(); // { value: undefined, done: true }
 ```
 
-<div>
 `for..of` cyklus operuje nad *iterátorem*:
+
 ```js
 for (let value of arr) {
     console.log(value);
 }
 ```
-</div>
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -2639,9 +2623,8 @@ x; // 2
 it.next(); // { value: undefined, done: true }
 x; // 3
 ```
-<!-- .element: class="fragment" -->
 
----
+--- <!-- .slide: class="longform" -->
 
 ## Generátor (V.)
 
@@ -2652,13 +2635,11 @@ x; // 3.
 it.next(); // 4.
 x; // 5.
 ```
-<ol style="font-size: .875em">
-    <li class="fragment">voláním *generátoru* `foo` **získáme** jeho *iterátor*</li>
-    <li class="fragment">prvním voláním `next` **spustíme** běh `foo`</li>
-    <li class="fragment">*generátor* se v momentě zavolání `yield` zastaví a **vrací** kontrolu nad svým během</li>
-    <li class="fragment">*generátor* znovu spustíme pomocí *iterátoru*</li>
-    <li class="fragment">*generátor* je **ukončen**</li>
-</ol>
+1. voláním *generátoru* `foo` **získáme** jeho *iterátor*
+2. prvním voláním `next` **spustíme** běh `foo`
+3. *generátor* se v momentě zavolání `yield` zastaví a **vrací** kontrolu nad svým během
+4. *generátor* znovu spustíme pomocí *iterátoru*
+5. *generátor* je **ukončen**
 
 ---
 
@@ -2782,15 +2763,13 @@ async function main() {
 
 ## Příklad (IV.) — [odkaz](https://repl.it/@jackdaw/exercise-iv)
 
-<ul style="font-size: .725em;">
-    <li>stávající funkce `ajax(url, callback)` vrací odpověď při dotazu na `https://example.com` a chybu při jakékoliv jiné adrese</li>
-    <li>`ajax` očekává *callback* ve tvaru `function(err, response)`</li>
-    <li>při úspěšném dotazu `ajax` volá *callback* s objektem `response`</li>
-    <li>funkce `text` na objektu `response` vrací `Promise`, jež obsahuje text odpovědi</li>
-    <li>vytvořte funkci `ajaxPromise`, která funkci `ajax` „obaluje“ a upravuje její rozhraní na `Promise`</li>
-    <li>napište příklad volání funkce `ajaxPromise`, včetně získání textu odpovědi a zachycení případných vyjímek</li>
-    <li>**bonus:** použijte `ajaxPromise` v kontextu `async` funkce</li>
-</ul>
+- stávající funkce `ajax(url, callback)` vrací odpověď při dotazu na `https://example.com` a chybu při jakékoliv jiné adrese
+- `ajax` očekává *callback* ve tvaru `function(err, response)`
+- při úspěšném dotazu `ajax` volá *callback* s objektem `response`
+- funkce `text` na objektu `response` vrací `Promise`, jež obsahuje text odpovědi
+- vytvořte funkci `ajaxPromise`, která funkci `ajax` „obaluje“ a upravuje její rozhraní na `Promise`
+- napište příklad volání funkce `ajaxPromise`, včetně získání textu odpovědi a zachycení případných vyjímek
+- **bonus:** použijte `ajaxPromise` v kontextu `async` funkce
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
@@ -2799,11 +2778,9 @@ async function main() {
 ---
 
 Jak si poradit s:
-<ul>
-    <li class="fragment">transpilací kódu (*Babel*)</li>
-    <li class="fragment">optimalizací aplikace</li>
-    <li class="fragment">starými prohlížeči</li>
-    <li class="fragment">progresivním vylepšením</li>
-    <li class="fragment">organizací kódu</li>
-    <li class="fragment">frameworky</li>
-</il>
+- <!-- .element: class="fragment" --> transpilací kódu
+- <!-- .element: class="fragment" --> optimalizací aplikace
+- <!-- .element: class="fragment" --> starými prohlížeči
+- <!-- .element: class="fragment" --> progresivním vylepšením
+- <!-- .element: class="fragment" --> organizací kódu
+- <!-- .element: class="fragment" --> frameworky
