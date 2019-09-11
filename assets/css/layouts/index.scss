@@ -139,7 +139,7 @@
             .index__card {
                 padding: ($lineHeight * 2.5rem) ($gutter / 2) ($lineHeight * 5rem);
                 transform-style: preserve-3d;
-                border: solid rgba(black, .0275);
+                border: solid rgba(black, .0125);
                 border-width: 1px 0 0 1px;
 
                 &:before,
@@ -148,7 +148,7 @@
                     top: -1px;
                     bottom: -50%;
                     width: 200%;
-                    border: solid rgba(black, .0275);
+                    border: solid rgba(black, .0125);
                     border-width: 1px 0 0 1px;
                 }
 
@@ -162,7 +162,7 @@
 
                 &:first-child {
                     background: rgba(black, .0325);
-                    transform: rotateY(15deg) translateX(1px);
+                    transform: rotateY(15deg);
                     transform-origin: right;
 
                     &:before {
@@ -175,13 +175,14 @@
                 }
 
                 &:nth-child(2) {
-                    background: rgba(black, .06);
+                    background: rgba(black, .05);
                 }
 
                 &:nth-child(3) {
                     background: rgba(black, .04);
                     transform: rotateY(10deg) translateX(-1px);
                     transform-origin: left;
+                    border-left-color: rgba(black, .005);
 
                     &:before {
                         content: '';
