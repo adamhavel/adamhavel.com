@@ -80,8 +80,7 @@
         </div>
     </header>
 
-    {{ $accentColor := cond (isset .Page.Params "accentcolor") .Page.Params.accentColor "initial" -}}
-    <div class="site-content" style="--accentColor: {{ $accentColor }}">
+    <div class="site-content">
         {{ block "main" . }}{{ end }}
     </div>
 
