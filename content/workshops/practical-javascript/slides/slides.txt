@@ -3,7 +3,8 @@
 
 ---
 
-<p style="text-align: center">[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)</p>
+[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)
+<!-- .element: style="text-align: center" -->
 
 ---
 
@@ -45,13 +46,11 @@
 
 ### JavaScript I.
 
-<ul>
-    <li class="fragment">imperativní</li>
-    <li class="fragment">komplikovaný</li>
-    <li class="fragment">nedeterministické prostředí prohlížeče</li>
-    <li class="fragment">nutné stáhnout a zpracovat celý skript</li>
-    <li class="fragment">nejdražší typ dat s ohledem na CPU</li>
-</ul>
+- imperativní
+- komplikovaný
+- nedeterministické prostředí prohlížeče
+- nutné stáhnout a zpracovat celý skript
+- nejdražší typ dat s ohledem na CPU
 
 ---
 
@@ -80,14 +79,12 @@ awesomeSplit(10);
 ### JavaScript III.
 
 **Uživatelé bez JavaScriptu:**
-<ul>
-    <li class="fragment">explicitně **vypnutý** v prohlížeči</li>
-    <li class="fragment">**neúspěšný** HTTP požadavek (*firewall*, *timeout*, atd.)</li>
-    <li class="fragment">**manipulace** na straně ISP, operátora, hostingu, atd.</li>
-    <li class="fragment">**rožšíření** v prohlížeči (*AdBlock* ap.)</li>
-    <li class="fragment">chybějící **podpora** v prohlížeči</li>
-    <li class="fragment">*runtime* **chyba**</li>
-</ul>
+- explicitně **vypnutý** v prohlížeči
+- **neúspěšný** HTTP požadavek (*firewall*, *timeout*, atd.)
+- **manipulace** na straně ISP, operátora, hostingu, atd.
+- **rožšíření** v prohlížeči (*AdBlock* ap.)
+- chybějící **podpora** v prohlížeči
+- *runtime* **chyba**
 ---
 
 ## Nepoužívat JavaScript?!
@@ -96,14 +93,12 @@ awesomeSplit(10);
 
 ### HTML I.
 
-<ul>
-    <li class="fragment">deklarativní</li>
-    <li class="fragment">jednoduché</li>
-    <li class="fragment">laxní validátor</li>
-    <li class="fragment">prohlížeč ignoruje, co nezná</li>
-    <li class="fragment">umožňuje postupné vykreslení</li>
-    <li class="fragment">nezbytné</li>
-</ul>
+- deklarativní
+- jednoduché
+- laxní validátor
+- prohlížeč ignoruje, co nezná
+- umožňuje postupné vykreslení
+- nezbytné
 
 ---
 
@@ -218,11 +213,9 @@ formEl.addEventListener('submit', function(ev) {
 
 *Minimum Viable Experience:*
 
-<ol>
-    <li class="fragment">identifikovat **základní** funkcionalitu</li>
-    <li class="fragment">použít **nejjednodušší** možnou technologii pro její zprovoznění</li>
-    <li class="fragment">**vylepšit**, jak je libo</li>
-</ol>
+1. identifikovat **základní** funkcionalitu
+2. použít **nejjednodušší** možnou technologii pro její zprovoznění
+3. **vylepšit**, jak je libo
 
 ---
 
@@ -230,12 +223,10 @@ formEl.addEventListener('submit', function(ev) {
 
 Příklad na službě typu *Google Docs:*
 
-<ol>
-    <li class="fragment">`form`, `textarea` a `button`</li>
-    <li class="fragment">automatické odeslání přes AJAX</li>
-    <li class="fragment">záloha v `localStorage`</li>
-    <li class="fragment">podpora více uživatelů skrze `WebSocket`</li>
-</ol>
+1. `form`, `textarea` a `button`
+2. automatické odeslání přes AJAX
+3. záloha v `localStorage`
+4. podpora více uživatelů skrze `WebSocket`
 
 ---
 
@@ -310,17 +301,14 @@ document.documentElement.classList.add('js');
 Jak přistoupit k detekci prostředí?
 
 - nezjišťujeme, o jaké **prostředí** jde (`User-Agent`):
-<!-- .element: class="fragment" -->
 ```js
 if (navigator.userAgent.indexOf('Chrome') !== -1) {
     var myMap = new Map();
     // ReferenceError: Map is not defined.
 }
 ```
-<!-- .element: class="fragment" -->
 
 - ptáme se, jaké má **vlastnosti**:
-<!-- .element: class="fragment" -->
 ```js
 if ('fetch' in window) {
     fetch('https://example.com').then(response => {
@@ -328,7 +316,6 @@ if ('fetch' in window) {
     });
 }
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -398,9 +385,8 @@ Jaké vlastnosti vybrat?
 })();
 ```
 
-<p class="fragment">
-    **Problém:** *Internet Explorer 10* a *11* nepodporují `fetch`.
-</p>
+**Problém:** *Internet Explorer 10* a *11* nepodporují `fetch`.
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -509,8 +495,8 @@ let reqPolyfills = polyfills.filter(({ test }) => !test);
 ```
 <!-- .element: class="fragment" -->
 
-<p style="text-align: center">⬇ 😁 *IE 10-11*</p>
-<!-- .element: class="fragment" -->
+⬇ 😁 *IE 10-11*
+<!-- .element: class="fragment" style="text-align: center" -->
 
 ```js
 var reqPolyfills = polyfills.filter(function(_ref) {
@@ -579,7 +565,7 @@ Závislosti projektu určíme v souboru `package.json`:
 }
 ```
 
----
+---  <!-- .slide: class="longform" -->
 
 ### `package.json` II.
 
@@ -764,7 +750,6 @@ npm run build
 ```js
 npm install --save-dev webpack
 ```
-<!-- .element: class="fragment" -->
 
 ```js
 // package.json
@@ -774,7 +759,6 @@ npm install --save-dev webpack
 },
 ...
 ```
-<!-- .element: class="fragment" -->
 
 ```js
 // webpack.config.js
@@ -787,7 +771,6 @@ module.exports = {
     }
 };
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -853,7 +836,6 @@ module.exports = {
     }
 };
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -876,12 +858,10 @@ module.exports = {
 ```bash
 npm install --save-dev grunt grunt-contrib-less grunt-postcss
 ```
-<!-- .element: class="fragment" -->
 
 ```bash
 npm install --save-dev autoprefixer
 ```
-<!-- .element: class="fragment" -->
 
 ```js
 // Gruntfile.js
@@ -897,7 +877,6 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['build-css']);
 };
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -944,7 +923,6 @@ grunt.initConfig({
 ```bash
 ./node_modules/.bin/grunt build
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -955,12 +933,10 @@ Konfigurace *webpack* pomocí pluginu `grunt-webpack`:
 ```bash
 npm install --save-dev grunt-webpack babel-loader
 ```
-<!-- .element: class="fragment" -->
 
 ```bash
 npm install --save-dev @babel/core @babel/preset-env
 ```
-<!-- .element: class="fragment" -->
 
 ```js
 // Gruntfile.js
@@ -970,7 +946,6 @@ grunt.registerTask('build-css', ['less', 'postcss']);
 grunt.registerTask('build-js', ['webpack']);
 grunt.registerTask('build', ['build-css', 'build-js']);
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -1013,7 +988,6 @@ Definice skriptů v `package.json`:
 ```bash
 npm run build
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -1707,7 +1681,7 @@ import { flattenDeep } from 'lodash';
 - nabízí **neměnnou kombinaci postupů**
 - **příklady:** *AngularJS*, *React*, *Vue*, *Ember*, *Polymer*, *Angular*, *Meteor*, ...
 
----
+---  <!-- .slide: class="longform" -->
 
 ### Frameworky II.
 
@@ -1721,7 +1695,7 @@ import { flattenDeep } from 'lodash';
 - **návody**, jak postupovat v běžných situacích
 - staví na ***open source*** komunitě
 
----
+---  <!-- .slide: class="longform" -->
 
 ### Frameworky III.
 
@@ -1733,7 +1707,7 @@ import { flattenDeep } from 'lodash';
 - v případě nepředvídaných problémů je třeba **obcházet** doporučené postupy
 - problém s dlouhodobou **podporou**
 
----
+---  <!-- .slide: class="longform" -->
 
 ### Frameworky IV.
 
@@ -1812,9 +1786,8 @@ function Timer() {
     return React.createElement('p', null, 'ETA: 10');
 }
 ```
-<!-- .element: class="fragment" -->
 
----
+---  <!-- .slide: class="longform" -->
 
 ### React II.
 
@@ -2034,13 +2007,11 @@ class Timer extends React.Component {
 
 **Výhody:**
 
-<ul>
-    <li class="fragment">vede k tvorbě malých **komponent**</li>
-    <li class="fragment">komponenty definujeme **deklarativně**</li>
-    <li class="fragment">přímá manipulace nad *DOM* je **skrytá**</li>
-    <li class="fragment">změny v *DOM* jsou **optimalizované** díky *Virtual DOM*</li>
-    <li class="fragment">**nevyžaduje** konkrétní architekturu aplikace</li>
-</ul>
+- vede k tvorbě malých **komponent**
+- komponenty definujeme **deklarativně**
+- přímá manipulace nad *DOM* je **skrytá**
+- změny v *DOM* jsou **optimalizované** díky *Virtual DOM*
+- **nevyžaduje** konkrétní architekturu aplikace
 
 ---
 
@@ -2048,14 +2019,12 @@ class Timer extends React.Component {
 
 **Nevýhody:**
 
-<ul>
-    <li class="fragment">**speciální** syntax (*JSX*)</li>
-    <li class="fragment">**vyžaduje** transpilaci</li>
-    <li class="fragment">zvyšuje **komplexitu** projektu</li>
-    <li class="fragment">přímá interakce nad *DOM* je těžkopádná</li>
-</ul>
+- **speciální** syntax (*JSX*)
+- **vyžaduje** transpilaci
+- zvyšuje **komplexitu** projektu
+- přímá interakce nad *DOM* je těžkopádná
 
----
+---  <!-- .slide: class="longform" -->
 
 ### Redux I.
 
@@ -2626,7 +2595,6 @@ hydrate(
 ```html
 <script src="js/app.bundle.js" type="module"></script>
 ```
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -2692,26 +2660,17 @@ npm run start
 
 ## Příklad — [odkaz](https://repl.it/@jackdaw/exercise-react)
 
-<ul style="font-size: .725em;">
-    <li>do aplikace doplňte **komponenty** `TodoList` a `Todo`</li>
-    <li>cílem je rozhraní pro **přidávání** a **mazání** úkolů, a jejich **přepínání** do dokončeného stavu a zpátky</li>
-    <li>
-        **Bonus:**
-        <ul>
-            <li>doplňte **filtrování** úkolů podle stavu dokončení</li>
-            <li>přidejte možnost **rozbalit** a **zabalit** ovládací prvky filtrování</li>
-        </ul>
-    <li>
-        **Tipy:**
-        <ul>
-            <li>využijte existujících *reducerů* a jejich *akcí*</li>
-            <li>rozmyslete, jak a jestli komponenty **napojíte** na *store*</li>
-            <li>dejte pozor při použití `this` v metodách</li>
-            <li>uvažte, zdali potřebujete operovat nad **skutečným** *DOM*</li>
-            <li>při návrhu komponent uplatněte **princip postupného vylepšení** z pohledu **funkcionality** i **sémantiky** elementů</li>
-        </ul>
-    </li>
-</ul>
+- do aplikace doplňte **komponenty** `TodoList` a `Todo`
+- cílem je rozhraní pro **přidávání** a **mazání** úkolů, a jejich **přepínání** do dokončeného stavu a zpátky
+- **Bonus:**
+    - doplňte **filtrování** úkolů podle stavu dokončení
+    - přidejte možnost **rozbalit** a **zabalit** ovládací prvky filtrování
+- **Tipy:**
+    - využijte existujících *reducerů* a jejich *akcí*
+    - rozmyslete, jak a jestli komponenty **napojíte** na *store*
+    - dejte pozor při použití `this` v metodách
+    - uvažte, zdali potřebujete operovat nad **skutečným** *DOM*
+    - při návrhu komponent uplatněte **princip postupného vylepšení** z pohledu **funkcionality** i **sémantiky** elementů
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
