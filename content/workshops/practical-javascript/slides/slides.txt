@@ -241,15 +241,10 @@ document.documentElement.classList.add('js');
 ```scss
 .accordion {
     ...
+}
 
-    .js & {
-        max-height: 0;
-        overflow: hidden;
-
-        &.is-active {
-            max-height: none;
-        }
-    }
+.js .accordion:not(.is-active) {
+    display: none;
 }
 ```
 
@@ -260,17 +255,17 @@ document.documentElement.classList.add('js');
 <div style="margin-top: 5em; display: flex; justify-content: space-between; font-size: .5em; text-align: center">
 
 <div style="width: 32%">
-    `.accordion`
+    .accordion
     <img src="img/accordion3.png">
 </div>
 
 <div style="width: 32%" class="fragment">
-    `.js .accordion`
+    .js .accordion
     <img src="img/accordion1.png">
 </div>
 
 <div style="width: 32%" class="fragment">
-    `.js .accordion.is-active`
+    .js .accordion.is-active
     <img src="img/accordion2.png">
 </div>
 
@@ -465,9 +460,23 @@ reqPolyfills.forEach(({ src }) => {
 })
 ```
 
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (I.) — [odkaz](https://repl.it/@jackdaw/exercise-pj-i)
+
+- upravte HTML, JavaScript a CSS existující TodoList aplikace s ohledem na **princip postupného vylepšení**
+- použijte **sémanticky** správné a dobře **strukturované** HTML
+- rozmyslete, jak bude aplikace pracovat z pohledu prohlížeče **bez JavaScriptu**
+- JavaScript se spustí jen pro prohlížeč **Internet Explorer 9 a novější**
+- předpokládejte existující logiku **aplikačního serveru**
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Nástroje a automatizace
+
 ---
 
-### *Polyfilling* V.
+### *Transpiling* I.
 
 **Problém:** *polyfilly* řeší chybějící API, ale ne syntax.
 
@@ -480,13 +489,9 @@ let reqPolyfills = polyfills.filter(({ test }) => !test);
 - *arrow* funkce `(...) => { ... }` (✝ *IE 11*)
 - *destructuring* `({ test })` (✝ *IE 11*)
 
-=== <!-- .slide: class="section" data-background="#F5D76E" -->
-
-# Nástroje a automatizace
-
 ---
 
-### *Transpiling* I.
+### *Transpiling* II.
 
 Transformace novější **syntaxe** (*ES2015+*) do podoby, která je podporována **specifikovanou** sadou prohlížečů.
 
@@ -508,7 +513,7 @@ var reqPolyfills = polyfills.filter(function(_ref) {
 
 ---
 
-### *Transpiling* II.
+### *Transpiling* III.
 
 - [*Babel*](https://babeljs.io/) je nejpoužívanější nástroj na *transpiling*
 - slouží k transformaci kódu pro prohlížeč i server
@@ -518,7 +523,7 @@ var reqPolyfills = polyfills.filter(function(_ref) {
 
 ---
 
-### *Transpiling* III.
+### *Transpiling* IV.
 
 - podporované prohlížeče lze specifikovat pomocí *browserlist* řetězce:
 
@@ -1069,6 +1074,19 @@ gulp.task('build-css', function(done) {
 - *build* je ve výsledku **rychlejší**
 - není třeba pro každý dílčí krok definovat **cestu** ke vstupu a výstupu
 - v praxi jde spíš o množství *pluginů* a **preference**
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (II.) — [odkaz](https://repl.it/@jackdaw/exercise-pj-ii)
+
+- pomocí `Gruntfile.js` vytvořte jednoduchý *build* proces
+- soubory ze složky `src` zpracujte následovně:
+    - `default.less` převeďte do formátu CSS a *zminifikujte*
+    - `plugin.css` *zminifikujte*
+    - `script.js` *ztranspilujte* do podoby stravitelné pro Internet Explorer 9-11 a prohlížeče s alespoň 5% podílem na trhu, a *zminifikujte*
+    - zpracované soubory patří do složky `build`, která kopíruje strukturu `src`
+- do `package.json` doplňte potřebné balíčky
+- skrze `grunt.registerTask` vytvořte libovolné množství příkazů, ale alespoň jeden s názvem `build`, který sdružuje ostatní příkazy
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 

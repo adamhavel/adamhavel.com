@@ -964,6 +964,29 @@ condition && foo(); // "bar"
 var param = x || "default"; // "default"
 ```
 
+---
+
+## *Destructuring*
+
+*Destructuring* umožňuje rychlou definici proměnných pomocí pole nebo objektu:
+
+```js
+var obj = { key: 'value', foo: 'bar' };
+var { key, foo: baz } = obj;
+
+console.log(key); // "value"
+console.log(baz); // "bar"
+```
+
+```js
+var arr = ['foo', 'bar', 'baz'];
+var [ x, , y ] = arr;
+
+console.log(x); // "foo"
+console.log(y); // "baz"
+```
+<!-- .element: class="fragment" -->
+
 --- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
 
 ## Příklad (I.) — [odkaz](https://repl.it/@jackdaw/exercise-i)
@@ -1777,11 +1800,11 @@ greet.call(montaigne); // "Hello, I'm Michel de Montaigne."
 let buttonEl = document.querySelector("button");
 
 buttonEl.addEventListener("click", function() {
-    console.log(this === el); // true
+    console.log(this === buttonEl); // true
 });
 
 buttonEl.addEventListener("click", () => {
-    console.log(this === el); // false
+    console.log(this === buttonEl); // false
 });
 ```
 
