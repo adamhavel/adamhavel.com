@@ -8,7 +8,7 @@
 
 ---
 
-- [https://www.adamhavel.com/moderni-javascript](https://www.adamhavel.com/moderni-javascript)
+- [https://www.adamhavel.cz/moderni-javascript](https://www.adamhavel.cz/moderni-javascript)
 - [https://repl.it](https://repl.it)
 
 ---

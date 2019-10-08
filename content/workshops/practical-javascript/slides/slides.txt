@@ -8,7 +8,7 @@
 
 ---
 
-- [https://www.adamhavel.com/prakticky-javascript](https://www.adamhavel.com/prakticky-javascript)
+- [https://www.adamhavel.cz/prakticky-javascript](https://www.adamhavel.cz/prakticky-javascript)
 - [https://repl.it](https://repl.it)
 
 ---
@@ -30,13 +30,12 @@
 ---
 
 ## Ideální představa programu
-1. princip postupného vylepšení
-2. nástroje a automatizace
-3. organizace kódu a moduly
+1. princip postupného vylepšení (+ příklad)
+2. nástroje a automatizace (+ příklad)
+3. organizace kódu a moduly (+ příklad)
 4. oběd
-5. frameworky a univerzální aplikace
-6. příklad
-7. progresivní webové aplikace
+5. frameworky a univerzální aplikace (+ příklad)
+6. progresivní webové aplikace
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
@@ -1685,6 +1684,15 @@ import { flattenDeep } from 'lodash';
     System.import('js/app.js');
 </script>
 ```
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (III.) — [odkaz](https://repl.it/@jackdaw/exercise-pj-iii)
+
+- upravte v příkladu HTML a JavaScript tak, aby využily **nativních modulů**
+- přepište různé typy modulů do **jednotného** formátu
+- všechny skripty se musí **vykonat**
+- rozmyslete, jakým způsobem definovat `export` v `library.js` a zdali je možné **zkombinovat** více postupů
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
