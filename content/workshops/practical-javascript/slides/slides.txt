@@ -2684,19 +2684,10 @@ npm run start
 
 --- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
 
-## Příklad — [odkaz](https://repl.it/@jackdaw/exercise-react)
+## Příklad IV. — [odkaz](https://repl.it/@jackdaw/exercise-pj-iv)
 
-- do aplikace doplňte **komponenty** `TodoList` a `Todo`
-- cílem je rozhraní pro **přidávání** a **mazání** úkolů, a jejich **přepínání** do dokončeného stavu a zpátky
-- **Bonus:**
-    - doplňte **filtrování** úkolů podle stavu dokončení
-    - přidejte možnost **rozbalit** a **zabalit** ovládací prvky filtrování
-- **Tipy:**
-    - využijte existujících *reducerů* a jejich *akcí*
-    - rozmyslete, jak a jestli komponenty **napojíte** na *store*
-    - dejte pozor při použití `this` v metodách
-    - uvažte, zdali potřebujete operovat nad **skutečným** *DOM*
-    - při návrhu komponent uplatněte **princip postupného vylepšení** z pohledu **funkcionality** i **sémantiky** elementů
+- v komponentě `TodoList.js` implementujte funkce `addTodo`, `removeTodo` a `toggleFiltering`
+- rozmyslete, která data patří do *store* a která do lokálního stavu komponenty
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 
