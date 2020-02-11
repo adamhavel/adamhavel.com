@@ -26,17 +26,17 @@ Ve světě CSS nicméně vládne ještě jeden zákon, zvaný *specificita*, kte
 
 Rozhodujícím je v tomto ohledu *selektor*, kterým cílíme na HTML elementy, jichž se deklarace týká. Příkladem je `[data-foo="bar"]`, který najde všechny prvky s HTML atributem `data-foo` o hodnotě `bar`, nebo `.foo` a `#foo`, s jejichž pomocí vybereme ty elementy, jejichž `class`, respektive `id`, je rovno `foo`. Podstatné je, že jde o různé typy deklarací s různou *specificitou*.
 
-*Selektory* lze navíc řetězit, čímž získáme deklarace jako  `.foo p` nebo `.bar div p`. Důležité je, že *selektor* o větší hloubce — zde ten druhý — má větší *specificitu* a že oba přebijí jakoukoliv jednoduchou deklaraci typu `p` nebo `div`, byť by se ve zdrojovém souboru objevila až později.
+*Selektory* lze navíc řetězit, čímž získáme deklarace jako `.foo p` nebo `.bar div p`. Důležité je, že *selektor* o větší hloubce — zde ten druhý — má větší *specificitu* a že oba přebijí jakoukoliv jednoduchou deklaraci typu `p` nebo `div`, byť by se ve zdrojovém souboru objevila až později.
 
 V závěru na parket vstupuje magické klíčové slovo `!important`. Zoufalý vývojář, zahnán do kouta marným bojem se *specificitou*, jej použije jako zbraň hromadného ničení v momentě, kdy vyčerpal všechny ostatní možnosti. Výsledkem je většinou krátce trvající vítězství, které se obratem vrátí v podobě špatně udržitelného kódu. Použiju-li deklaraci `p { color: red !important; }`, mám sice takřka jistotu, že všechny odstavce nabydou kýžené barvy textu, ale pokud se záhy objeví konfliktní deklarace, taktéž využívající `!important`, vrátí se *specificita* v plné síle, neb je třeba rozhodnout, která zvítězí.
 
 Problém CSS tedy nespočívá přímo v kaskádě, která je jednoduchá a vede k logickému řazení deklarací, ale ve *specificitě*, jež svými pravidly dává vzniknout komplexním — tedy těžko předvídatelným — interakcím. Pokud si předem nerozmyslíme, jak tomu předejít, snadno nám pod rukama vznikne dlouhodobě neudržitelný kód.
 
-## Technologie a metodologie
+## Technologie a metodika
 
 Přístupy jsou dva. První je technologický a souvisí s frameworky typu React či Vue, ale i W3C specifikací [Web Components](https://github.com/w3c/webcomponents). Ty všechny nabádají k tvorbě malých samostatných komponent, které v rámci jednoho balíčku dodají nejen JavaScript a související HTML šablonu, ale případně i CSS. Výhodou je, že tyto styly platí jen na úrovni komponenty a neovlivňují globální CSS kontext, podobně jako nativní moduly v JavaScriptu. Zároveň nám nic nebrání nastavit obecné hodnoty v globálním kontextu, který se do komponent stále propíše. Výsledkem je samozřejmě menší riziko kolizí a lepší udržitelnost v podobě modulárního kódu. Nevýhodou je, že tímto způsobem vzniká závislost stylů na JavaScriptu, který je — jak jsem [popisoval dříve](/blog/princip-postupneho-vylepseni/) — narozdíl od CSS a HTML křehký.
 
-Z toho důvodu jsme v Heurece zvolili druhou možnost, kterou je metodologie. To znamená, že vybereme principy, které nám dávají smysl, pevně se jich držíme a necháme se vést, a odměnou nám je přehledný a předvídatelný kód. Zjevnou výhodou oproti předchozímu přístupu je absence komplikované technologie. Někdo se ovšem může zhrozit, že se najednou potýkáme s “měkkými” problémy jako je disciplína, komunikace a porozumění napříč týmy. Tíha zodpovědnosti pak padá na poctivé *code review* a neuškodí ani dobře spravovaná *styleguide* (ta naše je k vidění na [heureka.cz/ui](https://heureka.cz/ui)).
+Z toho důvodu jsme v Heurece zvolili druhou možnost, kterou je metodika. To znamená, že vybereme principy, které nám dávají smysl, pevně se jich držíme a necháme se vést, a odměnou nám je přehledný a předvídatelný kód. Zjevnou výhodou oproti předchozímu přístupu je absence komplikované technologie. Někdo se ovšem může zhrozit, že se najednou potýkáme s “měkkými” problémy jako je disciplína, komunikace a porozumění napříč týmy. Tíha zodpovědnosti pak padá na poctivé *code review* a neuškodí ani dobře spravovaná *styleguide* (ta naše je k vidění na [heureka.cz/ui](https://heureka.cz/ui)).
 
 ## Block, Element, Modifier
 

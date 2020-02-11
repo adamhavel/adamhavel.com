@@ -89,7 +89,7 @@
 - date: 2019-10-21
   id: modern-javascript
   hours: 9:30–16:00
-  location: Šrobárova 2195/13<br>Praha 3
+  location: Milady Horákové 116/109<br>Praha 6
   soldout: false
   lang: cs
   price: 6 100 Kč
@@ -97,39 +97,23 @@
 - date: 2019-10-22
   id: practical-javascript
   hours: 9:30–16:00
-  location: Šrobárova 2195/13<br>Praha 3
+  location: Milady Horákové 116/109<br>Praha 6
   soldout: false
   lang: cs
   price: 6 100 Kč
 
-- date: 2019-11-20
+- date: 2020-03-16
   id: modern-javascript
   hours: 9:30–16:00
-  location: Křenová 409/52<br>Brno
+  location: Milady Horákové 116/109<br>Praha 6
   soldout: false
   lang: cs
   price: 6 100 Kč
 
-- date: 2019-11-21
+- date: 2020-03-17
   id: practical-javascript
   hours: 9:30–16:00
-  location: Křenová 409/52<br>Brno
-  soldout: false
-  lang: cs
-  price: 6 100 Kč
-
-- date: 2019-12-09
-  id: modern-javascript
-  hours: 9:30–16:00
-  location: Šrobárova 2195/13<br>Praha 3
-  soldout: false
-  lang: cs
-  price: 6 100 Kč
-
-- date: 2019-12-10
-  id: practical-javascript
-  hours: 9:30–16:00
-  location: Šrobárova 2195/13<br>Praha 3
+  location: Milady Horákové 116/109<br>Praha 6
   soldout: false
   lang: cs
   price: 6 100 Kč
