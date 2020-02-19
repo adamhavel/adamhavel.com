@@ -22,6 +22,10 @@ Vlastní zkušenost mi říká, že častým viníkem je takzvaná kaskáda. A j
 
 Na první pohled je princip kaskády jednoduchý: pozdější deklarace přebíjí předchozí. V první řadě tedy záleží na jejich pořadí. To dává CSS jasný řád, kdy obecné deklarace — jako třeba barva a velikost písma — předcházejí ty konkrétní, například barvu pozadí specifické komponenty.
 
+{{< figures/quote >}}
+Problém CSS nespočívá v kaskádě, která je jednoduchá a vede k logickému řazení deklarací, ale ve *specificitě*, jež dává vzniknout komplexním interakcím.
+{{< /figures/quote >}}
+
 Ve světě CSS nicméně vládne ještě jeden zákon, zvaný *specificita*, který toto jednoduché pravidlo komplikuje. Říká, že nezáleží jen na pořadí, ale i na typu deklarace. Různé typy deklarací mají totiž větší či menší *specificitu* a tím pádem potenciál přebít deklarace, které je sice následují, ale jejichž *specificita* je menší.
 
 Rozhodujícím je v tomto ohledu *selektor*, kterým cílíme na HTML elementy, jichž se deklarace týká. Příkladem je `[data-foo="bar"]`, který najde všechny prvky s HTML atributem `data-foo` o hodnotě `bar`, nebo `.foo` a `#foo`, s jejichž pomocí vybereme ty elementy, jejichž `class`, respektive `id`, je rovno `foo`. Podstatné je, že jde o různé typy deklarací s různou *specificitou*.
@@ -30,7 +34,7 @@ Rozhodujícím je v tomto ohledu *selektor*, kterým cílíme na HTML elementy, 
 
 V závěru na parket vstupuje magické klíčové slovo `!important`. Zoufalý vývojář, zahnán do kouta marným bojem se *specificitou*, jej použije jako zbraň hromadného ničení v momentě, kdy vyčerpal všechny ostatní možnosti. Výsledkem je většinou krátce trvající vítězství, které se obratem vrátí v podobě špatně udržitelného kódu. Použiju-li deklaraci `p { color: red !important; }`, mám sice takřka jistotu, že všechny odstavce nabydou kýžené barvy textu, ale pokud se záhy objeví konfliktní deklarace, taktéž využívající `!important`, vrátí se *specificita* v plné síle, neb je třeba rozhodnout, která zvítězí.
 
-Problém CSS tedy nespočívá přímo v kaskádě, která je jednoduchá a vede k logickému řazení deklarací, ale ve *specificitě*, jež svými pravidly dává vzniknout komplexním — tedy těžko předvídatelným — interakcím. Pokud si předem nerozmyslíme, jak tomu předejít, snadno nám pod rukama vznikne dlouhodobě neudržitelný kód.
+Problém CSS tedy nespočívá v kaskádě, která je jednoduchá a vede k logickému řazení deklarací, ale ve *specificitě*, jež dává vzniknout komplexním — tedy těžko předvídatelným — interakcím. Pokud si předem nerozmyslíme, jak tomu předejít, snadno nám pod rukama vznikne dlouhodobě neudržitelný kód.
 
 ## Technologie a metodika
 
@@ -136,6 +140,10 @@ V našem případě jsou to komponenty `article` a `category`, vytvoříme proto
 *BEM* vznikl s úmyslem ulehčit vývojářům práci, a to nejen ve správě stylů, ale i v orientaci v kódu. Z toho důvodu předepisuje jasnou syntax pro názvy HTML tříd. Díky tomu okamžitě poznáme, s čím máme co do činění, ale proč zůstat jen u `__` a `--`? V Heurece jsme proto metodologii rozšířili o *namespacing*.
 
 Na předchozím příkladu s třídami `breadcrumbs` a `category` jasně vidíme, že je mezi nimi rozdíl. První z nich představuje znovupoužitelnou komponentu, ta druhá udává celkové rozložení konkrétní sekce. Jde o kvalitativní rozdíl, který ze samotného názvu nemusí být zřejmý, proto čtenáři ulehčíme práci a na začátek třídy přidáme *namespace*. Z `breadcrumbs` se tak stane `c-breadcrumbs`, z `category` pak `l-category`. *Namespace* `c` (*component*) má jasný význam, který říká, že daná třída reprezentuje komponentu, tedy uzavřený modul s jasným, konkrétním použitím, které je vždy stejné. Oproti tomu `l` (*layout*) napovídá, že jde o třídu obstarávající rozložení stránky.
+
+{{< figures/quote >}}
+Ať už zvolíte jakékoliv řešení — nemusí to být nutně BEM — není důvod kaskádu zatracovat. Pokud ji (respektive sobě) nastavíte jasná a pevná pravidla, bude vám sloužit ku prospěchu.
+{{< /figures/quote >}}
 
 V Heurece používáme ještě tři takové *namespace*. První, který se jmenuje `e` (*element*), je významem shodný s `c`, ale s tím rozdílem, že nemá vnitřní strukturu, tedy žádné *BEM elementy*. Typickým příkladem je `e-button`, který má v HTML podobu například `<button class=“e-button”>Odeslat</button>`. Jedná se tedy o komponenty toho nejjednoduššího typu.
 

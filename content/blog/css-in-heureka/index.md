@@ -12,13 +12,17 @@ photoDesc: Tim Johnson
 photoUrl: https://unsplash.com/photos/VkuWpYCV2MU
 ---
 
-Many, if not all, of us at Heureka enjoy CSS. Like HTML, it's a declarative and simple language, with a similarly lax validator that tactfully skips over what it doesn't know. Unlike HTML, however, lot of people actually lose sleep over CSS. The main culprit tends to be the so called *cascade* which is sometimes hard to grapple with. Here is a description of one of the possible ways of how to control it, the one we ended up using.
+Many, if not all, of us at Heureka enjoy CSS. Like HTML, it's a declarative and simple language, with a similarly lax validator that tactfully skips over what it doesn't know. Unlike HTML, however, lot of people actually lose sleep over CSS. The main culprit tends to be the so called *cascade* which is sometimes hard to grapple with.
 
 <!--more-->
 
 ## Cascade and specificity
 
 At first glance, *cascade* looks simple: later declarations trump previous ones. This gives CSS a clear order where general declarations — like the color or size of text — precedes the more specific ones like the background of color of some component.
+
+{{< figures/quote >}}
+It's not the simple *cascade* itself, then, that's problematic, but *specificity*, which can turn the codebase into a complex mess, full of hard to predict interactions.
+{{< /figures/quote >}}
 
 There is, however, one more law that governs the realm of CSS, called *specificity*, which makes the whole affair a bit more complicated. It's not only the order that matters, but the type of declaration, too. Various declarations have different *specificity* and thus the potential to override declarations that follow them but have a lower *specificity*.
 
@@ -132,6 +136,10 @@ In our case, that's the `article` and `category` components' job. So, we create 
 The original purpose of *BEM* was to make developers' work easier and help them code better. Because of its clear syntax, it enhances code readability and eases orientation. We immediately know what we're dealing with, just by looking at the code. But can we make it even better?
 
 Using the example of the `breadcrumbs` and `category` components, we see that the first one is a reusable component, while the other lays out a particular section. They're entirely different beasts. If that's not clear from the names, we'll make it obvious and add a *namespace* to the classes. `Breadcrumbs` becomes `c-breadcrumbs` and `category` takes the name of `l-category`. The *namespace* `c` (*component*) suggests that a class is a component — a closed module with a clear, specific use that is always the same. On the other hand, `l` (*layout*) gives the hint that a class provides page layout.
+
+{{< figures/quote >}}
+Whatever solution you choose — it doesn't have to be *BEM* — there's no reason to throw away the cascade. If you give it (and yourself) clear and hard rules, it will serve you well.
+{{< /figures/quote >}}
 
 We use three more *namespaces*. The first one, named `e` (*element*), is similar to `c` but used only on those components that don't have an inner structure (therefore no *BEM elements*). A good example is the `e-button` *element*, e.g. `<button class=“e-button”>Send</button>`. These are the simplest components.
 

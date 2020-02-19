@@ -1,6 +1,6 @@
 .standfirst {
     font-size: 1.5em;
-    margin-left: calc(12.5% + #{($gutter / 2)});
+    margin-left: calc(33% + #{($gutter / 2)});
     margin-bottom: $lineHeight * 3rem;
 
     @media (max-width: $mediumScreen) {
@@ -14,26 +14,20 @@
     }
 
     &:before {
+        position: absolute;
+        right: calc(100% + .15em);
+        top: .05em;
         content: attr(data-drop-cap);
-        font-size: 10em;
-        float: left;
+        font-size: 5em;
         line-height: .8;
-        font-weight: 350;
-        font-variation-settings: 'wght' 350;
-        margin-top: -.05em;
-        margin-right: $gutter / 2;
-        margin-left: -.0675em;
-        margin-bottom: .125em;
+        font-weight: 500;
+        font-variation-settings: 'wght' 500;
         color: rgba(black, .675);
-        text-shadow: 3px 3px 0 rgba(black, .075),
-                     -3px -3px 0 rgba(black, .075);
         font-family: $fontDisplay;
-        padding: .05em ($gutter / 2) .05em 0;
-        background: radial-gradient(farthest-side at right, white, transparent) right no-repeat;
-        background-size: 60% 100%;
-        border-right: 1px solid rgba(black, .02);
 
         @media (max-width: $mediumScreen) {
+            position: static;
+            float: left;
             margin-right: $gutter / 2;
             font-size: calc(8em + 2vw);
         }

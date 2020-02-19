@@ -7,6 +7,11 @@ pygmentsStyle: github
 
 timeout: 30000
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 related:
   threshold: 80
   includeNewer: true

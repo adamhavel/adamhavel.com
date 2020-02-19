@@ -90,7 +90,7 @@
                 font-weight: 350;
                 font-variation-settings: 'wght' 350;
                 text-align: right;
-                color: rgba(mix(black, $colorPrimary, 70%), .75);
+                opacity: .875;
 
                 &:before {
                     content: '';

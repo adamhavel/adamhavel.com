@@ -13,9 +13,6 @@
         align-items: center;
         justify-content: space-between;
         font-size: .675em;
-        letter-spacing: .25em;
-        font-weight: 400;
-        font-variation-settings: 'wght' 400;
 
         @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
             grid-column: 1 / -1;
@@ -25,13 +22,18 @@
         .card__title {
             text-decoration: none;
             text-transform: uppercase;
-            font-weight: 600;
-            font-variation-settings: 'wght' 600;
             font-family: $fontBody;
             font-size: 1em;
+            font-weight: 500;
+            font-variation-settings: 'wght' 500;
+            letter-spacing: .325em;
         }
 
-        .card__date {}
+        .card__date {
+            font-weight: 300;
+            font-variation-settings: 'wght' 300;
+            letter-spacing: .25em;
+        }
 
     .card__figure {
         margin-top: $lineHeight * .5rem;
@@ -66,7 +68,7 @@
         }
 
     .card__content {
-        margin-top: $lineHeight * .75rem;
+        margin-top: $lineHeight * 1rem;
 
         @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
             grid-column: 2 / -1;
@@ -75,17 +77,16 @@
     }
 
         .card__heading {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 500;
             font-variation-settings: 'wght' 500;
-            font-family: $fontDisplay;
             line-height: 1.25;
         }
 
         .card__desc {
             font-weight: 300;
-            font-variation-settings: 'wght' 300, 'wdth' 90;
-            margin-top: $lineHeight * .375rem;
+            font-variation-settings: 'wght' 300, 'wdth' 95;
+            margin-top: $lineHeight * .5rem;
 
             @media (max-width: $mediumScreen) and (min-width: $smallScreen) {
                 font-variation-settings: 'wght' 300, 'wdth' 100;

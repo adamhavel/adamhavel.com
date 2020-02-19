@@ -18,4 +18,5 @@ clean-build:
 
 clean: clean-build
 	rm -rf node_modules
+	rm -rf static/lib
 	rm -f package-lock.json

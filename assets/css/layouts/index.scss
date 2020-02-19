@@ -74,20 +74,6 @@
         }
 
         .index__figure {
-            position: relative;
-
-            &:after {
-                xcontent: '';
-                position: absolute;
-                width: 33.5%;
-                height: 24%;
-                background: linear-gradient(45deg, $colorPrimary, $colorSecondary);
-                image-rendering: pixelated;
-                top: 13%;
-                left: 29.5%;
-                transform: rotate(-.25deg);
-                border-radius: 3%;
-            }
 
             @media (max-width: $mediumScreen) {
                 order: -1;
@@ -100,14 +86,11 @@
             }
         }
 
-            .index__mac {
-
-            }
-
     .index__content {
+        background: rgba(black, .0325);
+        padding: ($lineHeight * 2.5rem) 0 ($lineHeight * 3rem);
 
         @media (max-width: $mediumScreen) {
-            background: rgba(black, .0325);
             padding: ($lineHeight * 1.5rem) 0 ($lineHeight * 3rem);
         }
 
@@ -118,84 +101,14 @@
 
         .index__cards {
             display: grid;
-            position: relative;
             grid-template-columns: repeat(3, 1fr);
             grid-row-gap: $lineHeight * 2rem;
-            perspective: 4000px;
-            margin-bottom: ($lineHeight * -2rem);
+            grid-column-gap: $gutter;
 
             @media (max-width: $mediumScreen) {
                 grid-template-columns: 1fr;
-                perspective: 0;
                 margin-bottom: 0;
-
-                &:before,
-                &:after {
-                    display: none;
-                }
             }
         }
 
-            .index__card {
-                padding: ($lineHeight * 2.5rem) ($gutter / 2) ($lineHeight * 5rem);
-                transform-style: preserve-3d;
-                border: solid rgba(black, .0125);
-                border-width: 1px 0 0 1px;
-
-                &:before,
-                &:after {
-                    position: absolute;
-                    top: -1px;
-                    bottom: -50%;
-                    width: 200%;
-                    border: solid rgba(black, .0125);
-                    border-width: 1px 0 0 1px;
-                }
-
-                @media (max-width: $mediumScreen) {
-
-                    &:before,
-                    &:after {
-                        display: none !important;
-                    }
-                }
-
-                &:first-child {
-                    background: rgba(black, .0325);
-                    transform: rotateY(15deg);
-                    transform-origin: right;
-
-                    &:before {
-                        content: '';
-                        right: 100%;
-                        background: rgba(black, .125);
-                        transform: skewY(-10deg);
-                        transform-origin: top right;
-                    }
-                }
-
-                &:nth-child(2) {
-                    background: rgba(black, .05);
-                }
-
-                &:nth-child(3) {
-                    background: rgba(black, .04);
-                    transform: rotateY(10deg) translateX(-1px);
-                    transform-origin: left;
-                    border-left-color: rgba(black, .005);
-
-                    &:before {
-                        content: '';
-                        left: 100%;
-                        background: rgba(black, .075);
-                        transform: skewY(-10deg);
-                        transform-origin: top left;
-                    }
-                }
-
-                @media (max-width: $mediumScreen) {
-                    padding: 0 !important;
-                    transform: none !important;
-                    background: none !important;
-                }
-            }
+            .index__card {}
