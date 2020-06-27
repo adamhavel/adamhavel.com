@@ -30,7 +30,7 @@ Ikony nepatří mezi nejpalčivější problémy, se kterými se při vývoji na
 ```
 {{< /figures/code >}}
 
-*Sprite* vznikne tak, že jednotlivé ikony, respektive jejich SVG, vložíme do elementů typu `symbol` v rámci jednoho souboru{{< figures/code-ref >}}. Důvodem pro použití symbolů je fakt, že se nevykreslí v místě definice, ale až tam, kde je skutečně použijeme. Pokud *sprite* nechceme vytvářet ručně, lze si pomoct nástrojem typu [*grunt-svgstore*](https://github.com/FWeinb/grunt-svgstore) nebo [*gulp-svgsprite*](https://github.com/jkphl/gulp-svg-sprite).
+Sprite vznikne tak, že jednotlivé ikony, respektive jejich SVG, vložíme do elementů typu `symbol` v rámci jednoho souboru{{< figures/code-ref >}}. Důvodem pro použití symbolů je fakt, že se nevykreslí v místě definice, ale až tam, kde je skutečně použijeme. Pokud *sprite* nechceme vytvářet ručně, lze si pomoct nástrojem typu [*grunt-svgstore*](https://github.com/FWeinb/grunt-svgstore) nebo [*gulp-svgsprite*](https://github.com/jkphl/gulp-svg-sprite).
 
 {{< figures/code >}}
 ```xml

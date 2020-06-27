@@ -3,13 +3,15 @@
 
 ---
 
-[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)
-<!-- .element: style="text-align: center" -->
+- e-mail: [adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)
+- www:
+    - [adamhavel.cz](https://www.adamhavel.cz)
+    - [decentrum.cz](https://www.decentrum.cz)
 
 ---
 
-- [https://www.adamhavel.cz/prakticky-javascript](https://www.adamhavel.cz/prakticky-javascript)
-- [https://repl.it](https://repl.it)
+[https://www.adamhavel.cz/prakticky-javascript](https://www.adamhavel.cz/prakticky-javascript)
+<!-- .element: style="text-align: center" -->
 
 ---
 
@@ -1629,9 +1631,8 @@ node --experimental-modules main.mjs
 <script nomodule src="app.bundle.js"></script>
 ```
 
-- prohlížeče podporující ESM **nestáhnou** skript s atributem `nomodule` (s vyjímkou Edge)
+- prohlížeče podporující ESM **nestáhnou** skript s atributem `nomodule`
 - skript s `type="module"` je naopak **ignorován** prohlížeči bez podpory
-- neřeší problém dynamického importu (*Firefox* a *Edge*)
 
 ---
 
@@ -1649,40 +1650,6 @@ Transpilace pro moderní prohlížeče v případě použití **experimentální
     ]
 ],
 "plugins": ["@babel/plugin-proposal-decorators"]
-```
----
-
-### Podpora v prohlížečích III.
-
-- lze použít polyfill [System.js](https://github.com/systemjs/systemjs)
-- nutná transpilace (plugin `@babel/plugin-transform-modules-systemjs`)
-- umožňuje ESM i pro starší prohlížeče
-- dynamický import přes `System.import`
-- podpora pro `packagemap` (`systemjs-packagemap`)
-- zachová výhodu ***lazy-loadingu***
-
----
-
-### Podpora v prohlížečích IV.
-
-```
-// app.js
-import { flattenDeep } from 'lodash';
-```
-
-```html
-<script type="systemjs-packagemap">
-{
-    "path_prefix": "/node_modules",
-    "packages": {
-        "lodash": { "main": "lodash/lodash.js" }
-    }
-}
-</script>
-<script src="js/lib/system.js"></script>
-<script>
-    System.import('js/app.js');
-</script>
 ```
 
 --- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
@@ -1971,47 +1938,6 @@ class Timer extends React.Component {
 
 ### React X.
 
-- komponenta není referencí na ***DOM* element**
-- potřebujeme-li referenci, musíme použít `React.createRef()`
-
-```jsx
-class Timer extends React.Component {
-    ...
-
-    constructor(props) {
-        ...
-        this.btn = React.createRef();
-    }
-
-    render() {
-        return <button type="button" ref={this.btn}>
-            ETA: {this.state.count}
-        </button>
-    }
-}
-```
-
----
-
-### React XI.
-
-- referenci na ***DOM* element** získáme až voláním `current` nad `ref`
-- hodí se v případě, kdy potřebujeme reagovat na událost, která nemá **ekvivalent** v atributech typu `onClick` nebo získat **hodnotu** konkrétního atributu
-
-```jsx
-class Timer extends React.Component {
-    ...
-
-    componentDidMount() {
-        this.btn.current.addEventListener('oddEvent', ...);
-    }
-}
-```
-
----
-
-### React XII.
-
 ```jsx
 class Timer extends React.Component {
     ...
@@ -2024,12 +1950,12 @@ class Timer extends React.Component {
 ```
 
 - pomocí `bind()` nastavíme metodám pevnou referenci na **komponentu** v rámci `this`
-- hodí se i v případě, kdy metody **předáváme** pomocí `props` jiným komponentám a chceme zachovat **původní** referenci
+- hodí se, když metody **předáváme** pomocí `props` a chceme zachovat **původní** referenci
 - lepší volat `bind()` v konstruktoru než v `render()`
 
 ---
 
-### React XIII.
+### React XI.
 
 **Výhody:**
 
@@ -2041,7 +1967,7 @@ class Timer extends React.Component {
 
 ---
 
-### React XIV.
+### React XII.
 
 **Nevýhody:**
 
@@ -2984,88 +2910,14 @@ self.addEventListener('fetch', ev => {
 - notifikace na úrovni **systému** bez otevřeného prohlížeče vyžaduje:
     - **oprávnění** od uživatele
     - aplikační server pro **posílání** notifikací
-    - *push* server pro jejich **příjem**
+    - *push* server pro jejich **příjem** ([firebase.google.com](https://firebase.google.com))
     - *service worker* pro jejich **zobrazení**
 
 ---
 
 ### Notifikace II.
 
-```js
-navigator.serviceWorker.register('./service-worker.js')
-    .then(registration => {
-        Notification.requestPermission().then(result => {
-            if (result !== 'granted') return;
-
-            let options = { applicationServerKey: 'RfS...' };
-            registration.pushManager.subscribe(options)
-                .then(subscription => {
-                    ...
-                });
-        })
-    });
-```
-
-- `applicationServerKey` je **veřejný** klíč aplikačního serveru
-- s pomocí `subscription` lze uživateli posílat notifikace
-
----
-
-### Notifikace III.
-
-```json
-{
-    "endpoint": "https://fcm.googleapis.com/fcm/send/c7V...",
-    "expirationTime": null,
-    "keys": {
-        "p256dh": "BJs...",
-        "auth": "TJX..."
-    }
-}
-```
-
-- `endpoint` je **unikátní** URL *push serveru* pro daného uživatele
-- `subscription` **pošleme** aplikačnímu serveru a **uložíme** do databáze
-
----
-
-### Notifikace IV.
-
-Aplikační server se u *push* serveru **identifikuje** pomocí *VAPID* protokolu a vygenerovaného páru klíčů:
-
-```js
-import webpush from 'web-push';
-
-const vapidKeys = webpush.generateVAPIDKeys();
-```
-
----
-
-### Notifikace V.
-
-```js
-import webpush from 'web-push';
-
-let options = {
-    vapidDetails: { ... }
-};
-
-let data = {
-    title: 'Delivery update',
-    body: 'Your pizza is ready!'
-};
-
-webpush.sendNotification(subscription, data, options);
-```
-
-- uložené `subscription` použijeme pro odeslání notifikace
-- díky `vapidDetails` *push* server **ověří**, že požadavek pochází z našeho aplikačního serveru
-
----
-
-### Notifikace VI.
-
-V případě `push` události se *service worker* „probudí“ a zobrazí **systémovou** notifikaci:
+V případě `push` události od *push* serveru se *service worker* „probudí“ a zobrazí **systémovou** notifikaci:
 
 ```js
 self.addEventListener('push', ev => {

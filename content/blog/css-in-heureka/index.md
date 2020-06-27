@@ -16,17 +16,13 @@ Many, if not all, of us at Heureka enjoy CSS. Like HTML, it's a declarative and 
 
 <!--more-->
 
-## Cascade and specificity
+At first glance, *cascade* looks simple: later declarations trump previous ones. This gives CSS a clear order where general declarations — like the color or size of text — precedes the more specific ones like the background of color of some component. There is, however, one more law that governs the realm of CSS, called *specificity*, which makes the whole affair a bit more complicated. It's not only the order that matters, but the type of declaration, too. Various declarations have different *specificity* and thus the potential to override declarations that follow them but have a lower *specificity*.
 
-At first glance, *cascade* looks simple: later declarations trump previous ones. This gives CSS a clear order where general declarations — like the color or size of text — precedes the more specific ones like the background of color of some component.
+The *selector* we use to link declaration to HTML elements has the main say regarding *specificity*. For example, `[data-foo="bar"]` finds all elements with the `data-foo` HTML attribute equal to `bar`, while `.foo` targets elements with `class` matching `foo`. These are examples of different types of *selectors* with different *specificity*. They can be chained leading to *selectors* like `.foo p` or `.bar div p`, and the longer the chain, the greater the *specificity*. Simple *selectors* such as `p` or` div` are thus easily overriden.
 
 {{< figures/quote >}}
 It's not the simple *cascade* itself, then, that's problematic, but *specificity*, which can turn the codebase into a complex mess, full of hard to predict interactions.
 {{< /figures/quote >}}
-
-There is, however, one more law that governs the realm of CSS, called *specificity*, which makes the whole affair a bit more complicated. It's not only the order that matters, but the type of declaration, too. Various declarations have different *specificity* and thus the potential to override declarations that follow them but have a lower *specificity*.
-
-The *selector* we use to link declaration to HTML elements has the main say regarding *specificity*. For example, `[data-foo="bar"]` finds all elements with the `data-foo` HTML attribute equal to `bar`, while `.foo` targets elements with `class` matching `foo`. These are examples of different types of *selectors* with different *specificity*. They can be chained leading to *selectors* like `.foo p` or `.bar div p`, and the longer the chain, the greater the *specificity*. Simple *selectors* such as `p` or` div` are thus easily overriden.
 
 Finally, we stumble upon the keyword `!important`. A desperate developer, in his vain struggle with *specificity*, uses it as a weapon of mass destruction, having exhausted all other options. It is, however, a short-lived victory. By declaring `p { color: red !important }`, all paragraphs will probably acquire the desired text color. But when we create a conflicting declaration with `!important`, *specificity* returns in full force, because we need it to decide which of the two declarations wins. This path, too, leads into a game of whack-a-mole.
 

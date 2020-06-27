@@ -3,13 +3,15 @@
 
 ---
 
-[adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)
-<!-- .element: style="text-align: center" -->
+- e-mail: [adam.havel@protonmail.com](mailto:adam.havel@protonmail.com)
+- www:
+    - [adamhavel.cz](https://www.adamhavel.cz)
+    - [decentrum.cz](https://www.decentrum.cz)
 
 ---
 
-- [https://www.adamhavel.cz/moderni-javascript](https://www.adamhavel.cz/moderni-javascript)
-- [https://repl.it](https://repl.it)
+[https://www.adamhavel.cz/moderni-javascript](https://www.adamhavel.cz/moderni-javascript)
+<!-- .element: style="text-align: center" -->
 
 ---
 
@@ -2035,40 +2037,6 @@ Object.getPrototypeOf(seneca) === Foo.prototype; // true
 
 ## „Třídy“ (III.)
 
-Vytvoření vazby mezi objekty je jen jedním z **vedlejších efektů** volání `new`:
-
-```js
-function myNew(constructor, ...args) {
-    let isObject = value => value === Object(value);
-    let obj = {}; // 1.
-
-    Object.setPrototypeOf(obj, constructor.prototype); // 2.
-
-    let result = constructor.apply(obj, args); // 3.
-
-    return isObject(result) ? result : obj; // 4.
-}
-```
-
----
-
-## „Třídy“ (IV.)
-
-```js
-function Foo(who) {
-    this.me = who;
-}
-
-let seneca = myNew(Foo, "Lucius Annaeus Seneca");
-
-seneca.me; // "Lucius Annaeus Seneca"
-Object.getPrototypeOf(seneca) === Foo.prototype; // true
-```
-
----
-
-## „Třídy“ (V.)
-
 Narozdíl od `Object.create` se na `new` nedá spolehnout:
 
 ```js
@@ -2086,7 +2054,7 @@ Object.getPrototypeOf(seneca) === Foo.prototype; // false
 
 ---
 
-## „Třídy“ (VI.)
+## „Třídy“ (IV.)
 
 ```js
 function Foo(who) { this.me = who }
@@ -2107,7 +2075,7 @@ seneca.identify(); // "Hello, I am Lucius Annaeus Seneca"
 
 ---
 
-## „Třídy“ (VII.)
+## „Třídy“ (V.)
 
 ```js
 class Foo {
@@ -2126,7 +2094,7 @@ seneca.identify(); // "Hello, I am Lucius Annaeus Seneca"
 
 ---
 
-## „Třídy“ (VIII.)
+## „Třídy“ (VI.)
 
 - `class` nevytváří třídu, jde jen o „syntaktický cukr“ (*syntax sugar*) nad **prototypální delegací**
 - `class` je stále **objekt**, ne statická třída
@@ -2526,7 +2494,30 @@ Promise.race([ foo, timeoutPromise(3000) ])
 
 ---
 
+## *Promise* (X.)
+
+- **sekvenčně** vypadající, v pozadí **asynchronní** kód
+- funkce `step1`, `step2`, atd. vrací `Promise`:
+
+```js
+step1()
+    .then(step2)
+    .then(step3(msg) => {
+        return Promise.all([
+            step3a(msg), step3b(msg), step3c(msg)
+        ])
+    })
+    .then(step4)
+    .catch(failed);
+```
+
+---
+
 ## `async/await` (I.)
+
+- alternativně lze použít `async` funkce
+- `await` před funkcemi vracejícími `Promise`
+- běh `async` funkce je v daném místě zastaven, dokud se `Promise` nenaplní
 
 ```js
 async function main() {
@@ -2569,8 +2560,8 @@ main()
 
 ## `async/await` (III.)
 
-- `await` lze používat jen v `async` funkcích
-- s pomocí *IIFE* lze asynchronní kontext vytvořit automaticky
+- `await` lze použít jen v `async` funkcích
+- s pomocí *IIFE* lze jednoduše vytvořit asynchronní kontext
 
 ```
 (async function() {
@@ -2579,6 +2570,22 @@ main()
 
 })();
 ```
+
+--- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
+
+## Příklad (IV.) — [odkaz](https://repl.it/@jackdaw/exercise-iv)
+
+- stávající funkce `ajax(url, callback)` vrací odpověď při dotazu na `https://example.com` a chybu při jakékoliv jiné adrese
+- `ajax` očekává *callback* ve tvaru `function(err, response)`
+- při úspěšném dotazu `ajax` volá *callback* s objektem `response`
+- funkce `text` na objektu `response` vrací `Promise`, jež obsahuje text odpovědi
+- vytvořte funkci `ajaxPromise`, která funkci `ajax` „obaluje“ a upravuje její rozhraní na `Promise`
+- napište příklad volání funkce `ajaxPromise`, včetně získání textu odpovědi a zachycení případných vyjímek
+- **bonus:** použijte `ajaxPromise` v kontextu `async` funkce
+
+=== <!-- .slide: class="section" data-background="#F5D76E" -->
+
+# Bonus: Generátory
 
 ---
 
@@ -2781,18 +2788,6 @@ async function main() {
     }
 }
 ```
-
---- <!-- .slide: class="exercise" data-background="#b8f1fd" -->
-
-## Příklad (IV.) — [odkaz](https://repl.it/@jackdaw/exercise-iv)
-
-- stávající funkce `ajax(url, callback)` vrací odpověď při dotazu na `https://example.com` a chybu při jakékoliv jiné adrese
-- `ajax` očekává *callback* ve tvaru `function(err, response)`
-- při úspěšném dotazu `ajax` volá *callback* s objektem `response`
-- funkce `text` na objektu `response` vrací `Promise`, jež obsahuje text odpovědi
-- vytvořte funkci `ajaxPromise`, která funkci `ajax` „obaluje“ a upravuje její rozhraní na `Promise`
-- napište příklad volání funkce `ajaxPromise`, včetně získání textu odpovědi a zachycení případných vyjímek
-- **bonus:** použijte `ajaxPromise` v kontextu `async` funkce
 
 === <!-- .slide: class="section" data-background="#F5D76E" -->
 

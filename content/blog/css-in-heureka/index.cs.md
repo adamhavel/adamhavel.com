@@ -12,25 +12,19 @@ photoDesc: Tim Johnson
 photoUrl: https://unsplash.com/photos/VkuWpYCV2MU
 ---
 
-V Heurece máme CSS rádi. Pokud ne všichni, tak alespoň ti, co s ním běžně přijdou do styku. CSS je totiž — stejně jako HTML — deklarativní a jednoduchý jazyk a s HTML sdílí i podobně laxní validátor, který přijme ledacos a taktně přeskočí, co nezná. Na rozdíl od HTML, které asi většinu z nás ze spánku nebudí, však CSS v lidech vyvolává mnohem silnější emoce.
+V Heurece máme CSS rádi. Pokud ne všichni, tak alespoň ti, co s ním běžně přijdou do styku. CSS je totiž — stejně jako HTML — deklarativní a jednoduchý jazyk a s HTML sdílí i podobně laxní validátor, který přijme ledacos a taktně přeskočí, co nezná. Na rozdíl od HTML, které asi většinu z nás ze spánku nebudí, však CSS v lidech vyvolává mnohem silnější emoce. Zkušenost mi říká, že častým viníkem je takzvaná kaskáda.
 
 <!--more-->
 
-Vlastní zkušenost mi říká, že častým viníkem je takzvaná kaskáda. A jelikož se o zkrocení kaskády pokoušíme i v Heurece, ukážeme si, jak může vypadat jeden z možných přístupů.
-
-## Kaskáda a specificita
-
-Na první pohled je princip kaskády jednoduchý: pozdější deklarace přebíjí předchozí. V první řadě tedy záleží na jejich pořadí. To dává CSS jasný řád, kdy obecné deklarace — jako třeba barva a velikost písma — předcházejí ty konkrétní, například barvu pozadí specifické komponenty.
-
-{{< figures/quote >}}
-Problém CSS nespočívá v kaskádě, která je jednoduchá a vede k logickému řazení deklarací, ale ve *specificitě*, jež dává vzniknout komplexním interakcím.
-{{< /figures/quote >}}
-
-Ve světě CSS nicméně vládne ještě jeden zákon, zvaný *specificita*, který toto jednoduché pravidlo komplikuje. Říká, že nezáleží jen na pořadí, ale i na typu deklarace. Různé typy deklarací mají totiž větší či menší *specificitu* a tím pádem potenciál přebít deklarace, které je sice následují, ale jejichž *specificita* je menší.
+Princip kaskády je na první pohled jednoduchý: pozdější deklarace přebíjí předchozí. V první řadě tedy záleží na jejich pořadí. To dává CSS jasný řád, kdy obecné deklarace — jako třeba barva a velikost písma — předcházejí ty konkrétní, například barvu pozadí specifické komponenty. Ve světě CSS nicméně vládne ještě jeden zákon, zvaný *specificita*, který toto jednoduché pravidlo komplikuje. Říká, že nezáleží jen na pořadí, ale i na typu deklarace. Různé typy deklarací mají totiž větší či menší *specificitu* a tím pádem potenciál přebít deklarace, které je sice následují, ale jejichž *specificita* je menší.
 
 Rozhodujícím je v tomto ohledu *selektor*, kterým cílíme na HTML elementy, jichž se deklarace týká. Příkladem je `[data-foo="bar"]`, který najde všechny prvky s HTML atributem `data-foo` o hodnotě `bar`, nebo `.foo` a `#foo`, s jejichž pomocí vybereme ty elementy, jejichž `class`, respektive `id`, je rovno `foo`. Podstatné je, že jde o různé typy deklarací s různou *specificitou*.
 
 *Selektory* lze navíc řetězit, čímž získáme deklarace jako `.foo p` nebo `.bar div p`. Důležité je, že *selektor* o větší hloubce — zde ten druhý — má větší *specificitu* a že oba přebijí jakoukoliv jednoduchou deklaraci typu `p` nebo `div`, byť by se ve zdrojovém souboru objevila až později.
+
+{{< figures/quote >}}
+Problém CSS nespočívá v kaskádě, která je jednoduchá a vede k logickému řazení deklarací, ale ve *specificitě*, jež dává vzniknout komplexním interakcím.
+{{< /figures/quote >}}
 
 V závěru na parket vstupuje magické klíčové slovo `!important`. Zoufalý vývojář, zahnán do kouta marným bojem se *specificitou*, jej použije jako zbraň hromadného ničení v momentě, kdy vyčerpal všechny ostatní možnosti. Výsledkem je většinou krátce trvající vítězství, které se obratem vrátí v podobě špatně udržitelného kódu. Použiju-li deklaraci `p { color: red !important; }`, mám sice takřka jistotu, že všechny odstavce nabydou kýžené barvy textu, ale pokud se záhy objeví konfliktní deklarace, taktéž využívající `!important`, vrátí se *specificita* v plné síle, neb je třeba rozhodnout, která zvítězí.
 
