@@ -135,3 +135,21 @@
   url: https://www.root.cz/skoleni/termin/prakticky-javascript-1l/
   lang: cs
   price: 6 100 Kč
+
+- date: 2020-11-12
+  id: modern-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  soldout: false
+  url: https://www.root.cz/skoleni/termin/moderni-javascript-1l/
+  lang: cs
+  price: 6 100 Kč
+
+- date: 2020-11-13
+  id: practical-javascript
+  hours: 9:30–16:00
+  location: Milady Horákové 116/109<br>Praha 6
+  soldout: false
+  url: https://www.root.cz/skoleni/termin/prakticky-javascript-1l/
+  lang: cs
+  price: 6 100 Kč
